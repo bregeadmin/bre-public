@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>a morning in old batumi — bre</title>
+<meta name="description" content="three coffees, a bookstore, two churches, the synagogue, and lunch at a place with no sign. an unhurried morning, slow on purpose.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=JetBrains+Mono:wght@300..700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf8f1;--bg-2:#f1ecdf;--paper:#fdfbf6;
+    --ink:#0a0908;--ink-soft:#4d544e;
+    --line:#0a090815;--line-strong:#0a090833;
+    --accent:#ff5e1a;--accent-deep:#d94612;
+    --teal:#00b5b0;--yellow:#ffd60a;
+    --pink-soft:#e8797c;--purple:#7f77dd;
+    --green-cat:#5dcaa5;--amber:#ef9f27;
+    --coral:#f0997b;
+    --page:var(--accent);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;font-weight:400;line-height:1.4;cursor:none;-webkit-font-smoothing:antialiased}
+  body{overflow-x:hidden}
+  ::selection{background:var(--page);color:#fff}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
+  .cursor.big{width:72px;height:72px;background:var(--page)}
+  .cursor.text{width:104px;height:104px;background:var(--page);color:#fff;display:flex;align-items:center;justify-content:center;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;mix-blend-mode:normal}
+  .cursor.text::before{content:attr(data-label)}
+  @media (hover:none){html,body,a,button{cursor:auto}.cursor{display:none}}
+
+  .float-wm{position:fixed;bottom:18px;left:18px;z-index:80;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;letter-spacing:-.04em;color:#fff;mix-blend-mode:difference;display:flex;align-items:flex-end;gap:3px;line-height:1;pointer-events:auto;transition:transform .3s ease}
+  .float-wm .d{width:14px;height:14px;border-radius:50%;background:var(--page);mix-blend-mode:normal;box-shadow:0 0 14px var(--page);animation:dotpulse 2.4s ease-in-out infinite;margin-bottom:3px;margin-left:7px}
+  @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
+
+  /* TOPBAR */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:24px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+  .topbar .left{display:flex;gap:28px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .left a:hover,.topbar .left a.active{color:var(--page)}
+  .topbar .ctr{justify-self:center;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .topbar .ctr .d{width:10px;height:10px;border-radius:50%;background:var(--page);mix-blend-mode:normal;margin-bottom:2px;margin-left:5px}
+  .topbar .right{justify-self:end;display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px;transition:border-color .2s ease,background .2s ease}
+  .topbar .city:hover{border-color:#fff;background:#ffffff14}
+  .topbar .city .arr{opacity:.6;font-size:8px;margin-top:1px}
+  .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.1em;transition:border-color .2s ease,background .2s ease}
+  .topbar .lang:hover{border-color:#fff;background:#ffffff14}
+  .topbar .burger{display:none;width:34px;height:34px;border:1px solid #ffffff66;border-radius:50%;background:transparent;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;cursor:none;flex:none}
+  .topbar .burger span{display:block;width:14px;height:1.5px;background:#fff;transition:transform .25s ease}
+  .topbar .burger.open span:nth-child(1){transform:translateY(3.5px) rotate(45deg)}
+  .topbar .burger.open span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+
+  .menu-overlay{position:fixed;inset:0;z-index:90;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;padding:80px 28px 40px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .menu-overlay.open{opacity:1;pointer-events:auto}
+  .menu-overlay::before{content:"";position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=1600&q=80');background-size:cover;background-position:center;opacity:.18;z-index:0}
+  .menu-overlay .menu-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;max-width:520px}
+  .menu-overlay .menu-item{display:block;padding:14px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(40px,11vw,72px);line-height:.9;letter-spacing:-.035em;text-transform:lowercase;color:#fff;transition:color .2s ease,transform .25s ease}
+  .menu-overlay .menu-item:hover{color:var(--page);transform:translateX(12px)}
+  .menu-overlay .menu-foot{margin-top:36px;padding-top:24px;border-top:1px solid #ffffff22;width:100%;display:grid;gap:14px}
+  .menu-overlay .menu-row{display:flex;justify-content:space-between;align-items:baseline;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:#ffffff88}
+  .menu-overlay .menu-row-val{color:#fff;font-weight:600}
+  .menu-overlay .menu-row-val:hover{color:var(--page)}
+  .menu-overlay .menu-tg{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--page)}
+
+  /* === ARTICLE === */
+  .article{padding-top:88px}
+
+  /* META top */
+  .meta-top{padding:24px 28px;border-bottom:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;justify-content:space-between;flex-wrap:wrap;gap:14px;align-items:center}
+  .meta-top .left{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+  .meta-top .pill{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px solid var(--line-strong)}
+  .meta-top .pill .dot{width:6px;height:6px;border-radius:50%;background:var(--page)}
+  .meta-top a:hover{color:var(--ink)}
+
+  /* HERO */
+  .hero{padding:64px 28px 48px;border-bottom:1px solid var(--line)}
+  .hero .inner{max-width:1100px;margin:0 auto}
+  .hero .crumbs{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:32px;display:flex;align-items:center;gap:10px}
+  .hero .crumbs a:hover{color:var(--ink)}
+  .hero .crumbs .sep{opacity:.4}
+  .hero .crumbs .current{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+  .hero .crumbs .current .dot{width:8px;height:8px;border-radius:50%;background:var(--page)}
+  .hero .title{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(56px,8vw,128px);line-height:.88;letter-spacing:-.045em;text-transform:lowercase;max-width:18ch}
+  .hero .title em{font-style:italic;color:var(--page)}
+  .hero .by{margin-top:40px;display:flex;gap:22px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  .hero .by .av{width:34px;height:34px;border-radius:50%;background:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80') center/cover;border:1px solid var(--line-strong)}
+  .hero .by b{color:var(--ink);font-weight:700}
+
+  /* HERO PHOTO */
+  .hero-photo{position:relative;overflow:hidden;height:min(70vh,640px);min-height:380px}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.04);animation:slowzoom 22s ease-out infinite alternate}
+  @keyframes slowzoom{to{transform:scale(1.12)}}
+  .hero-photo .cap{position:absolute;left:28px;bottom:18px;color:#fff;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;text-shadow:0 1px 6px #0a09088c;background:#0a09084d;backdrop-filter:blur(4px);padding:6px 12px;border-radius:999px}
+
+  /* LEDE */
+  .lede{padding:88px 28px 32px}
+  .lede .inner{max-width:680px;margin:0 auto;font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:clamp(22px,2.3vw,30px);line-height:1.45;color:var(--ink);font-weight:400}
+  .lede .inner p + p{margin-top:18px}
+  .lede .inner em{color:var(--page);font-style:italic}
+
+  /* SECTION */
+  .section{padding:40px 28px}
+  .section .inner{max-width:680px;margin:0 auto}
+  .section .time{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--page);font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:12px}
+  .section .time::before{content:"";flex:none;width:24px;height:2px;background:var(--page)}
+  .section h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.035em;text-transform:lowercase;margin-bottom:24px;max-width:18ch}
+  .section h2 em{font-style:italic;color:var(--page)}
+  .section p{font-family:"Newsreader",Georgia,serif;font-size:19px;line-height:1.65;color:var(--ink);font-weight:400;margin-bottom:18px}
+  .section p:last-child{margin-bottom:0}
+  .section p b{font-weight:600;color:var(--ink)}
+  .section p i,.section p em{font-style:italic;color:var(--ink)}
+
+  /* INLINE PHOTO */
+  .inline-photo{padding:32px 28px 40px}
+  .inline-photo .inner{max-width:1100px;margin:0 auto}
+  .inline-photo img{width:100%;height:auto;border-radius:8px;display:block}
+  .inline-photo .cap{margin-top:14px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;text-align:center}
+
+  /* THREE-PHOTO row */
+  .photo-row{padding:32px 28px 40px}
+  .photo-row .inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+  .photo-row img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px}
+
+  /* PLACE CARD inline */
+  .place-card{padding:32px 28px 40px}
+  .place-card .inner{max-width:680px;margin:0 auto}
+  .place-card .card{display:grid;grid-template-columns:140px 1fr;gap:18px;padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:12px;transition:border-color .25s ease}
+  .place-card .card:hover{border-color:var(--page)}
+  .place-card .card .ph{aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--bg-2)}
+  .place-card .card .ph img{width:100%;height:100%;object-fit:cover}
+  .place-card .card .body{display:flex;flex-direction:column;gap:6px;justify-content:center}
+  .place-card .card .kicker{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:8px}
+  .place-card .card .kicker .sw{width:6px;height:6px;border-radius:50%;background:var(--page)}
+  .place-card .card h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:22px;letter-spacing:-.025em;text-transform:lowercase}
+  .place-card .card .desc{font-size:13.5px;line-height:1.5;color:var(--ink-soft)}
+  .place-card .card .meta{display:flex;gap:10px;font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-top:4px}
+
+  /* MAP */
+  .map-wrap{padding:80px 28px;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:48px}
+  .map-wrap .inner{max-width:1100px;margin:0 auto}
+  .map-wrap .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+  .map-wrap .head-row h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.035em;text-transform:lowercase}
+  .map-wrap .head-row h3 em{font-style:italic;color:var(--page)}
+  .map-wrap .head-row .right{font-size:13px;color:var(--ink-soft);max-width:320px;text-align:right;line-height:1.5}
+  .map-fake{aspect-ratio:16/9;background:linear-gradient(135deg,#e8e1d1 0%,#d4cab3 100%);border:1px solid var(--line);border-radius:12px;position:relative;overflow:hidden}
+  .map-fake::after{content:"open on the map →";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--ink);background:#fff;padding:14px 22px;border-radius:999px;box-shadow:0 8px 28px #0a09081f}
+  .map-fake .pin{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--page);border:2px solid #fff;box-shadow:0 0 0 4px var(--page)33}
+  .map-fake .pin.p1{top:34%;left:24%}
+  .map-fake .pin.p2{top:48%;left:38%}
+  .map-fake .pin.p3{top:42%;left:52%}
+  .map-fake .pin.p4{top:54%;left:62%}
+  .map-fake .pin.p5{top:60%;left:76%}
+
+  /* ALL PLACES LIST */
+  .all-places{padding:80px 28px}
+  .all-places .inner{max-width:1100px;margin:0 auto}
+  .all-places .top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+  .all-places h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.035em;text-transform:lowercase}
+  .all-places h3 em{font-style:italic;color:var(--page)}
+  .all-places .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .all-places .place{display:flex;flex-direction:column;gap:10px;padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:12px;transition:border-color .25s ease,transform .25s ease}
+  .all-places .place:hover{border-color:var(--page);transform:translateY(-3px)}
+  .all-places .place .ph{aspect-ratio:5/4;border-radius:8px;overflow:hidden;background:var(--bg-2)}
+  .all-places .place .ph img{width:100%;height:100%;object-fit:cover}
+  .all-places .place .kicker{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:8px;margin-top:6px}
+  .all-places .place .kicker .sw{width:6px;height:6px;border-radius:50%;background:var(--page)}
+  .all-places .place h5{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:19px;letter-spacing:-.02em;text-transform:lowercase}
+  .all-places .place .meta{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;gap:10px;flex-wrap:wrap}
+
+  /* RELATED */
+  .related{padding:80px 28px;background:var(--paper);border-top:1px solid var(--line)}
+  .related .inner{max-width:1400px;margin:0 auto}
+  .related .top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
+  .related h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,44px);line-height:1;letter-spacing:-.03em;text-transform:lowercase}
+  .related h3 em{font-style:italic;color:var(--page)}
+  .related .top .right{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .related .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .related .story{display:flex;flex-direction:column;gap:12px;padding:18px;background:var(--bg);border:1px solid var(--line);border-radius:12px;transition:border-color .25s ease,transform .25s ease}
+  .related .story:hover{border-color:var(--page);transform:translateY(-3px)}
+  .related .story .ph{aspect-ratio:16/10;border-radius:8px;overflow:hidden}
+  .related .story .ph img{width:100%;height:100%;object-fit:cover}
+  .related .story .nr{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:4px}
+  .related .story h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:22px;line-height:1.1;letter-spacing:-.025em;text-transform:lowercase}
+  .related .story h4 em{font-style:italic;color:var(--page)}
+  .related .story p{font-size:13.5px;line-height:1.5;color:var(--ink-soft)}
+  .related .story .read{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--page);font-weight:700;margin-top:auto}
+
+  /* CTA bottom — telegram */
+  .tg-cta{padding:88px 28px;text-align:center;border-top:1px solid var(--line)}
+  .tg-cta h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,5vw,72px);line-height:1;letter-spacing:-.035em;text-transform:lowercase;max-width:18ch;margin:0 auto 24px}
+  .tg-cta h3 em{font-style:italic;color:var(--page)}
+  .tg-cta p{max-width:42ch;margin:0 auto 32px;font-size:15.5px;line-height:1.55;color:var(--ink-soft)}
+  .tg-cta a.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 26px;background:var(--ink);color:#fff;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;transition:background .25s ease}
+  .tg-cta a.btn:hover{background:var(--page)}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:32px 28px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  footer .center{text-align:center}
+  footer .right{text-align:right}
+  footer a:hover{color:var(--page)}
+
+  @media (max-width:880px){
+    html,body{cursor:auto}
+    .cursor,.float-wm{display:none}
+    .topbar{grid-template-columns:auto 1fr;padding:14px 14px}
+    .topbar .left{display:none}
+    .topbar .ctr{justify-self:start;font-size:20px}
+    .topbar .right{gap:8px}
+    .topbar .city,.topbar .lang{display:none}
+    .topbar .burger{display:inline-flex}
+
+    .meta-top{padding:14px;font-size:9px;gap:8px}
+    .meta-top .left{gap:10px}
+
+    .hero{padding:40px 14px 32px}
+    .hero .title{font-size:clamp(40px,11vw,72px)}
+    .hero .by{margin-top:24px}
+
+    .hero-photo{height:auto;min-height:0;aspect-ratio:4/3}
+
+    .lede{padding:48px 18px 24px}
+    .lede .inner{font-size:19px}
+
+    .section{padding:24px 18px}
+    .section h2{font-size:28px}
+    .section p{font-size:17px}
+
+    .inline-photo{padding:20px 14px 24px}
+    .photo-row{padding:20px 14px 24px}
+    .photo-row .inner{gap:6px}
+
+    .place-card{padding:20px 18px 24px}
+    .place-card .card{grid-template-columns:100px 1fr;gap:14px;padding:14px}
+    .place-card .card h4{font-size:18px}
+
+    .map-wrap{padding:48px 14px;margin-top:24px}
+    .map-wrap .head-row{flex-direction:column;align-items:flex-start;gap:14px}
+    .map-wrap .head-row .right{text-align:left}
+
+    .all-places{padding:48px 14px}
+    .all-places .top{flex-direction:column;align-items:flex-start;gap:14px}
+    .all-places .grid{grid-template-columns:1fr;gap:12px}
+
+    .related{padding:48px 14px}
+    .related .grid{grid-template-columns:1fr;gap:12px}
+
+    .tg-cta{padding:48px 14px}
+    .tg-cta h3{font-size:clamp(28px,9vw,40px)}
+
+    footer{grid-template-columns:1fr;text-align:left;gap:8px;font-size:9px}
+    footer .center,footer .right{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<a href="/" class="float-wm" id="floatWm">bre<span class="d"></span></a>
+
+<header class="topbar" id="top">
+  <div class="left">
+    <a href="/">stays</a>
+    <a href="/guide" class="active">guide</a>
+    <a href="/own">own</a>
+    <a href="/invest">invest</a>
+  </div>
+  <a href="/" class="ctr">bre<span class="d"></span></a>
+  <div class="right">
+    <a href="#" class="city">batumi <span class="arr">▾</span></a>
+    <a href="#" class="lang">ru</a>
+    <button class="burger" id="burger" aria-label="menu" type="button"><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay" hidden>
+  <div class="menu-inner">
+    <a href="/" class="menu-item">stays</a>
+    <a href="/guide" class="menu-item active">guide</a>
+    <a href="/own" class="menu-item">own with us</a>
+    <a href="/invest" class="menu-item">invest</a>
+    <div class="menu-foot">
+      <div class="menu-row"><span class="menu-row-label">city</span><a href="#" class="menu-row-val">batumi ▾</a></div>
+      <div class="menu-row"><span class="menu-row-label">language</span><a href="#" class="menu-row-val">en · ru</a></div>
+      <a href="https://t.me/bre_ge" class="menu-tg">↗ telegram @bre_ge</a>
+    </div>
+  </div>
+</div>
+
+<article class="article">
+
+  <!-- META TOP -->
+  <div class="meta-top">
+    <div class="left">
+      <span class="pill"><span class="dot"></span>routine · 02</span>
+      <span>· published 28 april 2026</span>
+      <span>· 8-min read</span>
+    </div>
+    <div class="right">
+      <a href="#share">share ↗</a>
+    </div>
+  </div>
+
+  <!-- HERO TITLE -->
+  <section class="hero">
+    <div class="inner">
+      <div class="crumbs">
+        <a href="/guide">guide</a>
+        <span class="sep">/</span>
+        <a href="/guide#stories">stories</a>
+        <span class="sep">/</span>
+        <span class="current"><span class="dot"></span>routine · 02</span>
+      </div>
+      <h1 class="title">a morning in<br/><em>old</em> batumi.</h1>
+      <div class="by">
+        <span class="av"></span>
+        <span>by <b>olga</b></span>
+        <span>· photos · olga &amp; artem</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HERO PHOTO -->
+  <div class="hero-photo">
+    <img src="https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=2400&q=80" alt="batumi old town courtyard, morning light">
+    <span class="cap">— old town, around 9 am</span>
+  </div>
+
+  <!-- LEDE -->
+  <section class="lede">
+    <div class="inner">
+      <p>three <em>coffees</em>, a bookstore, two churches, the synagogue, and lunch at a place with no sign. it sounds like a list. it isn't.</p>
+      <p>it's the slowest part of our week. we don't bring a phone — well, only the camera. the morning has a shape that we follow loosely, the way you follow a recipe you've cooked twenty times.</p>
+    </div>
+  </section>
+
+  <!-- 09:30 — FIRST COFFEE -->
+  <section class="section">
+    <div class="inner">
+      <div class="time">09:30 — first coffee</div>
+      <h2>start at <em>milevski</em>.</h2>
+      <p>old town has a dozen places to begin a morning, and we've tried them all. we always come back to milevski. it's a third-wave coffee bar with a bench out front, a copper grinder, and barista who'll let you sit for two hours if you want.</p>
+      <p>the morning is for <b>pour-over, not espresso</b> — they do an ethiopian washed that tastes like grapefruit when it cools. you can drink it standing, but the bench is the point. people walk past on the way to work, dogs sniff at your feet, and the cathedral bells ring at ten.</p>
+      <p>order the croissant only if it's a friday. they bake them the night before. by saturday they're trying.</p>
+    </div>
+  </section>
+
+  <div class="inline-photo">
+    <div class="inner">
+      <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=2000&q=80" alt="coffee on a wooden table">
+      <div class="cap">— pour-over at milevski, an ordinary tuesday</div>
+    </div>
+  </div>
+
+  <div class="place-card">
+    <div class="inner">
+      <a class="card" href="/guide/milevski">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?w=600&q=80" alt=""></div>
+        <div class="body">
+          <span class="kicker"><span class="sw"></span>café · pour-over</span>
+          <h4>milevski</h4>
+          <p class="desc">tiny third-wave coffee bar with a bench out front. ethiopian washed, weekend croissants.</p>
+          <div class="meta"><span>old town</span><span>· 8—21</span><span>· ≈10—22 ₾</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- 10:30 — BOOKSTORE -->
+  <section class="section">
+    <div class="inner">
+      <div class="time">10:30 — bookstore</div>
+      <h2>poetry, posters, and <em>nobody else</em>.</h2>
+      <p>two streets over, behind the building with the blue balcony, there's a bookstore that doesn't have a sign. you'll find it by the postcards taped to the inside of the window — black-and-white shots of batumi from the seventies, when nobody was here.</p>
+      <p>the owner runs it three days a week. it has more poetry than fiction, more russian than english, and a small but serious georgian section in the back. he stocks <b>annie ernaux in two languages</b>, and the entire works of bulat okudzhava on cassette.</p>
+      <p>we never leave without something. last time it was a chapbook of new georgian poets translated by a man we'd never heard of, in print run of 400 copies. that's how it goes here.</p>
+    </div>
+  </section>
+
+  <!-- 11:30 — CHURCHES -->
+  <section class="section">
+    <div class="inner">
+      <div class="time">11:30 — two churches</div>
+      <h2>cool stone, no <em>tourists</em>.</h2>
+      <p>old batumi has a small miracle of religious tolerance — four faiths within a five-minute walk. the catholic cathedral on chavchavadze, the armenian church a block over, the orthodox basilica with the green dome, and the synagogue around the corner from the bazaar.</p>
+      <p>we usually visit two — the catholic one for the stained glass, and the armenian one for the courtyard. the courtyard is the real point. there's a fig tree, a low stone bench, and a cat who lives there. <b>nobody bothers you.</b> it's the coolest place in batumi in august, both in temperature and in feeling.</p>
+    </div>
+  </section>
+
+  <div class="photo-row">
+    <div class="inner">
+      <img src="https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=900&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=900&q=80" alt="">
+      <img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=900&q=80" alt="">
+    </div>
+  </div>
+
+  <!-- 12:00 — SYNAGOGUE -->
+  <section class="section">
+    <div class="inner">
+      <div class="time">12:00 — synagogue</div>
+      <h2>the smallest one in <em>georgia</em>.</h2>
+      <p>five minutes from the orthodox basilica, on a street whose name we always forget, sits the smallest active synagogue in georgia. it's smaller than our living room. you have to ring the bell.</p>
+      <p>the rabbi will let you in if he's not at lunch. it has wooden benches, ceiling beams painted blue, and a tiny but serious library. <b>he speaks four languages</b> and remembers everyone who's ever visited. if you came with a friend last time, he'll ask about them.</p>
+    </div>
+  </section>
+
+  <!-- 13:00 — LUNCH -->
+  <section class="section">
+    <div class="inner">
+      <div class="time">13:00 — lunch</div>
+      <h2>a place with <em>no sign</em>.</h2>
+      <p>around the corner from the synagogue, in a courtyard you have to walk through someone's wash hanging on a line, is the restaurant. it doesn't have a name. it doesn't have a sign. it has a green door and a hand-painted notice that says <i>"open"</i> when it's open.</p>
+      <p>three tables inside, four outside under a grape arbor. the menu is verbal. <b>the cook is also the owner, the waiter, and the cashier</b> — her name is dali, she's seventy-something, and she cooks one thing extremely well: chakapuli, when it's spring; chashushuli, when it's autumn; and adjarian khachapuri all year round.</p>
+      <p>cash only. don't ask for the wifi password. there isn't one. that's the point.</p>
+    </div>
+  </section>
+
+  <div class="inline-photo">
+    <div class="inner">
+      <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=2000&q=80" alt="adjarian khachapuri">
+      <div class="cap">— khachapuri at dali's, almost too much yolk</div>
+    </div>
+  </div>
+
+  <div class="place-card">
+    <div class="inner">
+      <a class="card" href="/guide/dalis-place">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80" alt=""></div>
+        <div class="body">
+          <span class="kicker"><span class="sw"></span>restaurant · georgian</span>
+          <h4>dali's place (no sign)</h4>
+          <p class="desc">three tables, one cook, a verbal menu. khachapuri, chakapuli, chashushuli. cash only.</p>
+          <div class="meta"><span>old town</span><span>· 13—16, 19—22</span><span>· ≈25—40 ₾</span></div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+  <!-- MAP -->
+  <section class="map-wrap">
+    <div class="inner">
+      <div class="head-row">
+        <h3>the route,<br/><em>on a map</em>.</h3>
+        <div class="right">about <b>1.6 km on foot</b>, very slowly. budget 4 hours including all stops.</div>
+      </div>
+      <div class="map-fake">
+        <span class="pin p1" title="milevski"></span>
+        <span class="pin p2" title="bookstore"></span>
+        <span class="pin p3" title="armenian church"></span>
+        <span class="pin p4" title="synagogue"></span>
+        <span class="pin p5" title="dali's place"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ALL PLACES MENTIONED -->
+  <section class="all-places">
+    <div class="inner">
+      <div class="top">
+        <h3>everything <em>mentioned</em>.</h3>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600">— 5 places</div>
+      </div>
+      <div class="grid">
+        <a class="place" href="/guide/milevski">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?w=900&q=80" alt=""></div>
+          <span class="kicker"><span class="sw"></span>café · pour-over</span>
+          <h5>milevski</h5>
+          <div class="meta"><span>old town</span><span>· 8—21</span><span>· ≈10—22 ₾</span></div>
+        </a>
+        <a class="place" href="/guide/the-bookstore-with-no-sign">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900&q=80" alt=""></div>
+          <span class="kicker"><span class="sw"></span>bookstore · poetry</span>
+          <h5>the bookstore with no sign</h5>
+          <div class="meta"><span>old town</span><span>· tue · thu · sat</span><span>· cash only</span></div>
+        </a>
+        <a class="place" href="/guide/armenian-church-courtyard">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1602077429129-feb7f17e9712?w=900&q=80" alt=""></div>
+          <span class="kicker"><span class="sw"></span>spot · courtyard</span>
+          <h5>armenian church courtyard</h5>
+          <div class="meta"><span>old town</span><span>· daylight</span><span>· free</span></div>
+        </a>
+        <a class="place" href="/guide/old-batumi-synagogue">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=900&q=80" alt=""></div>
+          <span class="kicker"><span class="sw"></span>synagogue</span>
+          <h5>old batumi synagogue</h5>
+          <div class="meta"><span>old town</span><span>· ring the bell</span><span>· free</span></div>
+        </a>
+        <a class="place" href="/guide/dalis-place">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=80" alt=""></div>
+          <span class="kicker"><span class="sw"></span>restaurant · georgian</span>
+          <h5>dali's place (no sign)</h5>
+          <div class="meta"><span>old town</span><span>· 13—16, 19—22</span><span>· ≈25—40 ₾</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- RELATED -->
+  <section class="related">
+    <div class="inner">
+      <div class="top">
+        <h3>more <em>stories</em>.</h3>
+        <div class="right">— hand-picked from the guide</div>
+      </div>
+      <div class="grid">
+        <a class="story" href="#">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=900&q=80" alt=""></div>
+          <span class="nr">deep dive · 04</span>
+          <h4>why <em>khachapuri</em><br/>is never just bread.</h4>
+          <p>five places, five recipes, why the yolk matters, what we got wrong.</p>
+          <span class="read">read essay →</span>
+        </a>
+        <a class="story" href="#">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1502920514313-52581002a659?w=900&q=80" alt=""></div>
+          <span class="nr">photo · 01</span>
+          <h4>one day in<br/><em>gonio</em>.</h4>
+          <p>cape, fortress, fish lunch, the only good beach south of batumi.</p>
+          <span class="read">open the essay →</span>
+        </a>
+        <a class="story" href="#">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&q=80" alt=""></div>
+          <span class="nr">routine · 06</span>
+          <h4>a slow <em>sunday</em><br/>in batumi.</h4>
+          <p>flea market, sulphur bath, lunch with friends, naps. our protocol for a day off.</p>
+          <span class="read">read routine →</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TELEGRAM CTA -->
+  <section class="tg-cta">
+    <h3>we publish <em>one</em><br/>of these every few weeks.</h3>
+    <p>follow our telegram channel for new stories, news from batumi, and small things worth knowing about the city.</p>
+    <a class="btn" href="https://t.me/batumirealflats">↗ follow on telegram</a>
+  </section>
+
+</article>
+
+<footer>
+  <div class="left">© 2026 · bre.ge</div>
+  <div class="center">apartments &amp; the batumi guide</div>
+  <div class="right"><a href="#top">↑ back to top</a></div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const floatWm = document.getElementById('floatWm');
+  let mx=window.innerWidth/2, my=window.innerHeight/2, cx=mx, cy=my;
+  let wmx=0, wmy=0;
+  window.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+  function loop(){
+    cx += (mx-cx)*0.7; cy += (my-cy)*0.7;
+    if(cursor) cursor.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
+    const tx = (mx - window.innerWidth/2) * 0.012;
+    const ty = (my - window.innerHeight/2) * 0.012;
+    wmx += (tx - wmx) * 0.08;
+    wmy += (ty - wmy) * 0.08;
+    if(floatWm) floatWm.style.transform = `translate(${wmx}px, ${wmy}px)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+  document.querySelectorAll('a, button').forEach(el => {
+    el.addEventListener('mouseenter', () => cursor.classList.add('big'));
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+
+  (function(){
+    const burger = document.getElementById('burger');
+    const overlay = document.getElementById('menuOverlay');
+    if (!burger || !overlay) return;
+    function open(){ overlay.hidden = false; requestAnimationFrame(()=> overlay.classList.add('open')); burger.classList.add('open'); document.body.style.overflow='hidden'; }
+    function close(){ overlay.classList.remove('open'); burger.classList.remove('open'); document.body.style.overflow=''; setTimeout(()=> overlay.hidden=true, 320); }
+    burger.addEventListener('click', () => overlay.classList.contains('open') ? close() : open());
+    overlay.addEventListener('click', e => { if (e.target === overlay) close(); });
+    overlay.querySelectorAll('.menu-item, .menu-tg, .menu-row-val').forEach(a => a.addEventListener('click', close));
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && overlay.classList.contains('open')) close(); });
+  })();
+</script>
+
+</body>
+</html>
