@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>pick hero photo</title>
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#1a1a1a;color:#fff;font-family:-apple-system,sans-serif;padding:32px;min-height:100vh}
+  h1{font-size:14px;letter-spacing:.2em;text-transform:uppercase;color:#888;font-weight:500;margin-bottom:8px}
+  .sub{font-size:12px;color:#666;margin-bottom:32px;line-height:1.5;max-width:600px}
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:1800px;margin:0 auto}
+  @media (max-width:1200px){.grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:880px){.grid{grid-template-columns:repeat(2,1fr)}}
+  .card{background:#222;border-radius:12px;overflow:hidden;border:1px solid #333;cursor:pointer;transition:border-color .2s ease,transform .25s ease}
+  .card:hover{border-color:#ff5e1a;transform:translateY(-3px)}
+  .card .ph{aspect-ratio:4/5;overflow:hidden;background:#000;position:relative}
+  .card .ph img{width:100%;height:100%;object-fit:cover}
+  .card .ph .letter{position:absolute;top:12px;left:12px;width:32px;height:32px;border-radius:50%;background:#ff5e1a;color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;letter-spacing:.05em;z-index:2}
+  .card .lab{padding:12px 14px}
+  .card .lab .nm{font-size:12px;letter-spacing:.04em;color:#fff;font-weight:600;display:block;line-height:1.35}
+  .card .lab .id{font-size:9px;letter-spacing:.16em;color:#666;font-family:monospace;margin-top:4px;display:block}
+</style>
+</head>
+<body>
+  <h1>— pick a hero photo for home — 12 candidates</h1>
+  <p class="sub">curated cozy apartment: bohemian, plants, vintage, warm light. tap a letter and tell me which (a–l). if none fits — say so and i'll grab another batch.</p>
+  <div class="grid">
+
+    <div class="card">
+      <div class="ph"><span class="letter">a</span><img src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">bookshelf + plant + wooden chair</span><span class="id">1505691938895</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">b</span><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">boho living, low table, plants</span><span class="id">1493809842364</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">c</span><img src="https://images.unsplash.com/photo-1486946255434-2466348c2166?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">curated apartment, warm light</span><span class="id">1486946255434</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">d</span><img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">vintage chair + window light</span><span class="id">1556910103</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">e</span><img src="https://images.unsplash.com/photo-1567016376408-0226e4d0c1ea?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">scandinavian, plants, sofa</span><span class="id">1567016376408</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">f</span><img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">soft armchair, art on wall</span><span class="id">1502672023488</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">g</span><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">red chair, abstract art (current)</span><span class="id">1522708323590</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">h</span><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">living room with fireplace</span><span class="id">1560448204</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">i</span><img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">cozy nook, hanging plant</span><span class="id">1616486338812</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">j</span><img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">eclectic interior, vintage</span><span class="id">1583847268964</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">k</span><img src="https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">bedroom interior, plants</span><span class="id">1554995207</span></div>
+    </div>
+
+    <div class="card">
+      <div class="ph"><span class="letter">l</span><img src="https://images.unsplash.com/photo-1631679706909-1844bbd07221?w=1200&q=80" alt=""></div>
+      <div class="lab"><span class="nm">mid-century living room</span><span class="id">1631679706909</span></div>
+    </div>
+
+  </div>
+</body>
+</html>

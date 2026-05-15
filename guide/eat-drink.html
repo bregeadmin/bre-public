@@ -1,0 +1,668 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>eat &amp; drink — the batumi guide — bre</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf8f1;
+    --bg-2:#f1ecdf;
+    --paper:#fdfbf6;
+    --ink:#0a0908;
+    --ink-soft:#4d544e;
+    --line:#0a090815;
+    --line-strong:#0a090833;
+    --accent:#ff5e1a;
+    --accent-deep:#d94612;
+    --accent-soft:#ff5e1a1a;
+    --teal:#00b5b0;
+    --yellow:#ffd60a;
+    --pink-soft:#e8797c;
+    --purple:#7f77dd;
+    --green-cat:#5dcaa5;
+    --amber:#ef9f27;
+    --coral:#f0997b;
+    --red:#f09595;
+    --cat-color:var(--accent);
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-font-smoothing:antialiased}
+  html{scroll-behavior:smooth}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;font-weight:400;line-height:1.4;cursor:none}
+  body{overflow-x:hidden}
+  ::selection{background:var(--cat-color);color:#fff}
+  a{color:inherit;text-decoration:none;cursor:none}
+  button,input,select{cursor:none;font-family:inherit}
+  img{max-width:100%;display:block}
+
+  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
+  .cursor.big{width:72px;height:72px;background:var(--cat-color)}
+  .cursor.text{width:104px;height:104px;background:var(--cat-color)}
+  .cursor.yellow{background:var(--yellow)}
+  .cursor.text::after{content:attr(data-label);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"JetBrains Mono",monospace;font-size:9px;color:#fff;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;font-weight:600}
+
+  .float-wm{position:fixed;left:24px;bottom:24px;z-index:60;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:34px;font-weight:800;letter-spacing:-.045em;color:#fff;mix-blend-mode:difference;text-decoration:none;line-height:1;transition:transform .4s cubic-bezier(.2,.7,.2,1);will-change:transform}
+  .float-wm:hover{transform:scale(1.06)}
+  .float-wm .d{width:14px;height:14px;border-radius:50%;background:var(--cat-color);mix-blend-mode:normal;box-shadow:0 0 14px var(--cat-color);animation:dotpulse 2.4s ease-in-out infinite;margin-bottom:3px;margin-left:7px}
+  @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--cat-color)}}
+
+  .topbar{position:fixed;inset:0 0 auto 0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 28px;mix-blend-mode:difference;color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
+  .topbar .left{display:flex;gap:24px}
+  .topbar .left a.active{color:var(--cat-color)}
+  .topbar .right{justify-self:end;display:flex;align-items:center;gap:10px}
+  .topbar .ctr{justify-self:center;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;text-transform:none;line-height:1}
+  .topbar .ctr .d{width:10px;height:10px;border-radius:50%;background:var(--cat-color);mix-blend-mode:normal;margin-bottom:2px;margin-left:5px}
+  .topbar .ctr .crumb{font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#fff;margin-left:8px;margin-bottom:5px;opacity:.7}
+  .topbar .ctr .crumb b{color:var(--cat-color);font-weight:600;opacity:1}
+  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px;transition:border-color .2s ease,background .2s ease}
+  .topbar .city:hover{border-color:#fff;background:#ffffff14}
+  .topbar .city .arr{opacity:.6;font-size:8px;margin-top:1px}
+  .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.1em;transition:border-color .2s ease,background .2s ease}
+  .topbar .lang:hover{border-color:#fff;background:#ffffff14}
+  .topbar a:hover{opacity:.6}
+
+  .topbar .burger{display:none;width:34px;height:34px;border:1px solid #ffffff66;border-radius:50%;background:transparent;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;cursor:none;transition:border-color .2s ease,background .2s ease;flex:none}
+  .topbar .burger span{display:block;width:14px;height:1.5px;background:#fff;transition:transform .25s ease,opacity .2s ease}
+  .topbar .burger:hover{border-color:#fff;background:#ffffff14}
+  .topbar .burger.open span:nth-child(1){transform:translateY(3.5px) rotate(45deg)}
+  .topbar .burger.open span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+
+  .menu-overlay{position:fixed;inset:0;z-index:90;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;padding:80px 28px 40px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .menu-overlay.open{opacity:1;pointer-events:auto}
+  .menu-overlay::before{content:"";position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=1600&q=80');background-size:cover;background-position:center;opacity:.18;z-index:0}
+  .menu-overlay .menu-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;max-width:520px}
+  .menu-overlay .menu-item{display:block;padding:14px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(40px,11vw,72px);line-height:.9;letter-spacing:-.035em;text-transform:lowercase;color:#fff;transition:color .2s ease,transform .25s ease}
+  .menu-overlay .menu-item:hover{color:var(--cat-color);transform:translateX(12px)}
+  .menu-overlay .menu-item.active{color:var(--cat-color)}
+  .menu-overlay .menu-foot{margin-top:36px;padding-top:24px;border-top:1px solid #ffffff22;width:100%;display:grid;gap:14px}
+  .menu-overlay .menu-row{display:flex;justify-content:space-between;align-items:baseline;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:#ffffff88}
+  .menu-overlay .menu-row-val{color:#fff;font-weight:600}
+  .menu-overlay .menu-row-val:hover{color:var(--cat-color)}
+  .menu-overlay .menu-tg{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--cat-color)}
+  .menu-overlay .menu-tg:hover{color:#fff}
+
+  /* CATEGORY HEADER */
+  .cat-header{padding:140px 28px 64px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+  .cat-header::before{content:"";position:absolute;top:0;right:0;width:50%;height:100%;background:var(--cat-color);opacity:.06;clip-path:polygon(20% 0,100% 0,100% 100%,0 100%)}
+  .cat-header .crumbs{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:32px;display:flex;align-items:center;gap:10px;position:relative;z-index:2}
+  .cat-header .crumbs a{display:inline-flex;align-items:center;gap:6px;color:var(--ink-soft)}
+  .cat-header .crumbs a:hover{color:var(--ink)}
+  .cat-header .crumbs .sep{opacity:.5}
+  .cat-header .crumbs .current{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+  .cat-header .crumbs .current .dot{width:8px;height:8px;border-radius:50%;background:var(--cat-color);box-shadow:0 0 10px var(--cat-color)}
+
+  .cat-header h1{position:relative;z-index:2;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(64px,10vw,180px);line-height:.88;letter-spacing:-.05em;text-transform:lowercase;font-variation-settings:"wdth" 100,"opsz" 48}
+  .cat-header h1 em{font-style:italic;color:var(--cat-color)}
+  .cat-header .lede{position:relative;z-index:2;margin-top:32px;max-width:48ch;font-size:20px;line-height:1.55;color:var(--ink)}
+  .cat-header .lede b{font-weight:600}
+  .cat-header .lede em{font-style:italic;color:var(--cat-color)}
+
+  .cat-stats{position:relative;z-index:2;display:flex;gap:48px;margin-top:48px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  .cat-stats .num{font-family:"Bricolage Grotesque",sans-serif;font-size:36px;font-weight:800;color:var(--ink);letter-spacing:-.02em;text-transform:none;display:block;line-height:1;margin-bottom:6px}
+  .cat-stats .num em{font-style:italic;color:var(--cat-color)}
+
+  /* SUBCATEGORIES */
+  .subnav{background:var(--bg);border-bottom:1px solid var(--line);padding:14px 28px;display:flex;align-items:center;gap:18px;flex-wrap:wrap}
+  .subnav .label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:6px}
+  .subnav .label::after{content:"→";opacity:.5}
+  .subnav .subs{display:flex;gap:5px;flex-wrap:wrap;flex:1}
+  .subnav .subs button{background:transparent;border:0.5px solid var(--line-strong);padding:7px 13px;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);transition:all .2s ease;cursor:none}
+  .subnav .subs button:hover{color:var(--ink);border-color:var(--ink)}
+  .subnav .subs button.active{color:#fff;background:var(--cat-color);border-color:var(--cat-color)}
+  .subnav .sort{display:flex;align-items:center;gap:4px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--ink-soft)}
+  .subnav .sort .lab{margin-right:4px}
+  .subnav .sort button{background:transparent;border:none;padding:6px 10px;border-radius:999px;color:var(--ink-soft);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;transition:all .2s ease;cursor:none}
+  .subnav .sort button:hover{color:var(--ink)}
+  .subnav .sort button.active{color:var(--ink);background:var(--bg-2)}
+
+  /* FEATURED PLACE */
+  .featured{padding:80px 28px 32px}
+  .featured a{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+  .featured .ph{position:relative;aspect-ratio:5/4;overflow:hidden;border-radius:14px;background:var(--bg-2)}
+  .featured .ph img{width:100%;height:100%;object-fit:cover;transition:transform 2s cubic-bezier(.2,.7,.2,1)}
+  .featured a:hover .ph img{transform:scale(1.03)}
+  .featured .ph .badge{position:absolute;top:18px;left:18px;background:var(--cat-color);color:#fff;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;padding:6px 12px;border-radius:999px}
+  .featured .body .meta{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:20px;display:flex;align-items:center;gap:12px}
+  .featured .body .meta .pill{display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent-deep)}
+  .featured .body .meta .pill .swatch{width:6px;height:6px;border-radius:50%;background:var(--cat-color)}
+  .featured .body h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,4.5vw,68px);line-height:.95;letter-spacing:-.035em;text-transform:lowercase}
+  .featured .body h2 em{font-style:italic;color:var(--cat-color)}
+  .featured .body .summary{margin-top:24px;font-size:17px;line-height:1.55;color:var(--ink);max-width:46ch}
+  .featured .body .info-row{margin-top:24px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  .featured .body .info-row .dot{width:3px;height:3px;border-radius:50%;background:var(--ink-soft)}
+  .featured .body .info-row b{color:var(--ink);font-weight:600}
+  .featured .body .read{margin-top:28px;display:inline-flex;align-items:center;gap:12px;padding:14px 24px;background:var(--ink);color:var(--bg);border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;transition:background .25s ease,gap .25s ease}
+  .featured a:hover .body .read{background:var(--cat-color);gap:18px}
+
+  /* PLACES GRID */
+  .places-wrap{padding:32px 28px 80px}
+  .places-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:32px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  .places-head h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:32px;letter-spacing:-.03em;text-transform:lowercase;color:var(--ink)}
+  .places-head h3 em{font-style:italic;color:var(--cat-color)}
+  .places{display:grid;grid-template-columns:repeat(3,1fr);gap:32px 24px}
+  .place{position:relative;display:flex;flex-direction:column;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+  .place:hover{transform:translateY(-3px)}
+  .place .ph{position:relative;aspect-ratio:5/4;overflow:hidden;border-radius:10px;background:var(--bg-2)}
+  .place .ph img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s cubic-bezier(.2,.7,.2,1)}
+  .place:hover .ph img{transform:scale(1.06)}
+  .place .pill{position:absolute;top:12px;left:12px;z-index:2;display:inline-flex;align-items:center;gap:5px;background:#ffffffea;backdrop-filter:blur(6px);padding:4px 9px;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:var(--ink)}
+  .place .pill .sw{width:5px;height:5px;border-radius:50%;background:var(--cat-color)}
+  .place .save{position:absolute;top:12px;right:12px;width:32px;height:32px;border-radius:50%;background:#ffffffea;backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;color:var(--ink);z-index:2}
+  .place .info{padding:14px 4px 0;display:grid;gap:6px}
+  .place .top-row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .place h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.025em;line-height:1.15;text-transform:lowercase}
+  .place:hover h4{color:var(--cat-color)}
+  .place .price{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:15px;color:var(--ink-soft);white-space:nowrap}
+  .place .price b{color:var(--cat-color);font-weight:700}
+  .place .summary{font-size:14px;color:var(--ink-soft);line-height:1.5;margin-top:2px}
+  .place .meta{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;align-items:center;gap:10px;margin-top:6px}
+  .place .meta .dot{width:3px;height:3px;border-radius:50%;background:var(--ink-soft)}
+
+  /* MAP */
+  .mapblock{padding:64px 28px;border-top:1px solid var(--line)}
+  .mapblock-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:24px;gap:24px;flex-wrap:wrap}
+  .mapblock-head h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(28px,3vw,44px);letter-spacing:-.03em;line-height:1;text-transform:lowercase}
+  .mapblock-head h3 em{font-style:italic;color:var(--cat-color)}
+  .mapblock-head .right{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  .mapblock .map{position:relative;aspect-ratio:21/9;border-radius:14px;overflow:hidden;background:#e8ede5;border:1px solid var(--line)}
+  .mapblock .map .grid-bg{position:absolute;inset:0;background-image:repeating-linear-gradient(0deg,transparent 0,transparent 48px,rgba(0,0,0,.04) 48px,rgba(0,0,0,.04) 49px),repeating-linear-gradient(90deg,transparent 0,transparent 48px,rgba(0,0,0,.04) 48px,rgba(0,0,0,.04) 49px)}
+  .mapblock .map .coastline svg{width:100%;height:100%}
+  .mapblock .map .city-label{position:absolute;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:#0a090888;font-weight:500}
+  .mapblock .map .pin{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--cat-color);border:2px solid #fff;box-shadow:0 0 0 1px var(--line-strong),0 2px 6px rgba(0,0,0,.15);transform:translate(-50%,-50%);transition:transform .2s ease}
+  .mapblock .map .pin:hover{transform:translate(-50%,-50%) scale(1.4)}
+  .mapblock .map .geo-btn{position:absolute;bottom:14px;right:14px;display:flex;align-items:center;gap:8px;padding:10px 16px;background:var(--cat-color);color:#fff;border-radius:999px;border:none;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;transition:transform .25s ease;box-shadow:0 4px 16px rgba(255,94,26,.3)}
+  .mapblock .map .geo-btn:hover{transform:translateY(-2px)}
+  .mapblock .map .geo-btn .dot{width:8px;height:8px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(255,255,255,.3);animation:dotpulse 2.4s ease-in-out infinite}
+
+  /* MORE FROM GUIDE */
+  .more-cats{padding:80px 28px;border-top:1px solid var(--line);background:var(--paper)}
+  .more-cats-head{margin-bottom:32px;display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:16px}
+  .more-cats-head h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(28px,3vw,44px);letter-spacing:-.03em;line-height:1;text-transform:lowercase}
+  .more-cats-head h3 em{font-style:italic;color:var(--cat-color)}
+  .more-cats-head .right a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--ink);border-bottom:1px solid var(--ink);padding-bottom:3px;transition:color .2s ease,border-color .2s ease}
+  .more-cats-head .right a:hover{color:var(--cat-color);border-color:var(--cat-color)}
+  .more-cats-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;gap:14px}
+  .more-cat{position:relative;padding:24px;min-height:200px;border-radius:14px;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;transition:transform .3s ease}
+  .more-cat:hover{transform:translateY(-3px)}
+  .more-cat::before{content:"";position:absolute;inset:0;background:var(--tile-color);opacity:.95}
+  .more-cat > *{position:relative;z-index:2}
+  .more-cat .num{font-family:"Bricolage Grotesque",sans-serif;font-size:36px;font-weight:800;color:var(--tile-text);line-height:.9;letter-spacing:-.02em}
+  .more-cat h4{font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;color:var(--tile-text);letter-spacing:-.025em;text-transform:lowercase;margin-top:auto;line-height:1}
+  .more-cat .sub{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--tile-text);opacity:.7;margin-top:6px;font-weight:500}
+  .more-cat .pin{position:absolute;right:18px;top:18px;z-index:3;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:999px;background:rgba(255,255,255,.18);backdrop-filter:blur(8px);color:var(--tile-text);font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;border:1px solid rgba(255,255,255,.22)}
+  .more-cat .pin .pulse{width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 6px rgba(255,255,255,.6);animation:dotpulse 2.4s ease-in-out infinite}
+  .more-cat .go{position:absolute;right:18px;bottom:18px;width:34px;height:34px;border-radius:50%;border:1px solid rgba(255,255,255,.5);display:flex;align-items:center;justify-content:center;color:var(--tile-text);opacity:.7;transition:opacity .25s ease,transform .25s ease,background .25s ease,color .25s ease,border-color .25s ease;z-index:3}
+  .more-cat:hover .go{opacity:1;transform:translate(2px,-2px);background:#fff;color:var(--ink);border-color:#fff}
+  /* the highlight tile (stay & live) gets larger heading */
+  .more-cat.highlight h4{font-size:36px;line-height:.95}
+  .more-cat.highlight .num{font-size:48px}
+  .more-cat.highlight .desc{font-size:14px;line-height:1.5;color:var(--tile-text);opacity:.9;margin-top:10px;max-width:32ch}
+  .more-cat.stay{--tile-color:var(--pink-soft);--tile-text:#fff}
+  .more-cat.wellness{--tile-color:var(--teal);--tile-text:#fff}
+  .more-cat.nightlife{--tile-color:var(--purple);--tile-text:#fff}
+  .more-cat.experiences{--tile-color:#c97b3f;--tile-text:#fff}
+  .more-cat.move{--tile-color:var(--amber);--tile-text:#fff}
+  .more-cat.work{--tile-color:var(--green-cat);--tile-text:#fff}
+  .more-cat.explore{--tile-color:var(--coral);--tile-text:#fff}
+  .more-cat.eat{--tile-color:var(--accent);--tile-text:#fff}
+
+  /* BRIDGE */
+
+  footer{padding:48px 28px;border-top:1px solid var(--line);background:var(--bg);display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);gap:16px;font-weight:500}
+  footer .center{text-align:center}
+  footer .right{text-align:right}
+  footer a:hover{color:var(--cat-color)}
+
+  @media (max-width:880px){
+    html,body{cursor:auto}
+    a,button,input,select{cursor:auto}
+    .cursor,.float-wm{display:none}
+    .topbar{grid-template-columns:auto 1fr;padding:14px 14px}
+    .topbar .left{display:none}
+    .topbar .ctr{justify-self:start;font-size:20px}
+    .topbar .ctr .crumb{font-size:9px}
+    .topbar .right{justify-self:end;gap:8px}
+    .topbar .city,.topbar .lang{display:none}
+    .topbar .burger{display:inline-flex}
+
+    .cat-header{padding:88px 14px 40px}
+    .cat-header h1{font-size:clamp(56px,16vw,100px)}
+    .cat-header .lede{font-size:16px;margin-top:20px}
+    .cat-stats{gap:28px;margin-top:32px}
+    .cat-stats .num{font-size:26px}
+
+    .subnav{padding:10px 14px;gap:10px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}
+    .subnav::-webkit-scrollbar{display:none}
+    .subnav .label{flex:none;font-size:9px}
+    .subnav .subs{flex-wrap:nowrap;flex:none}
+    .subnav .subs button{flex:none;font-size:9px;padding:6px 11px}
+    .subnav .sort{flex:none;font-size:9px}
+    .subnav .sort button{font-size:9px;padding:5px 8px}
+
+    .featured{padding:40px 14px 24px}
+    .featured a{grid-template-columns:1fr;gap:20px}
+    .featured .body h2{font-size:clamp(32px,9vw,52px)}
+
+    .places-wrap{padding:24px 14px 56px}
+    .places{grid-template-columns:1fr;gap:36px}
+    .place{width:100%}
+    .place .ph{width:100%;aspect-ratio:4/3}
+    .place .info{padding:14px 2px 0}
+    .place h4{font-size:19px}
+
+    .mapblock{padding:48px 14px}
+    .mapblock-head{flex-direction:column;align-items:flex-start;gap:14px}
+    .mapblock .map{aspect-ratio:4/3}
+
+    .more-cats{padding:48px 14px}
+    .more-cats-grid{grid-template-columns:1fr;gap:10px}
+    .more-cat{min-height:130px;padding:18px}
+    .more-cat.highlight{min-height:180px}
+    .more-cat.highlight h4{font-size:30px}
+    .more-cat.highlight .num{font-size:38px}
+
+
+    footer{grid-template-columns:1fr;text-align:left;gap:10px;font-size:9px;padding:28px 14px}
+    footer .center,footer .right{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<a href="#top" class="float-wm" id="floatWm">bre<span class="d"></span></a>
+
+<header class="topbar" id="top">
+  <div class="left">
+    <a href="/">stays</a>
+    <a href="/guide/" class="active">guide</a>
+    <a href="/services">services</a>
+    <a href="/about">about</a>
+  </div>
+  <a href="/" class="ctr">bre<span class="d"></span></a>
+  <div class="right">
+    <a href="#" class="city">batumi <span class="arr">▾</span></a>
+    <a href="#" class="lang">ru</a>
+    <button class="burger" id="burger" aria-label="menu" type="button"><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay" hidden>
+  <div class="menu-inner">
+    <a href="/" class="menu-item">stays</a>
+    <a href="/guide/" class="menu-item active">guide</a>
+    <a href="/services" class="menu-item">services</a>
+    <a href="/about" class="menu-item">about</a>
+    <div class="menu-foot">
+      <div class="menu-row">
+        <span class="menu-row-label">city</span>
+        <a href="#" class="menu-row-val">batumi ▾</a>
+      </div>
+      <div class="menu-row">
+        <span class="menu-row-label">language</span>
+        <a href="#" class="menu-row-val">en · ru</a>
+      </div>
+      <a href="https://t.me/bre_ge" class="menu-tg">↗ telegram @bre_ge</a>
+    </div>
+  </div>
+</div>
+
+<section class="cat-header">
+  <div class="crumbs">
+    <a href="/guide/">← back to the guide</a>
+    <span class="sep">/</span>
+    <span class="current"><span class="dot"></span>eat &amp; drink</span>
+  </div>
+  <h1>eat <em>&amp;</em> drink.</h1>
+  <p class="lede">our favourite <b>cafés, brunch spots, restaurants, cocktail bars, wine places, bakeries, and specialty food stores in batumi</b> — from <em>slow breakfasts and specialty coffee</em> to sunset dinners and late-night cocktails.</p>
+  <div class="cat-stats">
+    <div><span class="num" data-stat="places">42</span>places we love</div>
+    <div><span class="num" data-stat="subcategories">8</span>subcategories</div>
+    <div><span class="num"><em data-stat="added-week">3</em></span>added this week</div>
+    <div><span class="num">100%</span>tried by us</div>
+  </div>
+</section>
+
+<nav class="subnav">
+  <span class="label">filter</span>
+  <div class="subs">
+    <button class="active">all · 42</button>
+    <button>coffee · 12</button>
+    <button>restaurants · 11</button>
+    <button>bars &amp; cocktails · 7</button>
+    <button>cafes &amp; brunch · 5</button>
+    <button>bakeries · 3</button>
+    <button>gastro shops · 2</button>
+    <button>asian dining · 2</button>
+  </div>
+  <div class="sort">
+    <span class="lab">sort:</span>
+    <button class="active">recommended</button>
+    <button>newest</button>
+    <button>nearby</button>
+  </div>
+</nav>
+
+<section class="featured">
+  <a href="#">
+    <div class="ph">
+      <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=80" alt="">
+      <span class="badge">our pick · 07 may</span>
+    </div>
+    <div class="body">
+      <div class="meta">
+        <span class="pill"><span class="swatch"></span>coffee</span>
+        <span>3-min read · since 2021</span>
+      </div>
+      <h2>nova coffee —<br/>proper <em>specialty</em><br/>in town.</h2>
+      <p class="summary">a clean room, a real espresso machine, beans roasted weekly. you can actually sit for two hours and read. flat white at ≈12 ₾, filter at ≈14 ₾, ethiopian guji this week.</p>
+      <div class="info-row">
+        <span>chavchavadze 35</span><span class="dot"></span>
+        <span>daily <b>9—22</b></span><span class="dot"></span>
+        <span><b>≈12—18 ₾</b></span><span class="dot"></span>
+        <span>since <b>2021</b></span>
+      </div>
+      <span class="read">read the post →</span>
+    </div>
+  </a>
+</section>
+
+<section class="places-wrap">
+  <div class="places-head">
+    <h3><em>42</em> places · sorted by recommended</h3>
+    <span>showing 12 of 42</span>
+  </div>
+
+  <div class="places">
+    <a class="place" href="#">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80" alt="">
+        <span class="pill"><span class="sw"></span>restaurant · asian</span>
+        <span class="save"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12L2 7.5C0.5 6 0.5 4 2 2.5C3.5 1 5.5 1 7 2.5C8.5 1 10.5 1 12 2.5C13.5 4 13.5 6 12 7.5L7 12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="info">
+        <div class="top-row"><h4>japan 33</h4><span class="price"><b>80—120 ₾</b></span></div>
+        <p class="summary">sunset omakase counter on the boulevard. dinner only, 5 seats, book ahead.</p>
+        <div class="meta"><span>boulevard</span><span class="dot"></span><span>dinner only</span></div>
+      </div>
+    </a>
+
+    <a class="place" href="#">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?w=900&q=80" alt="">
+        <span class="pill"><span class="sw"></span>cafe · brunch</span>
+        <span class="save"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12L2 7.5C0.5 6 0.5 4 2 2.5C3.5 1 5.5 1 7 2.5C8.5 1 10.5 1 12 2.5C13.5 4 13.5 6 12 7.5L7 12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="info">
+        <div class="top-row"><h4>milevski</h4><span class="price"><b>10—25 ₾</b></span></div>
+        <p class="summary">third-wave coffee with a bench out front. expect lingering. pour-over crowd.</p>
+        <div class="meta"><span>old town</span><span class="dot"></span><span>9—21</span></div>
+      </div>
+    </a>
+
+    <a class="place" href="#">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80" alt="">
+        <span class="pill"><span class="sw"></span>restaurant · georgian</span>
+        <span class="save"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12L2 7.5C0.5 6 0.5 4 2 2.5C3.5 1 5.5 1 7 2.5C8.5 1 10.5 1 12 2.5C13.5 4 13.5 6 12 7.5L7 12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="info">
+        <div class="top-row"><h4>pure bistro</h4><span class="price"><b>40—70 ₾</b></span></div>
+        <p class="summary">modern georgian on chavchavadze. oyster weekends, cava on tap, vinyl playlist.</p>
+        <div class="meta"><span>chavchavadze</span><span class="dot"></span><span>12—late</span></div>
+      </div>
+    </a>
+
+    <a class="place" href="#">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1551024506-0bccd828d307?w=900&q=80" alt="">
+        <span class="pill"><span class="sw"></span>cocktail bar</span>
+        <span class="save"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12L2 7.5C0.5 6 0.5 4 2 2.5C3.5 1 5.5 1 7 2.5C8.5 1 10.5 1 12 2.5C13.5 4 13.5 6 12 7.5L7 12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="info">
+        <div class="top-row"><h4>kava lova</h4><span class="price"><b>25—45 ₾</b></span></div>
+        <p class="summary">tiny cocktail bar tucked into old town. seasonal menu, pop-ups with guest bartenders.</p>
+        <div class="meta"><span>old town</span><span class="dot"></span><span>18—2</span></div>
+      </div>
+    </a>
+
+    <a class="place" href="#">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?w=900&q=80" alt="">
+        <span class="pill"><span class="sw"></span>bakery</span>
+        <span class="save"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12L2 7.5C0.5 6 0.5 4 2 2.5C3.5 1 5.5 1 7 2.5C8.5 1 10.5 1 12 2.5C13.5 4 13.5 6 12 7.5L7 12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="info">
+        <div class="top-row"><h4>fresh bakery</h4><span class="price"><b>5—15 ₾</b></span></div>
+        <p class="summary">sourdough, khachapuri, and the best croissants in town. go before 11.</p>
+        <div class="meta"><span>chavchavadze</span><span class="dot"></span><span>7—19</span></div>
+      </div>
+    </a>
+
+    <a class="place" href="#">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?w=900&q=80" alt="">
+        <span class="pill"><span class="sw"></span>wine bar</span>
+        <span class="save"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12L2 7.5C0.5 6 0.5 4 2 2.5C3.5 1 5.5 1 7 2.5C8.5 1 10.5 1 12 2.5C13.5 4 13.5 6 12 7.5L7 12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="info">
+        <div class="top-row"><h4>8000 vintages</h4><span class="price"><b>20—65 ₾</b></span></div>
+        <p class="summary">georgian wine library. tastings every thursday, kakheti producers featured.</p>
+        <div class="meta"><span>old town</span><span class="dot"></span><span>16—24</span></div>
+      </div>
+    </a>
+
+    <a class="place" href="#">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=900&q=80" alt="">
+        <span class="pill"><span class="sw"></span>restaurant · seafood</span>
+        <span class="save"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12L2 7.5C0.5 6 0.5 4 2 2.5C3.5 1 5.5 1 7 2.5C8.5 1 10.5 1 12 2.5C13.5 4 13.5 6 12 7.5L7 12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="info">
+        <div class="top-row"><h4>fanari</h4><span class="price"><b>50—90 ₾</b></span></div>
+        <p class="summary">fish fresh from the boat. set lunch at 35 ₾, kalmar grilled with lemon.</p>
+        <div class="meta"><span>gonio</span><span class="dot"></span><span>12—23</span></div>
+      </div>
+    </a>
+
+    <a class="place" href="#">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=900&q=80" alt="">
+        <span class="pill"><span class="sw"></span>coffee</span>
+        <span class="save"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12L2 7.5C0.5 6 0.5 4 2 2.5C3.5 1 5.5 1 7 2.5C8.5 1 10.5 1 12 2.5C13.5 4 13.5 6 12 7.5L7 12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="info">
+        <div class="top-row"><h4>third floor coffee</h4><span class="price"><b>8—18 ₾</b></span></div>
+        <p class="summary">rooftop coffee with sea view. quietest workspace in batumi before 12.</p>
+        <div class="meta"><span>chavchavadze</span><span class="dot"></span><span>9—20</span></div>
+      </div>
+    </a>
+
+    <a class="place" href="#">
+      <div class="ph">
+        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80" alt="">
+        <span class="pill"><span class="sw"></span>restaurant</span>
+        <span class="save"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12L2 7.5C0.5 6 0.5 4 2 2.5C3.5 1 5.5 1 7 2.5C8.5 1 10.5 1 12 2.5C13.5 4 13.5 6 12 7.5L7 12Z" stroke="currentColor" stroke-width="1.3" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="info">
+        <div class="top-row"><h4>etna</h4><span class="price"><b>30—55 ₾</b></span></div>
+        <p class="summary">proper neapolitan pizza. wood-fired, marinara at 18 ₾.</p>
+        <div class="meta"><span>boulevard</span><span class="dot"></span><span>12—23</span></div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<section class="mapblock">
+  <div class="mapblock-head">
+    <h3>all 42 places <em>on a map</em>.</h3>
+    <div class="right">tap any pin to read the post</div>
+  </div>
+  <div class="map">
+    <div class="grid-bg"></div>
+    <div class="coastline">
+      <svg viewBox="0 0 1000 400" preserveAspectRatio="none">
+        <path d="M 0 380 Q 100 360 200 350 T 400 320 T 600 280 T 800 220 T 1000 160 L 1000 400 L 0 400 Z" fill="#bfdaee" opacity="0.5"/>
+        <path d="M 0 380 Q 100 360 200 350 T 400 320 T 600 280 T 800 220 T 1000 160" stroke="#7bafd2" stroke-width="1.5" fill="none" opacity="0.7"/>
+      </svg>
+    </div>
+    <button class="geo-btn"><span class="dot"></span>show what's around me</button>
+
+    <span class="city-label" style="left:60%;top:8%">old town</span>
+    <span class="city-label" style="left:32%;top:30%">boulevard</span>
+    <span class="city-label" style="left:18%;top:60%">chavchavadze</span>
+    <span class="city-label" style="left:78%;top:55%">gonio</span>
+
+    <span class="pin" style="left:24%;top:32%"></span>
+    <span class="pin" style="left:30%;top:28%"></span>
+    <span class="pin" style="left:38%;top:22%"></span>
+    <span class="pin" style="left:46%;top:34%"></span>
+    <span class="pin" style="left:52%;top:42%"></span>
+    <span class="pin" style="left:58%;top:18%"></span>
+    <span class="pin" style="left:64%;top:38%"></span>
+    <span class="pin" style="left:72%;top:48%"></span>
+    <span class="pin" style="left:84%;top:52%"></span>
+    <span class="pin" style="left:20%;top:50%"></span>
+    <span class="pin" style="left:28%;top:65%"></span>
+    <span class="pin" style="left:40%;top:55%"></span>
+    <span class="pin" style="left:50%;top:62%"></span>
+    <span class="pin" style="left:35%;top:42%"></span>
+    <span class="pin" style="left:45%;top:48%"></span>
+    <span class="pin" style="left:55%;top:55%"></span>
+  </div>
+</section>
+
+<section class="more-cats">
+  <div class="more-cats-head">
+    <h3>more from <em>the guide</em>.</h3>
+    <a href="/guide/" class="right">all 8 worlds →</a>
+  </div>
+  <div class="more-cats-grid">
+    <a class="more-cat stay highlight" href="#" data-cat="stay-live">
+      <span class="pin"><span class="pulse"></span>stays</span>
+      <span class="num" data-count>—</span>
+      <h4>stay &amp; live.</h4>
+      <div class="sub">flats · hotels · long-term</div>
+      <p class="desc">our flats, hotels we send guests to, neighbourhoods we live in. start here if you're booking.</p>
+      <span class="go"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4M11 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+    <a class="more-cat wellness" href="#" data-cat="wellness">
+      <span class="num" data-count>—</span>
+      <h4>wellness</h4>
+      <div class="sub">spa · baths · yoga · massage</div>
+      <span class="go"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4M11 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+    <a class="more-cat experiences" href="#" data-cat="experiences">
+      <span class="num" data-count>—</span>
+      <h4>experiences</h4>
+      <div class="sub">tours · classes · day trips</div>
+      <span class="go"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H4M11 3V10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div>© 2026 · bre.ge</div>
+  <div class="center">apartments &amp; the batumi guide</div>
+  <div class="right"><a href="#top">↑ back to top</a></div>
+</footer>
+
+<script>
+  // category counts — for prototype hardcoded; on supabase: SELECT category, count(*) FROM guide_posts WHERE status='published' GROUP BY category
+  const CAT_COUNTS = {
+    'stay-live':    14,
+    'eat-drink':    42,
+    'wellness':     18,
+    'nightlife':    12,
+    'experiences':  16,
+    'move-around':   9,
+    'work-remote':   8,
+    'explore':      22
+  };
+  document.querySelectorAll('[data-cat]').forEach(el => {
+    const slot = el.querySelector('[data-count]');
+    if (!slot) return;
+    const cat = el.getAttribute('data-cat');
+    const n = CAT_COUNTS[cat];
+    if (typeof n === 'number') slot.textContent = n;
+  });
+
+  const cursor = document.getElementById('cursor');
+  const floatWm = document.getElementById('floatWm');
+  let mx=window.innerWidth/2, my=window.innerHeight/2, cx=mx, cy=my;
+  let wmx=0, wmy=0;
+  window.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
+  function loop(){
+    cx += (mx-cx)*0.7; cy += (my-cy)*0.7;
+    if(cursor) cursor.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
+    const tx = (mx - window.innerWidth/2) * 0.012;
+    const ty = (my - window.innerHeight/2) * 0.012;
+    wmx += (tx - wmx) * 0.08;
+    wmy += (ty - wmy) * 0.08;
+    if(floatWm) floatWm.style.transform = `translate(${wmx}px, ${wmy}px)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+
+  function clearCursorColors(){ cursor.classList.remove('yellow'); }
+
+  document.querySelectorAll('a:not(.place):not(.more-cat):not(.featured a), button').forEach(el => {
+    el.addEventListener('mouseenter', () => { clearCursorColors(); cursor.classList.add('big'); });
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+  document.querySelectorAll('.place, .more-cat, .featured a').forEach(el => {
+    el.addEventListener('mouseenter', () => { clearCursorColors(); cursor.classList.add('text','yellow'); cursor.setAttribute('data-label','read →'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('text','yellow'); cursor.removeAttribute('data-label'); });
+  });
+
+  document.querySelectorAll('.subnav .subs button').forEach(b => {
+    b.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.subnav .subs button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+  document.querySelectorAll('.subnav .sort button').forEach(b => {
+    b.addEventListener('click', e => {
+      e.preventDefault();
+      document.querySelectorAll('.subnav .sort button').forEach(x => x.classList.remove('active'));
+      b.classList.add('active');
+    });
+  });
+  // burger menu
+  (function(){
+    const burger = document.getElementById('burger');
+    const overlay = document.getElementById('menuOverlay');
+    if (!burger || !overlay) return;
+    function open(){
+      overlay.hidden = false;
+      requestAnimationFrame(()=> overlay.classList.add('open'));
+      burger.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function close(){
+      overlay.classList.remove('open');
+      burger.classList.remove('open');
+      document.body.style.overflow = '';
+      setTimeout(()=> overlay.hidden = true, 320);
+    }
+    burger.addEventListener('click', () => {
+      if (overlay.classList.contains('open')) close(); else open();
+    });
+    overlay.addEventListener('click', e => {
+      if (e.target === overlay) close();
+    });
+    overlay.querySelectorAll('.menu-item, .menu-tg, .menu-row-val').forEach(a => {
+      a.addEventListener('click', close);
+    });
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && overlay.classList.contains('open')) close();
+    });
+  })();
+</script>
+
+</body>
+</html>
