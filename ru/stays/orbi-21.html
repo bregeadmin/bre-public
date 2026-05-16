@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>orbi sea towers — 21 этаж · bre</title>
-<meta name="description" content="1-комнатная на высоком этаже с полным видом на море, мраморной ванной и балконом для закатов. 45м², пешком до пляжа. Бронируй напрямую или через Airbnb / Booking.">
+<meta name="description" content="Квартира с одной спальней на высоком этаже с видом на море, мраморной ванной и балконом для закатов. 45m², в шаговой доступности от пляжа. Бронируй напрямую или через Airbnb / Booking.">
 <link rel="alternate" hreflang="en" href="https://bre.ge/stays/orbi-21">
 <link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays/orbi-21">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -239,23 +239,124 @@
     .foot-left{gap:10px;font-size:9px}
     .foot-right{font-size:9px}
   }
+  /* BOOKING FORM (new compact) */
+  .book-form{display:flex;flex-direction:column;gap:8px;margin-top:20px}
+  .date-trigger,.guest-trigger{display:flex;flex-direction:column;gap:3px;align-items:flex-start;background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:12px 14px;cursor:none;font-family:"Bricolage Grotesque",sans-serif;text-align:left;width:100%;transition:border-color .2s ease}
+  .date-trigger:hover,.guest-trigger:hover{border-color:var(--ink)}
+  .date-trigger.active,.guest-trigger.active{border-color:var(--page)}
+  .date-trigger .dt-label,.guest-trigger .gt-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .date-trigger .dt-val,.guest-trigger .gt-val{font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
+  .date-trigger .dt-val.empty{color:var(--ink-soft);font-weight:500}
+
+  /* CALENDAR POPUP */
+  .cal-pop{position:fixed;z-index:200;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(10,9,8,0.18);padding:24px;width:680px;max-width:calc(100vw - 28px);font-family:"Bricolage Grotesque",sans-serif}
+  .cal-head{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;margin-bottom:18px}
+  .cal-nav{width:36px;height:36px;border:1px solid var(--line-strong);border-radius:50%;background:transparent;cursor:none;font-size:16px;font-weight:600;color:var(--ink);transition:all .2s ease;display:flex;align-items:center;justify-content:center}
+  .cal-nav:hover{border-color:var(--ink);background:var(--ink);color:#fff}
+  .cal-months{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}
+  .cal-month{min-width:0}
+  .cal-month .cal-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;text-align:center;margin-bottom:14px;color:var(--ink)}
+  .cal-month .cal-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;margin-bottom:6px}
+  .cal-month .cal-week-day{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;text-align:center;padding:4px 0}
+  .cal-month .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px}
+  .cal-day{width:100%;max-width:42px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--ink);cursor:none;border-radius:50%;background:transparent;border:0;font-family:"Bricolage Grotesque",sans-serif;padding:0;position:relative;box-sizing:border-box;line-height:1;margin:0 auto}
+  .cal-day.empty{cursor:default}
+  .cal-day.past{color:var(--ink-soft);opacity:.35;cursor:default;text-decoration:line-through}
+  .cal-day.av{background:#D6F5DC}
+  .cal-day.пик{background:#FFF0B8}
+  .cal-day.занято{background:#FFCFC2;text-decoration:line-through;cursor:default;color:var(--ink-soft)}
+  .cal-day:not(.past):not(.занято):not(.empty):hover{background:var(--ink);color:#fff}
+  /* All cells remain identical circles. Range is just a background tint, same shape. */
+  .cal-day.inside{background:#EEEAE0 !important;color:var(--ink) !important}
+  .cal-day.start{background:var(--ink) !important;color:#fff !important}
+  .cal-day.end{background:var(--ink) !important;color:#fff !important}
+  .cal-legend{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .cal-leg{display:inline-flex;align-items:center;gap:8px}
+  .cal-leg .ll{width:14px;height:14px;border-radius:50%}
+  .cal-leg .ll.green{background:#D6F5DC}
+  .cal-leg .ll.yellow{background:#FFF0B8}
+  .cal-leg .ll.coral{background:#FFCFC2}
+  .cal-leg-night{margin-left:auto;color:var(--ink);font-weight:700}
+  .cal-apply{padding:9px 18px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:none;transition:background .2s ease;flex-shrink:0;margin-left:14px}
+  .cal-apply:hover{background:var(--accent)}
+
+  /* GUEST POPUP — brand-styled */
+  .guest-pop{position:fixed;z-index:200;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(10,9,8,0.18);padding:22px;width:360px;max-width:calc(100vw - 28px);display:flex;flex-direction:column;gap:0;font-family:"Bricolage Grotesque",sans-serif}
+  .gp-head{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:10px;padding-bottom:14px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+  .gp-head::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+  .gp-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .gp-row:last-of-type{border-bottom:0}
+  .gp-info .gp-title{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:16px;color:var(--ink);letter-spacing:-.01em;text-transform:lowercase}
+  .gp-info .gp-sub{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px;font-weight:600}
+  .gp-ctrl{display:flex;align-items:center;gap:14px}
+  .gp-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;cursor:none;font-size:18px;font-weight:400;color:var(--ink);transition:all .2s ease;display:flex;align-items:center;justify-content:center;padding:0;font-family:"Bricolage Grotesque",sans-serif;line-height:1}
+  .gp-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .gp-btn:disabled{opacity:.25;cursor:default}
+  .gp-btn:disabled:hover{background:transparent;border-color:var(--line-strong);color:var(--ink)}
+  .gp-num{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;min-width:20px;text-align:center;color:var(--ink)}
+  .gp-foot{display:flex;justify-content:space-between;align-items:center;padding-top:16px;margin-top:4px;border-top:1px solid var(--line);gap:14px}
+  .gp-note{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;flex:1}
+  .gp-apply{padding:11px 22px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:none;transition:background .2s ease;flex-shrink:0}
+  .gp-apply:hover{background:var(--accent)}
+
+  /* LIGHTBOX */
+  .lightbox[hidden],.lightbox-single[hidden],.cal-pop[hidden],.guest-pop[hidden]{display:none !important}
+  .lightbox{position:fixed;inset:0;z-index:300;background:rgba(10,9,8,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);animation:lbFadeIn .25s ease;display:flex;flex-direction:column}
+  @keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
+  .lightbox .lb-head{flex:none;display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:rgba(10,9,8,0.4);backdrop-filter:blur(20px)}
+  .lightbox .lb-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;font-weight:600;display:flex;align-items:center;gap:10px}
+  .lightbox .lb-title::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+  .lightbox .lb-close{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:16px;font-weight:400;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:system-ui,sans-serif;padding:0;padding-bottom:2px}
+  .lightbox .lb-close:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(90deg)}
+  .lightbox .lb-body{flex:1;min-height:0;overflow-y:auto;padding:20px 28px 28px;max-width:1400px;margin:0 auto;width:100%}
+  .lightbox .lb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
+  .lightbox .lb-cell{aspect-ratio:1;overflow:hidden;background:#1a1815;border-radius:8px;cursor:none}
+  .lightbox .lb-cell img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+  .lightbox .lb-cell:hover img{transform:scale(1.04)}
+
+  .lightbox-single{position:fixed;inset:0;z-index:310;background:rgba(10,9,8,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;animation:lbFadeIn .2s ease}
+  .lightbox-single .lb-head{flex:none;display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:18px 28px;gap:14px}
+  .lightbox-single .lb-back{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:18px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:system-ui,sans-serif}
+  .lightbox-single .lb-back:hover{background:var(--accent);border-color:var(--accent)}
+  .lightbox-single .lb-close{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:16px;font-weight:400;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:system-ui,sans-serif;padding:0;padding-bottom:2px}
+  .lightbox-single .lb-close:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(90deg)}
+  .lightbox-single .lb-counter{text-align:center;color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;font-weight:600;text-transform:uppercase}
+  .lightbox-single .lb-single-body{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 80px 24px;position:relative}
+  .lightbox-single img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:8px;display:block;cursor:none}
+  .lightbox-single .lb-prev,.lightbox-single .lb-next{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:20px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:system-ui,sans-serif}
+  .lightbox-single .lb-prev{left:14px}
+  .lightbox-single .lb-next{right:14px}
+  .lightbox-single .lb-prev:hover,.lightbox-single .lb-next:hover{background:var(--accent);border-color:var(--accent)}
+  body.lb-open{overflow:hidden}
+
+  @media (max-width:880px){
+    .cal-pop{width:calc(100vw - 28px);padding:18px}
+    .cal-months{grid-template-columns:1fr;gap:24px}
+    .lightbox .lb-grid{grid-template-columns:1fr 1fr;gap:8px}
+    .lightbox .lb-body{padding:18px}
+    .lightbox .lb-head{padding:14px 18px}
+    .lightbox-single .lb-single-body{padding:0 14px 18px}
+    .lightbox-single .lb-prev,.lightbox-single .lb-next{width:42px;height:42px;font-size:22px}
+    .guest-pop{width:calc(100vw - 28px)}
+  }
 </style>
 </head>
 <body>
 <span id="flyingDot"></span>
+
 <div class="cursor" id="cursor"></div>
 
 <header class="topbar" id="top">
   <div class="left">
-    <a class="home-dot" href="/ru/" aria-label="на главную"></a>
-    <a href="/ru/stays">квартиры</a>
-    <a href="/ru/guide">гайд</a>
-    <a href="/ru/own">сдать с нами</a>
-    <a href="/ru/invest">инвесторам</a>
+    <a class="home-dot" href="/" aria-label="home"></a>
+    <a href="/ru/stays">stays</a>
+    <a href="/ru/guide">guide</a>
+    <a href="/ru/own">own with us</a>
+    <a href="/ru/invest">invest</a>
   </div>
-  <a href="/ru/" class="ctr" title="на главную">bre<span class="d"></span></a>
+  <a href="/ru/" class="ctr" title="home">bre<span class="d"></span></a>
   <div class="right">
-    <a href="#" class="city">батуми <span class="arr">▾</span></a>
+    <a href="#" class="city">batumi <span class="arr">▾</span></a>
     <a href="/stays/orbi-21" class="lang">en</a>
     <button class="burger" aria-label="menu" type="button"><span></span><span></span></button>
   </div>
@@ -267,18 +368,18 @@
   <span class="sep">/</span>
   <a href="/ru/stays">все квартиры</a>
   <span class="sep">/</span>
-  <span class="here">orbi sea towers — 21 этаж</span>
+  <span class="here">orbi sea towers — 21st</span>
 </nav>
 
 <!-- GALLERY -->
 <section class="gallery">
-  <div class="gallery-grid">
-    <div class="ph main"><img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1600&q=80" alt="orbi sea towers — living room"></div>
-    <div class="ph"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80" alt="bedroom"></div>
-    <div class="ph"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt="kitchen"></div>
-    <div class="ph"><img src="https://images.unsplash.com/photo-1551776235-dde6d4829808?w=900&q=80" alt="balcony view"></div>
-    <div class="ph"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80" alt="bathroom"></div>
-    <button class="gallery-all" onclick="alert('галерея скоро — пока все фото на Airbnb')">↗ все 12 фото</button>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="ph main" data-idx="0"><img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1600&q=80" alt="orbi sea towers — living room"></div>
+    <div class="ph" data-idx="1"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80" alt="bedroom"></div>
+    <div class="ph" data-idx="2"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt="kitchen"></div>
+    <div class="ph" data-idx="3"><img src="https://images.unsplash.com/photo-1551776235-dde6d4829808?w=900&q=80" alt="balcony view"></div>
+    <div class="ph" data-idx="4"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80" alt="bathroom"></div>
+    <button class="gallery-all" id="galleryAll" type="button">↗ смотреть все 12 фото</button>
   </div>
 </section>
 
@@ -286,21 +387,21 @@
 <section class="apt-head">
   <div>
     <div class="badges">
-      <span class="badge hot"><span class="dot" style="background:#fff"></span>только добавили</span>
+      <span class="badge hot"><span class="dot" style="background:#fff"></span>только что</span>
       <span class="badge"><span class="dot"></span>старый бульвар</span>
       <span class="badge"><span class="dot" style="background:var(--teal)"></span>вид на море</span>
     </div>
     <h1 style="margin-top:18px">orbi sea towers — <em>21 этаж</em>.</h1>
     <div class="meta">
-      <span><b>1</b> спальня</span>
+      <span><b>1</b> bed</span>
       <span class="sep">·</span>
-      <span><b>45</b> м²</span>
+      <span><b>45</b> m²</span>
       <span class="sep">·</span>
-      <span><b>21</b> этаж</span>
+      <span><b>21st</b> floor</span>
       <span class="sep">·</span>
-      <span>для <b>2–4</b> гостей</span>
+      <span>fits <b>2–4</b> guests</span>
       <span class="sep">·</span>
-      <span>full <b>вид на море</b></span>
+      <span>full <b>sea view</b></span>
     </div>
   </div>
 </section>
@@ -311,10 +412,10 @@
 
     <!-- DESCRIPTION -->
     <div class="apt-section">
-      <span class="label">— про эту квартиру</span>
-      <h2>высокий <em>этаж</em>, длинный <em>балкон</em> и море перед глазами.</h2>
-      <p>A 1-bedroom on the 21st floor of Orbi Sea Towers, with full open вид на море from every window. The bedroom is separate, the bath is marble, the kitchen is small but properly equipped — coffee maker, induction stove, dishwasher. Рабочее место by the window. <b>The balcony is the main reason to book this one</b> — sunsets are nuts.</p>
-      <p>До центрального пляжа 8 минут пешком. До Старого бульвара 12 минут. У здания свой бассейн, спортзал и кофейня внизу. Подходит парам, одиночкам и всем кто ценит тишину на высоте.</p>
+      <span class="label">— about this flat</span>
+      <h2>высокий <em>этаж</em>, длинный <em>балкон</em> и море прямо перед тобой.</h2>
+      <p>1-комнатная на 21 этаже Orbi Sea Towers — вид на море из каждого окна. Спальня отдельная, ванная мраморная, кухня маленькая но толковая: кофемашина, индукционная плита, посудомойка. Рабочее место у окна. <b>Балкон — главная причина забронировать эту квартиру</b> — закаты тут безумные.</p>
+      <p>До центрального пляжа 8 минут пешком. До Старого бульвара — 12 минут. В здании свой бассейн, тренажёрный зал и кофейня внизу. Подходит для пар, соло-путешественников или тех кто ценит тишину на высоте.</p>
     </div>
 
     <!-- INSIDE -->
@@ -324,34 +425,34 @@
       <div class="inside">
         <div class="item">
           <h5>Кровать</h5>
-          <p>King-size, матрас с эффектом памяти. Льняное постельное которое меняем каждому гостю. Блэкаут-шторы — рассвет над морем не разбудит в 5 утра.</p>
+          <p>King-size, матрас memory-foam. Льняное бельё меняем каждому новому гостю. Плотные шторы — рассвет над морем не разбудит тебя в 5 утра.</p>
         </div>
         <div class="item">
           <h5>Кухня</h5>
-          <p>Компактная но настоящая — индукция, духовка, посудомойка, холодильник с морозилкой. Запасы того что забывают: оливковое масло, соль, кофе в зёрнах, френч-пресс, два винных бокала.</p>
+          <p>Маленькая но настоящая — индукционная плита, духовка, посудомойка, холодильник с морозилкой. Запас того что забываешь дома: оливковое масло, соль, кофе в зёрнах, френч-пресс, два винных бокала.</p>
         </div>
         <div class="item">
           <h5>Балкон</h5>
-          <p>Достаточно длинный для завтрака и вечернего бокала. Два стула и столик. Вид без ничего перекрывающего.</p>
+          <p>Достаточно длинный чтобы позавтракать или выпить вина вечером. Два стула, маленький стол. Вид ничем не загорожен.</p>
         </div>
         <div class="item">
-          <h5>Работа и вайфай</h5>
-          <p>Стол у окна с видом на море. Эргономичное кресло. WiFi 200 Мбит/с, отдельный 5ГГц. Хватает на звонки и 4K-стриминг.</p>
+          <h5>Работа и wifi</h5>
+          <p>Стол у окна с видом на море. Эргономичный стул. WiFi 200 Mbps, отдельный канал 5GHz. Хватает для звонков и 4K-стриминга.</p>
         </div>
         <div class="item">
           <h5>Ванная</h5>
-          <p>Мрамор, душевая без поддона, тропический душ. Горячей воды много. Фен, шампунь и гель Aesop в полноразмерных флаконах.</p>
+          <p>Мрамор, душевая зона, тропический душ. Горячей воды много. Фен, полноразмерные Aesop — шампунь и гель для душа.</p>
         </div>
         <div class="item">
-          <h5>Дополнительно</h5>
-          <p>Smart TV с Netflix, пляжные полотенца, зонт, утюжок, утюг с доской, тапочки, дополнительное одеяло на холодные ночи.</p>
+          <h5>Что ещё</h5>
+          <p>Smart TV с Netflix, пляжные полотенца, зонт, утюжок для волос, утюг и доска, тапочки, дополнительное одеяло на холодные ночи.</p>
         </div>
       </div>
     </div>
 
     <!-- AMENITIES -->
     <div class="apt-section">
-      <span class="label">— список удобств</span>
+      <span class="label">— удобства</span>
       <h2>всё что нужно, <em>ничего</em> лишнего.</h2>
       <div class="amenities">
         <div class="am"><span class="ic">✓</span> Вид на море</div>
@@ -361,7 +462,7 @@
         <div class="am"><span class="ic">✓</span> Рабочее место</div>
         <div class="am"><span class="ic">✓</span> WiFi 200 Mbps</div>
         <div class="am"><span class="ic">✓</span> Smart TV / Netflix</div>
-        <div class="am"><span class="ic">✓</span> Полная кухня</div>
+        <div class="am"><span class="ic">✓</span> Полноценная кухня</div>
         <div class="am"><span class="ic">✓</span> Посудомойка</div>
         <div class="am"><span class="ic">✓</span> Стиральная машина</div>
         <div class="am"><span class="ic">✓</span> Кондиционер</div>
@@ -370,36 +471,36 @@
         <div class="am"><span class="ic">✓</span> Утюг</div>
         <div class="am"><span class="ic">✓</span> Лифт</div>
         <div class="am off"><span class="ic">×</span> Парковка</div>
-        <div class="am off"><span class="ic">×</span> Pets</div>
+        <div class="am off"><span class="ic">×</span> С животными</div>
         <div class="am off"><span class="ic">×</span> Курение</div>
       </div>
     </div>
 
     <!-- LOCATION -->
     <div class="apt-section">
-      <span class="label">— расположение</span>
+      <span class="label">— где находится</span>
       <h2>старый <em>бульвар</em>, верхний этаж.</h2>
       <div class="loc">
         <div class="loc-map">
           <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
             <rect width="400" height="400" fill="#f1ecdf"/>
             <path d="M0,300 Q100,280 200,290 T400,300 L400,400 L0,400 Z" fill="#cfdde3" opacity="0.6"/>
-            <text x="40" y="380" font-family="JetBrains Mono" font-size="10" fill="#4d544e" letter-spacing="2" text-transform="uppercase">ЧЁРНОЕ МОРЕ</text>
+            <text x="40" y="380" font-family="JetBrains Mono" font-size="10" fill="#4d544e" letter-spacing="2" text-transform="uppercase">BLACK SEA</text>
             <path d="M50,150 L350,150 M50,200 L350,200 M150,80 L150,320 M250,80 L250,320" stroke="#0a09081a" stroke-width="2" fill="none"/>
             <circle cx="200" cy="180" r="14" fill="#ff5e1a"/>
             <circle cx="200" cy="180" r="22" fill="none" stroke="#ff5e1a" stroke-width="2" opacity="0.3"/>
             <text x="200" y="220" font-family="JetBrains Mono" font-size="9" fill="#0a0908" letter-spacing="2" text-anchor="middle" font-weight="700">ORBI 21</text>
-            <text x="280" y="115" font-family="Bricolage Grotesque" font-size="11" fill="#4d544e" font-weight="500">старый бульвар</text>
+            <text x="280" y="115" font-family="Bricolage Grotesque" font-size="11" fill="#4d544e" font-weight="500">old boulevard</text>
           </svg>
         </div>
         <div class="loc-info">
-          <p>Прямо над старым городом и бульваром. Квартира на 21 этаже комплекса Orbi Sea Towers — фасадом к морю, в стороне от шумной улицы.</p>
+          <p>Прямо над старым центром Батуми и бульваром. Квартира на 21 этаже комплекса Orbi Sea Towers — окнами на море, в стороне от шумной улицы.</p>
           <div class="loc-near">
             <div class="ln"><span class="nm">Центральный пляж</span><span class="ds">— 8 мин пешком</span></div>
-            <div class="ln"><span class="nm">Вход на старый бульвар</span><span class="ds">— 4 мин пешком</span></div>
+            <div class="ln"><span class="nm">Вход на бульвар</span><span class="ds">— 4 мин пешком</span></div>
             <div class="ln"><span class="nm">Pure Bistro</span><span class="ds">— 6 мин пешком</span></div>
             <div class="ln"><span class="nm">Nova Coffee</span><span class="ds">— 5 мин пешком</span></div>
-            <div class="ln"><span class="nm">Аэропорт</span><span class="ds">— 12 мин на такси</span></div>
+            <div class="ln"><span class="nm">Аэропорт Батуми</span><span class="ds">— 12 мин на такси</span></div>
           </div>
         </div>
       </div>
@@ -407,24 +508,24 @@
 
     <!-- GUIDE PICKS -->
     <div class="apt-section">
-      <span class="label">— рядом</span>
-      <h2>куда мы отправили <em>бы</em>.</h2>
-      <p>Места которые мы бы рекомендовали в пешей доступности от квартиры. Полный список в <a href="/ru/guide" style="color:var(--page);font-weight:600">нашем гайде</a>.</p>
+      <span class="label">— что рядом</span>
+      <h2>куда мы тебя <em>отправили бы</em>.</h2>
+      <p>Места которые мы посоветовали бы в шаговой доступности от этой квартиры. Полный список в <a href="/ru/guide" style="color:var(--page);font-weight:600">нашем гиде</a>.</p>
       <div class="guide-picks">
         <a class="pick" href="/ru/guide/nova-coffee">
           <div class="ph"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=600&q=80" alt=""></div>
           <span class="kicker">кофе · 5 мин пешком</span>
-          <h5>nova coffee — эспрессо за которым возвращаются</h5>
+          <h5>nova coffee — эспрессо к которому возвращаешься</h5>
         </a>
         <a class="pick" href="/ru/guide/eat-drink">
           <div class="ph"><img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?w=600&q=80" alt=""></div>
           <span class="kicker">ресторан · 6 мин пешком</span>
-          <h5>pure bistro — устрицы и маленькие тарелки</h5>
+          <h5>pure bistro — устрицы и закуски</h5>
         </a>
         <a class="pick" href="/ru/guide/morning-in-old-batumi">
           <div class="ph"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt=""></div>
-          <span class="kicker">маршрут · 30 минут</span>
-          <h5>утро в старом батуми — наш маршрут</h5>
+          <span class="kicker">прогулка · 30 минут</span>
+          <h5>утро в старом батуми — наш пеший гид</h5>
         </a>
       </div>
     </div>
@@ -432,47 +533,47 @@
     <!-- RULES -->
     <div class="apt-section">
       <span class="label">— правила</span>
-      <h2><em>базовое</em>.</h2>
+      <h2><em>основное</em>.</h2>
       <div class="rules">
         <div class="r"><span class="k">Заезд</span><span class="v">после 15:00</span></div>
         <div class="r"><span class="k">Выезд</span><span class="v">до 12:00</span></div>
         <div class="r"><span class="k">Максимум гостей</span><span class="v">4 человека</span></div>
-        <div class="r"><span class="k">Курение</span><span class="v">not inside</span></div>
-        <div class="r"><span class="k">Питомцы</span><span class="v">ask us</span></div>
+        <div class="r"><span class="k">Курение</span><span class="v">не внутри</span></div>
+        <div class="r"><span class="k">Животные</span><span class="v">спроси нас</span></div>
         <div class="r"><span class="k">Вечеринки</span><span class="v">нет</span></div>
         <div class="r"><span class="k">Минимум</span><span class="v">2 ночи</span></div>
-        <div class="r"><span class="k">Отмена</span><span class="v">гибкая · 7д</span></div>
+        <div class="r"><span class="k">Отмена</span><span class="v">гибко · 7 дней</span></div>
       </div>
     </div>
 
     <!-- FAQ -->
     <div class="apt-section">
-      <span class="label">— часто спрашивают</span>
-      <h2>вопросы которые <em>могут</em> возникнуть.</h2>
+      <span class="label">— частые вопросы</span>
+      <h2>возможные <em>вопросы</em>.</h2>
       <div class="faq">
         <details>
-          <summary>Как заехать?</summary>
-          <p>Встречаем у здания. Прямые брони: пишем в Telegram, договариваемся о времени. Airbnb/Booking: то же — пишешь нам через платформу после брони. В здании есть консьерж 24/7, но ключи у нас.</p>
+          <summary>Как происходит заезд?</summary>
+          <p>Встречаем у здания. Прямое бронирование: у тебя будет наш Telegram, договариваемся о времени. Airbnb/Booking — то же самое, пиши в чате платформы после бронирования. В здании есть круглосуточный консьерж, но ключи от нас.</p>
         </details>
         <details>
-          <summary>Есть ли парковка?</summary>
-          <p>В стоимость не входит. В здании платный подземный паркинг (₾10/день, ~$3.50). Уличная парковка на боковых улицах обычно возможна, но не гарантирована. Можем помочь с трансфером из аэропорта если не хочешь за рулём.</p>
+          <summary>Парковка включена?</summary>
+          <p>Парковка не включена. В здании есть подземная парковка (₾10/день, ~$3.50). На боковых улицах обычно можно встать, но не гарантировано. Поможем организовать трансфер из аэропорта если не хочешь водить сам.</p>
         </details>
         <details>
-          <summary>Что рядом с едой и продуктами?</summary>
-          <p>Two supermarkets within 5 minutes (Carrefour and Spar). The full restaurant list is in our <a href="/ru/guide/eat-drink" style="color:var(--page);font-weight:600">eat &amp; drink section</a>. Pure Bistro for oysters, Nova Coffee for mornings, Japan 33 for sunsets.</p>
+          <summary>Что рядом из еды и магазинов?</summary>
+          <p>Два супермаркета в 5 минутах (Carrefour и Spar). Полный список ресторанов в нашем <a href="/ru/guide/eat-drink" style="color:var(--page);font-weight:600">разделе eat &amp; drink</a>. Pure Bistro — устрицы, Nova Coffee — утро, Japan 33 — закаты.</p>
         </details>
         <details>
-          <summary>Можно ли платить частями за долгое проживание?</summary>
-          <p>Да — для проживания свыше 14 ночей делим на 2 платежа. Свыше 30 ночей — помесячно. Банковский перевод или Wise. Крипта тоже подходит. Картой для прямых броней пока нельзя.</p>
+          <summary>Можно платить частями за долгое проживание?</summary>
+          <p>Да — для проживания больше 14 ночей делим на 2 платежа. Больше 30 ночей — помесячно. Принимаем банковский перевод или Wise. Криптовалюту тоже можно. Карты для прямого бронирования пока не принимаем.</p>
         </details>
         <details>
-          <summary>Зачем бронировать напрямую вместо Airbnb?</summary>
-          <p>Та же квартира, те же ключи, мы те же. Напрямую = без комиссий платформы → экономишь ~10%. Airbnb = встроенная защита если ты у нас впервые. Оба варианта работают, выбирай что комфортнее.</p>
+          <summary>Почему лучше напрямую, а не через Airbnb?</summary>
+          <p>Та же квартира, те же ключи, те же мы. Напрямую = нет комиссии платформы → экономия ~10%. Airbnb = встроенная защита если ты у нас впервые. Оба варианта рабочие. Выбирай по душе.</p>
         </details>
         <details>
-          <summary>Что с налогами и сборами?</summary>
-          <p>В Грузии нет туристического налога для краткосрочной аренды. Цена которую видишь — цена которую платишь (плюс уборка за проживание менее 7 ночей — $25 разово).</p>
+          <summary>Есть ли налоги и городские сборы?</summary>
+          <p>В Грузии нет туристического налога для краткосрочной аренды. Цена которую видишь — то что платишь (плюс уборка $25 один раз для проживания меньше 7 ночей).</p>
         </details>
       </div>
     </div>
@@ -482,66 +583,55 @@
   <!-- BOOKING PANEL -->
   <aside class="apt-book">
     <div class="price"><em>от $185</em> <span class="per">/ ночь</span></div>
-    <span class="save">−5% напрямую</span>
-    <form onsubmit="event.preventDefault();const a=this.arrival.value;const d=this.departure.value;const g=this.guests.value;const msg=`привет bre! хочу забронировать orbi sea towers — 21 этаж. даты: ${a} → ${d}. ${g} гост${g==='1'?'ь':(g==='2'||g==='3'||g==='4'?'я':'ей')}.`;window.open(`https://t.me/bre_ge?text=${encodeURIComponent(msg)}`, '_blank');">
-      <div class="row">
-        <div class="field">
-          <label>— заезд</label>
-          <input type="date" name="arrival" required>
-        </div>
-        <div class="field">
-          <label>— выезд</label>
-          <input type="date" name="departure" required>
-        </div>
-      </div>
-      <div class="field">
-        <label>— гости</label>
-        <select name="guests">
-          <option value="1">1 гость</option>
-          <option value="2" selected>2 гостя</option>
-          <option value="3">3 гостя</option>
-          <option value="4">4 гостя</option>
-        </select>
-      </div>
-      <button class="btn-primary" type="submit">↗ Бронь напрямую через Telegram</button>
-    </form>
+    <span class="save">5% off direct</span>
+    <div class="book-form">
+      <button class="date-trigger" id="dateTrigger" type="button">
+        <span class="dt-label">— заезд | выезд</span>
+        <span class="dt-val empty" id="dateVal">выбрать даты</span>
+      </button>
+      <button class="guest-trigger" id="guestTrigger" type="button">
+        <span class="gt-label">— гости</span>
+        <span class="gt-val" id="gtVal">2 гостя</span>
+      </button>
+      <button class="btn-primary" id="bookBtn" type="button">↗ Забронировать через Telegram</button>
+    </div>
     <div class="alt-channels">
-      <span class="alt-label">или через</span>
+      <span class="alt-label">or book through</span>
       <div class="alts">
         <a href="https://www.airbnb.com" target="_blank" rel="noopener">↗ Airbnb</a>
         <a href="https://www.booking.com" target="_blank" rel="noopener">↗ Booking</a>
         <a href="https://sutochno.ru" target="_blank" rel="noopener">↗ Суточно</a>
       </div>
     </div>
-    <p class="note">Прямая бронь = <b>живой человек</b>, без комиссий, быстрая гибкость. Отвечаем в течение часа.</p>
+    <p class="note">Direct booking = <b>real person</b>, no platform fees, instant flexibility. We answer within an hour.</p>
   </aside>
 </section>
 
 <!-- SIMILAR -->
 <section class="similar">
-  <h3>другие наши <em>квартиры</em>.</h3>
+  <h3>другие <em>квартиры</em>.</h3>
   <div class="sim-grid">
     <a class="sim" href="/ru/stays/boulevard-loft">
       <div class="ph"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt=""></div>
       <div class="body">
-        <h5>старый бульвар loft</h5>
-        <div class="meta">студия · 34 м² · старый город</div>
+        <h5>old boulevard loft</h5>
+        <div class="meta">студия · 34 m² · старый город</div>
         <div class="price">от $95 / ночь</div>
       </div>
     </a>
     <a class="sim" href="/ru/stays/botanical">
       <div class="ph"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80" alt=""></div>
       <div class="body">
-        <h5>дом у ботанического</h5>
-        <div class="meta">2 спальни · 78 м² · ботанический</div>
+        <h5>botanical garden house</h5>
+        <div class="meta">2 спальни · 78 m² · ботанический</div>
         <div class="price">от $140 / ночь</div>
       </div>
     </a>
     <a class="sim" href="/ru/stays/gonio">
       <div class="ph"><img src="https://images.unsplash.com/photo-1551776235-dde6d4829808?w=900&q=80" alt=""></div>
       <div class="body">
-        <h5>гонио кейп</h5>
-        <div class="meta">3 спальни · 110 м² · гонио</div>
+        <h5>gonio cape</h5>
+        <div class="meta">3 спальни · 110 m² · gonio</div>
         <div class="price">от $240 / ночь</div>
       </div>
     </a>
@@ -551,8 +641,8 @@
 <!-- CTA -->
 <section class="cta-help">
   <div class="inner">
-    <h3>вопросы <em>до</em> брони?</h3>
-    <p>Мы живые люди, не колл-центр. Telegram — самый быстрый. Пиши о чём угодно: даты, квартира, что взять, как добраться из аэропорта. Отвечаем в течение часа когда не спим.</p>
+    <h3>вопросы <em>до</em> бронирования?</h3>
+    <p>Мы живые люди, а не колл-центр. Telegram быстрее всего — пиши обо всём: даты, квартира, что взять с собой, как доехать из аэропорта. Ответим в течение часа в рабочее время.</p>
     <div class="btns">
       <a href="https://t.me/bre_ge" class="btn primary">↗ написать в telegram</a>
       <a href="mailto:hello@bre.ge" class="btn alt">hello@bre.ge</a>
@@ -560,22 +650,105 @@
   </div>
 </section>
 
+<!-- LIGHTBOX (gallery overlay) -->
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lb-head">
+    <div class="lb-title">orbi 21 · 12 фото</div>
+    <button class="lb-close" id="lbClose" type="button" aria-label="close">×</button>
+  </div>
+  <div class="lb-body">
+    <div class="lb-grid" id="lbGrid"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX SINGLE (one photo with arrows) -->
+<div class="lightbox-single" id="lightboxSingle" hidden>
+  <div class="lb-head">
+    <button class="lb-back" id="lbBack" type="button" aria-label="back to grid">‹</button>
+    <div class="lb-counter" id="lbCounter">1/12</div>
+    <button class="lb-close" id="lbSingleClose" type="button" aria-label="close">×</button>
+  </div>
+  <div class="lb-single-body">
+    <button class="lb-prev" id="lbPrev" type="button" aria-label="previous">‹</button>
+    <img id="lbImg" src="" alt="">
+    <button class="lb-next" id="lbNext" type="button" aria-label="next">›</button>
+  </div>
+</div>
+
+<!-- CALENDAR DROPDOWN -->
+<div class="cal-pop" id="calPop" hidden>
+  <div class="cal-head">
+    <button class="cal-nav" id="calPrev" type="button" aria-label="previous month">‹</button>
+    <div class="cal-months" id="calMonths"></div>
+    <button class="cal-nav" id="calNext" type="button" aria-label="next month">›</button>
+  </div>
+  <div class="cal-legend">
+    <span class="cal-leg"><span class="ll green"></span>$ свободно</span>
+    <span class="cal-leg"><span class="ll yellow"></span>$$ пик</span>
+    <span class="cal-leg"><span class="ll coral"></span>$$$ занято</span>
+    <span class="cal-leg-night" id="calNight">— выбери даты</span>
+    <button class="cal-apply" id="calApply" type="button">готово →</button>
+  </div>
+</div>
+
+<!-- GUEST DROPDOWN -->
+<div class="guest-pop" id="guestPop" hidden>
+  <div class="gp-head">— кто приезжает</div>
+  <div class="gp-row">
+    <div class="gp-info">
+      <div class="gp-title">adults</div>
+      <div class="gp-sub">— ages 13+</div>
+    </div>
+    <div class="gp-ctrl">
+      <button class="gp-btn" data-action="adults-" type="button">−</button>
+      <span class="gp-num" id="gpВзрослые">2</span>
+      <button class="gp-btn" data-action="adults+" type="button">+</button>
+    </div>
+  </div>
+  <div class="gp-row">
+    <div class="gp-info">
+      <div class="gp-title">children</div>
+      <div class="gp-sub">— ages 2–12</div>
+    </div>
+    <div class="gp-ctrl">
+      <button class="gp-btn" data-action="children-" type="button">−</button>
+      <span class="gp-num" id="gpДети">0</span>
+      <button class="gp-btn" data-action="children+" type="button">+</button>
+    </div>
+  </div>
+  <div class="gp-row">
+    <div class="gp-info">
+      <div class="gp-title">infants</div>
+      <div class="gp-sub">— under 2</div>
+    </div>
+    <div class="gp-ctrl">
+      <button class="gp-btn" data-action="infants-" type="button">−</button>
+      <span class="gp-num" id="gpМладенцы">0</span>
+      <button class="gp-btn" data-action="infants+" type="button">+</button>
+    </div>
+  </div>
+  <div class="gp-foot">
+    <span class="gp-note">max 4 guests</span>
+    <button class="gp-apply" id="gpApply" type="button">применить →</button>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="foot-line">
     <div class="foot-left">
       <span class="foot-copy">© 2026 bre.ge</span>
       <span class="sep">·</span>
-      <a href="/ru/stays">квартиры</a>
-      <a href="/ru/guide">гайд</a>
-      <a href="/ru/own">сдать</a>
-      <a href="/ru/invest">инвесторам</a>
+      <a href="/ru/stays">stays</a>
+      <a href="/ru/guide">guide</a>
+      <a href="/ru/own">own</a>
+      <a href="/ru/invest">invest</a>
       <a href="/ru/about">о нас</a>
       <a href="/ru/contact">контакты</a>
       <span class="sep">·</span>
-      <a href="/ru/privacy">политика</a>
+      <a href="/ru/privacy">приватность</a>
       <a href="/ru/terms">условия</a>
-      <a href="/ru/agents">риелторам</a>
+      <a href="/ru/agents">агенты</a>
     </div>
     <div class="foot-right">
       <a href="/stays/orbi-21" class="foot-lang"><b>RU</b> · EN</a>
@@ -591,12 +764,25 @@ window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
 function loop(){cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;if(cursor)cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(loop)}
 loop();
 function clearCursorColors(){cursor.classList.remove('teal','yellow','pink')}
-document.querySelectorAll('a,button').forEach(el=>{
+// Big orange cursor only on topbar (everywhere else stays as small dot or special tile cursor)
+document.querySelectorAll('.topbar a, .topbar button').forEach(el=>{
   el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('big')});
   el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
 });
-document.querySelectorAll('.pick, .sim').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text');cursor.setAttribute('data-label','read →')});
+document.querySelectorAll('.sim').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text','teal');cursor.setAttribute('data-label','смотреть →')});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('text','teal');cursor.removeAttribute('data-label')});
+});
+document.querySelectorAll('.pick').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text','yellow');cursor.setAttribute('data-label','читать →')});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('text','yellow');cursor.removeAttribute('data-label')});
+});
+document.querySelectorAll('.cta-help .btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text','pink');cursor.setAttribute('data-label','привет →')});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('text','pink');cursor.removeAttribute('data-label')});
+});
+document.querySelectorAll('.gallery-grid .ph').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text');cursor.setAttribute('data-label','смотреть →')});
   el.addEventListener('mouseleave',()=>{cursor.classList.remove('text');cursor.removeAttribute('data-label')});
 });
 
@@ -613,22 +799,401 @@ document.querySelectorAll('.pick, .sim').forEach(el=>{
   update();
 })();
 
-// Date inputs: default arrival to today, departure to today+3
+// Date inputs replaced by custom calendar — see below
+
+// =====================================================================
+// PHOTOS (gallery)
+// =====================================================================
+const PHOTOS = [
+  {src:'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1600&q=80', alt:'гостиная'},
+  {src:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80', alt:'спальня'},
+  {src:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600&q=80', alt:'кухня'},
+  {src:'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80', alt:'вид с балкона'},
+  {src:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=80', alt:'ванная'},
+  {src:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1600&q=80', alt:'вид на море'},
+  {src:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1600&q=80', alt:'деталь интерьера'},
+  {src:'https://images.unsplash.com/photo-1551776235-dde6d4829808?w=1600&q=80', alt:'гостиная'},
+  {src:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80', alt:'диван'},
+  {src:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&q=80', alt:'рабочее место'},
+  {src:'https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1600&q=80', alt:'гостиная'},
+  {src:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1600&q=80', alt:'кухня'}
+];
+
+// =====================================================================
+// LIGHTBOX
+// =====================================================================
 (function(){
-  const arr = document.querySelector('input[name="arrival"]');
-  const dep = document.querySelector('input[name="departure"]');
-  if(!arr||!dep)return;
-  const today = new Date();
-  const fmt = d=>d.toISOString().slice(0,10);
-  arr.min = fmt(today);
-  arr.value = fmt(today);
-  const future = new Date(today.getTime()+3*86400000);
-  dep.min = fmt(new Date(today.getTime()+86400000));
-  dep.value = fmt(future);
-  arr.addEventListener('change',()=>{
-    const a = new Date(arr.value);
-    dep.min = fmt(new Date(a.getTime()+86400000));
-    if(new Date(dep.value)<=a){dep.value=fmt(new Date(a.getTime()+86400000))}
+  const lb = document.getElementById('lightbox');
+  const lbGrid = document.getElementById('lbGrid');
+  const lbClose = document.getElementById('lbClose');
+  const lbSingle = document.getElementById('lightboxSingle');
+  const lbBack = document.getElementById('lbBack');
+  const lbSingleClose = document.getElementById('lbSingleClose');
+  const lbImg = document.getElementById('lbImg');
+  const lbCounter = document.getElementById('lbCounter');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+  const galAll = document.getElementById('galleryAll');
+  const galGrid = document.getElementById('galleryGrid');
+  if(!lb||!lbGrid)return;
+  let currentIdx = 0;
+
+  function renderGrid(){
+    lbGrid.innerHTML = '';
+    PHOTOS.forEach((p,i)=>{
+      const cell = document.createElement('div');
+      cell.className = 'lb-cell';
+      cell.innerHTML = `<img src="${p.src}" alt="${p.alt}">`;
+      cell.addEventListener('click', ()=>openSingle(i));
+      cell.addEventListener('mouseenter', ()=>{ clearCursorColors(); cursor.classList.add('text'); cursor.setAttribute('data-label','смотреть →'); });
+      cell.addEventListener('mouseleave', ()=>{ cursor.classList.remove('text'); cursor.removeAttribute('data-label'); });
+      lbGrid.appendChild(cell);
+    });
+  }
+  function openLb(){
+    if(!lbGrid.children.length) renderGrid();
+    lb.hidden = false;
+    document.body.classList.add('lb-open');
+  }
+  function closeLb(){
+    lb.hidden = true;
+    lbSingle.hidden = true;
+    document.body.classList.remove('lb-open');
+  }
+  function openSingle(idx){
+    currentIdx = idx;
+    lbImg.src = PHOTOS[idx].src;
+    lbImg.alt = PHOTOS[idx].alt;
+    lbCounter.textContent = `${idx+1}/${PHOTOS.length}`;
+    lbSingle.hidden = false;
+    document.body.classList.add('lb-open');
+  }
+  function nav(dir){
+    let n = currentIdx + dir;
+    if(n < 0) n = PHOTOS.length - 1;
+    if(n >= PHOTOS.length) n = 0;
+    openSingle(n);
+  }
+
+  galAll && galAll.addEventListener('click', openLb);
+  galGrid && galGrid.querySelectorAll('.ph').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const idx = parseInt(el.dataset.idx || '0', 10);
+      openLb();
+      // small delay to render grid first
+      setTimeout(()=>openSingle(idx), 50);
+    });
+  });
+  lbClose && lbClose.addEventListener('click', closeLb);
+  lbSingleClose && lbSingleClose.addEventListener('click', ()=>{lbSingle.hidden=true});
+  lbBack && lbBack.addEventListener('click', ()=>{lbSingle.hidden=true});
+  lbPrev && lbPrev.addEventListener('click', ()=>nav(-1));
+  lbNext && lbNext.addEventListener('click', ()=>nav(1));
+  // Click on image = next photo; hover on whole single-body shows "дальше →" cursor
+  function setLabel(label){ clearCursorColors(); cursor.classList.add('text'); cursor.setAttribute('data-label',label); }
+  function clearLabel(){ cursor.classList.remove('text'); cursor.removeAttribute('data-label'); }
+  function setBig(){ clearCursorColors(); cursor.classList.remove('text'); cursor.removeAttribute('data-label'); cursor.classList.add('big'); }
+  function clearBig(){ cursor.classList.remove('big'); }
+  // The whole single-lightbox (incl. top header where × and ‹ live) should never show invisible cursor
+  // Default to "дальше →" anywhere inside lbSingle, except actual buttons which take over
+  if(lbSingle){
+    lbSingle.addEventListener('mouseenter', ()=>setLabel('дальше →'));
+    lbSingle.addEventListener('mouseleave', clearLabel);
+  }
+  // Grid lightbox: default to "смотреть →" everywhere
+  if(lb){
+    lb.addEventListener('mouseenter', ()=>setLabel('смотреть →'));
+    lb.addEventListener('mouseleave', clearLabel);
+  }
+  // Header (×) area in grid view: small dot
+  const lbHeadGrid = lb && lb.querySelector('.lb-head');
+  if(lbHeadGrid){
+    lbHeadGrid.addEventListener('mouseenter', clearLabel);
+    lbHeadGrid.addEventListener('mouseleave', ()=>{ if(!lb.hidden) setLabel('смотреть →'); });
+  }
+  // Buttons (×, ‹, ›, back): small dot — override the text cursor
+  [lbClose, lbSingleClose, lbBack, lbPrev, lbNext].forEach(el=>{
+    if(!el) return;
+    el.addEventListener('mouseenter', clearLabel);
+    el.addEventListener('mouseleave', ()=>{
+      if(!lbSingle.hidden) setLabel('дальше →');
+      else if(!lb.hidden) setLabel('смотреть →');
+    });
+  });
+  const singleBody = document.querySelector('.lb-single-body');
+  if(singleBody){
+    singleBody.addEventListener('click', (e)=>{
+      if(e.target.closest('.lb-prev')||e.target.closest('.lb-next')||e.target.closest('.lb-close')||e.target.closest('.lb-back')) return;
+      nav(1);
+    });
+  }
+  document.addEventListener('keydown', e=>{
+    if(lb.hidden && lbSingle.hidden) return;
+    if(e.key === 'Escape'){ closeLb(); }
+    if(!lbSingle.hidden){
+      if(e.key === 'ArrowLeft') nav(-1);
+      if(e.key === 'ArrowRight') nav(1);
+    }
+  });
+})();
+
+// closeOnScroll: enabled
+// =====================================================================
+// CALENDAR
+// =====================================================================
+(function(){
+  const trigger = document.getElementById('dateTrigger');
+  const pop = document.getElementById('calPop');
+  const calMonths = document.getElementById('calMonths');
+  const calPrev = document.getElementById('calPrev');
+  const calNext = document.getElementById('calNext');
+  const calNight = document.getElementById('calNight');
+  const dateVal = document.getElementById('dateVal');
+  if(!trigger||!pop)return;
+
+  // MOCK занято/пик dates — in production, these come from iCal sync
+  const today = new Date(); today.setHours(0,0,0,0);
+  const BOOKED = new Set();
+  const PEAK = new Set();
+  // Generate mock data: some random занято + пик dates
+  for(let i=0; i<60; i++){
+    const d = new Date(today); d.setDate(d.getDate()+i);
+    const key = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const r = Math.sin(i*1.7)*100;
+    if(r > 50) BOOKED.add(key);
+    else if(r > 0 || (d.getDay() === 5 || d.getDay() === 6)) PEAK.add(key);
+  }
+
+  let viewYear = today.getFullYear();
+  let viewMonth = today.getMonth();
+  let startDate = null;
+  let endDate = null;
+  let mode = 'start'; // 'start' or 'end'
+
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const weekDays = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+
+  function fmtKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+  function fmtPretty(d){
+    if(!d)return null;
+    return `${d.getDate().toString().padStart(2,'0')} ${monthNames[d.getMonth()].slice(0,3).toLowerCase()}`;
+  }
+
+  function renderMonth(year, month){
+    const first = new Date(year, month, 1);
+    const last = new Date(year, month+1, 0);
+    const startWeekday = (first.getDay() + 6) % 7; // Mo=0
+    const daysInMonth = last.getDate();
+    let html = `<div class="cal-month"><div class="cal-title">${monthNames[month]} ${year}</div>`;
+    html += '<div class="cal-week">';
+    weekDays.forEach(w => html += `<div class="cal-week-day">${w}</div>`);
+    html += '</div><div class="cal-grid">';
+    for(let i=0;i<startWeekday;i++) html += '<button class="cal-day empty" disabled></button>';
+    for(let d=1;d<=daysInMonth;d++){
+      const date = new Date(year, month, d);
+      const key = fmtKey(date);
+      let cls = 'cal-day';
+      if(date < today) cls += ' past';
+      else if(BOOKED.has(key)) cls += ' занято';
+      else if(PEAK.has(key)) cls += ' пик';
+      else cls += ' av';
+      if(startDate && fmtKey(startDate) === key){
+        cls += ' start';
+        if(endDate && fmtKey(endDate) === key) cls += ' range-single';
+      }
+      if(endDate && fmtKey(endDate) === key) cls += ' end';
+      if(startDate && endDate && date > startDate && date < endDate){
+        cls += ' inside';
+      }
+      html += `<button class="${cls}" data-date="${key}">${d}</button>`;
+    }
+    html += '</div></div>';
+    return html;
+  }
+
+  function render(){
+    const nextMonth = viewMonth + 1;
+    const nextYear = nextMonth > 11 ? viewYear + 1 : viewYear;
+    const nm = nextMonth > 11 ? 0 : nextMonth;
+    calMonths.innerHTML = renderMonth(viewYear, viewMonth) + renderMonth(nextYear, nm);
+    // attach click
+    calMonths.querySelectorAll('.cal-day:not(.past):not(.занято):not(.empty)').forEach(btn=>{
+      btn.addEventListener('click', (ev)=>{
+        ev.stopPropagation();
+        const [yy,mm,dd] = btn.dataset.date.split('-').map(Number); const d = new Date(yy, mm-1, dd);
+        if(mode === 'start' || (startDate && d <= startDate)){
+          startDate = d;
+          endDate = null;
+          mode = 'end';
+        } else {
+          endDate = d;
+          mode = 'start';
+        }
+        updateLabels();
+        render();
+      });
+    });
+  }
+
+  function updateLabels(){
+    if(startDate && endDate){
+      dateVal.textContent = `${fmtPretty(startDate)} → ${fmtPretty(endDate)}`;
+      dateVal.classList.remove('empty');
+    } else if(startDate){
+      dateVal.textContent = `${fmtPretty(startDate)} → ...`;
+      dateVal.classList.remove('empty');
+    } else {
+      dateVal.textContent = 'выбрать даты';
+      dateVal.classList.add('empty');
+    }
+    if(startDate && endDate){
+      const nights = Math.round((endDate - startDate) / 86400000);
+      const word = nights===1 ? 'ночь' : (nights>=2 && nights<=4 ? 'ночи' : 'ночей');
+      calNight.textContent = `✓ ${nights} ${word} · $${nights*185}`;
+    } else if(startDate){
+      calNight.textContent = '→ теперь выезд';
+    } else {
+      calNight.textContent = '→ выбери заезд';
+    }
+  }
+
+  function reposition(){
+    if(pop.hidden) return;
+    const rect = trigger.getBoundingClientRect();
+    // Below trigger; but if trigger scrolls off-screen, pin to top of viewport
+    const desired = rect.bottom + 8;
+    const top = Math.max(14, desired);
+    pop.style.top = top + 'px';
+    pop.style.left = Math.max(14, Math.min(window.innerWidth - 680 - 14, rect.left)) + 'px';
+  }
+  function openPop(){
+    pop.hidden = false;
+    trigger.classList.add('active');
+    reposition();
+    render();
+  }
+  function closePop(){
+    pop.hidden = true;
+    trigger.classList.remove('active');
+  }
+  window.addEventListener('scroll', reposition, {passive:true});
+  window.addEventListener('resize', reposition);
+
+  trigger.addEventListener('click', e=>{
+    e.stopPropagation();
+    if(pop.hidden) openPop(); else closePop();
+  });
+  calPrev.addEventListener('click', (ev)=>{ev.stopPropagation();
+    viewMonth--;
+    if(viewMonth < 0){viewMonth=11; viewYear--}
+    render();
+  });
+  calNext.addEventListener('click', (ev)=>{ev.stopPropagation();
+    viewMonth++;
+    if(viewMonth > 11){viewMonth=0; viewYear++}
+    render();
+  });
+  document.addEventListener('click', e=>{
+    if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
+  });
+  window.__getBookingDates = ()=>({start: startDate, end: endDate});
+})();
+
+// =====================================================================
+// GUESTS
+// =====================================================================
+(function(){
+  const trigger = document.getElementById('guestTrigger');
+  const pop = document.getElementById('guestPop');
+  const gtVal = document.getElementById('gtVal');
+  const apply = document.getElementById('gpApply');
+  if(!trigger||!pop)return;
+  const state = {adults: 2, children: 0, infants: 0};
+  const MAX = 4;
+  const els = {adults: document.getElementById('gpВзрослые'), children: document.getElementById('gpДети'), infants: document.getElementById('gpМладенцы')};
+
+  function update(){
+    els.adults.textContent = state.adults;
+    els.children.textContent = state.children;
+    els.infants.textContent = state.infants;
+    pop.querySelectorAll('.gp-btn').forEach(btn=>{
+      const [k, op] = [btn.dataset.action.replace(/[+\-]/,''), btn.dataset.action.slice(-1)];
+      if(op === '-'){
+        btn.disabled = (k === 'adults' ? state[k] <= 1 : state[k] <= 0);
+      } else {
+        const totalNoМладенцы = state.adults + state.children;
+        btn.disabled = (k !== 'infants' && totalNoМладенцы >= MAX);
+      }
+    });
+  }
+  function syncLabel(){
+    const total = state.adults + state.children;
+    const parts = [`${total} guest${total===1?'':'s'}`];
+    if(state.infants) parts.push(`${state.infants} infant${state.infants===1?'':'s'}`);
+    gtVal.textContent = parts.join(' · ').toLowerCase();
+  }
+  function reposition(){
+    if(pop.hidden) return;
+    const rect = trigger.getBoundingClientRect();
+    const top = Math.max(14, rect.bottom + 8);
+    pop.style.top = top + 'px';
+    pop.style.left = Math.max(14, Math.min(window.innerWidth - 340 - 14, rect.left)) + 'px';
+  }
+  function openPop(){
+    pop.hidden = false;
+    trigger.classList.add('active');
+    reposition();
+    update();
+  }
+  function closePop(){
+    pop.hidden = true;
+    trigger.classList.remove('active');
+  }
+  trigger.addEventListener('click', e=>{
+    e.stopPropagation();
+    if(pop.hidden) openPop(); else closePop();
+  });
+  pop.querySelectorAll('.gp-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const [k, op] = [btn.dataset.action.replace(/[+\-]/,''), btn.dataset.action.slice(-1)];
+      if(op === '+') state[k]++;
+      else state[k]--;
+      update();
+    });
+  });
+  apply.addEventListener('click', ()=>{
+    syncLabel();
+    closePop();
+  });
+  document.addEventListener('click', e=>{
+    if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
+  });
+  window.addEventListener('scroll', reposition, {passive:true});
+  window.addEventListener('resize', reposition);
+  window.__getBookingGuests = ()=>state;
+  update();
+  syncLabel();
+})();
+
+// =====================================================================
+// BOOK BUTTON
+// =====================================================================
+(function(){
+  const btn = document.getElementById('bookBtn');
+  if(!btn) return;
+  btn.addEventListener('click', ()=>{
+    const dates = window.__getBookingDates ? window.__getBookingDates() : {};
+    const g = window.__getBookingGuests ? window.__getBookingGuests() : {adults:2};
+    let msg = 'hi bre! i\'d like to book orbi sea towers — 21st floor.';
+    if(dates.start && dates.end){
+      const fmt = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      msg += ` dates: ${fmt(dates.start)} → ${fmt(dates.end)}.`;
+    }
+    const total = (g.adults||2) + (g.children||0);
+    msg += ` ${total} guest${total===1?'':'s'}`;
+    if(g.infants) msg += `, ${g.infants} infant${g.infants===1?'':'s'}`;
+    msg += '.';
+    window.open(`https://t.me/bre_ge?text=${encodeURIComponent(msg)}`, '_blank');
   });
 })();
 
