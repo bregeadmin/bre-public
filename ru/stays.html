@@ -1043,7 +1043,7 @@
 // =====================================================================
 // SEARCHBAR CUSTOM CALENDAR + GUESTS
 // =====================================================================
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   const arrField = document.getElementById('searchArrival');
   const depField = document.getElementById('searchDeparture');
   const arrVal = document.getElementById('searchArrivalVal');
@@ -1134,11 +1134,12 @@
     depVal.classList.toggle('empty', !endDate);
     if(startDate && endDate){
       const nights = Math.round((endDate - startDate) / 86400000);
-      calNight.textContent = `${nights} ${nights===1?'ночь':'ночей'}`;
+      const w = (nights === 1 ? 'ночь' : (nights >= 2 && nights <= 4 ? 'ночи' : 'ночей'));
+      calNight.textContent = `✓ ${nights} ${w}`;
     } else if(startDate){
-      calNight.textContent = '— ' + 'выбери выезд';
+      calNight.textContent = '→ теперь выезд';
     } else {
-      calNight.textContent = '— выбери даты';
+      calNight.textContent = '→ выбери заезд';
     }
   }
   // Remember initial "empty" text so we can revert
@@ -1233,7 +1234,15 @@
     if(!guestPop.hidden && !guestPop.contains(e.target) && !guestField.contains(e.target)) closeGuest();
   });
   gpSyncLabel();
-})();
+  // close popups on scroll
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', ()=>{
+    if(!calPop.hidden && Math.abs(window.scrollY - lastScrollY) > 80) closeCal();
+    if(!guestPop.hidden && Math.abs(window.scrollY - lastScrollY) > 80) closeGuest();
+    lastScrollY = window.scrollY;
+  }, {passive:true});
+  // closeOnScroll: enabled
+});
 
 </script>
 

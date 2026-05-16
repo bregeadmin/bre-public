@@ -908,6 +908,7 @@ const PHOTOS = [
   });
 })();
 
+// closeOnScroll: enabled
 // =====================================================================
 // CALENDAR
 // =====================================================================
@@ -1012,11 +1013,11 @@ const PHOTOS = [
     dtDeparture.classList.toggle('empty', !endDate);
     if(startDate && endDate){
       const nights = Math.round((endDate - startDate) / 86400000);
-      calNight.textContent = `${nights} night${nights===1?'':'s'} · $${nights*185}`;
+      calNight.textContent = `✓ ${nights} night${nights===1?'':'s'} · $${nights*185}`;
     } else if(startDate){
-      calNight.textContent = '— pick checkout';
+      calNight.textContent = '→ now pick checkout';
     } else {
-      calNight.textContent = '— pick dates';
+      calNight.textContent = '→ pick arrival';
     }
   }
 
@@ -1051,6 +1052,11 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
+  let lastScrollY_cal = window.scrollY;
+  window.addEventListener('scroll', ()=>{
+    if(!pop.hidden && Math.abs(window.scrollY - lastScrollY_cal) > 80) closePop();
+    lastScrollY_cal = window.scrollY;
+  }, {passive:true});
   window.__getBookingDates = ()=>({start: startDate, end: endDate});
 })();
 
@@ -1118,6 +1124,11 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
+  let lastScrollY_gp = window.scrollY;
+  window.addEventListener('scroll', ()=>{
+    if(!pop.hidden && Math.abs(window.scrollY - lastScrollY_gp) > 80) closePop();
+    lastScrollY_gp = window.scrollY;
+  }, {passive:true});
   window.__getBookingGuests = ()=>state;
   update();
   syncLabel();

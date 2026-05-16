@@ -1048,7 +1048,7 @@
 // =====================================================================
 // SEARCHBAR CUSTOM CALENDAR + GUESTS
 // =====================================================================
-(function(){
+document.addEventListener('DOMContentLoaded', function(){
   const arrField = document.getElementById('searchArrival');
   const depField = document.getElementById('searchDeparture');
   const arrVal = document.getElementById('searchArrivalVal');
@@ -1139,11 +1139,11 @@
     depVal.classList.toggle('empty', !endDate);
     if(startDate && endDate){
       const nights = Math.round((endDate - startDate) / 86400000);
-      calNight.textContent = `${nights} ${nights===1?'night':'nights'}`;
+      calNight.textContent = `✓ ${nights} ${nights===1?'night':'nights'}`;
     } else if(startDate){
-      calNight.textContent = '— ' + 'pick checkout';
+      calNight.textContent = '→ now pick checkout';
     } else {
-      calNight.textContent = '— pick dates';
+      calNight.textContent = '→ pick arrival';
     }
   }
   // Remember initial "empty" text so we can revert
@@ -1238,7 +1238,15 @@
     if(!guestPop.hidden && !guestPop.contains(e.target) && !guestField.contains(e.target)) closeGuest();
   });
   gpSyncLabel();
-})();
+  // close popups on scroll
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', ()=>{
+    if(!calPop.hidden && Math.abs(window.scrollY - lastScrollY) > 80) closeCal();
+    if(!guestPop.hidden && Math.abs(window.scrollY - lastScrollY) > 80) closeGuest();
+    lastScrollY = window.scrollY;
+  }, {passive:true});
+  // closeOnScroll: enabled
+});
 
 </script>
 
