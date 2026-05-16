@@ -306,6 +306,69 @@
   .topbar.scrolled .city:hover,.topbar.scrolled .lang:hover{border-color:var(--ink);background:rgba(10,9,8,0.04)}
   .topbar.scrolled .burger{border-color:rgba(10,9,8,0.4)}
   .topbar.scrolled .burger span{background:var(--ink)}
+
+  /* searchbar field-val for our custom triggers */
+  .searchbar .field-val{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:15px;color:var(--ink);line-height:1.3;cursor:none;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .searchbar .field-val.empty{color:var(--ink-soft);font-weight:500}
+  .searchbar .field.active{background:#fff}
+  .searchbar .field.active .lbl{color:var(--page)}
+
+  /* CALENDAR POPUP (shared) */
+  .cal-pop[hidden],.guest-pop[hidden]{display:none !important}
+  .cal-pop{position:fixed;z-index:200;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(10,9,8,0.18);padding:24px;width:680px;max-width:calc(100vw - 28px);font-family:"Bricolage Grotesque",sans-serif}
+  .cal-head{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;margin-bottom:18px}
+  .cal-nav{width:36px;height:36px;border:1px solid var(--line-strong);border-radius:50%;background:transparent;cursor:none;font-size:16px;font-weight:600;color:var(--ink);transition:all .2s ease;display:flex;align-items:center;justify-content:center;font-family:"Bricolage Grotesque",sans-serif;padding:0}
+  .cal-nav:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .cal-months{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .cal-month .cal-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;text-align:center;margin-bottom:14px;color:var(--ink)}
+  .cal-month .cal-week{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:6px}
+  .cal-month .cal-week-day{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;text-align:center;padding:4px 0}
+  .cal-month .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+  .cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--ink);cursor:none;border-radius:50%;transition:background .15s ease,color .15s ease;background:transparent;border:0;font-family:"Bricolage Grotesque",sans-serif;padding:0}
+  .cal-day.empty{cursor:default}
+  .cal-day.past{color:var(--ink-soft);opacity:.35;cursor:default;text-decoration:line-through}
+  .cal-day.av{background:#D6F5DC}
+  .cal-day.peak{background:#FFF0B8}
+  .cal-day.booked{background:#FFCFC2;text-decoration:line-through;cursor:default;color:var(--ink-soft)}
+  .cal-day:not(.past):not(.booked):not(.empty):hover{background:var(--ink);color:#fff}
+  .cal-day.start,.cal-day.end{background:var(--ink);color:#fff}
+  .cal-day.inside{background:rgba(10,9,8,0.08);border-radius:0}
+  .cal-day.start{border-radius:50% 0 0 50%}
+  .cal-day.end{border-radius:0 50% 50% 0}
+  .cal-day.range-single{border-radius:50%}
+  .cal-legend{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .cal-leg{display:inline-flex;align-items:center;gap:8px}
+  .cal-leg .ll{width:14px;height:14px;border-radius:50%}
+  .cal-leg .ll.green{background:#D6F5DC}
+  .cal-leg .ll.yellow{background:#FFF0B8}
+  .cal-leg .ll.coral{background:#FFCFC2}
+  .cal-leg-night{margin-left:auto;color:var(--ink);font-weight:700}
+
+  /* GUEST POPUP (shared) */
+  .guest-pop{position:fixed;z-index:200;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(10,9,8,0.18);padding:22px;width:360px;max-width:calc(100vw - 28px);display:flex;flex-direction:column;gap:0;font-family:"Bricolage Grotesque",sans-serif}
+  .gp-head{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:10px;padding-bottom:14px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+  .gp-head::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+  .gp-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .gp-row:last-of-type{border-bottom:0}
+  .gp-info .gp-title{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:16px;color:var(--ink);letter-spacing:-.01em;text-transform:lowercase}
+  .gp-info .gp-sub{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px;font-weight:600}
+  .gp-ctrl{display:flex;align-items:center;gap:14px}
+  .gp-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;cursor:none;font-size:18px;font-weight:400;color:var(--ink);transition:all .2s ease;display:flex;align-items:center;justify-content:center;padding:0;font-family:"Bricolage Grotesque",sans-serif;line-height:1}
+  .gp-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .gp-btn:disabled{opacity:.25;cursor:default}
+  .gp-btn:disabled:hover{background:transparent;border-color:var(--line-strong);color:var(--ink)}
+  .gp-num{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;min-width:20px;text-align:center;color:var(--ink)}
+  .gp-foot{display:flex;justify-content:space-between;align-items:center;padding-top:16px;margin-top:4px;border-top:1px solid var(--line);gap:14px}
+  .gp-note{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;flex:1}
+  .gp-apply{padding:11px 22px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:none;transition:background .2s ease;flex-shrink:0}
+  .gp-apply:hover{background:var(--accent)}
+
+  @media (max-width:880px){
+    .cal-pop{width:calc(100vw - 28px);padding:18px}
+    .cal-months{grid-template-columns:1fr;gap:24px}
+    .guest-pop{width:calc(100vw - 28px)}
+  }
+
 </style>
 </head>
 <body>
@@ -353,32 +416,23 @@
     </div>
 
     <div class="searchbar">
-      <div class="field">
-        <span class="lbl">— город</span>
-        <select>
-          <option>Батуми</option>
-          <option disabled>Тбилиси (скоро)</option>
-        </select>
+      <div class="field" id="searchLocation">
+        <span class="lbl">— локация</span>
+        <span class="field-val">Батуми</span>
       </div>
-      <div class="field">
+      <div class="field date-field" id="searchArrival">
         <span class="lbl">— заезд</span>
-        <input type="date" id="arrival" aria-label="дата заезда">
+        <span class="field-val empty" id="searchArrivalVal">выбрать</span>
       </div>
-      <div class="field">
+      <div class="field date-field" id="searchDeparture">
         <span class="lbl">— выезд</span>
-        <input type="date" id="departure" aria-label="дата выезда">
+        <span class="field-val empty" id="searchDepartureVal">выбрать</span>
       </div>
-      <div class="field">
+      <div class="field" id="searchGuests">
         <span class="lbl">— гости</span>
-        <select>
-          <option>1 гость</option>
-          <option selected>2 гостя</option>
-          <option>3 гостя</option>
-          <option>4 гостя</option>
-          <option>5+ гостей</option>
-        </select>
+        <span class="field-val" id="searchGuestsVal">2 гостя</span>
       </div>
-      <button class="submit" aria-label="search">
+      <button class="submit" aria-label="искать">
         <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
       </button>
     </div>
@@ -864,41 +918,6 @@
     refreshClearVisibility();
   })();
 
-  // Date inputs — set min today, link arrival/departure
-  (function(){
-    const arrival = document.getElementById('arrival');
-    const departure = document.getElementById('departure');
-    if(!arrival||!departure) return;
-    const today = new Date();
-    const todayStr = today.toISOString().split('T')[0];
-    arrival.min = todayStr;
-    departure.min = todayStr;
-
-    function openPicker(input){
-      try{ input.showPicker(); }catch(e){ input.focus(); }
-    }
-    arrival.addEventListener('click',()=>openPicker(arrival));
-    departure.addEventListener('click',()=>openPicker(departure));
-    arrival.parentElement.addEventListener('click',e=>{
-      if(e.target !== arrival) openPicker(arrival);
-    });
-    departure.parentElement.addEventListener('click',e=>{
-      if(e.target !== departure) openPicker(departure);
-    });
-
-    arrival.addEventListener('change',()=>{
-      if(arrival.value){
-        const next = new Date(arrival.value);
-        next.setDate(next.getDate()+1);
-        const nextStr = next.toISOString().split('T')[0];
-        departure.min = nextStr;
-        if(departure.value && departure.value <= arrival.value){
-          departure.value = nextStr;
-        }
-      }
-    });
-  })();
-
   // Mobile view toggle
   (function(){
     const left = document.getElementById('leftPane');
@@ -1017,7 +1036,261 @@
     window.addEventListener('scroll', update, {passive:true});
     update();
   })();
+
+
+// =====================================================================
+// SEARCHBAR CUSTOM CALENDAR + GUESTS
+// =====================================================================
+(function(){
+  const arrField = document.getElementById('searchArrival');
+  const depField = document.getElementById('searchDeparture');
+  const arrVal = document.getElementById('searchArrivalVal');
+  const depVal = document.getElementById('searchDepartureVal');
+  const guestField = document.getElementById('searchGuests');
+  const guestVal = document.getElementById('searchGuestsVal');
+  const calPop = document.getElementById('calPop');
+  const calMonths = document.getElementById('calMonths');
+  const calPrev = document.getElementById('calPrev');
+  const calNext = document.getElementById('calNext');
+  const calNight = document.getElementById('calNight');
+  const guestPop = document.getElementById('guestPop');
+  const gpApply = document.getElementById('gpApply');
+  if(!arrField||!calPop||!guestPop)return;
+
+  // ===== CALENDAR =====
+  const today = new Date(); today.setHours(0,0,0,0);
+  const BOOKED = new Set();
+  const PEAK = new Set();
+  for(let i=0; i<90; i++){
+    const d = new Date(today); d.setDate(d.getDate()+i);
+    const key = d.toISOString().slice(0,10);
+    const r = Math.sin(i*1.7)*100;
+    if(r > 50) BOOKED.add(key);
+    else if(r > 0 || (d.getDay() === 5 || d.getDay() === 6)) PEAK.add(key);
+  }
+  let viewYear = today.getFullYear();
+  let viewMonth = today.getMonth();
+  let startDate = null, endDate = null, mode = 'start';
+  const monthNames = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
+  const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+  function fmtKey(d){return d.toISOString().slice(0,10)}
+  function fmtPretty(d){
+    if(!d)return null;
+    return `${d.getDate().toString().padStart(2,'0')} ${monthNames[d.getMonth()].slice(0,3).toLowerCase()}`;
+  }
+  function renderMonth(year, month){
+    const first = new Date(year, month, 1);
+    const last = new Date(year, month+1, 0);
+    const startWeekday = (first.getDay() + 6) % 7;
+    const daysInMonth = last.getDate();
+    let html = `<div class="cal-month"><div class="cal-title">${monthNames[month]} ${year}</div>`;
+    html += '<div class="cal-week">';
+    weekDays.forEach(w => html += `<div class="cal-week-day">${w}</div>`);
+    html += '</div><div class="cal-grid">';
+    for(let i=0;i<startWeekday;i++) html += '<button class="cal-day empty" disabled></button>';
+    for(let d=1;d<=daysInMonth;d++){
+      const date = new Date(year, month, d);
+      const key = fmtKey(date);
+      let cls = 'cal-day';
+      if(date < today) cls += ' past';
+      else if(BOOKED.has(key)) cls += ' booked';
+      else if(PEAK.has(key)) cls += ' peak';
+      else cls += ' av';
+      if(startDate && fmtKey(startDate) === key){
+        cls = cls.replace(/av|peak/, '') + ' start';
+        if(endDate && fmtKey(endDate) === key) cls += ' range-single';
+      }
+      if(endDate && fmtKey(endDate) === key) cls = cls.replace(/av|peak/, '') + ' end';
+      if(startDate && endDate && date > startDate && date < endDate){
+        cls = cls.replace(/av|peak/, '') + ' inside';
+      }
+      html += `<button class="${cls}" data-date="${key}">${d}</button>`;
+    }
+    html += '</div></div>';
+    return html;
+  }
+  function render(){
+    const nm = viewMonth + 1 > 11 ? 0 : viewMonth + 1;
+    const ny = viewMonth + 1 > 11 ? viewYear + 1 : viewYear;
+    calMonths.innerHTML = renderMonth(viewYear, viewMonth) + renderMonth(ny, nm);
+    calMonths.querySelectorAll('.cal-day:not(.past):not(.booked):not(.empty)').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const d = new Date(btn.dataset.date);
+        if(mode === 'start' || (startDate && d <= startDate)){
+          startDate = d; endDate = null; mode = 'end';
+        } else {
+          endDate = d; mode = 'start';
+        }
+        updateLabels(); render();
+        if(startDate && endDate){ setTimeout(()=>closeCal(), 400); }
+      });
+    });
+  }
+  function updateLabels(){
+    arrVal.textContent = startDate ? fmtPretty(startDate) : (arrVal.dataset.empty || arrVal.textContent);
+    arrVal.classList.toggle('empty', !startDate);
+    depVal.textContent = endDate ? fmtPretty(endDate) : (depVal.dataset.empty || depVal.textContent);
+    depVal.classList.toggle('empty', !endDate);
+    if(startDate && endDate){
+      const nights = Math.round((endDate - startDate) / 86400000);
+      calNight.textContent = `${nights} ${nights===1?'ночь':'ночей'}`;
+    } else if(startDate){
+      calNight.textContent = '— ' + 'выбери выезд';
+    } else {
+      calNight.textContent = '— выбери даты';
+    }
+  }
+  // Remember initial "empty" text so we can revert
+  arrVal.dataset.empty = arrVal.textContent;
+  depVal.dataset.empty = depVal.textContent;
+  
+  function openCal(focusField){
+    closeGuest();
+    calPop.hidden = false;
+    arrField.classList.add('active');
+    depField.classList.add('active');
+    // Position below the searchbar
+    const targetField = focusField === 'departure' ? depField : arrField;
+    const rect = targetField.getBoundingClientRect();
+    calPop.style.top = (rect.bottom + 8) + 'px';
+    calPop.style.left = Math.max(14, Math.min(window.innerWidth - calPop.offsetWidth - 14, rect.left)) + 'px';
+    if(focusField === 'departure' && !startDate) mode = 'start';
+    else if(focusField === 'departure') mode = 'end';
+    else mode = 'start';
+    render();
+    // Reposition after render (width is now correct)
+    setTimeout(()=>{
+      calPop.style.left = Math.max(14, Math.min(window.innerWidth - calPop.offsetWidth - 14, rect.left)) + 'px';
+    }, 10);
+  }
+  function closeCal(){
+    calPop.hidden = true;
+    arrField.classList.remove('active');
+    depField.classList.remove('active');
+  }
+  arrField.addEventListener('click', e=>{ e.stopPropagation(); calPop.hidden ? openCal('arrival') : closeCal(); });
+  depField.addEventListener('click', e=>{ e.stopPropagation(); calPop.hidden ? openCal('departure') : closeCal(); });
+  calPrev.addEventListener('click', ()=>{ viewMonth--; if(viewMonth<0){viewMonth=11;viewYear--} render(); });
+  calNext.addEventListener('click', ()=>{ viewMonth++; if(viewMonth>11){viewMonth=0;viewYear++} render(); });
+
+  // ===== GUESTS =====
+  const guestState = {adults: 2, children: 0, infants: 0};
+  const MAX = 6;
+  const gpEls = {adults: document.getElementById('gpAdults'), children: document.getElementById('gpChildren'), infants: document.getElementById('gpInfants')};
+  function gpUpdate(){
+    gpEls.adults.textContent = guestState.adults;
+    gpEls.children.textContent = guestState.children;
+    gpEls.infants.textContent = guestState.infants;
+    guestPop.querySelectorAll('.gp-btn').forEach(btn=>{
+      const k = btn.dataset.action.replace(/[+\-]/,'');
+      const op = btn.dataset.action.slice(-1);
+      if(op === '-'){
+        btn.disabled = (k === 'adults' ? guestState[k] <= 1 : guestState[k] <= 0);
+      } else {
+        const total = guestState.adults + guestState.children;
+        btn.disabled = (k !== 'infants' && total >= MAX);
+      }
+    });
+  }
+  function gpSyncLabel(){
+    const total = guestState.adults + guestState.children;
+    const infants = guestState.infants;
+    let label = `${total} ${(total === 1 ? 'гость' : (total >= 2 && total <= 4 ? 'гостя' : 'гостей'))}`;
+    if(infants) label += ` · ${infants} ${(infants === 1 ? 'младенец' : (infants >= 2 && infants <= 4 ? 'младенца' : 'младенцев'))}`;
+    guestVal.textContent = label;
+  }
+  function openGuest(){
+    closeCal();
+    guestPop.hidden = false;
+    guestField.classList.add('active');
+    const rect = guestField.getBoundingClientRect();
+    guestPop.style.top = (rect.bottom + 8) + 'px';
+    guestPop.style.left = Math.max(14, Math.min(window.innerWidth - 360 - 14, rect.left)) + 'px';
+    gpUpdate();
+  }
+  function closeGuest(){
+    guestPop.hidden = true;
+    guestField.classList.remove('active');
+  }
+  guestField.addEventListener('click', e=>{ e.stopPropagation(); guestPop.hidden ? openGuest() : closeGuest(); });
+  guestPop.querySelectorAll('.gp-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const k = btn.dataset.action.replace(/[+\-]/,'');
+      const op = btn.dataset.action.slice(-1);
+      if(op === '+') guestState[k]++;
+      else guestState[k]--;
+      gpUpdate();
+    });
+  });
+  gpApply.addEventListener('click', ()=>{ gpSyncLabel(); closeGuest(); });
+
+  // ===== OUTSIDE CLICK =====
+  document.addEventListener('click', e=>{
+    if(!calPop.hidden && !calPop.contains(e.target) && !arrField.contains(e.target) && !depField.contains(e.target)) closeCal();
+    if(!guestPop.hidden && !guestPop.contains(e.target) && !guestField.contains(e.target)) closeGuest();
+  });
+  gpSyncLabel();
+})();
+
 </script>
+
+
+<!-- CALENDAR DROPDOWN -->
+<div class="cal-pop" id="calPop" hidden>
+  <div class="cal-head">
+    <button class="cal-nav" id="calPrev" type="button" aria-label="предыдущий">‹</button>
+    <div class="cal-months" id="calMonths"></div>
+    <button class="cal-nav" id="calNext" type="button" aria-label="следующий">›</button>
+  </div>
+  <div class="cal-legend">
+    <span class="cal-leg"><span class="ll green"></span>$ свободно</span>
+    <span class="cal-leg"><span class="ll yellow"></span>$$ пик</span>
+    <span class="cal-leg"><span class="ll coral"></span>$$$ занято</span>
+    <span class="cal-leg-night" id="calNight">— выбери даты</span>
+  </div>
+</div>
+
+<!-- GUEST DROPDOWN -->
+<div class="guest-pop" id="guestPop" hidden>
+  <div class="gp-head">— кто едет</div>
+  <div class="gp-row">
+    <div class="gp-info">
+      <div class="gp-title">взрослые</div>
+      <div class="gp-sub">— от 13 лет</div>
+    </div>
+    <div class="gp-ctrl">
+      <button class="gp-btn" data-action="adults-" type="button">−</button>
+      <span class="gp-num" id="gpAdults">2</span>
+      <button class="gp-btn" data-action="adults+" type="button">+</button>
+    </div>
+  </div>
+  <div class="gp-row">
+    <div class="gp-info">
+      <div class="gp-title">дети</div>
+      <div class="gp-sub">— 2–12 лет</div>
+    </div>
+    <div class="gp-ctrl">
+      <button class="gp-btn" data-action="children-" type="button">−</button>
+      <span class="gp-num" id="gpChildren">0</span>
+      <button class="gp-btn" data-action="children+" type="button">+</button>
+    </div>
+  </div>
+  <div class="gp-row">
+    <div class="gp-info">
+      <div class="gp-title">младенцы</div>
+      <div class="gp-sub">— до 2 лет</div>
+    </div>
+    <div class="gp-ctrl">
+      <button class="gp-btn" data-action="infants-" type="button">−</button>
+      <span class="gp-num" id="gpInfants">0</span>
+      <button class="gp-btn" data-action="infants+" type="button">+</button>
+    </div>
+  </div>
+  <div class="gp-foot">
+    <span class="gp-note">макс 6 гостей</span>
+    <button class="gp-apply" id="gpApply" type="button">применить →</button>
+  </div>
+</div>
 
 </body>
 </html>
