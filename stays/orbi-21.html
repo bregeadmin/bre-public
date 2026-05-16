@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>orbi sea towers — 21st floor · bre [v21]</title>
+<title>orbi sea towers — 21st floor · bre [v21.1]</title>
 <meta name="description" content="A high-floor 1-bed with full sea view, marble bath and a balcony for the sunset. 45m², walking distance to the beach. Book direct or via Airbnb / Booking.">
 <link rel="alternate" hreflang="en" href="https://bre.ge/stays/orbi-21">
 <link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays/orbi-21">
@@ -1031,6 +1031,7 @@ const PHOTOS = [
     }
   }
 
+  let scrollYWhenOpened = null;
   function openPop(){
     pop.hidden = false;
     trigger.classList.add('active');
@@ -1063,7 +1064,6 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
-  let scrollYWhenOpened = null;
   window.addEventListener('scroll', ()=>{
     if(!pop.hidden && scrollYWhenOpened !== null && Math.abs(window.scrollY - scrollYWhenOpened) > 30) closePop();
   }, {passive:true});
@@ -1103,6 +1103,7 @@ const PHOTOS = [
     if(state.infants) parts.push(`${state.infants} infant${state.infants===1?'':'s'}`);
     gtVal.textContent = parts.join(' · ').toLowerCase();
   }
+  let gpScrollYWhenOpened = null;
   function openPop(){
     pop.hidden = false;
     trigger.classList.add('active');
@@ -1135,7 +1136,6 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
-  let gpScrollYWhenOpened = null;
   window.addEventListener('scroll', ()=>{
     if(!pop.hidden && gpScrollYWhenOpened !== null && Math.abs(window.scrollY - gpScrollYWhenOpened) > 30) closePop();
   }, {passive:true});

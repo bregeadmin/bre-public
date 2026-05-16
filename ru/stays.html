@@ -1146,6 +1146,7 @@ document.addEventListener('DOMContentLoaded', function(){
   arrVal.dataset.empty = arrVal.textContent;
   depVal.dataset.empty = depVal.textContent;
   
+  let scrollYOpen = null;
   function openCal(focusField){
     closeGuest();
     calPop.hidden = false;
@@ -1236,7 +1237,6 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   gpSyncLabel();
   // close popups on scroll
-  let scrollYOpen = null;
   window.addEventListener('scroll', ()=>{
     if(scrollYOpen === null) return;
     const delta = Math.abs(window.scrollY - scrollYOpen);
