@@ -107,7 +107,7 @@
     display:grid;grid-template-columns:1.4fr 1fr;gap:16px;
   }
   .hero-main{
-    position:relative;border-radius:18px;overflow:hidden;background:#0a0908;
+    display:block;position:relative;border-radius:18px;overflow:hidden;background:#0a0908;text-decoration:none;color:inherit;
   }
   .hero-main img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);animation:slowzoom 22s ease-out infinite alternate}
   .hero-main::after{
@@ -560,13 +560,13 @@
 </div>
 
 <section class="hero">
-  <div class="hero-main">
+  <a class="hero-main" href="/ru/stays" aria-label="все квартиры">
     <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=2000&q=80" alt="квартира bre" onerror="this.src='https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=2000&q=80'"/>
     <h1 class="hero-h1">
       Найди квартиру.<br/>
       <span class="row2"><em>Влюбись</em> в город.</span>
     </h1>
-  </div>
+  </a>
 
   <div class="hero-side">
     <a class="hero-card edition" href="/ru/guide">
@@ -888,7 +888,7 @@
 <footer>
   <div>© 2026 · bre.ge</div>
   <div class="center"><a href="/ru/about">О нас</a> · Квартиры и гайд по Батуми</div>
-  <div class="right"><a href="#top">↑ наверх</a></div>
+  <div class="right"><a href="#" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ наверх</a></div>
 </footer>
 
 <script>

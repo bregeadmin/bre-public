@@ -106,7 +106,7 @@
     display:grid;grid-template-columns:1.4fr 1fr;gap:16px;
   }
   .hero-main{
-    position:relative;border-radius:18px;overflow:hidden;background:#0a0908;
+    display:block;position:relative;border-radius:18px;overflow:hidden;background:#0a0908;text-decoration:none;color:inherit;
   }
   .hero-main img{width:100%;height:100%;object-fit:cover;transform:scale(1.05);animation:slowzoom 22s ease-out infinite alternate}
   .hero-main::after{
@@ -559,13 +559,13 @@
 </div>
 
 <section class="hero">
-  <div class="hero-main">
+  <a class="hero-main" href="/stays" aria-label="all apartments">
     <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=2000&q=80" alt="bre apartment" onerror="this.src='https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=2000&q=80'"/>
     <h1 class="hero-h1">
       find a flat,<br/>
       <span class="row2"><em>fall</em> for the city</span>
     </h1>
-  </div>
+  </a>
 
   <div class="hero-side">
     <a class="hero-card edition" href="/guide">
@@ -887,7 +887,7 @@
 <footer>
   <div>© 2026 · bre.ge</div>
   <div class="center"><a href="/about">about</a> · apartments &amp; the batumi guide</div>
-  <div class="right"><a href="#top">↑ back to top</a></div>
+  <div class="right"><a href="#" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ back to top</a></div>
 </footer>
 
 <script>
