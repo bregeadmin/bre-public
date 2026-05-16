@@ -239,6 +239,108 @@
     .foot-left{gap:10px;font-size:9px}
     .foot-right{font-size:9px}
   }
+  /* BOOKING FORM (new compact) */
+  .book-form{display:flex;flex-direction:column;gap:8px;margin-top:20px}
+  .date-trigger,.guest-trigger{display:flex;align-items:stretch;background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:0;cursor:none;font-family:"Bricolage Grotesque",sans-serif;text-align:left;width:100%;overflow:hidden;transition:border-color .2s ease}
+  .date-trigger:hover,.guest-trigger:hover{border-color:var(--ink)}
+  .date-trigger.active,.guest-trigger.active{border-color:var(--page)}
+  .date-trigger{justify-content:space-between;gap:0}
+  .date-trigger .dt-side{flex:1;display:flex;flex-direction:column;gap:3px;padding:12px 14px;min-width:0}
+  .date-trigger .dt-side:first-child{border-right:1px solid var(--line)}
+  .date-trigger .dt-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .date-trigger .dt-val{font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .date-trigger .dt-val.empty{color:var(--ink-soft);font-weight:500}
+  .date-trigger .dt-arrow{display:flex;align-items:center;justify-content:center;padding:0 12px;color:var(--ink-soft);font-size:14px}
+  .guest-trigger{flex-direction:column;gap:3px;padding:12px 14px}
+  .guest-trigger .gt-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .guest-trigger .gt-val{font-weight:600;font-size:14px;color:var(--ink);text-align:left}
+
+  /* CALENDAR POPUP */
+  .cal-pop{position:fixed;z-index:200;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(10,9,8,0.18);padding:24px;width:680px;max-width:calc(100vw - 28px);font-family:"Bricolage Grotesque",sans-serif}
+  .cal-head{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;margin-bottom:18px}
+  .cal-nav{width:36px;height:36px;border:1px solid var(--line-strong);border-radius:50%;background:transparent;cursor:none;font-size:16px;font-weight:600;color:var(--ink);transition:all .2s ease;display:flex;align-items:center;justify-content:center}
+  .cal-nav:hover{border-color:var(--ink);background:var(--ink);color:#fff}
+  .cal-months{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .cal-month .cal-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;text-align:center;margin-bottom:14px;color:var(--ink)}
+  .cal-month .cal-week{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:6px}
+  .cal-month .cal-week-day{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;text-align:center;padding:4px 0}
+  .cal-month .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+  .cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--ink);cursor:none;border-radius:50%;transition:background .15s ease,color .15s ease;position:relative;background:transparent;border:0;font-family:"Bricolage Grotesque",sans-serif;padding:0}
+  .cal-day.empty{cursor:default}
+  .cal-day.past{color:var(--ink-soft);opacity:.35;cursor:default;text-decoration:line-through}
+  .cal-day.av{background:#D6F5DC}
+  .cal-day.peak{background:#FFF0B8}
+  .cal-day.booked{background:#FFCFC2;text-decoration:line-through;cursor:default;color:var(--ink-soft)}
+  .cal-day:not(.past):not(.booked):not(.empty):hover{background:var(--ink);color:#fff}
+  .cal-day.start,.cal-day.end{background:var(--ink);color:#fff}
+  .cal-day.inside{background:rgba(10,9,8,0.08);border-radius:0}
+  .cal-day.start{border-radius:50% 0 0 50%}
+  .cal-day.end{border-radius:0 50% 50% 0}
+  .cal-day.range-single{border-radius:50%}
+  .cal-legend{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .cal-leg{display:inline-flex;align-items:center;gap:8px}
+  .cal-leg .ll{width:14px;height:14px;border-radius:50%}
+  .cal-leg .ll.green{background:#D6F5DC}
+  .cal-leg .ll.yellow{background:#FFF0B8}
+  .cal-leg .ll.coral{background:#FFCFC2}
+  .cal-leg-night{margin-left:auto;color:var(--ink);font-weight:700}
+
+  /* GUEST POPUP — brand-styled */
+  .guest-pop{position:fixed;z-index:200;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(10,9,8,0.18);padding:22px;width:360px;max-width:calc(100vw - 28px);display:flex;flex-direction:column;gap:0;font-family:"Bricolage Grotesque",sans-serif}
+  .gp-head{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:10px;padding-bottom:14px;margin-bottom:4px;border-bottom:1px solid var(--line)}
+  .gp-head::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+  .gp-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+  .gp-row:last-of-type{border-bottom:0}
+  .gp-info .gp-title{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:16px;color:var(--ink);letter-spacing:-.01em;text-transform:lowercase}
+  .gp-info .gp-sub{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);margin-top:4px;font-weight:600}
+  .gp-ctrl{display:flex;align-items:center;gap:14px}
+  .gp-btn{width:32px;height:32px;border-radius:50%;border:1px solid var(--line-strong);background:transparent;cursor:none;font-size:18px;font-weight:400;color:var(--ink);transition:all .2s ease;display:flex;align-items:center;justify-content:center;padding:0;font-family:"Bricolage Grotesque",sans-serif;line-height:1}
+  .gp-btn:hover{background:var(--accent);border-color:var(--accent);color:#fff}
+  .gp-btn:disabled{opacity:.25;cursor:default}
+  .gp-btn:disabled:hover{background:transparent;border-color:var(--line-strong);color:var(--ink)}
+  .gp-num{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;min-width:20px;text-align:center;color:var(--ink)}
+  .gp-foot{display:flex;justify-content:space-between;align-items:center;padding-top:16px;margin-top:4px;border-top:1px solid var(--line);gap:14px}
+  .gp-note{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;flex:1}
+  .gp-apply{padding:11px 22px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:none;transition:background .2s ease;flex-shrink:0}
+  .gp-apply:hover{background:var(--accent)}
+
+  /* LIGHTBOX */
+  .lightbox{position:fixed;inset:0;z-index:300;background:rgba(10,9,8,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow-y:auto;animation:lbFadeIn .25s ease}
+  @keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
+  .lightbox .lb-head{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;background:rgba(10,9,8,0.6);backdrop-filter:blur(20px)}
+  .lightbox .lb-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;font-weight:600;display:flex;align-items:center;gap:10px}
+  .lightbox .lb-title::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
+  .lightbox .lb-close{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:20px;font-weight:300;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:"Bricolage Grotesque",sans-serif}
+  .lightbox .lb-close:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(90deg)}
+  .lightbox .lb-body{padding:32px;max-width:1400px;margin:0 auto}
+  .lightbox .lb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .lightbox .lb-cell{aspect-ratio:1;overflow:hidden;background:#1a1815;border-radius:8px;cursor:none}
+  .lightbox .lb-cell img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+  .lightbox .lb-cell:hover img{transform:scale(1.04)}
+
+  .lightbox-single{position:fixed;inset:0;z-index:310;background:rgba(10,9,8,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;animation:lbFadeIn .2s ease}
+  .lightbox-single .lb-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:20px 32px;gap:14px}
+  .lightbox-single .lb-back{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:18px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease}
+  .lightbox-single .lb-back:hover{background:var(--accent);border-color:var(--accent)}
+  .lightbox-single .lb-counter{text-align:center;color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;font-weight:600;text-transform:uppercase}
+  .lightbox-single .lb-single-body{flex:1;display:flex;align-items:center;justify-content:center;padding:0 80px 32px;position:relative}
+  .lightbox-single img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+  .lightbox-single .lb-prev,.lightbox-single .lb-next{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:22px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:"Bricolage Grotesque",sans-serif}
+  .lightbox-single .lb-prev{left:14px}
+  .lightbox-single .lb-next{right:14px}
+  .lightbox-single .lb-prev:hover,.lightbox-single .lb-next:hover{background:var(--accent);border-color:var(--accent)}
+  body.lb-open{overflow:hidden}
+
+  @media (max-width:880px){
+    .cal-pop{width:calc(100vw - 28px);padding:18px}
+    .cal-months{grid-template-columns:1fr;gap:24px}
+    .lightbox .lb-grid{grid-template-columns:1fr 1fr;gap:8px}
+    .lightbox .lb-body{padding:18px}
+    .lightbox .lb-head{padding:14px 18px}
+    .lightbox-single .lb-single-body{padding:0 14px 18px}
+    .lightbox-single .lb-prev,.lightbox-single .lb-next{width:42px;height:42px;font-size:22px}
+    .guest-pop{width:calc(100vw - 28px)}
+  }
 </style>
 </head>
 <body>
@@ -272,13 +374,13 @@
 
 <!-- GALLERY -->
 <section class="gallery">
-  <div class="gallery-grid">
-    <div class="ph main"><img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1600&q=80" alt="orbi sea towers — living room"></div>
-    <div class="ph"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80" alt="bedroom"></div>
-    <div class="ph"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt="kitchen"></div>
-    <div class="ph"><img src="https://images.unsplash.com/photo-1551776235-dde6d4829808?w=900&q=80" alt="balcony view"></div>
-    <div class="ph"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80" alt="bathroom"></div>
-    <button class="gallery-all" onclick="alert('lightbox coming soon — for now, all photos are on Airbnb')">↗ view all 12 photos</button>
+  <div class="gallery-grid" id="galleryGrid">
+    <div class="ph main" data-idx="0"><img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1600&q=80" alt="orbi sea towers — living room"></div>
+    <div class="ph" data-idx="1"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80" alt="bedroom"></div>
+    <div class="ph" data-idx="2"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt="kitchen"></div>
+    <div class="ph" data-idx="3"><img src="https://images.unsplash.com/photo-1551776235-dde6d4829808?w=900&q=80" alt="balcony view"></div>
+    <div class="ph" data-idx="4"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80" alt="bathroom"></div>
+    <button class="gallery-all" id="galleryAll" type="button">↗ view all 12 photos</button>
   </div>
 </section>
 
@@ -483,28 +585,24 @@
   <aside class="apt-book">
     <div class="price"><em>from $185</em> <span class="per">/ night</span></div>
     <span class="save">5% off direct</span>
-    <form onsubmit="event.preventDefault();const a=this.arrival.value;const d=this.departure.value;const g=this.guests.value;const msg=`hi bre! i'd like to book orbi sea towers — 21st floor. dates: ${a} → ${d}. ${g} guest${g==='1'?'':'s'}.`;window.open(`https://t.me/bre_ge?text=${encodeURIComponent(msg)}`, '_blank');">
-      <div class="row">
-        <div class="field">
-          <label>— arrival</label>
-          <input type="date" name="arrival" required>
-        </div>
-        <div class="field">
-          <label>— departure</label>
-          <input type="date" name="departure" required>
-        </div>
-      </div>
-      <div class="field">
-        <label>— guests</label>
-        <select name="guests">
-          <option value="1">1 guest</option>
-          <option value="2" selected>2 guests</option>
-          <option value="3">3 guests</option>
-          <option value="4">4 guests</option>
-        </select>
-      </div>
-      <button class="btn-primary" type="submit">↗ Book direct via Telegram</button>
-    </form>
+    <div class="book-form">
+      <button class="date-trigger" id="dateTrigger" type="button">
+        <span class="dt-side">
+          <span class="dt-label">— arrival</span>
+          <span class="dt-val" id="dtArrival">pick date</span>
+        </span>
+        <span class="dt-arrow">→</span>
+        <span class="dt-side">
+          <span class="dt-label">— departure</span>
+          <span class="dt-val" id="dtDeparture">pick date</span>
+        </span>
+      </button>
+      <button class="guest-trigger" id="guestTrigger" type="button">
+        <span class="gt-label">— guests</span>
+        <span class="gt-val" id="gtVal">2 guests</span>
+      </button>
+      <button class="btn-primary" id="bookBtn" type="button">↗ Book direct via Telegram</button>
+    </div>
     <div class="alt-channels">
       <span class="alt-label">or book through</span>
       <div class="alts">
@@ -560,6 +658,88 @@
   </div>
 </section>
 
+<!-- LIGHTBOX (gallery overlay) -->
+<div class="lightbox" id="lightbox" hidden>
+  <div class="lb-head">
+    <div class="lb-title">orbi 21 · 12 photos</div>
+    <button class="lb-close" id="lbClose" type="button" aria-label="close">×</button>
+  </div>
+  <div class="lb-body">
+    <div class="lb-grid" id="lbGrid"></div>
+  </div>
+</div>
+
+<!-- LIGHTBOX SINGLE (one photo with arrows) -->
+<div class="lightbox-single" id="lightboxSingle" hidden>
+  <div class="lb-head">
+    <button class="lb-back" id="lbBack" type="button" aria-label="back to grid">‹</button>
+    <div class="lb-counter" id="lbCounter">1/12</div>
+    <button class="lb-close" id="lbSingleClose" type="button" aria-label="close">×</button>
+  </div>
+  <div class="lb-single-body">
+    <button class="lb-prev" id="lbPrev" type="button" aria-label="previous">‹</button>
+    <img id="lbImg" src="" alt="">
+    <button class="lb-next" id="lbNext" type="button" aria-label="next">›</button>
+  </div>
+</div>
+
+<!-- CALENDAR DROPDOWN -->
+<div class="cal-pop" id="calPop" hidden>
+  <div class="cal-head">
+    <button class="cal-nav" id="calPrev" type="button" aria-label="previous month">‹</button>
+    <div class="cal-months" id="calMonths"></div>
+    <button class="cal-nav" id="calNext" type="button" aria-label="next month">›</button>
+  </div>
+  <div class="cal-legend">
+    <span class="cal-leg"><span class="ll green"></span>$ available</span>
+    <span class="cal-leg"><span class="ll yellow"></span>$$ peak</span>
+    <span class="cal-leg"><span class="ll coral"></span>$$$ booked</span>
+    <span class="cal-leg-night" id="calNight">— pick dates</span>
+  </div>
+</div>
+
+<!-- GUEST DROPDOWN -->
+<div class="guest-pop" id="guestPop" hidden>
+  <div class="gp-head">— who's coming</div>
+  <div class="gp-row">
+    <div class="gp-info">
+      <div class="gp-title">adults</div>
+      <div class="gp-sub">— ages 13+</div>
+    </div>
+    <div class="gp-ctrl">
+      <button class="gp-btn" data-action="adults-" type="button">−</button>
+      <span class="gp-num" id="gpAdults">2</span>
+      <button class="gp-btn" data-action="adults+" type="button">+</button>
+    </div>
+  </div>
+  <div class="gp-row">
+    <div class="gp-info">
+      <div class="gp-title">children</div>
+      <div class="gp-sub">— ages 2–12</div>
+    </div>
+    <div class="gp-ctrl">
+      <button class="gp-btn" data-action="children-" type="button">−</button>
+      <span class="gp-num" id="gpChildren">0</span>
+      <button class="gp-btn" data-action="children+" type="button">+</button>
+    </div>
+  </div>
+  <div class="gp-row">
+    <div class="gp-info">
+      <div class="gp-title">infants</div>
+      <div class="gp-sub">— under 2</div>
+    </div>
+    <div class="gp-ctrl">
+      <button class="gp-btn" data-action="infants-" type="button">−</button>
+      <span class="gp-num" id="gpInfants">0</span>
+      <button class="gp-btn" data-action="infants+" type="button">+</button>
+    </div>
+  </div>
+  <div class="gp-foot">
+    <span class="gp-note">max 4 guests</span>
+    <button class="gp-apply" id="gpApply" type="button">apply →</button>
+  </div>
+</div>
+
 <!-- FOOTER -->
 <footer>
   <div class="foot-line">
@@ -592,11 +772,24 @@ function loop(){cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;if(cursor)cursor.style.transform
 loop();
 function clearCursorColors(){cursor.classList.remove('teal','yellow','pink')}
 document.querySelectorAll('a,button').forEach(el=>{
+  if(el.closest('.lightbox')||el.closest('.lightbox-single')||el.closest('.cal-pop')||el.closest('.guest-pop'))return;
   el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('big')});
   el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
 });
-document.querySelectorAll('.pick, .sim').forEach(el=>{
-  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text');cursor.setAttribute('data-label','read →')});
+document.querySelectorAll('.sim').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text','teal');cursor.setAttribute('data-label','ask →')});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('text','teal');cursor.removeAttribute('data-label')});
+});
+document.querySelectorAll('.pick').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text','yellow');cursor.setAttribute('data-label','read →')});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('text','yellow');cursor.removeAttribute('data-label')});
+});
+document.querySelectorAll('.cta-help .btn').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text','pink');cursor.setAttribute('data-label','say hi →')});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('text','pink');cursor.removeAttribute('data-label')});
+});
+document.querySelectorAll('.gallery-grid .ph').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text');cursor.setAttribute('data-label','view →')});
   el.addEventListener('mouseleave',()=>{cursor.classList.remove('text');cursor.removeAttribute('data-label')});
 });
 
@@ -613,22 +806,338 @@ document.querySelectorAll('.pick, .sim').forEach(el=>{
   update();
 })();
 
-// Date inputs: default arrival to today, departure to today+3
+// Date inputs replaced by custom calendar — see below
+
+// =====================================================================
+// PHOTOS (gallery)
+// =====================================================================
+const PHOTOS = [
+  {src:'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1600&q=80', alt:'living room'},
+  {src:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600&q=80', alt:'bedroom'},
+  {src:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80', alt:'kitchen'},
+  {src:'https://images.unsplash.com/photo-1551776235-dde6d4829808?w=1600&q=80', alt:'balcony'},
+  {src:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=80', alt:'bathroom'},
+  {src:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1600&q=80', alt:'view'},
+  {src:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1600&q=80', alt:'detail'},
+  {src:'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600&q=80', alt:'dining'},
+  {src:'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80', alt:'desk'},
+  {src:'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1600&q=80', alt:'bath detail'},
+  {src:'https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=1600&q=80', alt:'building'},
+  {src:'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1600&q=80', alt:'sunset'}
+];
+
+// =====================================================================
+// LIGHTBOX
+// =====================================================================
 (function(){
-  const arr = document.querySelector('input[name="arrival"]');
-  const dep = document.querySelector('input[name="departure"]');
-  if(!arr||!dep)return;
-  const today = new Date();
-  const fmt = d=>d.toISOString().slice(0,10);
-  arr.min = fmt(today);
-  arr.value = fmt(today);
-  const future = new Date(today.getTime()+3*86400000);
-  dep.min = fmt(new Date(today.getTime()+86400000));
-  dep.value = fmt(future);
-  arr.addEventListener('change',()=>{
-    const a = new Date(arr.value);
-    dep.min = fmt(new Date(a.getTime()+86400000));
-    if(new Date(dep.value)<=a){dep.value=fmt(new Date(a.getTime()+86400000))}
+  const lb = document.getElementById('lightbox');
+  const lbGrid = document.getElementById('lbGrid');
+  const lbClose = document.getElementById('lbClose');
+  const lbSingle = document.getElementById('lightboxSingle');
+  const lbBack = document.getElementById('lbBack');
+  const lbSingleClose = document.getElementById('lbSingleClose');
+  const lbImg = document.getElementById('lbImg');
+  const lbCounter = document.getElementById('lbCounter');
+  const lbPrev = document.getElementById('lbPrev');
+  const lbNext = document.getElementById('lbNext');
+  const galAll = document.getElementById('galleryAll');
+  const galGrid = document.getElementById('galleryGrid');
+  if(!lb||!lbGrid)return;
+  let currentIdx = 0;
+
+  function renderGrid(){
+    lbGrid.innerHTML = '';
+    PHOTOS.forEach((p,i)=>{
+      const cell = document.createElement('div');
+      cell.className = 'lb-cell';
+      cell.innerHTML = `<img src="${p.src}" alt="${p.alt}">`;
+      cell.addEventListener('click', ()=>openSingle(i));
+      lbGrid.appendChild(cell);
+    });
+  }
+  function openLb(){
+    if(!lbGrid.children.length) renderGrid();
+    lb.hidden = false;
+    document.body.classList.add('lb-open');
+  }
+  function closeLb(){
+    lb.hidden = true;
+    lbSingle.hidden = true;
+    document.body.classList.remove('lb-open');
+  }
+  function openSingle(idx){
+    currentIdx = idx;
+    lbImg.src = PHOTOS[idx].src;
+    lbImg.alt = PHOTOS[idx].alt;
+    lbCounter.textContent = `${idx+1}/${PHOTOS.length}`;
+    lbSingle.hidden = false;
+    document.body.classList.add('lb-open');
+  }
+  function nav(dir){
+    let n = currentIdx + dir;
+    if(n < 0) n = PHOTOS.length - 1;
+    if(n >= PHOTOS.length) n = 0;
+    openSingle(n);
+  }
+
+  galAll && galAll.addEventListener('click', openLb);
+  galGrid && galGrid.querySelectorAll('.ph').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      const idx = parseInt(el.dataset.idx || '0', 10);
+      openLb();
+      // small delay to render grid first
+      setTimeout(()=>openSingle(idx), 50);
+    });
+  });
+  lbClose && lbClose.addEventListener('click', closeLb);
+  lbSingleClose && lbSingleClose.addEventListener('click', ()=>{lbSingle.hidden=true});
+  lbBack && lbBack.addEventListener('click', ()=>{lbSingle.hidden=true});
+  lbPrev && lbPrev.addEventListener('click', ()=>nav(-1));
+  lbNext && lbNext.addEventListener('click', ()=>nav(1));
+  document.addEventListener('keydown', e=>{
+    if(lb.hidden && lbSingle.hidden) return;
+    if(e.key === 'Escape'){ closeLb(); }
+    if(!lbSingle.hidden){
+      if(e.key === 'ArrowLeft') nav(-1);
+      if(e.key === 'ArrowRight') nav(1);
+    }
+  });
+})();
+
+// =====================================================================
+// CALENDAR
+// =====================================================================
+(function(){
+  const trigger = document.getElementById('dateTrigger');
+  const pop = document.getElementById('calPop');
+  const calMonths = document.getElementById('calMonths');
+  const calPrev = document.getElementById('calPrev');
+  const calNext = document.getElementById('calNext');
+  const calNight = document.getElementById('calNight');
+  const dtArrival = document.getElementById('dtArrival');
+  const dtDeparture = document.getElementById('dtDeparture');
+  if(!trigger||!pop)return;
+
+  // MOCK booked/peak dates — in production, these come from iCal sync
+  const today = new Date(); today.setHours(0,0,0,0);
+  const BOOKED = new Set();
+  const PEAK = new Set();
+  // Generate mock data: some random booked + peak dates
+  for(let i=0; i<60; i++){
+    const d = new Date(today); d.setDate(d.getDate()+i);
+    const key = d.toISOString().slice(0,10);
+    const r = Math.sin(i*1.7)*100;
+    if(r > 50) BOOKED.add(key);
+    else if(r > 0 || (d.getDay() === 5 || d.getDay() === 6)) PEAK.add(key);
+  }
+
+  let viewYear = today.getFullYear();
+  let viewMonth = today.getMonth();
+  let startDate = null;
+  let endDate = null;
+  let mode = 'start'; // 'start' or 'end'
+
+  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+  const weekDays = ['Mo','Tu','We','Th','Fr','Sa','Su'];
+
+  function fmtKey(d){return d.toISOString().slice(0,10)}
+  function fmtPretty(d){
+    if(!d)return null;
+    return `${d.getDate().toString().padStart(2,'0')} ${monthNames[d.getMonth()].slice(0,3).toLowerCase()}`;
+  }
+
+  function renderMonth(year, month){
+    const first = new Date(year, month, 1);
+    const last = new Date(year, month+1, 0);
+    const startWeekday = (first.getDay() + 6) % 7; // Mo=0
+    const daysInMonth = last.getDate();
+    let html = `<div class="cal-month"><div class="cal-title">${monthNames[month]} ${year}</div>`;
+    html += '<div class="cal-week">';
+    weekDays.forEach(w => html += `<div class="cal-week-day">${w}</div>`);
+    html += '</div><div class="cal-grid">';
+    for(let i=0;i<startWeekday;i++) html += '<button class="cal-day empty" disabled></button>';
+    for(let d=1;d<=daysInMonth;d++){
+      const date = new Date(year, month, d);
+      const key = fmtKey(date);
+      let cls = 'cal-day';
+      if(date < today) cls += ' past';
+      else if(BOOKED.has(key)) cls += ' booked';
+      else if(PEAK.has(key)) cls += ' peak';
+      else cls += ' av';
+      if(startDate && fmtKey(startDate) === key){
+        cls = cls.replace(/av|peak/, '') + ' start';
+        if(endDate && fmtKey(endDate) === key) cls += ' range-single';
+      }
+      if(endDate && fmtKey(endDate) === key) cls = cls.replace(/av|peak/, '') + ' end';
+      if(startDate && endDate && date > startDate && date < endDate){
+        cls = cls.replace(/av|peak/, '') + ' inside';
+      }
+      html += `<button class="${cls}" data-date="${key}">${d}</button>`;
+    }
+    html += '</div></div>';
+    return html;
+  }
+
+  function render(){
+    const nextMonth = viewMonth + 1;
+    const nextYear = nextMonth > 11 ? viewYear + 1 : viewYear;
+    const nm = nextMonth > 11 ? 0 : nextMonth;
+    calMonths.innerHTML = renderMonth(viewYear, viewMonth) + renderMonth(nextYear, nm);
+    // attach click
+    calMonths.querySelectorAll('.cal-day:not(.past):not(.booked):not(.empty)').forEach(btn=>{
+      btn.addEventListener('click', ()=>{
+        const d = new Date(btn.dataset.date);
+        if(mode === 'start' || (startDate && d <= startDate)){
+          startDate = d;
+          endDate = null;
+          mode = 'end';
+        } else {
+          endDate = d;
+          mode = 'start';
+        }
+        updateLabels();
+        render();
+      });
+    });
+  }
+
+  function updateLabels(){
+    dtArrival.textContent = startDate ? fmtPretty(startDate) : 'pick date';
+    dtArrival.classList.toggle('empty', !startDate);
+    dtDeparture.textContent = endDate ? fmtPretty(endDate) : 'pick date';
+    dtDeparture.classList.toggle('empty', !endDate);
+    if(startDate && endDate){
+      const nights = Math.round((endDate - startDate) / 86400000);
+      calNight.textContent = `${nights} night${nights===1?'':'s'} · $${nights*185}`;
+    } else if(startDate){
+      calNight.textContent = '— pick checkout';
+    } else {
+      calNight.textContent = '— pick dates';
+    }
+  }
+
+  function openPop(){
+    pop.hidden = false;
+    trigger.classList.add('active');
+    const rect = trigger.getBoundingClientRect();
+    pop.style.top = (rect.bottom + 8) + 'px';
+    // position on the right side if booking panel is right-aligned
+    pop.style.left = Math.max(14, Math.min(window.innerWidth - 680 - 14, rect.left)) + 'px';
+    render();
+  }
+  function closePop(){
+    pop.hidden = true;
+    trigger.classList.remove('active');
+  }
+
+  trigger.addEventListener('click', e=>{
+    e.stopPropagation();
+    if(pop.hidden) openPop(); else closePop();
+  });
+  calPrev.addEventListener('click', ()=>{
+    viewMonth--;
+    if(viewMonth < 0){viewMonth=11; viewYear--}
+    render();
+  });
+  calNext.addEventListener('click', ()=>{
+    viewMonth++;
+    if(viewMonth > 11){viewMonth=0; viewYear++}
+    render();
+  });
+  document.addEventListener('click', e=>{
+    if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
+  });
+  window.__getBookingDates = ()=>({start: startDate, end: endDate});
+})();
+
+// =====================================================================
+// GUESTS
+// =====================================================================
+(function(){
+  const trigger = document.getElementById('guestTrigger');
+  const pop = document.getElementById('guestPop');
+  const gtVal = document.getElementById('gtVal');
+  const apply = document.getElementById('gpApply');
+  if(!trigger||!pop)return;
+  const state = {adults: 2, children: 0, infants: 0};
+  const MAX = 4;
+  const els = {adults: document.getElementById('gpAdults'), children: document.getElementById('gpChildren'), infants: document.getElementById('gpInfants')};
+
+  function update(){
+    els.adults.textContent = state.adults;
+    els.children.textContent = state.children;
+    els.infants.textContent = state.infants;
+    pop.querySelectorAll('.gp-btn').forEach(btn=>{
+      const [k, op] = [btn.dataset.action.replace(/[+\-]/,''), btn.dataset.action.slice(-1)];
+      if(op === '-'){
+        btn.disabled = (k === 'adults' ? state[k] <= 1 : state[k] <= 0);
+      } else {
+        const totalNoInfants = state.adults + state.children;
+        btn.disabled = (k !== 'infants' && totalNoInfants >= MAX);
+      }
+    });
+  }
+  function syncLabel(){
+    const total = state.adults + state.children;
+    const parts = [`${total} guest${total===1?'':'s'}`];
+    if(state.infants) parts.push(`${state.infants} infant${state.infants===1?'':'s'}`);
+    gtVal.textContent = parts.join(' · ').toLowerCase();
+  }
+  function openPop(){
+    pop.hidden = false;
+    trigger.classList.add('active');
+    const rect = trigger.getBoundingClientRect();
+    pop.style.top = (rect.bottom + 8) + 'px';
+    pop.style.left = Math.max(14, Math.min(window.innerWidth - 340 - 14, rect.left)) + 'px';
+    update();
+  }
+  function closePop(){
+    pop.hidden = true;
+    trigger.classList.remove('active');
+  }
+  trigger.addEventListener('click', e=>{
+    e.stopPropagation();
+    if(pop.hidden) openPop(); else closePop();
+  });
+  pop.querySelectorAll('.gp-btn').forEach(btn=>{
+    btn.addEventListener('click', ()=>{
+      const [k, op] = [btn.dataset.action.replace(/[+\-]/,''), btn.dataset.action.slice(-1)];
+      if(op === '+') state[k]++;
+      else state[k]--;
+      update();
+    });
+  });
+  apply.addEventListener('click', ()=>{
+    syncLabel();
+    closePop();
+  });
+  document.addEventListener('click', e=>{
+    if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
+  });
+  window.__getBookingGuests = ()=>state;
+  update();
+  syncLabel();
+})();
+
+// =====================================================================
+// BOOK BUTTON
+// =====================================================================
+(function(){
+  const btn = document.getElementById('bookBtn');
+  if(!btn) return;
+  btn.addEventListener('click', ()=>{
+    const dates = window.__getBookingDates ? window.__getBookingDates() : {};
+    const g = window.__getBookingGuests ? window.__getBookingGuests() : {adults:2};
+    let msg = 'hi bre! i\'d like to book orbi sea towers — 21st floor.';
+    if(dates.start && dates.end){
+      const fmt = d => d.toISOString().slice(0,10);
+      msg += ` dates: ${fmt(dates.start)} → ${fmt(dates.end)}.`;
+    }
+    const total = (g.adults||2) + (g.children||0);
+    msg += ` ${total} guest${total===1?'':'s'}`;
+    if(g.infants) msg += `, ${g.infants} infant${g.infants===1?'':'s'}`;
+    msg += '.';
+    window.open(`https://t.me/bre_ge?text=${encodeURIComponent(msg)}`, '_blank');
   });
 })();
 
