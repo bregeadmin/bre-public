@@ -957,14 +957,6 @@
     el.addEventListener('mouseenter', () => { clearCursorColors(); cursor.classList.add('text','teal'); cursor.setAttribute('data-label','view →'); });
     el.addEventListener('mouseleave', () => { cursor.classList.remove('text','teal'); cursor.removeAttribute('data-label'); });
   });
-    el.addEventListener('mouseleave', () => { cursor.classList.remove('text','teal'); cursor.removeAttribute('data-label'); });
-    el.addEventListener('click', (e) => {
-      e.preventDefault();
-      const title = el.querySelector('.info h4').textContent;
-      const msg = `hi bre! i'd like to know more about: ${title}`;
-      window.open(`https://t.me/bre_ge?text=${encodeURIComponent(msg)}`, '_blank');
-    });
-  });
 
   document.querySelectorAll('.feat, .post, .hero-card, .fp, .spread').forEach(el => {
     el.addEventListener('mouseenter', () => { clearCursorColors(); cursor.classList.add('text','yellow'); cursor.setAttribute('data-label','read →'); });
