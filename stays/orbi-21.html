@@ -313,7 +313,7 @@
   .lightbox .lb-head{flex:none;display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:rgba(10,9,8,0.4);backdrop-filter:blur(20px)}
   .lightbox .lb-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;font-weight:600;display:flex;align-items:center;gap:10px}
   .lightbox .lb-title::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
-  .lightbox .lb-close{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:20px;font-weight:300;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:"Bricolage Grotesque",sans-serif}
+  .lightbox .lb-close{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:16px;font-weight:400;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:system-ui,sans-serif;padding:0;padding-bottom:2px}
   .lightbox .lb-close:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(90deg)}
   .lightbox .lb-body{flex:1;min-height:0;overflow-y:auto;padding:20px 28px 28px;max-width:1400px;margin:0 auto;width:100%}
   .lightbox .lb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
@@ -323,12 +323,14 @@
 
   .lightbox-single{position:fixed;inset:0;z-index:310;background:rgba(10,9,8,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;animation:lbFadeIn .2s ease}
   .lightbox-single .lb-head{flex:none;display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:18px 28px;gap:14px}
-  .lightbox-single .lb-back{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:18px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease}
+  .lightbox-single .lb-back{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:18px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:system-ui,sans-serif}
   .lightbox-single .lb-back:hover{background:var(--accent);border-color:var(--accent)}
+  .lightbox-single .lb-close{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:16px;font-weight:400;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:system-ui,sans-serif;padding:0;padding-bottom:2px}
+  .lightbox-single .lb-close:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(90deg)}
   .lightbox-single .lb-counter{text-align:center;color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;font-weight:600;text-transform:uppercase}
   .lightbox-single .lb-single-body{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 80px 24px;position:relative}
   .lightbox-single img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:8px;display:block}
-  .lightbox-single .lb-prev,.lightbox-single .lb-next{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:22px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:"Bricolage Grotesque",sans-serif}
+  .lightbox-single .lb-prev,.lightbox-single .lb-next{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:20px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:system-ui,sans-serif}
   .lightbox-single .lb-prev{left:14px}
   .lightbox-single .lb-next{right:14px}
   .lightbox-single .lb-prev:hover,.lightbox-single .lb-next:hover{background:var(--accent);border-color:var(--accent)}
@@ -776,7 +778,6 @@ function loop(){cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;if(cursor)cursor.style.transform
 loop();
 function clearCursorColors(){cursor.classList.remove('teal','yellow','pink')}
 document.querySelectorAll('a,button').forEach(el=>{
-  if(el.closest('.lightbox')||el.closest('.lightbox-single')||el.closest('.cal-pop')||el.closest('.guest-pop'))return;
   el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('big')});
   el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
 });
@@ -817,17 +818,17 @@ document.querySelectorAll('.gallery-grid .ph').forEach(el=>{
 // =====================================================================
 const PHOTOS = [
   {src:'https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1600&q=80', alt:'living room'},
-  {src:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600&q=80', alt:'bedroom'},
-  {src:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80', alt:'kitchen'},
-  {src:'https://images.unsplash.com/photo-1551776235-dde6d4829808?w=1600&q=80', alt:'balcony'},
+  {src:'https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1600&q=80', alt:'bedroom'},
+  {src:'https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1600&q=80', alt:'kitchen'},
+  {src:'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80', alt:'balcony view'},
   {src:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=80', alt:'bathroom'},
-  {src:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1600&q=80', alt:'view'},
-  {src:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1600&q=80', alt:'detail'},
-  {src:'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=1600&q=80', alt:'dining'},
-  {src:'https://images.unsplash.com/photo-1505691938895-1758d7feb511?w=1600&q=80', alt:'desk'},
-  {src:'https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?w=1600&q=80', alt:'bath detail'},
-  {src:'https://images.unsplash.com/photo-1484101403633-562f891dc89a?w=1600&q=80', alt:'building'},
-  {src:'https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1600&q=80', alt:'sunset'}
+  {src:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1600&q=80', alt:'sea view'},
+  {src:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1600&q=80', alt:'interior detail'},
+  {src:'https://images.unsplash.com/photo-1551776235-dde6d4829808?w=1600&q=80', alt:'dining area'},
+  {src:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80', alt:'sofa'},
+  {src:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&q=80', alt:'workspace'},
+  {src:'https://images.unsplash.com/photo-1574643156929-51fa098b0394?w=1600&q=80', alt:'kitchen detail'},
+  {src:'https://images.unsplash.com/photo-1571055107559-3e67626fa8be?w=1600&q=80', alt:'bedroom corner'}
 ];
 
 // =====================================================================
@@ -856,6 +857,8 @@ const PHOTOS = [
       cell.className = 'lb-cell';
       cell.innerHTML = `<img src="${p.src}" alt="${p.alt}">`;
       cell.addEventListener('click', ()=>openSingle(i));
+      cell.addEventListener('mouseenter', ()=>{ clearCursorColors(); cursor.classList.add('text'); cursor.setAttribute('data-label','view →'); });
+      cell.addEventListener('mouseleave', ()=>{ cursor.classList.remove('text'); cursor.removeAttribute('data-label'); });
       lbGrid.appendChild(cell);
     });
   }
@@ -991,7 +994,7 @@ const PHOTOS = [
     // attach click
     calMonths.querySelectorAll('.cal-day:not(.past):not(.booked):not(.empty)').forEach(btn=>{
       btn.addEventListener('click', ()=>{
-        const d = new Date(btn.dataset.date);
+        const [yy,mm,dd] = btn.dataset.date.split('-').map(Number); const d = new Date(yy, mm-1, dd);
         if(mode === 'start' || (startDate && d <= startDate)){
           startDate = d;
           endDate = null;

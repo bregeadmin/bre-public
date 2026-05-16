@@ -1122,7 +1122,7 @@ document.addEventListener('DOMContentLoaded', function(){
     calMonths.innerHTML = renderMonth(viewYear, viewMonth) + renderMonth(ny, nm);
     calMonths.querySelectorAll('.cal-day:not(.past):not(.booked):not(.empty)').forEach(btn=>{
       btn.addEventListener('click', ()=>{
-        const d = new Date(btn.dataset.date);
+        const [yy,mm,dd] = btn.dataset.date.split('-').map(Number); const d = new Date(yy, mm-1, dd);
         if(mode === 'start' || (startDate && d <= startDate)){
           startDate = d; endDate = null; mode = 'end';
         } else {
