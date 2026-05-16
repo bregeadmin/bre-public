@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>orbi sea towers — 21 этаж · bre</title>
+<meta name="description" content="1-комнатная на высоком этаже с полным видом на море, мраморной ванной и балконом для закатов. 45м², пешком до пляжа. Бронируй напрямую или через Airbnb / Booking.">
+<link rel="alternate" hreflang="en" href="https://bre.ge/stays/orbi-21">
+<link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays/orbi-21">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0a0908">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fbf8f1;--bg-2:#f1ecdf;--paper:#fdfbf6;--ink:#0a0908;--ink-soft:#4d544e;--line:#0a090815;--line-strong:#0a090833;--accent:#ff5e1a;--accent-deep:#d94612;--teal:#00B5B0;--page:var(--accent)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;font-weight:400;line-height:1.5;cursor:none}
+  body{overflow-x:hidden}
+  ::selection{background:var(--page);color:#fff}
+  a{color:inherit;text-decoration:none}
+  @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
+
+  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
+  .cursor.big{width:72px;height:72px;background:var(--accent)}
+  .cursor.text{width:104px;height:104px;background:var(--accent)}
+  .cursor.text::after{content:attr(data-label);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"JetBrains Mono",monospace;font-size:9px;color:#fff;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;font-weight:600}
+  @media (hover:none){html,body,a,button{cursor:auto}.cursor{display:none}}
+
+  .home-dot{isolation:isolate;mix-blend-mode:normal;display:inline-flex;align-items:center;justify-content:center;width:0;height:14px;position:relative;flex:none;transition:width .35s cubic-bezier(.34,1.56,.64,1),margin-right .35s ease;text-decoration:none;pointer-events:none;overflow:visible}
+  .home-dot::before{content:'';display:block;width:14px;height:14px;border-radius:50%;background:var(--page);opacity:0;transition:opacity .25s ease}
+  .home-dot.expanded{width:14px;margin-right:14px}
+  .home-dot.visible{pointer-events:auto}
+  .home-dot.visible::before{opacity:1}
+  .home-dot.pulsing::before{animation:dotpulse 2.4s ease-in-out infinite}
+  .topbar .ctr .d{transition:opacity .2s ease}
+  .topbar .ctr .d.hidden{opacity:0}
+  #flyingDot{isolation:isolate;mix-blend-mode:normal;position:fixed;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--page);opacity:0;pointer-events:none;z-index:80}
+  @media (max-width:880px){.home-dot,#flyingDot{display:none}}
+
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:22px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;font-family:"Bricolage Grotesque",sans-serif;font-size:15px;letter-spacing:-.01em;text-transform:lowercase;font-weight:600;transition:background .3s ease,backdrop-filter .3s ease}
+  .topbar .left{display:flex;align-items:center;gap:24px}
+  .topbar .ctr{justify-self:center;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .topbar .ctr .d{width:10px;height:10px;border-radius:50%;background:var(--page);mix-blend-mode:normal;margin-bottom:2px;margin-left:5px}
+  .topbar .right{justify-self:end;display:flex;align-items:center;gap:18px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px}
+  .topbar .city:hover{border-color:#fff;background:#ffffff14}
+  .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-size:10px;font-weight:600;letter-spacing:.1em}
+  .topbar .lang:hover{border-color:#fff;background:#ffffff14}
+  .topbar a:hover{opacity:.7}
+  .topbar .burger{display:none;width:34px;height:34px;border:1px solid #ffffff66;border-radius:50%;background:transparent;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;cursor:none;flex:none}
+  .topbar .burger span{display:block;width:14px;height:1.5px;background:#fff}
+  .topbar.scrolled{mix-blend-mode:normal;color:var(--ink);background:rgba(251,248,241,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(10,9,8,0.06)}
+  .topbar.scrolled .ctr{color:var(--ink)}
+  .topbar.scrolled .city,.topbar.scrolled .lang{border-color:rgba(10,9,8,0.2);color:var(--ink)}
+  .topbar.scrolled .city:hover,.topbar.scrolled .lang:hover{border-color:var(--ink);background:rgba(10,9,8,0.04)}
+  .topbar.scrolled .burger{border-color:rgba(10,9,8,0.4)}
+  .topbar.scrolled .burger span{background:var(--ink)}
+
+  /* CRUMBS */
+  .crumbs{padding:96px 28px 12px;max-width:1400px;margin:0 auto;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;gap:10px;align-items:center}
+  .crumbs a:hover{color:var(--page)}
+  .crumbs .sep{opacity:.4}
+  .crumbs .here{color:var(--ink);font-weight:700}
+
+  /* GALLERY MOSAIC */
+  .gallery{padding:12px 28px 0;max-width:1400px;margin:0 auto}
+  .gallery-grid{display:grid;grid-template-columns:1.6fr 1fr 1fr;grid-template-rows:1fr 1fr;gap:8px;height:520px;border-radius:18px;overflow:hidden;position:relative}
+  .gallery-grid .ph{position:relative;overflow:hidden;background:var(--bg-2)}
+  .gallery-grid .ph img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+  .gallery-grid .ph:hover img{transform:scale(1.04)}
+  .gallery-grid .ph.main{grid-row:1/3;grid-column:1/2}
+  .gallery-all{position:absolute;bottom:20px;right:20px;padding:10px 16px;background:rgba(10,9,8,0.85);color:#fff;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;border-radius:999px;cursor:pointer;border:0;backdrop-filter:blur(4px);transition:background .2s ease}
+  .gallery-all:hover{background:var(--ink)}
+
+  /* HEAD */
+  .apt-head{padding:32px 28px 0;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:32px;align-items:end}
+  .apt-head h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(40px,5.5vw,72px);line-height:1;letter-spacing:-.035em;text-transform:lowercase}
+  .apt-head h1 em{font-style:italic;color:var(--page)}
+  .apt-head .meta{margin-top:18px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+  .apt-head .meta .sep{opacity:.35}
+  .apt-head .meta b{color:var(--ink);font-weight:600}
+  .apt-head .badges{display:flex;gap:8px;flex-wrap:wrap}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:5px 11px;border:1px solid var(--line-strong);border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--ink-soft)}
+  .badge .dot{width:6px;height:6px;border-radius:50%;background:var(--page)}
+  .badge.hot{background:var(--page);color:#fff;border-color:var(--page)}
+
+  /* CONTENT 2-COL */
+  .apt-body{padding:48px 28px 80px;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.6fr 1fr;gap:60px;align-items:start}
+
+  .apt-main{display:flex;flex-direction:column;gap:56px}
+  .apt-section{display:flex;flex-direction:column;gap:18px}
+  .apt-section .label{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:10px}
+  .apt-section .label::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--page);display:inline-block}
+  .apt-section h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:32px;letter-spacing:-.025em;line-height:1.05;text-transform:lowercase}
+  .apt-section h2 em{font-style:italic;color:var(--page)}
+  .apt-section p{font-size:16px;line-height:1.65;color:var(--ink-soft);max-width:62ch}
+  .apt-section p b{color:var(--ink);font-weight:600}
+
+  /* WHAT'S INSIDE — 2 col stacked */
+  .inside{display:grid;grid-template-columns:1fr 1fr;gap:24px 36px;margin-top:8px}
+  .inside .item{display:flex;flex-direction:column;gap:6px;padding-top:14px;border-top:1px solid var(--line)}
+  .inside .item h5{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:17px;letter-spacing:-.015em}
+  .inside .item p{font-size:14.5px;line-height:1.55;color:var(--ink-soft);max-width:none}
+
+  /* AMENITIES grid */
+  .amenities{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 20px;margin-top:8px}
+  .amenities .am{display:flex;align-items:center;gap:10px;padding:10px 14px;background:var(--paper);border:1px solid var(--line);border-radius:10px;font-size:14px}
+  .amenities .am .ic{width:18px;height:18px;flex:none;display:inline-flex;align-items:center;justify-content:center;color:var(--page)}
+  .amenities .am.off{opacity:.35}
+
+  /* LOCATION */
+  .loc{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:8px;align-items:start}
+  .loc-map{background:var(--bg-2);border-radius:14px;aspect-ratio:1/1;overflow:hidden;position:relative;border:1px solid var(--line)}
+  .loc-map svg{width:100%;height:100%;display:block}
+  .loc-info p{font-size:15px;line-height:1.6}
+  .loc-near{display:flex;flex-direction:column;gap:8px;margin-top:14px}
+  .loc-near .ln{display:flex;justify-content:space-between;align-items:baseline;padding:8px 0;border-bottom:1px dashed var(--line)}
+  .loc-near .ln .nm{font-size:14px;color:var(--ink)}
+  .loc-near .ln .ds{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+
+  /* GUIDE PICKS */
+  .guide-picks{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:8px}
+  .pick{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;transition:transform .25s ease}
+  .pick:hover{transform:translateY(-3px)}
+  .pick .ph{aspect-ratio:5/4;border-radius:10px;overflow:hidden;background:var(--bg-2)}
+  .pick .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+  .pick:hover .ph img{transform:scale(1.05)}
+  .pick .kicker{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .pick h5{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:15px;letter-spacing:-.01em;line-height:1.3}
+
+  /* RULES */
+  .rules{display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;margin-top:8px}
+  .rules .r{display:flex;justify-content:space-between;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line)}
+  .rules .r .k{font-size:13.5px;color:var(--ink-soft)}
+  .rules .r .v{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--ink)}
+
+  /* FAQ */
+  .faq{display:flex;flex-direction:column;gap:0;margin-top:8px;border-top:1px solid var(--line)}
+  .faq details{border-bottom:1px solid var(--line);padding:18px 0}
+  .faq summary{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:16px;letter-spacing:-.01em;cursor:none;display:flex;justify-content:space-between;align-items:center;list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';font-family:"JetBrains Mono",monospace;font-size:18px;color:var(--page);font-weight:700;transition:transform .2s ease}
+  .faq details[open] summary::after{content:'−'}
+  .faq details p{margin-top:12px;font-size:14.5px;line-height:1.6;color:var(--ink-soft)}
+
+  /* BOOK PANEL (sticky right) */
+  .apt-book{position:sticky;top:96px;padding:24px;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 4px 24px rgba(10,9,8,0.04)}
+  .apt-book .price{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:32px;letter-spacing:-.025em;line-height:1.1;color:var(--ink);margin-bottom:4px}
+  .apt-book .price em{font-style:normal;color:var(--page)}
+  .apt-book .price .per{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .apt-book .save{display:inline-block;margin-top:10px;padding:5px 10px;background:var(--page);color:#fff;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+  .apt-book form{display:flex;flex-direction:column;gap:10px;margin-top:20px}
+  .apt-book .row{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .apt-book .field{display:flex;flex-direction:column;gap:4px;padding:9px 12px;border:1px solid var(--line-strong);border-radius:10px;background:#fff;transition:border-color .2s ease}
+  .apt-book .field:focus-within{border-color:var(--page)}
+  .apt-book .field label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .apt-book .field input,.apt-book .field select{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:14px;border:0;background:transparent;outline:0;color:var(--ink);padding:0;cursor:none}
+  .apt-book .btn-primary{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 22px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:none;transition:background .2s ease;margin-top:6px}
+  .apt-book .btn-primary:hover{background:var(--page)}
+  .apt-book .alt-channels{margin-top:14px;padding-top:14px;border-top:1px solid var(--line);text-align:center}
+  .apt-book .alt-channels .alt-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:8px;display:block}
+  .apt-book .alt-channels .alts{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+  .apt-book .alt-channels a{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);transition:color .2s ease}
+  .apt-book .alt-channels a:hover{color:var(--page)}
+  .apt-book .note{font-size:12px;line-height:1.5;color:var(--ink-soft);margin-top:14px;text-align:center}
+  .apt-book .note b{color:var(--ink);font-weight:600}
+
+  /* SIMILAR */
+  .similar{padding:60px 28px;max-width:1400px;margin:0 auto;border-top:1px solid var(--line)}
+  .similar h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:28px;letter-spacing:-.025em;text-transform:lowercase;margin-bottom:24px}
+  .similar h3 em{font-style:italic;color:var(--page)}
+  .sim-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .sim{display:flex;flex-direction:column;gap:10px;text-decoration:none;color:inherit;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;transition:border-color .2s ease,transform .25s ease}
+  .sim:hover{border-color:var(--page);transform:translateY(-3px)}
+  .sim .ph{aspect-ratio:5/4;background:var(--bg-2);overflow:hidden}
+  .sim .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
+  .sim:hover .ph img{transform:scale(1.04)}
+  .sim .body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:5px}
+  .sim h5{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:16px;letter-spacing:-.015em}
+  .sim .meta{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .sim .price{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--ink);margin-top:4px}
+
+  /* CTA */
+  .cta-help{padding:80px 28px;background:var(--bg-2);text-align:center}
+  .cta-help .inner{max-width:680px;margin:0 auto}
+  .cta-help h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:32px;letter-spacing:-.025em;text-transform:lowercase;margin-bottom:14px}
+  .cta-help h3 em{font-style:italic;color:var(--page)}
+  .cta-help p{font-size:15px;line-height:1.6;color:var(--ink-soft);margin-bottom:24px}
+  .cta-help .btns{display:inline-flex;gap:10px;flex-wrap:wrap;justify-content:center}
+  .cta-help .btn{display:inline-flex;align-items:center;gap:8px;padding:14px 22px;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;transition:all .2s ease}
+  .cta-help .btn.primary{background:var(--ink);color:#fff}
+  .cta-help .btn.primary:hover{background:var(--page)}
+  .cta-help .btn.alt{background:transparent;color:var(--ink);border:1px solid var(--line-strong)}
+  .cta-help .btn.alt:hover{border-color:var(--ink);background:var(--paper)}
+
+  /* FOOTER */
+  footer{padding:32px 28px;background:var(--ink);color:#a99e8e;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;line-height:1.5}
+  footer a{color:#a99e8e;text-decoration:none;transition:color .2s ease}
+  footer a:hover{color:#fff}
+  .foot-line{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .foot-left .sep{opacity:.4}
+  .foot-right{display:flex;align-items:center;gap:18px;flex-shrink:0}
+  .foot-lang b{color:#fff}
+
+  @media (max-width:1100px){
+    .apt-body{grid-template-columns:1fr;gap:32px}
+    .apt-book{position:static}
+    .gallery-grid{height:380px}
+  }
+  @media (max-width:880px){
+    html,body{cursor:auto}.cursor{display:none}
+    .topbar{grid-template-columns:auto 1fr;padding:18px 14px;font-size:13px}
+    .topbar .left{display:none}
+    .topbar .ctr{justify-self:start;font-size:20px}
+    .topbar .right{gap:8px}
+    .topbar .city{display:none}
+    .topbar .burger{display:inline-flex}
+    .crumbs{padding:80px 14px 10px}
+    .gallery{padding:8px 14px 0}
+    .gallery-grid{height:260px;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr;border-radius:12px}
+    .gallery-grid .ph.main{grid-row:1/2;grid-column:1/3}
+    .gallery-grid .ph:nth-child(4),.gallery-grid .ph:nth-child(5){display:none}
+    .apt-head{padding:24px 14px 0;grid-template-columns:1fr;gap:14px}
+    .apt-body{padding:32px 14px 56px;gap:32px}
+    .apt-main{gap:40px}
+    .apt-section h2{font-size:24px}
+    .inside,.amenities,.loc,.guide-picks,.rules,.sim-grid{grid-template-columns:1fr;gap:14px}
+    .apt-book{padding:18px;border-radius:12px}
+    .similar{padding:40px 14px}
+    .sim-grid{grid-template-columns:1fr;gap:12px}
+    .cta-help{padding:48px 14px}
+    footer{padding:24px 14px}
+    .foot-line{flex-direction:column;align-items:flex-start;gap:18px}
+    .foot-left{gap:10px;font-size:9px}
+    .foot-right{font-size:9px}
+  }
+</style>
+</head>
+<body>
+<span id="flyingDot"></span>
+<div class="cursor" id="cursor"></div>
+
+<header class="topbar" id="top">
+  <div class="left">
+    <a class="home-dot" href="/ru/" aria-label="на главную"></a>
+    <a href="/ru/stays">квартиры</a>
+    <a href="/ru/guide">гайд</a>
+    <a href="/ru/own">сдать с нами</a>
+    <a href="/ru/invest">инвесторам</a>
+  </div>
+  <a href="/ru/" class="ctr" title="на главную">bre<span class="d"></span></a>
+  <div class="right">
+    <a href="#" class="city">батуми <span class="arr">▾</span></a>
+    <a href="/stays/orbi-21" class="lang">en</a>
+    <button class="burger" aria-label="menu" type="button"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- CRUMBS -->
+<nav class="crumbs">
+  <a href="/ru/">bre</a>
+  <span class="sep">/</span>
+  <a href="/ru/stays">все квартиры</a>
+  <span class="sep">/</span>
+  <span class="here">orbi sea towers — 21 этаж</span>
+</nav>
+
+<!-- GALLERY -->
+<section class="gallery">
+  <div class="gallery-grid">
+    <div class="ph main"><img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1600&q=80" alt="orbi sea towers — living room"></div>
+    <div class="ph"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80" alt="bedroom"></div>
+    <div class="ph"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt="kitchen"></div>
+    <div class="ph"><img src="https://images.unsplash.com/photo-1551776235-dde6d4829808?w=900&q=80" alt="balcony view"></div>
+    <div class="ph"><img src="https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=900&q=80" alt="bathroom"></div>
+    <button class="gallery-all" onclick="alert('галерея скоро — пока все фото на Airbnb')">↗ все 12 фото</button>
+  </div>
+</section>
+
+<!-- HEAD -->
+<section class="apt-head">
+  <div>
+    <div class="badges">
+      <span class="badge hot"><span class="dot" style="background:#fff"></span>только добавили</span>
+      <span class="badge"><span class="dot"></span>старый бульвар</span>
+      <span class="badge"><span class="dot" style="background:var(--teal)"></span>вид на море</span>
+    </div>
+    <h1 style="margin-top:18px">orbi sea towers — <em>21 этаж</em>.</h1>
+    <div class="meta">
+      <span><b>1</b> спальня</span>
+      <span class="sep">·</span>
+      <span><b>45</b> м²</span>
+      <span class="sep">·</span>
+      <span><b>21</b> этаж</span>
+      <span class="sep">·</span>
+      <span>для <b>2–4</b> гостей</span>
+      <span class="sep">·</span>
+      <span>full <b>вид на море</b></span>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<section class="apt-body">
+  <div class="apt-main">
+
+    <!-- DESCRIPTION -->
+    <div class="apt-section">
+      <span class="label">— про эту квартиру</span>
+      <h2>высокий <em>этаж</em>, длинный <em>балкон</em> и море перед глазами.</h2>
+      <p>A 1-bedroom on the 21st floor of Orbi Sea Towers, with full open вид на море from every window. The bedroom is separate, the bath is marble, the kitchen is small but properly equipped — coffee maker, induction stove, dishwasher. Рабочее место by the window. <b>The balcony is the main reason to book this one</b> — sunsets are nuts.</p>
+      <p>До центрального пляжа 8 минут пешком. До Старого бульвара 12 минут. У здания свой бассейн, спортзал и кофейня внизу. Подходит парам, одиночкам и всем кто ценит тишину на высоте.</p>
+    </div>
+
+    <!-- INSIDE -->
+    <div class="apt-section">
+      <span class="label">— что внутри</span>
+      <h2><em>детали</em>.</h2>
+      <div class="inside">
+        <div class="item">
+          <h5>Кровать</h5>
+          <p>King-size, матрас с эффектом памяти. Льняное постельное которое меняем каждому гостю. Блэкаут-шторы — рассвет над морем не разбудит в 5 утра.</p>
+        </div>
+        <div class="item">
+          <h5>Кухня</h5>
+          <p>Компактная но настоящая — индукция, духовка, посудомойка, холодильник с морозилкой. Запасы того что забывают: оливковое масло, соль, кофе в зёрнах, френч-пресс, два винных бокала.</p>
+        </div>
+        <div class="item">
+          <h5>Балкон</h5>
+          <p>Достаточно длинный для завтрака и вечернего бокала. Два стула и столик. Вид без ничего перекрывающего.</p>
+        </div>
+        <div class="item">
+          <h5>Работа и вайфай</h5>
+          <p>Стол у окна с видом на море. Эргономичное кресло. WiFi 200 Мбит/с, отдельный 5ГГц. Хватает на звонки и 4K-стриминг.</p>
+        </div>
+        <div class="item">
+          <h5>Ванная</h5>
+          <p>Мрамор, душевая без поддона, тропический душ. Горячей воды много. Фен, шампунь и гель Aesop в полноразмерных флаконах.</p>
+        </div>
+        <div class="item">
+          <h5>Дополнительно</h5>
+          <p>Smart TV с Netflix, пляжные полотенца, зонт, утюжок, утюг с доской, тапочки, дополнительное одеяло на холодные ночи.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- AMENITIES -->
+    <div class="apt-section">
+      <span class="label">— список удобств</span>
+      <h2>всё что нужно, <em>ничего</em> лишнего.</h2>
+      <div class="amenities">
+        <div class="am"><span class="ic">✓</span> Вид на море</div>
+        <div class="am"><span class="ic">✓</span> Балкон / Терраса</div>
+        <div class="am"><span class="ic">✓</span> Бассейн (в здании)</div>
+        <div class="am"><span class="ic">✓</span> Спортзал (в здании)</div>
+        <div class="am"><span class="ic">✓</span> Рабочее место</div>
+        <div class="am"><span class="ic">✓</span> WiFi 200 Mbps</div>
+        <div class="am"><span class="ic">✓</span> Smart TV / Netflix</div>
+        <div class="am"><span class="ic">✓</span> Полная кухня</div>
+        <div class="am"><span class="ic">✓</span> Посудомойка</div>
+        <div class="am"><span class="ic">✓</span> Стиральная машина</div>
+        <div class="am"><span class="ic">✓</span> Кондиционер</div>
+        <div class="am"><span class="ic">✓</span> Кофемашина</div>
+        <div class="am"><span class="ic">✓</span> Фен</div>
+        <div class="am"><span class="ic">✓</span> Утюг</div>
+        <div class="am"><span class="ic">✓</span> Лифт</div>
+        <div class="am off"><span class="ic">×</span> Парковка</div>
+        <div class="am off"><span class="ic">×</span> Pets</div>
+        <div class="am off"><span class="ic">×</span> Курение</div>
+      </div>
+    </div>
+
+    <!-- LOCATION -->
+    <div class="apt-section">
+      <span class="label">— расположение</span>
+      <h2>старый <em>бульвар</em>, верхний этаж.</h2>
+      <div class="loc">
+        <div class="loc-map">
+          <svg viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <rect width="400" height="400" fill="#f1ecdf"/>
+            <path d="M0,300 Q100,280 200,290 T400,300 L400,400 L0,400 Z" fill="#cfdde3" opacity="0.6"/>
+            <text x="40" y="380" font-family="JetBrains Mono" font-size="10" fill="#4d544e" letter-spacing="2" text-transform="uppercase">ЧЁРНОЕ МОРЕ</text>
+            <path d="M50,150 L350,150 M50,200 L350,200 M150,80 L150,320 M250,80 L250,320" stroke="#0a09081a" stroke-width="2" fill="none"/>
+            <circle cx="200" cy="180" r="14" fill="#ff5e1a"/>
+            <circle cx="200" cy="180" r="22" fill="none" stroke="#ff5e1a" stroke-width="2" opacity="0.3"/>
+            <text x="200" y="220" font-family="JetBrains Mono" font-size="9" fill="#0a0908" letter-spacing="2" text-anchor="middle" font-weight="700">ORBI 21</text>
+            <text x="280" y="115" font-family="Bricolage Grotesque" font-size="11" fill="#4d544e" font-weight="500">старый бульвар</text>
+          </svg>
+        </div>
+        <div class="loc-info">
+          <p>Прямо над старым городом и бульваром. Квартира на 21 этаже комплекса Orbi Sea Towers — фасадом к морю, в стороне от шумной улицы.</p>
+          <div class="loc-near">
+            <div class="ln"><span class="nm">Центральный пляж</span><span class="ds">— 8 мин пешком</span></div>
+            <div class="ln"><span class="nm">Вход на старый бульвар</span><span class="ds">— 4 мин пешком</span></div>
+            <div class="ln"><span class="nm">Pure Bistro</span><span class="ds">— 6 мин пешком</span></div>
+            <div class="ln"><span class="nm">Nova Coffee</span><span class="ds">— 5 мин пешком</span></div>
+            <div class="ln"><span class="nm">Аэропорт</span><span class="ds">— 12 мин на такси</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GUIDE PICKS -->
+    <div class="apt-section">
+      <span class="label">— рядом</span>
+      <h2>куда мы отправили <em>бы</em>.</h2>
+      <p>Места которые мы бы рекомендовали в пешей доступности от квартиры. Полный список в <a href="/ru/guide" style="color:var(--page);font-weight:600">нашем гайде</a>.</p>
+      <div class="guide-picks">
+        <a class="pick" href="/ru/guide/nova-coffee">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1551782450-a2132b4ba21d?w=600&q=80" alt=""></div>
+          <span class="kicker">кофе · 5 мин пешком</span>
+          <h5>nova coffee — эспрессо за которым возвращаются</h5>
+        </a>
+        <a class="pick" href="/ru/guide/eat-drink">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?w=600&q=80" alt=""></div>
+          <span class="kicker">ресторан · 6 мин пешком</span>
+          <h5>pure bistro — устрицы и маленькие тарелки</h5>
+        </a>
+        <a class="pick" href="/ru/guide/morning-in-old-batumi">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=600&q=80" alt=""></div>
+          <span class="kicker">маршрут · 30 минут</span>
+          <h5>утро в старом батуми — наш маршрут</h5>
+        </a>
+      </div>
+    </div>
+
+    <!-- RULES -->
+    <div class="apt-section">
+      <span class="label">— правила</span>
+      <h2><em>базовое</em>.</h2>
+      <div class="rules">
+        <div class="r"><span class="k">Заезд</span><span class="v">после 15:00</span></div>
+        <div class="r"><span class="k">Выезд</span><span class="v">до 12:00</span></div>
+        <div class="r"><span class="k">Максимум гостей</span><span class="v">4 человека</span></div>
+        <div class="r"><span class="k">Курение</span><span class="v">not inside</span></div>
+        <div class="r"><span class="k">Питомцы</span><span class="v">ask us</span></div>
+        <div class="r"><span class="k">Вечеринки</span><span class="v">нет</span></div>
+        <div class="r"><span class="k">Минимум</span><span class="v">2 ночи</span></div>
+        <div class="r"><span class="k">Отмена</span><span class="v">гибкая · 7д</span></div>
+      </div>
+    </div>
+
+    <!-- FAQ -->
+    <div class="apt-section">
+      <span class="label">— часто спрашивают</span>
+      <h2>вопросы которые <em>могут</em> возникнуть.</h2>
+      <div class="faq">
+        <details>
+          <summary>Как заехать?</summary>
+          <p>Встречаем у здания. Прямые брони: пишем в Telegram, договариваемся о времени. Airbnb/Booking: то же — пишешь нам через платформу после брони. В здании есть консьерж 24/7, но ключи у нас.</p>
+        </details>
+        <details>
+          <summary>Есть ли парковка?</summary>
+          <p>В стоимость не входит. В здании платный подземный паркинг (₾10/день, ~$3.50). Уличная парковка на боковых улицах обычно возможна, но не гарантирована. Можем помочь с трансфером из аэропорта если не хочешь за рулём.</p>
+        </details>
+        <details>
+          <summary>Что рядом с едой и продуктами?</summary>
+          <p>Two supermarkets within 5 minutes (Carrefour and Spar). The full restaurant list is in our <a href="/ru/guide/eat-drink" style="color:var(--page);font-weight:600">eat &amp; drink section</a>. Pure Bistro for oysters, Nova Coffee for mornings, Japan 33 for sunsets.</p>
+        </details>
+        <details>
+          <summary>Можно ли платить частями за долгое проживание?</summary>
+          <p>Да — для проживания свыше 14 ночей делим на 2 платежа. Свыше 30 ночей — помесячно. Банковский перевод или Wise. Крипта тоже подходит. Картой для прямых броней пока нельзя.</p>
+        </details>
+        <details>
+          <summary>Зачем бронировать напрямую вместо Airbnb?</summary>
+          <p>Та же квартира, те же ключи, мы те же. Напрямую = без комиссий платформы → экономишь ~10%. Airbnb = встроенная защита если ты у нас впервые. Оба варианта работают, выбирай что комфортнее.</p>
+        </details>
+        <details>
+          <summary>Что с налогами и сборами?</summary>
+          <p>В Грузии нет туристического налога для краткосрочной аренды. Цена которую видишь — цена которую платишь (плюс уборка за проживание менее 7 ночей — $25 разово).</p>
+        </details>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- BOOKING PANEL -->
+  <aside class="apt-book">
+    <div class="price"><em>от $185</em> <span class="per">/ ночь</span></div>
+    <span class="save">−5% напрямую</span>
+    <form onsubmit="event.preventDefault();const a=this.arrival.value;const d=this.departure.value;const g=this.guests.value;const msg=`привет bre! хочу забронировать orbi sea towers — 21 этаж. даты: ${a} → ${d}. ${g} гост${g==='1'?'ь':(g==='2'||g==='3'||g==='4'?'я':'ей')}.`;window.open(`https://t.me/bre_ge?text=${encodeURIComponent(msg)}`, '_blank');">
+      <div class="row">
+        <div class="field">
+          <label>— заезд</label>
+          <input type="date" name="arrival" required>
+        </div>
+        <div class="field">
+          <label>— выезд</label>
+          <input type="date" name="departure" required>
+        </div>
+      </div>
+      <div class="field">
+        <label>— гости</label>
+        <select name="guests">
+          <option value="1">1 гость</option>
+          <option value="2" selected>2 гостя</option>
+          <option value="3">3 гостя</option>
+          <option value="4">4 гостя</option>
+        </select>
+      </div>
+      <button class="btn-primary" type="submit">↗ Бронь напрямую через Telegram</button>
+    </form>
+    <div class="alt-channels">
+      <span class="alt-label">или через</span>
+      <div class="alts">
+        <a href="https://www.airbnb.com" target="_blank" rel="noopener">↗ Airbnb</a>
+        <a href="https://www.booking.com" target="_blank" rel="noopener">↗ Booking</a>
+        <a href="https://sutochno.ru" target="_blank" rel="noopener">↗ Суточно</a>
+      </div>
+    </div>
+    <p class="note">Прямая бронь = <b>живой человек</b>, без комиссий, быстрая гибкость. Отвечаем в течение часа.</p>
+  </aside>
+</section>
+
+<!-- SIMILAR -->
+<section class="similar">
+  <h3>другие наши <em>квартиры</em>.</h3>
+  <div class="sim-grid">
+    <a class="sim" href="/ru/stays/boulevard-loft">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt=""></div>
+      <div class="body">
+        <h5>старый бульвар loft</h5>
+        <div class="meta">студия · 34 м² · старый город</div>
+        <div class="price">от $95 / ночь</div>
+      </div>
+    </a>
+    <a class="sim" href="/ru/stays/botanical">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80" alt=""></div>
+      <div class="body">
+        <h5>дом у ботанического</h5>
+        <div class="meta">2 спальни · 78 м² · ботанический</div>
+        <div class="price">от $140 / ночь</div>
+      </div>
+    </a>
+    <a class="sim" href="/ru/stays/gonio">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1551776235-dde6d4829808?w=900&q=80" alt=""></div>
+      <div class="body">
+        <h5>гонио кейп</h5>
+        <div class="meta">3 спальни · 110 м² · гонио</div>
+        <div class="price">от $240 / ночь</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-help">
+  <div class="inner">
+    <h3>вопросы <em>до</em> брони?</h3>
+    <p>Мы живые люди, не колл-центр. Telegram — самый быстрый. Пиши о чём угодно: даты, квартира, что взять, как добраться из аэропорта. Отвечаем в течение часа когда не спим.</p>
+    <div class="btns">
+      <a href="https://t.me/bre_ge" class="btn primary">↗ написать в telegram</a>
+      <a href="mailto:hello@bre.ge" class="btn alt">hello@bre.ge</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-line">
+    <div class="foot-left">
+      <span class="foot-copy">© 2026 bre.ge</span>
+      <span class="sep">·</span>
+      <a href="/ru/stays">квартиры</a>
+      <a href="/ru/guide">гайд</a>
+      <a href="/ru/own">сдать</a>
+      <a href="/ru/invest">инвесторам</a>
+      <a href="/ru/about">о нас</a>
+      <a href="/ru/contact">контакты</a>
+      <span class="sep">·</span>
+      <a href="/ru/privacy">политика</a>
+      <a href="/ru/terms">условия</a>
+      <a href="/ru/agents">риелторам</a>
+    </div>
+    <div class="foot-right">
+      <a href="/stays/orbi-21" class="foot-lang"><b>RU</b> · EN</a>
+      <a href="#" class="foot-top" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ наверх</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,cx=mx,cy=my;
+window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+function loop(){cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;if(cursor)cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(loop)}
+loop();
+function clearCursorColors(){cursor.classList.remove('teal','yellow','pink')}
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('big')});
+  el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+});
+document.querySelectorAll('.pick, .sim').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('text');cursor.setAttribute('data-label','read →')});
+  el.addEventListener('mouseleave',()=>{cursor.classList.remove('text');cursor.removeAttribute('data-label')});
+});
+
+// Topbar scroll state
+(function(){
+  const tb = document.querySelector('.topbar');
+  if(!tb) return;
+  function update(){
+    const y = window.scrollY || document.documentElement.scrollTop;
+    if(y > 40) tb.classList.add('scrolled');
+    else tb.classList.remove('scrolled');
+  }
+  window.addEventListener('scroll', update, {passive:true});
+  update();
+})();
+
+// Date inputs: default arrival to today, departure to today+3
+(function(){
+  const arr = document.querySelector('input[name="arrival"]');
+  const dep = document.querySelector('input[name="departure"]');
+  if(!arr||!dep)return;
+  const today = new Date();
+  const fmt = d=>d.toISOString().slice(0,10);
+  arr.min = fmt(today);
+  arr.value = fmt(today);
+  const future = new Date(today.getTime()+3*86400000);
+  dep.min = fmt(new Date(today.getTime()+86400000));
+  dep.value = fmt(future);
+  arr.addEventListener('change',()=>{
+    const a = new Date(arr.value);
+    dep.min = fmt(new Date(a.getTime()+86400000));
+    if(new Date(dep.value)<=a){dep.value=fmt(new Date(a.getTime()+86400000))}
+  });
+})();
+
+// HOME DOT
+(function(){
+  if(window.innerWidth < 880) return;
+  const centerLogo = document.querySelector('.topbar .ctr');
+  const centerDotEl = centerLogo && centerLogo.querySelector('.d');
+  const leftDot = document.querySelector('.home-dot');
+  const flyingDot = document.getElementById('flyingDot');
+  if(!centerLogo||!centerDotEl||!leftDot||!flyingDot)return;
+  const KEY='bre_dot_flight_seen';
+  let hasSeenFlight=false;
+  try{hasSeenFlight=sessionStorage.getItem(KEY)==='yes'}catch(e){}
+  let state='top',flying=false;
+  function doFlight(){
+    const centerRect=centerDotEl.getBoundingClientRect();
+    const startX=centerRect.left+centerRect.width/2,startY=centerRect.top+centerRect.height/2;
+    leftDot.classList.add('expanded');
+    setTimeout(()=>{
+      const leftRect=leftDot.getBoundingClientRect();
+      const endX=leftRect.left+leftRect.width/2,endY=leftRect.top+leftRect.height/2;
+      flyingDot.style.transition='none';
+      flyingDot.style.transform='translate('+(startX-7)+'px,'+(startY-7)+'px) scale(0.71)';
+      flyingDot.style.opacity='1';
+      centerDotEl.classList.add('hidden');
+      flyingDot.getBoundingClientRect();
+      flyingDot.style.transition='transform .85s cubic-bezier(.5,0,.2,1)';
+      flyingDot.style.transform='translate('+(endX-7)+'px,'+(endY-7)+'px) scale(1)';
+      setTimeout(()=>{
+        leftDot.classList.add('visible','pulsing');
+        flyingDot.style.transition='none';
+        flyingDot.style.opacity='0';
+        flying=false;state='scrolled';
+        try{sessionStorage.setItem(KEY,'yes')}catch(e){}
+        hasSeenFlight=true;
+      },860);
+    },360);
+  }
+  function doFade(direction){
+    if(direction==='out'){
+      centerDotEl.classList.add('hidden');
+      leftDot.classList.add('expanded');
+      setTimeout(()=>leftDot.classList.add('visible','pulsing'),180);
+      state='scrolled';
+    } else {
+      leftDot.classList.remove('visible','pulsing');
+      setTimeout(()=>{leftDot.classList.remove('expanded');centerDotEl.classList.remove('hidden')},200);
+      state='top';
+    }
+  }
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY||document.documentElement.scrollTop;
+    if(flying)return;
+    if(y>60&&state==='top'){
+      if(!hasSeenFlight){flying=true;state='flying';doFlight()}
+      else{doFade('out')}
+    } else if(y<=60&&state==='scrolled'){doFade('in')}
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
