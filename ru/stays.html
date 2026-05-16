@@ -1065,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const PEAK = new Set();
   for(let i=0; i<90; i++){
     const d = new Date(today); d.setDate(d.getDate()+i);
-    const key = d.toISOString().slice(0,10);
+    const key = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
     const r = Math.sin(i*1.7)*100;
     if(r > 50) BOOKED.add(key);
     else if(r > 0 || (d.getDay() === 5 || d.getDay() === 6)) PEAK.add(key);
@@ -1075,7 +1075,7 @@ document.addEventListener('DOMContentLoaded', function(){
   let startDate = null, endDate = null, mode = 'start';
   const monthNames = ['январь', 'февраль', 'март', 'апрель', 'май', 'июнь', 'июль', 'август', 'сентябрь', 'октябрь', 'ноябрь', 'декабрь'];
   const weekDays = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-  function fmtKey(d){return d.toISOString().slice(0,10)}
+  function fmtKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
   function fmtPretty(d){
     if(!d)return null;
     return `${d.getDate().toString().padStart(2,'0')} ${monthNames[d.getMonth()].slice(0,3).toLowerCase()}`;
