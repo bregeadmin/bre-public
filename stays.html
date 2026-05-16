@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>all apartments — bre [v23]</title>
+<title>all apartments — bre [v25]</title>
 <meta name="description" content="all apartments managed by bre in batumi. honestly photographed, fairly priced, hand-picked.">
 <link rel="alternate" hreflang="en" href="https://bre.ge/stays">
 <link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays">
@@ -1115,7 +1115,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const ny = viewMonth + 1 > 11 ? viewYear + 1 : viewYear;
     calMonths.innerHTML = renderMonth(viewYear, viewMonth) + renderMonth(ny, nm);
     calMonths.querySelectorAll('.cal-day:not(.past):not(.booked):not(.empty)').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
+      btn.addEventListener('click', (ev)=>{
+        ev.stopPropagation();
         const [yy,mm,dd] = btn.dataset.date.split('-').map(Number); const d = new Date(yy, mm-1, dd);
         if(mode === 'start' || (startDate && d <= startDate)){
           startDate = d; endDate = null; mode = 'end';
@@ -1168,8 +1169,8 @@ document.addEventListener('DOMContentLoaded', function(){
     dateField.classList.remove('active');
   }
   dateField.addEventListener('click', e=>{ e.stopPropagation(); calPop.hidden ? openCal() : closeCal(); });
-  calPrev.addEventListener('click', ()=>{ viewMonth--; if(viewMonth<0){viewMonth=11;viewYear--} render(); });
-  calNext.addEventListener('click', ()=>{ viewMonth++; if(viewMonth>11){viewMonth=0;viewYear++} render(); });
+  calPrev.addEventListener('click', (ev)=>{ev.stopPropagation(); viewMonth--; if(viewMonth<0){viewMonth=11;viewYear--} render(); });
+  calNext.addEventListener('click', (ev)=>{ev.stopPropagation(); viewMonth++; if(viewMonth>11){viewMonth=0;viewYear++} render(); });
   const calApply = document.getElementById('calApply');
   if(calApply) calApply.addEventListener('click', ()=>closeCal());
 

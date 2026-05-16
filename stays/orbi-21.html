@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>orbi sea towers — 21st floor · bre [v23]</title>
+<title>orbi sea towers — 21st floor · bre [v25]</title>
 <meta name="description" content="A high-floor 1-bed with full sea view, marble bath and a balcony for the sunset. 45m², walking distance to the beach. Book direct or via Airbnb / Booking.">
 <link rel="alternate" hreflang="en" href="https://bre.ge/stays/orbi-21">
 <link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays/orbi-21">
@@ -241,19 +241,12 @@
   }
   /* BOOKING FORM (new compact) */
   .book-form{display:flex;flex-direction:column;gap:8px;margin-top:20px}
-  .date-trigger,.guest-trigger{display:flex;align-items:stretch;background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:0;cursor:none;font-family:"Bricolage Grotesque",sans-serif;text-align:left;width:100%;overflow:hidden;transition:border-color .2s ease}
+  .date-trigger,.guest-trigger{display:flex;flex-direction:column;gap:3px;align-items:flex-start;background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:12px 14px;cursor:none;font-family:"Bricolage Grotesque",sans-serif;text-align:left;width:100%;transition:border-color .2s ease}
   .date-trigger:hover,.guest-trigger:hover{border-color:var(--ink)}
   .date-trigger.active,.guest-trigger.active{border-color:var(--page)}
-  .date-trigger{justify-content:space-between;gap:0}
-  .date-trigger .dt-side{flex:1;display:flex;flex-direction:column;gap:3px;padding:12px 14px;min-width:0}
-  .date-trigger .dt-side:first-child{border-right:1px solid var(--line)}
-  .date-trigger .dt-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
-  .date-trigger .dt-val{font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .date-trigger .dt-label,.guest-trigger .gt-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .date-trigger .dt-val,.guest-trigger .gt-val{font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
   .date-trigger .dt-val.empty{color:var(--ink-soft);font-weight:500}
-  .date-trigger .dt-arrow{display:flex;align-items:center;justify-content:center;padding:0 12px;color:var(--ink-soft);font-size:14px}
-  .guest-trigger{flex-direction:column;gap:3px;padding:12px 14px}
-  .guest-trigger .gt-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
-  .guest-trigger .gt-val{font-weight:600;font-size:14px;color:var(--ink);text-align:left}
 
   /* CALENDAR POPUP */
   .cal-pop{position:fixed;z-index:200;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(10,9,8,0.18);padding:24px;width:680px;max-width:calc(100vw - 28px);font-family:"Bricolage Grotesque",sans-serif}
@@ -309,6 +302,9 @@
   /* LIGHTBOX */
   .lightbox[hidden],.lightbox-single[hidden],.cal-pop[hidden],.guest-pop[hidden]{display:none !important}
   .lightbox{position:fixed;inset:0;z-index:300;background:rgba(10,9,8,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);animation:lbFadeIn .25s ease;display:flex;flex-direction:column}
+  body.lb-open .cursor{mix-blend-mode:normal;background:#fff}
+  body.lb-open .cursor.big{background:var(--accent)}
+  body.lb-open .cursor.text{background:var(--accent)}
   @keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
   .lightbox .lb-head{flex:none;display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:rgba(10,9,8,0.4);backdrop-filter:blur(20px)}
   .lightbox .lb-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;font-weight:600;display:flex;align-items:center;gap:10px}
@@ -592,15 +588,8 @@
     <span class="save">5% off direct</span>
     <div class="book-form">
       <button class="date-trigger" id="dateTrigger" type="button">
-        <span class="dt-side">
-          <span class="dt-label">— arrival</span>
-          <span class="dt-val" id="dtArrival">pick date</span>
-        </span>
-        <span class="dt-arrow">→</span>
-        <span class="dt-side">
-          <span class="dt-label">— departure</span>
-          <span class="dt-val" id="dtDeparture">pick date</span>
-        </span>
+        <span class="dt-label">— check in | check out</span>
+        <span class="dt-val empty" id="dateVal">add dates</span>
       </button>
       <button class="guest-trigger" id="guestTrigger" type="button">
         <span class="gt-label">— guests</span>
@@ -926,8 +915,7 @@ const PHOTOS = [
   const calPrev = document.getElementById('calPrev');
   const calNext = document.getElementById('calNext');
   const calNight = document.getElementById('calNight');
-  const dtArrival = document.getElementById('dtArrival');
-  const dtDeparture = document.getElementById('dtDeparture');
+  const dateVal = document.getElementById('dateVal');
   if(!trigger||!pop)return;
 
   // MOCK booked/peak dates — in production, these come from iCal sync
@@ -997,18 +985,16 @@ const PHOTOS = [
     calMonths.innerHTML = renderMonth(viewYear, viewMonth) + renderMonth(nextYear, nm);
     // attach click
     calMonths.querySelectorAll('.cal-day:not(.past):not(.booked):not(.empty)').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
+      btn.addEventListener('click', (ev)=>{
+        ev.stopPropagation();
         const [yy,mm,dd] = btn.dataset.date.split('-').map(Number); const d = new Date(yy, mm-1, dd);
-        console.log('[CAL] click', btn.dataset.date, '→ parsed:', d.toDateString(), 'mode:', mode, 'startDate:', startDate?.toDateString());
         if(mode === 'start' || (startDate && d <= startDate)){
           startDate = d;
           endDate = null;
           mode = 'end';
-          console.log('[CAL] set startDate:', d.toDateString(), 'mode now: end');
         } else {
           endDate = d;
           mode = 'start';
-          console.log('[CAL] set endDate:', d.toDateString(), 'mode now: start');
         }
         updateLabels();
         render();
@@ -1017,10 +1003,16 @@ const PHOTOS = [
   }
 
   function updateLabels(){
-    dtArrival.textContent = startDate ? fmtPretty(startDate) : 'pick date';
-    dtArrival.classList.toggle('empty', !startDate);
-    dtDeparture.textContent = endDate ? fmtPretty(endDate) : 'pick date';
-    dtDeparture.classList.toggle('empty', !endDate);
+    if(startDate && endDate){
+      dateVal.textContent = `${fmtPretty(startDate)} → ${fmtPretty(endDate)}`;
+      dateVal.classList.remove('empty');
+    } else if(startDate){
+      dateVal.textContent = `${fmtPretty(startDate)} → ...`;
+      dateVal.classList.remove('empty');
+    } else {
+      dateVal.textContent = 'add dates';
+      dateVal.classList.add('empty');
+    }
     if(startDate && endDate){
       const nights = Math.round((endDate - startDate) / 86400000);
       calNight.textContent = `✓ ${nights} night${nights===1?'':'s'} · $${nights*185}`;
@@ -1051,12 +1043,12 @@ const PHOTOS = [
     e.stopPropagation();
     if(pop.hidden) openPop(); else closePop();
   });
-  calPrev.addEventListener('click', ()=>{
+  calPrev.addEventListener('click', (ev)=>{ev.stopPropagation();
     viewMonth--;
     if(viewMonth < 0){viewMonth=11; viewYear--}
     render();
   });
-  calNext.addEventListener('click', ()=>{
+  calNext.addEventListener('click', (ev)=>{ev.stopPropagation();
     viewMonth++;
     if(viewMonth > 11){viewMonth=0; viewYear++}
     render();
