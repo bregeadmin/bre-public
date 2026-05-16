@@ -284,6 +284,8 @@
   .cal-leg .ll.yellow{background:#FFF0B8}
   .cal-leg .ll.coral{background:#FFCFC2}
   .cal-leg-night{margin-left:auto;color:var(--ink);font-weight:700}
+  .cal-apply{padding:9px 18px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:none;transition:background .2s ease;flex-shrink:0;margin-left:14px}
+  .cal-apply:hover{background:var(--accent)}
 
   /* GUEST POPUP — brand-styled */
   .guest-pop{position:fixed;z-index:200;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(10,9,8,0.18);padding:22px;width:360px;max-width:calc(100vw - 28px);display:flex;flex-direction:column;gap:0;font-family:"Bricolage Grotesque",sans-serif}
@@ -306,26 +308,26 @@
 
   /* LIGHTBOX */
   .lightbox[hidden],.lightbox-single[hidden],.cal-pop[hidden],.guest-pop[hidden]{display:none !important}
-  .lightbox{position:fixed;inset:0;z-index:300;background:rgba(10,9,8,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow-y:auto;animation:lbFadeIn .25s ease}
+  .lightbox{position:fixed;inset:0;z-index:300;background:rgba(10,9,8,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);animation:lbFadeIn .25s ease;display:flex;flex-direction:column}
   @keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
-  .lightbox .lb-head{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;background:rgba(10,9,8,0.6);backdrop-filter:blur(20px)}
+  .lightbox .lb-head{flex:none;display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:rgba(10,9,8,0.4);backdrop-filter:blur(20px)}
   .lightbox .lb-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;font-weight:600;display:flex;align-items:center;gap:10px}
   .lightbox .lb-title::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);display:inline-block}
   .lightbox .lb-close{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:20px;font-weight:300;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:"Bricolage Grotesque",sans-serif}
   .lightbox .lb-close:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(90deg)}
-  .lightbox .lb-body{padding:32px;max-width:1400px;margin:0 auto}
-  .lightbox .lb-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .lightbox .lb-body{flex:1;min-height:0;overflow-y:auto;padding:20px 28px 28px;max-width:1400px;margin:0 auto;width:100%}
+  .lightbox .lb-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px}
   .lightbox .lb-cell{aspect-ratio:1;overflow:hidden;background:#1a1815;border-radius:8px;cursor:none}
   .lightbox .lb-cell img{width:100%;height:100%;object-fit:cover;transition:transform .4s ease}
   .lightbox .lb-cell:hover img{transform:scale(1.04)}
 
   .lightbox-single{position:fixed;inset:0;z-index:310;background:rgba(10,9,8,0.96);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);display:flex;flex-direction:column;animation:lbFadeIn .2s ease}
-  .lightbox-single .lb-head{display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:20px 32px;gap:14px}
+  .lightbox-single .lb-head{flex:none;display:grid;grid-template-columns:auto 1fr auto;align-items:center;padding:18px 28px;gap:14px}
   .lightbox-single .lb-back{width:36px;height:36px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:18px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease}
   .lightbox-single .lb-back:hover{background:var(--accent);border-color:var(--accent)}
   .lightbox-single .lb-counter{text-align:center;color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;font-weight:600;text-transform:uppercase}
-  .lightbox-single .lb-single-body{flex:1;display:flex;align-items:center;justify-content:center;padding:0 80px 32px;position:relative}
-  .lightbox-single img{max-width:100%;max-height:100%;object-fit:contain;border-radius:8px}
+  .lightbox-single .lb-single-body{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 80px 24px;position:relative}
+  .lightbox-single img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:8px;display:block}
   .lightbox-single .lb-prev,.lightbox-single .lb-next{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:22px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:"Bricolage Grotesque",sans-serif}
   .lightbox-single .lb-prev{left:14px}
   .lightbox-single .lb-next{right:14px}
@@ -696,6 +698,7 @@
     <span class="cal-leg"><span class="ll yellow"></span>$$ peak</span>
     <span class="cal-leg"><span class="ll coral"></span>$$$ booked</span>
     <span class="cal-leg-night" id="calNight">— pick dates</span>
+    <button class="cal-apply" id="calApply" type="button">done →</button>
   </div>
 </div>
 

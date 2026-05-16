@@ -344,6 +344,8 @@
   .cal-leg .ll.yellow{background:#FFF0B8}
   .cal-leg .ll.coral{background:#FFCFC2}
   .cal-leg-night{margin-left:auto;color:var(--ink);font-weight:700}
+  .cal-apply{padding:9px 18px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:none;transition:background .2s ease;flex-shrink:0;margin-left:14px}
+  .cal-apply:hover{background:var(--accent)}
 
   /* GUEST POPUP (shared) */
   .guest-pop{position:fixed;z-index:200;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(10,9,8,0.18);padding:22px;width:360px;max-width:calc(100vw - 28px);display:flex;flex-direction:column;gap:0;font-family:"Bricolage Grotesque",sans-serif}
@@ -1127,7 +1129,6 @@
           endDate = d; mode = 'start';
         }
         updateLabels(); render();
-        if(startDate && endDate){ setTimeout(()=>closeCal(), 400); }
       });
     });
   }
@@ -1177,6 +1178,8 @@
   depField.addEventListener('click', e=>{ e.stopPropagation(); calPop.hidden ? openCal('departure') : closeCal(); });
   calPrev.addEventListener('click', ()=>{ viewMonth--; if(viewMonth<0){viewMonth=11;viewYear--} render(); });
   calNext.addEventListener('click', ()=>{ viewMonth++; if(viewMonth>11){viewMonth=0;viewYear++} render(); });
+  const calApply = document.getElementById('calApply');
+  if(calApply) calApply.addEventListener('click', ()=>closeCal());
 
   // ===== GUESTS =====
   const guestState = {adults: 2, children: 0, infants: 0};
@@ -1252,6 +1255,7 @@
     <span class="cal-leg"><span class="ll yellow"></span>$$ peak</span>
     <span class="cal-leg"><span class="ll coral"></span>$$$ booked</span>
     <span class="cal-leg-night" id="calNight">— pick dates</span>
+    <button class="cal-apply" id="calApply" type="button">done →</button>
   </div>
 </div>
 
