@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Все квартиры — bre</title>
-<meta name="description" content="Все квартиры в управлении bre в Батуми. Честные фото, честные цены, отобрано вручную. Студии, лофты, семейные дома, башни с видом на море — по всему городу.">
+<meta name="description" content="Все квартиры в управлении bre в Батуми. Честные фото, честные цены, отобрано вручную.">
 <link rel="alternate" hreflang="en" href="https://bre.ge/stays">
 <link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,7 +38,7 @@
   @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
 
   /* TOPBAR */
-  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:24px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:18px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;height:72px}
   .topbar .left{display:flex;gap:28px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
   .topbar .left a:hover,.topbar .left a.active{color:var(--page)}
   .topbar .ctr{justify-self:center;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1}
@@ -66,159 +66,149 @@
   .menu-overlay .menu-row-val:hover{color:var(--page)}
   .menu-overlay .menu-tg{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--page)}
 
-  /* META TOP */
-  .meta-top{padding:96px 28px 16px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;border-bottom:1px solid var(--line)}
-  .meta-top .crumbs{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
-  .meta-top .crumbs a:hover{color:var(--ink)}
-  .meta-top .crumbs .sep{opacity:.4}
-  .meta-top .crumbs .cur{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px}
-  .meta-top .crumbs .cur .dot{width:6px;height:6px;border-radius:50%;background:var(--page)}
-  .meta-top .actions{display:flex;gap:14px}
-  .meta-top .actions a:hover{color:var(--page)}
+  /* SUB-HEADER — sticky search bar */
+  .subhead{position:sticky;top:72px;z-index:40;background:var(--bg);border-bottom:1px solid var(--line);padding:14px 28px}
+  .subhead .row{max-width:1500px;margin:0 auto;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:18px}
+  .subhead .crumbs{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;align-items:center;gap:8px}
+  .subhead .crumbs a:hover{color:var(--ink)}
+  .subhead .crumbs .sep{opacity:.4}
+  .subhead .crumbs .cur{color:var(--ink);font-weight:600}
 
-  /* HEAD */
-  .head{padding:48px 28px 32px}
-  .head .inner{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
-  .head h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(48px,7vw,108px);line-height:.9;letter-spacing:-.04em;}
-  .head h1 em{font-style:italic;color:var(--page)}
-  .head .count{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;padding-bottom:14px}
-  .head .count b{color:var(--ink)}
-
-  /* SEARCH BAR */
-  .searchbar-wrap{padding:0 28px 24px}
-  .searchbar{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;align-items:stretch;gap:0;background:var(--paper);border:1px solid var(--line-strong);border-radius:14px;overflow:hidden}
-  .searchbar .field{padding:14px 18px;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--line);transition:background .2s ease;cursor:pointer}
+  .searchbar{display:grid;grid-template-columns:1.2fr 1.4fr 1fr auto;align-items:stretch;gap:0;background:var(--paper);border:1px solid var(--line-strong);border-radius:999px;overflow:hidden;max-width:760px;margin:0 auto;width:100%}
+  .searchbar .field{padding:9px 18px;display:flex;flex-direction:column;gap:2px;border-right:1px solid var(--line);transition:background .2s ease;cursor:pointer;min-width:0}
   .searchbar .field:hover{background:#fff}
   .searchbar .field .lbl{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
-  .searchbar .field input,.searchbar .field select{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:15px;border:0;background:transparent;outline:0;padding:0;color:var(--ink);width:100%;cursor:pointer}
-  .searchbar .submit{display:flex;align-items:center;justify-content:center;padding:0 28px;background:var(--ink);color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;transition:background .2s ease;border:0;cursor:pointer}
+  .searchbar .field input,.searchbar .field select{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:13.5px;border:0;background:transparent;outline:0;padding:0;color:var(--ink);width:100%;cursor:pointer;text-overflow:ellipsis}
+  .searchbar .submit{display:flex;align-items:center;justify-content:center;width:48px;height:48px;background:var(--ink);color:#fff;border:0;cursor:pointer;border-radius:50%;margin:3px;transition:background .2s ease;flex:none}
   .searchbar .submit:hover{background:var(--page)}
+  .searchbar .submit svg{width:18px;height:18px}
 
-  /* TOOLBAR — view toggle + sort */
-  .toolbar-wrap{padding:0 28px 16px;border-bottom:1px solid var(--line)}
-  .toolbar{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
-  .toolbar .left,.toolbar .right{display:flex;align-items:center;gap:10px}
-  .toolbar .chips{display:flex;gap:8px;flex-wrap:wrap}
-  .toolbar .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid var(--line-strong);border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;background:transparent;color:var(--ink);transition:all .2s ease;cursor:pointer}
-  .toolbar .chip:hover,.toolbar .chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .toolbar .chip .x{opacity:.5;margin-left:2px}
-  .toolbar .sort{display:inline-flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
-  .toolbar .sort select{font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--ink);font-weight:700;border:0;background:transparent;outline:0;cursor:pointer}
-  .toolbar .view-toggle{display:inline-flex;border:1px solid var(--line-strong);border-radius:999px;padding:3px;background:var(--paper)}
-  .toolbar .view-toggle button{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;border:0;background:transparent;color:var(--ink-soft);padding:7px 14px;border-radius:999px;cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;gap:6px}
-  .toolbar .view-toggle button.active{background:var(--ink);color:#fff}
-  .toolbar .view-toggle button:hover:not(.active){color:var(--ink)}
+  .subhead .controls{display:flex;align-items:center;gap:10px;justify-self:end}
+  .subhead .filter-btn{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid var(--line-strong);border-radius:999px;background:transparent;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:pointer;color:var(--ink);transition:all .2s ease;white-space:nowrap}
+  .subhead .filter-btn:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .subhead .view-toggle{display:none;border:1px solid var(--line-strong);border-radius:999px;padding:3px;background:var(--paper)}
+  .subhead .view-toggle button{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;border:0;background:transparent;color:var(--ink-soft);padding:6px 12px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:5px}
+  .subhead .view-toggle button.active{background:var(--ink);color:#fff}
 
-  /* LAYOUT — sidebar + content */
-  .layout{padding:32px 28px 64px}
-  .layout .container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:240px 1fr;gap:32px;align-items:start}
+  /* MAIN SPLIT — cards left, map right (Numa-style) */
+  .split{padding-top:148px}
+  .split .container{display:grid;grid-template-columns:1fr 480px;min-height:calc(100vh - 148px)}
+  .split .left{padding:24px 28px 64px;min-width:0}
+  .split .right{position:sticky;top:148px;height:calc(100vh - 148px);border-left:1px solid var(--line);overflow:hidden}
 
-  /* SIDEBAR — filters */
-  .filters{position:sticky;top:96px;display:flex;flex-direction:column;gap:24px;padding:24px;background:var(--paper);border:1px solid var(--line);border-radius:14px}
-  .filters .group{display:flex;flex-direction:column;gap:10px}
-  .filters .group h5{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
-  .filters .opts{display:flex;flex-wrap:wrap;gap:6px}
-  .filters .opts .opt{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;padding:5px 10px;border:1px solid var(--line-strong);border-radius:6px;color:var(--ink);background:transparent;cursor:pointer;transition:all .2s ease}
-  .filters .opts .opt:hover,.filters .opts .opt.on{background:var(--ink);color:#fff;border-color:var(--ink)}
-  .filters .price-range{display:flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink);font-weight:600}
-  .filters .price-range input{flex:1;padding:6px 8px;border:1px solid var(--line-strong);border-radius:6px;font:inherit;outline:0;background:#fff}
-  .filters .price-range input:focus{border-color:var(--page)}
-  .filters .checks{display:flex;flex-direction:column;gap:7px}
-  .filters .checks label{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink);cursor:pointer}
-  .filters .checks label input{accent-color:var(--page);width:14px;height:14px;cursor:pointer}
-  .filters .clear{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--page);font-weight:700;background:transparent;border:0;padding:0;text-align:left;cursor:pointer}
-  .filters .clear:hover{text-decoration:underline}
+  /* HEAD inside left */
+  .left-head{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:14px;margin-bottom:18px}
+  .left-head h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,3.5vw,48px);line-height:.95;letter-spacing:-.035em;}
+  .left-head h1 em{font-style:italic;color:var(--page)}
+  .left-head .count{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .left-head .count b{color:var(--ink)}
 
-  /* CARDS GRID */
-  .grid-view .apts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
-  .apt{display:flex;flex-direction:column;text-decoration:none;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
-  .apt:hover{transform:translateY(-3px)}
-  .apt .ph{position:relative;aspect-ratio:5/4;border-radius:10px;overflow:hidden;background:var(--bg-2)}
+  /* CARDS — horizontal layout */
+  .apts{display:flex;flex-direction:column;gap:16px}
+  .apt{display:grid;grid-template-columns:280px 1fr;background:var(--paper);border:1px solid var(--line);border-radius:14px;overflow:hidden;text-decoration:none;transition:border-color .25s ease,transform .25s ease}
+  .apt:hover,.apt.active{border-color:var(--page);transform:translateY(-2px)}
+  .apt .ph{position:relative;aspect-ratio:5/4;overflow:hidden;background:var(--bg-2)}
   .apt .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
-  .apt:hover .ph img{transform:scale(1.05)}
+  .apt:hover .ph img{transform:scale(1.06)}
   .apt .ph .badge{position:absolute;top:12px;left:12px;padding:5px 10px;background:#fff;color:var(--ink);font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;border-radius:999px}
   .apt .ph .badge.hot{background:var(--page);color:#fff}
   .apt .ph .fav{position:absolute;top:12px;right:12px;width:32px;height:32px;border:0;background:#ffffff80;backdrop-filter:blur(6px);border-radius:50%;font-size:14px;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s ease}
   .apt .ph .fav:hover{background:#fff;color:var(--page)}
-  .apt .info{padding:14px 4px 0;display:grid;gap:6px}
-  .apt .info .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
-  .apt .info h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;letter-spacing:-.025em;line-height:1.15;}
-  .apt .info .price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;white-space:nowrap;color:var(--accent-deep)}
-  .apt .info .price .u{font-size:10px;font-weight:500;font-family:"JetBrains Mono",monospace;letter-spacing:.15em;color:var(--ink-soft);margin-left:2px}
-  .apt .info .sub{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
-  .apt .info .dist{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:5px}
-  .apt .info .dist::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--page)}
+  .apt .info{padding:18px 22px;display:flex;flex-direction:column;gap:10px;justify-content:space-between;min-width:0}
+  .apt .info h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.025em;line-height:1.15;}
+  .apt .info .desc{font-size:13.5px;line-height:1.5;color:var(--ink-soft)}
+  .apt .info .desc b{color:var(--ink);font-weight:600}
+  .apt .info .specs{display:flex;flex-wrap:wrap;gap:8px 14px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;padding-top:10px;border-top:1px solid var(--line)}
+  .apt .info .price-row{display:flex;justify-content:space-between;align-items:flex-end;gap:14px;padding-top:6px}
+  .apt .info .price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:22px;letter-spacing:-.02em;color:var(--ink);white-space:nowrap;display:inline-flex;align-items:baseline;gap:6px}
+  .apt .info .price .u{font-size:11px;font-weight:500;font-family:"JetBrains Mono",monospace;letter-spacing:.15em;color:var(--ink-soft)}
+  .apt .info .price .from{font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .apt .info .cta{display:inline-flex;align-items:center;gap:6px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--page);white-space:nowrap}
 
-  /* MAP VIEW — split: map left, scroll cards right */
-  .map-view{display:none;grid-template-columns:1.2fr 1fr;gap:18px;height:calc(100vh - 230px);min-height:600px}
-  .map-view.active{display:grid}
-  .map-pane{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg-2)}
+  /* MAP — right pane */
+  .map-pane{position:relative;width:100%;height:100%;background:var(--bg-2);overflow:hidden}
   .map-pane .map-stage{position:absolute;inset:0;background:linear-gradient(135deg,#e8efe7 0%,#dde7e0 40%,#c9d9cc 100%)}
-  .map-pane svg{position:absolute;inset:0;width:100%;height:100%}
-  .map-pane .map-label{position:absolute;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:#5a6e5a;pointer-events:none}
-  .map-pane .sea-label{position:absolute;font-family:"Bricolage Grotesque",sans-serif;font-style:italic;font-size:18px;color:#5a9bc5;pointer-events:none;font-weight:400}
-  .map-pane .pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;z-index:5}
-  .map-pane .pin .marker{display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--ink);color:#fff;border-radius:50%;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.05em;box-shadow:0 4px 10px rgba(0,0,0,.18);transition:all .25s ease}
-  .map-pane .pin:hover .marker,.map-pane .pin.active .marker{background:var(--page);transform:scale(1.15);box-shadow:0 6px 16px rgba(255,94,26,.35)}
-  .map-pane .pin .price-tip{position:absolute;top:-32px;left:50%;transform:translateX(-50%);background:#fff;color:var(--ink);padding:4px 9px;border-radius:999px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease;border:1px solid var(--line-strong)}
-  .map-pane .pin:hover .price-tip,.map-pane .pin.active .price-tip{opacity:1}
-  .map-pane .legend{position:absolute;left:14px;bottom:14px;display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:#ffffffcc;backdrop-filter:blur(8px);border-radius:10px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);font-weight:500}
-  .map-pane .legend .lg{display:flex;align-items:center;gap:8px}
-  .map-pane .legend .lg .dot{width:10px;height:10px;border-radius:50%;background:var(--ink)}
+  .map-pane svg.bg{position:absolute;inset:0;width:100%;height:100%}
+  .map-pane .sea-label{position:absolute;font-family:"Bricolage Grotesque",sans-serif;font-style:italic;font-size:16px;color:#5a9bc5;pointer-events:none;font-weight:400}
+  .map-pane .pin{position:absolute;transform:translate(-50%,-50%);cursor:pointer;z-index:5}
+  .map-pane .pin .price-marker{display:inline-flex;align-items:center;gap:4px;padding:7px 13px;background:#fff;color:var(--ink);border-radius:999px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:13px;white-space:nowrap;border:1.5px solid var(--ink);box-shadow:0 3px 8px rgba(0,0,0,.12);transition:all .25s ease}
+  .map-pane .pin:hover .price-marker,.map-pane .pin.active .price-marker{background:var(--page);color:#fff;border-color:var(--page);transform:scale(1.1);box-shadow:0 6px 16px rgba(255,94,26,.35);z-index:10}
   .map-pane .upgrade-note{position:absolute;right:14px;top:14px;padding:6px 11px;background:#ffffffcc;backdrop-filter:blur(8px);border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
 
-  .map-cards{overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding-right:6px}
-  .map-cards .apt{flex-direction:row;align-items:stretch;gap:14px;padding:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);transition:border-color .2s ease}
-  .map-cards .apt:hover,.map-cards .apt.active{border-color:var(--page);transform:none}
-  .map-cards .apt .ph{flex:none;width:170px;aspect-ratio:auto;border-radius:0}
-  .map-cards .apt .info{padding:14px 14px 14px 0;flex:1;align-self:center}
-
-  /* NEAR FUTURE NOTE */
-  .future-note{margin:64px auto 0;max-width:680px;padding:28px;background:var(--paper);border:1px dashed var(--line-strong);border-radius:14px;text-align:center;display:flex;flex-direction:column;gap:10px}
-  .future-note h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;}
-  .future-note h4 em{font-style:italic;color:var(--page)}
-  .future-note p{font-size:14px;line-height:1.6;color:var(--ink-soft)}
+  /* FILTERS DRAWER */
+  .drawer{position:fixed;top:0;right:0;height:100vh;width:380px;max-width:90vw;background:var(--bg);z-index:100;transform:translateX(100%);transition:transform .3s cubic-bezier(.2,.7,.2,1);display:flex;flex-direction:column;border-left:1px solid var(--line-strong);box-shadow:-20px 0 60px rgba(0,0,0,.15)}
+  .drawer.open{transform:translateX(0)}
+  .drawer .dhead{padding:20px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+  .drawer .dhead h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;letter-spacing:-.025em;}
+  .drawer .dhead .close{width:32px;height:32px;border:1px solid var(--line-strong);border-radius:50%;background:transparent;cursor:pointer;font-size:14px;display:flex;align-items:center;justify-content:center}
+  .drawer .dhead .close:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .drawer .dbody{flex:1;overflow-y:auto;padding:24px;display:flex;flex-direction:column;gap:24px}
+  .drawer .group{display:flex;flex-direction:column;gap:10px}
+  .drawer .group h5{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+  .drawer .opts{display:flex;flex-wrap:wrap;gap:6px}
+  .drawer .opts .opt{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;padding:7px 12px;border:1px solid var(--line-strong);border-radius:999px;color:var(--ink);background:transparent;cursor:pointer;transition:all .2s ease}
+  .drawer .opts .opt:hover,.drawer .opts .opt.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .drawer .price-range{display:flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink);font-weight:600}
+  .drawer .price-range input{flex:1;padding:9px 12px;border:1px solid var(--line-strong);border-radius:8px;font:inherit;outline:0;background:#fff}
+  .drawer .price-range input:focus{border-color:var(--page)}
+  .drawer .checks{display:flex;flex-direction:column;gap:9px}
+  .drawer .checks label{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--ink);cursor:pointer}
+  .drawer .checks label input{accent-color:var(--page);width:15px;height:15px;cursor:pointer}
+  .drawer .dfoot{padding:18px 24px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center;justify-content:space-between}
+  .drawer .dfoot .clear{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--page);background:transparent;border:0;padding:0;cursor:pointer}
+  .drawer .dfoot .apply{padding:14px 22px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .2s ease}
+  .drawer .dfoot .apply:hover{background:var(--page)}
+  .drawer-backdrop{position:fixed;inset:0;background:#0a09084d;backdrop-filter:blur(2px);z-index:99;opacity:0;pointer-events:none;transition:opacity .25s ease}
+  .drawer-backdrop.open{opacity:1;pointer-events:auto}
 
   /* FOOTER */
-  footer{border-top:1px solid var(--line);padding:32px 28px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  footer{border-top:1px solid var(--line);padding:32px 28px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;background:var(--bg)}
   footer .center{text-align:center}
   footer .right{text-align:right}
   footer a:hover{color:var(--page)}
 
-  @media (max-width:1100px){
-    .grid-view .apts{grid-template-columns:repeat(2,1fr)}
-    .map-view{grid-template-columns:1fr 1fr}
+  @media (max-width:1280px){
+    .split .container{grid-template-columns:1fr 380px}
+  }
+  @media (max-width:1024px){
+    .split .container{grid-template-columns:1fr 340px}
+    .apt{grid-template-columns:220px 1fr}
   }
   @media (max-width:880px){
     html,body{cursor:auto}
     .cursor,.float-wm{display:none}
-    .topbar{grid-template-columns:auto 1fr;padding:14px 14px}
+    .topbar{grid-template-columns:auto 1fr;padding:14px 14px;height:54px}
     .topbar .left{display:none}
     .topbar .ctr{justify-self:start;font-size:20px}
     .topbar .right{gap:8px}
     .topbar .city,.topbar .lang{display:none}
     .topbar .burger{display:inline-flex}
-    .meta-top{padding:72px 14px 14px}
-    .head{padding:24px 14px 16px}
-    .head h1{font-size:clamp(40px,11vw,64px)}
-    .searchbar-wrap{padding:0 14px 16px}
-    .searchbar{grid-template-columns:1fr 1fr;border-radius:12px}
-    .searchbar .field{border-right:0;border-bottom:1px solid var(--line)}
-    .searchbar .field:nth-child(2n){border-left:1px solid var(--line)}
-    .searchbar .submit{grid-column:1/-1;padding:14px;border-top:1px solid var(--line)}
-    .toolbar-wrap{padding:0 14px 14px}
-    .toolbar{gap:10px}
-    .layout{padding:18px 14px 48px}
-    .layout .container{grid-template-columns:1fr;gap:18px}
-    .filters{position:static;padding:18px;flex-direction:row;flex-wrap:wrap;gap:18px}
-    .filters .group{flex:1;min-width:140px}
-    .filters .clear{align-self:center}
-    .grid-view .apts{grid-template-columns:1fr;gap:14px}
-    .map-view{height:auto;grid-template-columns:1fr;min-height:0}
-    .map-pane{aspect-ratio:4/3;height:auto}
-    .map-cards .apt{flex-direction:column}
-    .map-cards .apt .ph{width:100%;aspect-ratio:5/4}
-    .map-cards .apt .info{padding:14px}
+
+    .subhead{padding:10px 14px;top:54px}
+    .subhead .row{grid-template-columns:1fr;gap:10px}
+    .subhead .crumbs{display:none}
+    .searchbar{grid-template-columns:1fr 1fr;border-radius:14px;max-width:none}
+    .searchbar .field{padding:9px 12px;border-right:0;border-bottom:1px solid var(--line)}
+    .searchbar .field:nth-child(odd){border-right:1px solid var(--line)}
+    .searchbar .submit{grid-column:1/-1;width:100%;height:44px;border-radius:0;margin:0;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+    .searchbar .submit svg{display:none}
+    .searchbar .submit::after{content:"Найти →"}
+    .subhead .controls{justify-self:stretch;justify-content:space-between}
+    .subhead .view-toggle{display:inline-flex}
+
+    .split{padding-top:calc(54px + 210px)}
+    .split .container{grid-template-columns:1fr;min-height:0}
+    .split .left{padding:18px 14px 48px}
+    .split .right{position:fixed;top:calc(54px + 210px);bottom:0;left:0;right:0;width:100%;height:auto;border-left:0;display:none;z-index:30}
+    .split .right.visible{display:block}
+    .split .left.hidden{display:none}
+
+    .apt{grid-template-columns:1fr}
+    .apt .ph{aspect-ratio:5/3}
+    .apt .info{padding:16px 18px}
+
+    .drawer{width:100%;max-width:none}
+
     footer{grid-template-columns:1fr;gap:8px;font-size:9px}
     footer .center,footer .right{text-align:left}
   }
@@ -258,336 +248,293 @@
   </div>
 </div>
 
-<!-- META TOP -->
-<div class="meta-top">
-  <div class="crumbs">
-    <a href="/ru/">bre</a>
-    <span class="sep">/</span>
-    <span class="cur"><span class="dot"></span>Квартиры</span>
-  </div>
-  <div class="actions">
-    <a href="/ru/guide">↗ Гайд по Батуми</a>
-  </div>
-</div>
+<!-- SUB-HEADER -->
+<div class="subhead">
+  <div class="row">
+    <div class="crumbs">
+      <a href="/ru/">bre</a>
+      <span class="sep">/</span>
+      <span class="cur">Все квартиры</span>
+    </div>
 
-<!-- HEAD -->
-<section class="head">
-  <div class="inner">
-    <h1>Все наши <em>квартиры</em>.</h1>
-    <div class="count"><b>6 квартир</b> · по всему Батуми</div>
-  </div>
-</section>
-
-<!-- SEARCH BAR -->
-<div class="searchbar-wrap">
-  <div class="searchbar">
-    <div class="field">
-      <span class="lbl">— город</span>
-      <select>
-        <option>Батуми</option>
-        <option disabled>Тбилиси (скоро)</option>
-      </select>
-    </div>
-    <div class="field">
-      <span class="lbl">— заезд</span>
-      <input type="date" id="arrival">
-    </div>
-    <div class="field">
-      <span class="lbl">— выезд</span>
-      <input type="date" id="departure">
-    </div>
-    <div class="field">
-      <span class="lbl">— гости</span>
-      <select>
-        <option>1 гость</option>
-        <option selected>2 гостя</option>
-        <option>3 гостя</option>
-        <option>4 гостя</option>
-        <option>5+ гостей</option>
-      </select>
-    </div>
-    <button class="submit">Найти →</button>
-  </div>
-</div>
-
-<!-- TOOLBAR -->
-<div class="toolbar-wrap">
-  <div class="toolbar">
-    <div class="left">
-      <div class="chips" id="activeChips">
-        <button class="chip active">все <span class="x">×</span></button>
-      </div>
-    </div>
-    <div class="right">
-      <div class="sort">
-        сортировка:
-        <select id="sort">
-          <option>рекомендуемые</option>
-          <option>цена · по возрастанию</option>
-          <option>цена · по убыванию</option>
-          <option>новые</option>
+    <div class="searchbar">
+      <div class="field">
+        <span class="lbl">— город</span>
+        <select>
+          <option>Батуми</option>
+          <option disabled>Тбилиси (скоро)</option>
         </select>
       </div>
+      <div class="field">
+        <span class="lbl">— даты</span>
+        <input type="text" placeholder="выбери даты" id="dates" readonly>
+      </div>
+      <div class="field">
+        <span class="lbl">— гости</span>
+        <select>
+          <option>1 гость</option>
+          <option selected>2 гостя</option>
+          <option>3 гостя</option>
+          <option>4 гостя</option>
+          <option>5+ гостей</option>
+        </select>
+      </div>
+      <button class="submit" aria-label="search">
+        <svg viewBox="0 0 24 24" fill="none"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="2"/><path d="m20 20-4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+    </div>
+
+    <div class="controls">
+      <button class="filter-btn" id="filterBtn">
+        <svg width="13" height="13" viewBox="0 0 13 13" fill="none"><path d="M2 3h9M3.5 6.5h6M5 10h3" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Фильтры
+      </button>
       <div class="view-toggle">
-        <button class="active" data-view="grid" id="viewGrid">
-          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="0" y="0" width="4.5" height="4.5" fill="currentColor"/><rect x="6.5" y="0" width="4.5" height="4.5" fill="currentColor"/><rect x="0" y="6.5" width="4.5" height="4.5" fill="currentColor"/><rect x="6.5" y="6.5" width="4.5" height="4.5" fill="currentColor"/></svg>
-          Список
-        </button>
-        <button data-view="map" id="viewMap">
-          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1 a3 3 0 0 1 3 3 c0 2-3 5-3 5 s-3-3-3-5 a3 3 0 0 1 3-3 z M5.5 4.2 a1 1 0 0 0 0 -.4 a1 1 0 0 0 0 .4 z" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
-          Карта
-        </button>
+        <button class="active" data-view="list" id="viewList">Список</button>
+        <button data-view="map" id="viewMap">Карта</button>
       </div>
     </div>
   </div>
 </div>
 
-<!-- LAYOUT -->
-<section class="layout">
+<!-- MAIN SPLIT -->
+<section class="split">
   <div class="container">
-    <!-- SIDEBAR FILTERS -->
-    <aside class="filters">
-      <div class="group">
-        <h5>— район</h5>
-        <div class="opts">
-          <button class="opt">старый город</button>
-          <button class="opt">бульвар</button>
-          <button class="opt">чавчавадзе</button>
-          <button class="opt">хот-бич</button>
-          <button class="opt">ботанический</button>
-          <button class="opt">гонио</button>
-        </div>
+    <div class="left" id="leftPane">
+      <div class="left-head">
+        <h1>Все наши <em>квартиры</em>.</h1>
+        <div class="count"><b>6 квартир</b> · выбирай в списке или на карте</div>
       </div>
 
-      <div class="group">
-        <h5>— спален</h5>
-        <div class="opts">
-          <button class="opt">студия</button>
-          <button class="opt">1</button>
-          <button class="opt">2</button>
-          <button class="opt">3+</button>
-        </div>
-      </div>
-
-      <div class="group">
-        <h5>— цена / ночь</h5>
-        <div class="price-range">
-          <input type="number" placeholder="$50" min="0">
-          <span>—</span>
-          <input type="number" placeholder="$300" min="0">
-        </div>
-      </div>
-
-      <div class="group">
-        <h5>— удобства</h5>
-        <div class="checks">
-          <label><input type="checkbox"> Вид на море</label>
-          <label><input type="checkbox"> Балкон</label>
-          <label><input type="checkbox"> Бассейн</label>
-          <label><input type="checkbox"> Парковка</label>
-          <label><input type="checkbox"> Рабочее место</label>
-          <label><input type="checkbox"> Можно с питомцем</label>
-        </div>
-      </div>
-
-      <button class="clear">сбросить фильтры →</button>
-    </aside>
-
-    <!-- CONTENT — GRID VIEW -->
-    <div class="grid-view" id="gridView">
       <div class="apts">
-        <a class="apt" href="/ru/stays/orbi-21">
+
+        <a class="apt" data-slug="orbi-21" href="/ru/stays/orbi-21">
           <div class="ph">
-            <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80" alt="Orbi Sea Towers — 21 этаж"/>
+            <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=900&q=80" alt="Orbi Sea Towers — 21 этаж"/>
             <span class="badge hot">только заехало</span>
             <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
           </div>
           <div class="info">
-            <div class="top"><h4>Orbi Sea Towers — 21 этаж</h4><div class="price">$185<span class="u">/NT</span></div></div>
-            <div class="sub"><span>1 спальня · 48м² · море</span><span class="dist">хот-бич</span></div>
+            <div>
+              <h4>Orbi Sea Towers — 21 этаж</h4>
+              <p class="desc">однокомнатная высоко, панорамный вид на море, мраморная ванная и балкон под закат. <b>До пляжа пешком.</b></p>
+            </div>
+            <div class="specs">
+              <span>1 спальня</span><span>48м²</span><span>вид на море</span><span>балкон</span>
+            </div>
+            <div class="price-row">
+              <div class="price"><span class="from">от</span>$185<span class="u">/ночь</span></div>
+              <span class="cta">смотреть →</span>
+            </div>
           </div>
         </a>
 
-        <a class="apt" href="/ru/stays/boulevard-loft">
+        <a class="apt" data-slug="boulevard-loft" href="/ru/stays/boulevard-loft">
           <div class="ph">
-            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80" alt="лофт на старом бульваре"/>
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt="лофт на старом бульваре"/>
             <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
           </div>
           <div class="info">
-            <div class="top"><h4>Лофт на старом бульваре</h4><div class="price">$95<span class="u">/NT</span></div></div>
-            <div class="sub"><span>студия · 36м²</span><span class="dist">старый город</span></div>
+            <div>
+              <h4>Лофт на старом бульваре</h4>
+              <p class="desc">студия с высокими потолками, настоящей ванной и окном прямо на старый бульвар.</p>
+            </div>
+            <div class="specs">
+              <span>студия</span><span>36м²</span><span>старый город</span><span>рабочее место</span>
+            </div>
+            <div class="price-row">
+              <div class="price"><span class="from">от</span>$95<span class="u">/ночь</span></div>
+              <span class="cta">смотреть →</span>
+            </div>
           </div>
         </a>
 
-        <a class="apt" href="/ru/stays/botanical">
+        <a class="apt" data-slug="botanical" href="/ru/stays/botanical">
           <div class="ph">
-            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80" alt="дом у Ботанического сада"/>
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=900&q=80" alt="дом у Ботанического сада"/>
             <span class="badge">для долгой жизни</span>
             <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
           </div>
           <div class="info">
-            <div class="top"><h4>Дом у Ботанического сада</h4><div class="price">$140<span class="u">/NT</span></div></div>
-            <div class="sub"><span>2 спальни · 72м² · сад</span><span class="dist">ботанический</span></div>
+            <div>
+              <h4>Дом у Ботанического сада</h4>
+              <p class="desc">дом с двумя спальнями, частным садом, гамаком и камином. <b>Лучше на месяц+.</b></p>
+            </div>
+            <div class="specs">
+              <span>2 спальни</span><span>72м²</span><span>сад</span><span>парковка</span>
+            </div>
+            <div class="price-row">
+              <div class="price"><span class="from">от</span>$140<span class="u">/ночь</span></div>
+              <span class="cta">смотреть →</span>
+            </div>
           </div>
         </a>
 
-        <a class="apt" href="/ru/stays/chavchavadze">
+        <a class="apt" data-slug="chavchavadze" href="/ru/stays/chavchavadze">
           <div class="ph">
-            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200&q=80" alt="Чавчавадзе, 4-я линия"/>
+            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&q=80" alt="квартира на Чавчавадзе"/>
             <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
           </div>
           <div class="info">
-            <div class="top"><h4>Чавчавадзе, 4-я линия</h4><div class="price">$78<span class="u">/NT</span></div></div>
-            <div class="sub"><span>1 спальня · 42м² · центр</span><span class="dist">чавчавадзе</span></div>
+            <div>
+              <h4>Чавчавадзе, 4-я линия</h4>
+              <p class="desc">однокомнатная в центре, на главной кофейной улице города. Внутри тихо, снаружи жизнь.</p>
+            </div>
+            <div class="specs">
+              <span>1 спальня</span><span>42м²</span><span>центр</span><span>рабочее место</span>
+            </div>
+            <div class="price-row">
+              <div class="price"><span class="from">от</span>$78<span class="u">/ночь</span></div>
+              <span class="cta">смотреть →</span>
+            </div>
           </div>
         </a>
 
-        <a class="apt" href="/ru/stays/arena">
+        <a class="apt" data-slug="arena" href="/ru/stays/arena">
           <div class="ph">
-            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80" alt="квартира с видом на Black Sea Arena"/>
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=900&q=80" alt="квартира с видом на Black Sea Arena"/>
             <span class="badge hot">осталось 2 ночи</span>
             <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
           </div>
           <div class="info">
-            <div class="top"><h4>Вид на Black Sea Arena</h4><div class="price">$160<span class="u">/NT</span></div></div>
-            <div class="sub"><span>2 спальни · 65м² · море</span><span class="dist">арена</span></div>
+            <div>
+              <h4>Вид на Black Sea Arena</h4>
+              <p class="desc">две спальни, панорамная терраса, бассейн в комплексе и арена в подсветке вечером.</p>
+            </div>
+            <div class="specs">
+              <span>2 спальни</span><span>65м²</span><span>вид на море</span><span>бассейн</span>
+            </div>
+            <div class="price-row">
+              <div class="price"><span class="from">от</span>$160<span class="u">/ночь</span></div>
+              <span class="cta">смотреть →</span>
+            </div>
           </div>
         </a>
 
-        <a class="apt" href="/ru/stays/gonio">
+        <a class="apt" data-slug="gonio" href="/ru/stays/gonio">
           <div class="ph">
-            <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1200&q=80" alt="Гонийский мыс"/>
+            <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=900&q=80" alt="дом на Гонийском мысе"/>
             <span class="badge">дом</span>
             <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
           </div>
           <div class="info">
-            <div class="top"><h4>Гонийский мыс</h4><div class="price">$240<span class="u">/NT</span></div></div>
-            <div class="sub"><span>4 спальни · 180м² · пляж</span><span class="dist">гонио</span></div>
+            <div>
+              <h4>Гонийский мыс</h4>
+              <p class="desc">дом с четырьмя спальнями на мысе — частный бассейн, прямой выход на галечный пляж. <b>Для семьи или компании.</b></p>
+            </div>
+            <div class="specs">
+              <span>4 спальни</span><span>180м²</span><span>пляж</span><span>бассейн</span>
+            </div>
+            <div class="price-row">
+              <div class="price"><span class="from">от</span>$240<span class="u">/ночь</span></div>
+              <span class="cta">смотреть →</span>
+            </div>
           </div>
         </a>
+
       </div>
     </div>
 
-    <!-- CONTENT — MAP VIEW -->
-    <div class="map-view" id="mapView">
+    <div class="right" id="rightPane">
       <div class="map-pane">
         <div class="map-stage"></div>
-        <!-- Stylized Batumi map illustration -->
-        <svg viewBox="0 0 800 600" preserveAspectRatio="none">
-          <!-- sea -->
-          <path d="M0,420 Q150,400 280,440 T560,460 T800,420 L800,600 L0,600 Z" fill="#a8c8de" opacity=".55"/>
-          <!-- coastline curve -->
-          <path d="M0,420 Q150,400 280,440 T560,460 T800,420" stroke="#5a9bc5" stroke-width="1.5" fill="none" opacity=".5"/>
-          <!-- streets / blocks -->
-          <g stroke="#b5c8b5" stroke-width="1" opacity=".5" fill="none">
-            <line x1="0" y1="180" x2="800" y2="220"/>
+        <svg class="bg" viewBox="0 0 800 1000" preserveAspectRatio="none">
+          <path d="M0,720 Q160,700 290,740 T570,760 T800,720 L800,1000 L0,1000 Z" fill="#a8c8de" opacity=".55"/>
+          <path d="M0,720 Q160,700 290,740 T570,760 T800,720" stroke="#5a9bc5" stroke-width="1.5" fill="none" opacity=".5"/>
+          <g stroke="#b5c8b5" stroke-width="1" opacity=".4" fill="none">
             <line x1="0" y1="280" x2="800" y2="320"/>
-            <line x1="0" y1="360" x2="800" y2="400"/>
-            <line x1="120" y1="0" x2="160" y2="600"/>
-            <line x1="280" y1="0" x2="320" y2="600"/>
-            <line x1="450" y1="0" x2="490" y2="600"/>
-            <line x1="620" y1="0" x2="660" y2="600"/>
+            <line x1="0" y1="480" x2="800" y2="520"/>
+            <line x1="0" y1="640" x2="800" y2="680"/>
+            <line x1="120" y1="0" x2="160" y2="1000"/>
+            <line x1="280" y1="0" x2="320" y2="1000"/>
+            <line x1="450" y1="0" x2="490" y2="1000"/>
+            <line x1="620" y1="0" x2="660" y2="1000"/>
           </g>
-          <!-- parks -->
-          <circle cx="200" cy="320" r="32" fill="#c6dabc" opacity=".7"/>
-          <circle cx="540" cy="280" r="42" fill="#c6dabc" opacity=".7"/>
-          <circle cx="120" cy="120" r="28" fill="#c6dabc" opacity=".7"/>
+          <circle cx="200" cy="540" r="38" fill="#c6dabc" opacity=".7"/>
+          <circle cx="540" cy="480" r="50" fill="#c6dabc" opacity=".7"/>
+          <circle cx="120" cy="220" r="32" fill="#c6dabc" opacity=".7"/>
         </svg>
 
-        <!-- district labels -->
-        <span class="map-label" style="left:18%;top:18%">старый город</span>
-        <span class="map-label" style="left:36%;top:42%">бульвар</span>
-        <span class="map-label" style="left:14%;top:60%">чавчавадзе</span>
-        <span class="map-label" style="left:62%;top:35%">хот-бич</span>
-        <span class="map-label" style="left:8%;top:32%">ботанический</span>
-        <span class="map-label" style="left:80%;top:62%">гонио</span>
-        <span class="sea-label" style="left:78%;top:82%">чёрное море</span>
+        <span class="sea-label" style="left:62%;bottom:6%">чёрное море</span>
 
-        <!-- apartment pins -->
-        <a class="pin" data-slug="orbi-21" href="/ru/stays/orbi-21" style="left:64%;top:42%">
-          <div class="marker">21</div>
-          <span class="price-tip">$185 · orbi 21</span>
+        <a class="pin" data-slug="orbi-21" href="/ru/stays/orbi-21" style="left:64%;top:50%">
+          <span class="price-marker">$185</span>
         </a>
-        <a class="pin" data-slug="boulevard-loft" href="/ru/stays/boulevard-loft" style="left:22%;top:24%">
-          <div class="marker">L</div>
-          <span class="price-tip">$95 · лофт</span>
+        <a class="pin" data-slug="boulevard-loft" href="/ru/stays/boulevard-loft" style="left:24%;top:32%">
+          <span class="price-marker">$95</span>
         </a>
-        <a class="pin" data-slug="botanical" href="/ru/stays/botanical" style="left:13%;top:38%">
-          <div class="marker">B</div>
-          <span class="price-tip">$140 · ботанический</span>
+        <a class="pin" data-slug="botanical" href="/ru/stays/botanical" style="left:14%;top:46%">
+          <span class="price-marker">$140</span>
         </a>
-        <a class="pin" data-slug="chavchavadze" href="/ru/stays/chavchavadze" style="left:20%;top:65%">
-          <div class="marker">4</div>
-          <span class="price-tip">$78 · чавчавадзе</span>
+        <a class="pin" data-slug="chavchavadze" href="/ru/stays/chavchavadze" style="left:22%;top:62%">
+          <span class="price-marker">$78</span>
         </a>
-        <a class="pin" data-slug="arena" href="/ru/stays/arena" style="left:55%;top:55%">
-          <div class="marker">A</div>
-          <span class="price-tip">$160 · арена</span>
+        <a class="pin" data-slug="arena" href="/ru/stays/arena" style="left:56%;top:60%">
+          <span class="price-marker">$160</span>
         </a>
-        <a class="pin" data-slug="gonio" href="/ru/stays/gonio" style="left:82%;top:55%">
-          <div class="marker">G</div>
-          <span class="price-tip">$240 · гонио</span>
+        <a class="pin" data-slug="gonio" href="/ru/stays/gonio" style="left:80%;top:62%">
+          <span class="price-marker">$240</span>
         </a>
 
-        <div class="legend">
-          <div class="lg"><span class="dot"></span>наши квартиры</div>
-        </div>
         <div class="upgrade-note">интерактивная карта · скоро</div>
-      </div>
-
-      <div class="map-cards" id="mapCards">
-        <a class="apt" data-slug="orbi-21" href="/ru/stays/orbi-21">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=600&q=80" alt=""/></div>
-          <div class="info">
-            <div class="top"><h4>Orbi Sea Towers — 21 этаж</h4><div class="price">$185<span class="u">/NT</span></div></div>
-            <div class="sub"><span>1 спальня · 48м²</span><span class="dist">хот-бич</span></div>
-          </div>
-        </a>
-        <a class="apt" data-slug="boulevard-loft" href="/ru/stays/boulevard-loft">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80" alt=""/></div>
-          <div class="info">
-            <div class="top"><h4>Лофт на старом бульваре</h4><div class="price">$95<span class="u">/NT</span></div></div>
-            <div class="sub"><span>студия · 36м²</span><span class="dist">старый город</span></div>
-          </div>
-        </a>
-        <a class="apt" data-slug="botanical" href="/ru/stays/botanical">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80" alt=""/></div>
-          <div class="info">
-            <div class="top"><h4>Дом у Ботанического сада</h4><div class="price">$140<span class="u">/NT</span></div></div>
-            <div class="sub"><span>2 спальни · 72м²</span><span class="dist">ботанический</span></div>
-          </div>
-        </a>
-        <a class="apt" data-slug="chavchavadze" href="/ru/stays/chavchavadze">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=80" alt=""/></div>
-          <div class="info">
-            <div class="top"><h4>Чавчавадзе, 4-я линия</h4><div class="price">$78<span class="u">/NT</span></div></div>
-            <div class="sub"><span>1 спальня · 42м²</span><span class="dist">чавчавадзе</span></div>
-          </div>
-        </a>
-        <a class="apt" data-slug="arena" href="/ru/stays/arena">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt=""/></div>
-          <div class="info">
-            <div class="top"><h4>Вид на Black Sea Arena</h4><div class="price">$160<span class="u">/NT</span></div></div>
-            <div class="sub"><span>2 спальни · 65м²</span><span class="dist">арена</span></div>
-          </div>
-        </a>
-        <a class="apt" data-slug="gonio" href="/ru/stays/gonio">
-          <div class="ph"><img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=600&q=80" alt=""/></div>
-          <div class="info">
-            <div class="top"><h4>Гонийский мыс</h4><div class="price">$240<span class="u">/NT</span></div></div>
-            <div class="sub"><span>4 спальни · 180м²</span><span class="dist">гонио</span></div>
-          </div>
-        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- FUTURE NOTE -->
-<div class="future-note" style="margin-bottom:64px">
-  <h4>Скоро <em>добавим</em> ещё.</h4>
-  <p>Добавим 4–6 квартир в ближайшие два месяца. Напиши в телеграм, если ищешь под конкретные даты или район — пришлём, как только появится подходящая.</p>
-</div>
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<aside class="drawer" id="drawer">
+  <div class="dhead">
+    <h3>фильтры</h3>
+    <button class="close" id="drawerClose" aria-label="close">✕</button>
+  </div>
+  <div class="dbody">
+    <div class="group">
+      <h5>— спален</h5>
+      <div class="opts">
+        <button class="opt">студия</button>
+        <button class="opt">1</button>
+        <button class="opt">2</button>
+        <button class="opt">3+</button>
+      </div>
+    </div>
+
+    <div class="group">
+      <h5>— цена / ночь, USD</h5>
+      <div class="price-range">
+        <input type="number" placeholder="50" min="0">
+        <span>—</span>
+        <input type="number" placeholder="300" min="0">
+      </div>
+    </div>
+
+    <div class="group">
+      <h5>— удобства</h5>
+      <div class="checks">
+        <label><input type="checkbox"> Вид на море</label>
+        <label><input type="checkbox"> Балкон или терраса</label>
+        <label><input type="checkbox"> Бассейн</label>
+        <label><input type="checkbox"> Парковка</label>
+        <label><input type="checkbox"> Рабочее место</label>
+        <label><input type="checkbox"> Можно с питомцем</label>
+        <label><input type="checkbox"> Для семьи (3+ спален)</label>
+      </div>
+    </div>
+
+    <div class="group">
+      <h5>— длина проживания</h5>
+      <div class="opts">
+        <button class="opt">короткое (1—6 ночей)</button>
+        <button class="opt">от недели</button>
+        <button class="opt">от месяца</button>
+      </div>
+    </div>
+  </div>
+  <div class="dfoot">
+    <button class="clear">сбросить</button>
+    <button class="apply">показать 6 квартир</button>
+  </div>
+</aside>
 
 <footer>
   <div class="left">© 2026 · bre.ge</div>
@@ -627,45 +574,20 @@
     document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))close()});
   })();
 
-  // View toggle — Grid / Map
-  (function(){
-    const gridBtn = document.getElementById('viewGrid');
-    const mapBtn = document.getElementById('viewMap');
-    const gridView = document.getElementById('gridView');
-    const mapView = document.getElementById('mapView');
-    function show(view){
-      if(view==='map'){
-        gridView.style.display='none';
-        mapView.classList.add('active');
-        gridBtn.classList.remove('active');
-        mapBtn.classList.add('active');
-      } else {
-        gridView.style.display='block';
-        mapView.classList.remove('active');
-        gridBtn.classList.add('active');
-        mapBtn.classList.remove('active');
-      }
-    }
-    gridBtn.addEventListener('click',()=>show('grid'));
-    mapBtn.addEventListener('click',()=>show('map'));
-  })();
-
   // Pin <-> card hover sync
   (function(){
-    const pins = document.querySelectorAll('.map-pane .pin');
-    const cards = document.querySelectorAll('.map-cards .apt');
-    pins.forEach(pin=>{
+    document.querySelectorAll('.map-pane .pin').forEach(pin=>{
       const slug = pin.dataset.slug;
       pin.addEventListener('mouseenter',()=>{
-        const card = document.querySelector(`.map-cards .apt[data-slug="${slug}"]`);
-        if(card){ card.classList.add('active'); card.scrollIntoView({block:'nearest',behavior:'smooth'}); }
+        const card = document.querySelector(`.apts .apt[data-slug="${slug}"]`);
+        if(card) card.classList.add('active');
       });
       pin.addEventListener('mouseleave',()=>{
-        const card = document.querySelector(`.map-cards .apt[data-slug="${slug}"]`);
+        const card = document.querySelector(`.apts .apt[data-slug="${slug}"]`);
         if(card) card.classList.remove('active');
       });
     });
-    cards.forEach(card=>{
+    document.querySelectorAll('.apts .apt').forEach(card=>{
       const slug = card.dataset.slug;
       card.addEventListener('mouseenter',()=>{
         const pin = document.querySelector(`.map-pane .pin[data-slug="${slug}"]`);
@@ -678,10 +600,41 @@
     });
   })();
 
-  // Filter chips toggle (visual only — wire up to filtering later when CMS arrives)
-  document.querySelectorAll('.filters .opt').forEach(b=>{
-    b.addEventListener('click',()=>b.classList.toggle('on'));
-  });
+  // Filter drawer
+  (function(){
+    const btn = document.getElementById('filterBtn');
+    const drawer = document.getElementById('drawer');
+    const backdrop = document.getElementById('drawerBackdrop');
+    const close = document.getElementById('drawerClose');
+    function open(){drawer.classList.add('open');backdrop.classList.add('open');document.body.style.overflow='hidden'}
+    function shut(){drawer.classList.remove('open');backdrop.classList.remove('open');document.body.style.overflow=''}
+    btn.addEventListener('click',open);
+    close.addEventListener('click',shut);
+    backdrop.addEventListener('click',shut);
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))shut()});
+    document.querySelectorAll('.drawer .opt').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
+  })();
+
+  // Mobile view toggle
+  (function(){
+    const left = document.getElementById('leftPane');
+    const right = document.getElementById('rightPane');
+    const btnL = document.getElementById('viewList');
+    const btnM = document.getElementById('viewMap');
+    if(!btnL||!btnM)return;
+    btnL.addEventListener('click',()=>{
+      left.classList.remove('hidden');
+      right.classList.remove('visible');
+      btnL.classList.add('active');
+      btnM.classList.remove('active');
+    });
+    btnM.addEventListener('click',()=>{
+      left.classList.add('hidden');
+      right.classList.add('visible');
+      btnL.classList.remove('active');
+      btnM.classList.add('active');
+    });
+  })();
 </script>
 
 </body>
