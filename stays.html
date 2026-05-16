@@ -10,6 +10,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0a0908">
 <style>
   :root{
     --bg:#fbf8f1;--bg-2:#f1ecdf;--paper:#fdfbf6;
@@ -105,6 +110,8 @@
   .filters-strip .more{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border:1px dashed var(--line-strong);border-radius:999px;background:transparent;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--ink);cursor:pointer;transition:all .2s ease;white-space:nowrap}
   .filters-strip .more:hover{background:var(--ink);color:#fff;border-color:var(--ink);border-style:solid}
   .filters-strip .more .plus{display:inline-flex;align-items:center;justify-content:center;width:14px;height:14px;border-radius:50%;background:var(--page);color:#fff;font-weight:800;font-size:11px;font-family:"Bricolage Grotesque",sans-serif;letter-spacing:0}
+  .filters-strip .strip-clear{display:inline-flex;align-items:center;gap:6px;padding:9px 14px;background:transparent;border:0;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--page);cursor:pointer;transition:color .2s ease;white-space:nowrap}
+  .filters-strip .strip-clear:hover{color:var(--accent-deep);text-decoration:underline}
   .filters-strip .sort{display:inline-flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;flex:none}
   .filters-strip .sort select{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:13px;text-transform:none;letter-spacing:0;color:var(--ink);border:0;background:transparent;outline:0;cursor:pointer;padding:9px 14px;border:1px solid var(--line-strong);border-radius:999px}
   .filters-strip .sort select:hover{border-color:var(--ink)}
@@ -356,6 +363,9 @@
       <button class="more" id="moreFilters">
         <span class="plus">+</span>
         More filters
+      </button>
+      <button class="strip-clear" id="stripClear" hidden>
+        clear all ×
       </button>
     </div>
     <div class="sort">
@@ -631,13 +641,13 @@
     <div class="group">
       <h5>— amenities</h5>
       <div class="checks">
-        <label><input type="checkbox"> Sea view</label>
-        <label><input type="checkbox"> Balcony or terrace</label>
-        <label><input type="checkbox"> Pool</label>
-        <label><input type="checkbox"> Parking</label>
-        <label><input type="checkbox"> Workspace</label>
-        <label><input type="checkbox"> Pet-friendly</label>
-        <label><input type="checkbox"> Family-sized (3+ beds)</label>
+        <label><input type="checkbox" data-filter="sea-view"> Sea view</label>
+        <label><input type="checkbox" data-filter="balcony"> Balcony or terrace</label>
+        <label><input type="checkbox" data-filter="pool"> Pool</label>
+        <label><input type="checkbox" data-filter="parking"> Parking</label>
+        <label><input type="checkbox" data-filter="workspace"> Workspace</label>
+        <label><input type="checkbox" data-filter="pet-friendly"> Pet-friendly</label>
+        <label><input type="checkbox" data-filter="family"> Family-sized (3+ beds)</label>
       </div>
     </div>
 
@@ -720,27 +730,81 @@
     });
   })();
 
-  // Filter drawer
+  // Filter drawer + chips — unified state
   (function(){
     const btn = document.getElementById('filterBtn');
     const more = document.getElementById('moreFilters');
     const drawer = document.getElementById('drawer');
     const backdrop = document.getElementById('drawerBackdrop');
     const close = document.getElementById('drawerClose');
-    function open(){drawer.classList.add('open');backdrop.classList.add('open');document.body.style.overflow='hidden'}
-    function shut(){drawer.classList.remove('open');backdrop.classList.remove('open');document.body.style.overflow=''}
-    if(btn) btn.addEventListener('click',open);
-    if(more) more.addEventListener('click',open);
-    close.addEventListener('click',shut);
-    backdrop.addEventListener('click',shut);
-    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&drawer.classList.contains('open'))shut()});
-    document.querySelectorAll('.drawer .opt').forEach(b=>b.addEventListener('click',()=>b.classList.toggle('on')));
-  })();
+    const stripClear = document.getElementById('stripClear');
+    const drawerClear = document.querySelector('.drawer .clear');
 
-  // Inline chip toggle on filters-strip (desktop)
-  document.querySelectorAll('.filters-strip .chip').forEach(c=>{
-    c.addEventListener('click',()=>c.classList.toggle('on'));
-  });
+    const chips = document.querySelectorAll('.filters-strip .chip[data-filter]');
+    const checks = document.querySelectorAll('.drawer .checks input[data-filter]');
+    const opts = document.querySelectorAll('.drawer .opt'); // beds + stay length
+
+    function openDrawer(){drawer.classList.add('open');backdrop.classList.add('open');document.body.style.overflow='hidden'}
+    function shutDrawer(){drawer.classList.remove('open');backdrop.classList.remove('open');document.body.style.overflow=''}
+    if(btn) btn.addEventListener('click', openDrawer);
+    if(more) more.addEventListener('click', openDrawer);
+    close.addEventListener('click', shutDrawer);
+    backdrop.addEventListener('click', shutDrawer);
+    document.addEventListener('keydown', e=>{if(e.key==='Escape' && drawer.classList.contains('open')) shutDrawer()});
+
+    function refreshClearVisibility(){
+      const anyChipOn = Array.from(chips).some(c => c.classList.contains('on'));
+      const anyCheckOn = Array.from(checks).some(c => c.checked);
+      const anyOptOn = Array.from(opts).some(o => o.classList.contains('on'));
+      const hasAny = anyChipOn || anyCheckOn || anyOptOn;
+      if(stripClear){
+        stripClear.hidden = !hasAny;
+      }
+    }
+
+    // Chip click — toggle chip + matching checkbox
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        const key = chip.dataset.filter;
+        const isOn = chip.classList.toggle('on');
+        const check = document.querySelector(`.drawer .checks input[data-filter="${key}"]`);
+        if(check) check.checked = isOn;
+        refreshClearVisibility();
+      });
+    });
+
+    // Checkbox change — toggle matching chip
+    checks.forEach(check => {
+      check.addEventListener('change', () => {
+        const key = check.dataset.filter;
+        const chip = document.querySelector(`.filters-strip .chip[data-filter="${key}"]`);
+        if(chip) chip.classList.toggle('on', check.checked);
+        refreshClearVisibility();
+      });
+    });
+
+    // Drawer opt buttons (beds, stay length) — just toggle visually
+    opts.forEach(o => {
+      o.addEventListener('click', () => {
+        o.classList.toggle('on');
+        refreshClearVisibility();
+      });
+    });
+
+    function clearAll(){
+      chips.forEach(c => c.classList.remove('on'));
+      checks.forEach(c => { c.checked = false; });
+      opts.forEach(o => o.classList.remove('on'));
+      // clear price inputs in drawer
+      document.querySelectorAll('.drawer .price-range input').forEach(i => i.value = '');
+      refreshClearVisibility();
+    }
+
+    if(stripClear) stripClear.addEventListener('click', clearAll);
+    if(drawerClear) drawerClear.addEventListener('click', clearAll);
+
+    refreshClearVisibility();
+  })();
 
   // Date inputs — set min today, link arrival/departure
   (function(){
