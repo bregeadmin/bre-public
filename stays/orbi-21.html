@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>orbi sea towers — 21st floor · bre [v40]</title>
+<title>orbi sea towers — 21st floor · bre [v25]</title>
 <meta name="description" content="A high-floor 1-bed with full sea view, marble bath and a balcony for the sunset. 45m², walking distance to the beach. Book direct or via Airbnb / Booking.">
 <link rel="alternate" hreflang="en" href="https://bre.ge/stays/orbi-21">
 <link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays/orbi-21">
@@ -253,23 +253,23 @@
   .cal-head{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;margin-bottom:18px}
   .cal-nav{width:36px;height:36px;border:1px solid var(--line-strong);border-radius:50%;background:transparent;cursor:none;font-size:16px;font-weight:600;color:var(--ink);transition:all .2s ease;display:flex;align-items:center;justify-content:center}
   .cal-nav:hover{border-color:var(--ink);background:var(--ink);color:#fff}
-  .cal-months{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}
-  .cal-month{min-width:0}
+  .cal-months{display:grid;grid-template-columns:1fr 1fr;gap:32px}
   .cal-month .cal-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;text-align:center;margin-bottom:14px;color:var(--ink)}
-  .cal-month .cal-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;margin-bottom:6px}
+  .cal-month .cal-week{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:6px}
   .cal-month .cal-week-day{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;text-align:center;padding:4px 0}
-  .cal-month .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px}
-  .cal-day{width:100%;max-width:42px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--ink);cursor:none;border-radius:50%;background:transparent;border:0;font-family:"Bricolage Grotesque",sans-serif;padding:0;position:relative;box-sizing:border-box;line-height:1;margin:0 auto}
+  .cal-month .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+  .cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--ink);cursor:none;border-radius:50%;transition:background .15s ease,color .15s ease;position:relative;background:transparent;border:0;font-family:"Bricolage Grotesque",sans-serif;padding:0}
   .cal-day.empty{cursor:default}
   .cal-day.past{color:var(--ink-soft);opacity:.35;cursor:default;text-decoration:line-through}
   .cal-day.av{background:#D6F5DC}
   .cal-day.peak{background:#FFF0B8}
   .cal-day.booked{background:#FFCFC2;text-decoration:line-through;cursor:default;color:var(--ink-soft)}
   .cal-day:not(.past):not(.booked):not(.empty):hover{background:var(--ink);color:#fff}
-  /* All cells remain identical circles. Range is just a background tint, same shape. */
-  .cal-day.inside{background:#EEEAE0 !important;color:var(--ink) !important}
-  .cal-day.start{background:var(--ink) !important;color:#fff !important}
-  .cal-day.end{background:var(--ink) !important;color:#fff !important}
+  .cal-day.start,.cal-day.end{background:var(--ink);color:#fff}
+  .cal-day.inside{background:rgba(10,9,8,0.08);border-radius:0}
+  .cal-day.start{border-radius:50% 0 0 50%}
+  .cal-day.end{border-radius:0 50% 50% 0}
+  .cal-day.range-single{border-radius:50%}
   .cal-legend{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
   .cal-leg{display:inline-flex;align-items:center;gap:8px}
   .cal-leg .ll{width:14px;height:14px;border-radius:50%}
@@ -302,6 +302,9 @@
   /* LIGHTBOX */
   .lightbox[hidden],.lightbox-single[hidden],.cal-pop[hidden],.guest-pop[hidden]{display:none !important}
   .lightbox{position:fixed;inset:0;z-index:300;background:rgba(10,9,8,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);animation:lbFadeIn .25s ease;display:flex;flex-direction:column}
+  body.lb-open .cursor{mix-blend-mode:normal;background:#fff}
+  body.lb-open .cursor.big{background:var(--accent)}
+  body.lb-open .cursor.text{background:var(--accent)}
   @keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
   .lightbox .lb-head{flex:none;display:flex;justify-content:space-between;align-items:center;padding:18px 28px;background:rgba(10,9,8,0.4);backdrop-filter:blur(20px)}
   .lightbox .lb-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#fff;font-weight:600;display:flex;align-items:center;gap:10px}
@@ -887,43 +890,10 @@ const PHOTOS = [
   lbBack && lbBack.addEventListener('click', ()=>{lbSingle.hidden=true});
   lbPrev && lbPrev.addEventListener('click', ()=>nav(-1));
   lbNext && lbNext.addEventListener('click', ()=>nav(1));
-  // Click on image = next photo; hover on whole single-body shows "next →" cursor
-  function setLabel(label){ clearCursorColors(); cursor.classList.add('text'); cursor.setAttribute('data-label',label); }
-  function clearLabel(){ cursor.classList.remove('text'); cursor.removeAttribute('data-label'); }
-  function setBig(){ clearCursorColors(); cursor.classList.remove('text'); cursor.removeAttribute('data-label'); cursor.classList.add('big'); }
-  function clearBig(){ cursor.classList.remove('big'); }
-  // The whole single-lightbox (incl. top header where × and ‹ live) should never show invisible cursor
-  // Default to "next →" anywhere inside lbSingle, except actual buttons which take over
-  if(lbSingle){
-    lbSingle.addEventListener('mouseenter', ()=>setLabel('next →'));
-    lbSingle.addEventListener('mouseleave', clearLabel);
-  }
-  // Grid lightbox: default to "view →" everywhere; header (×) goes to big circle
-  if(lb){
-    lb.addEventListener('mouseenter', ()=>setLabel('view →'));
-    lb.addEventListener('mouseleave', clearLabel);
-  }
-  const lbHeadGrid = lb && lb.querySelector('.lb-head');
-  if(lbHeadGrid){
-    lbHeadGrid.addEventListener('mouseenter', setBig);
-    lbHeadGrid.addEventListener('mouseleave', ()=>{ clearBig(); if(!lb.hidden) setLabel('view →'); });
-  }
-  // Buttons: orange big circle (overrides the text cursor)
-  [lbClose, lbSingleClose, lbBack, lbPrev, lbNext].forEach(el=>{
-    if(!el) return;
-    el.addEventListener('mouseenter', setBig);
-    el.addEventListener('mouseleave', ()=>{
-      clearBig();
-      if(!lbSingle.hidden) setLabel('next →');
-    });
-  });
-  const singleBody = document.querySelector('.lb-single-body');
-  if(singleBody){
-    singleBody.addEventListener('click', (e)=>{
-      if(e.target.closest('.lb-prev')||e.target.closest('.lb-next')||e.target.closest('.lb-close')||e.target.closest('.lb-back')) return;
-      nav(1);
-    });
-  }
+  // Click on the photo advances to next; cursor shows next hint
+  lbImg && lbImg.addEventListener('click', ()=>nav(1));
+  lbImg && lbImg.addEventListener('mouseenter', ()=>{ clearCursorColors(); cursor.classList.add('text'); cursor.setAttribute('data-label','next →'); });
+  lbImg && lbImg.addEventListener('mouseleave', ()=>{ cursor.classList.remove('text'); cursor.removeAttribute('data-label'); });
   document.addEventListener('keydown', e=>{
     if(lb.hidden && lbSingle.hidden) return;
     if(e.key === 'Escape'){ closeLb(); }
@@ -995,12 +965,12 @@ const PHOTOS = [
       else if(PEAK.has(key)) cls += ' peak';
       else cls += ' av';
       if(startDate && fmtKey(startDate) === key){
-        cls += ' start';
+        cls = cls.replace(/av|peak/, '') + ' start';
         if(endDate && fmtKey(endDate) === key) cls += ' range-single';
       }
-      if(endDate && fmtKey(endDate) === key) cls += ' end';
+      if(endDate && fmtKey(endDate) === key) cls = cls.replace(/av|peak/, '') + ' end';
       if(startDate && endDate && date > startDate && date < endDate){
-        cls += ' inside';
+        cls = cls.replace(/av|peak/, '') + ' inside';
       }
       html += `<button class="${cls}" data-date="${key}">${d}</button>`;
     }
@@ -1053,27 +1023,21 @@ const PHOTOS = [
     }
   }
 
-  function reposition(){
-    if(pop.hidden) return;
-    const rect = trigger.getBoundingClientRect();
-    // Below trigger; but if trigger scrolls off-screen, pin to top of viewport
-    const desired = rect.bottom + 8;
-    const top = Math.max(14, desired);
-    pop.style.top = top + 'px';
-    pop.style.left = Math.max(14, Math.min(window.innerWidth - 680 - 14, rect.left)) + 'px';
-  }
+  let scrollYWhenOpened = null;
   function openPop(){
     pop.hidden = false;
     trigger.classList.add('active');
-    reposition();
+    const rect = trigger.getBoundingClientRect();
+    pop.style.top = (rect.bottom + 8) + 'px';
+    // position on the right side if booking panel is right-aligned
+    pop.style.left = Math.max(14, Math.min(window.innerWidth - 680 - 14, rect.left)) + 'px';
     render();
+    scrollYWhenOpened = window.scrollY;
   }
   function closePop(){
     pop.hidden = true;
     trigger.classList.remove('active');
   }
-  window.addEventListener('scroll', reposition, {passive:true});
-  window.addEventListener('resize', reposition);
 
   trigger.addEventListener('click', e=>{
     e.stopPropagation();
@@ -1092,6 +1056,9 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
+  window.addEventListener('scroll', ()=>{
+    if(!pop.hidden && scrollYWhenOpened !== null && Math.abs(window.scrollY - scrollYWhenOpened) > 30) closePop();
+  }, {passive:true});
   window.__getBookingDates = ()=>({start: startDate, end: endDate});
 })();
 
@@ -1128,18 +1095,15 @@ const PHOTOS = [
     if(state.infants) parts.push(`${state.infants} infant${state.infants===1?'':'s'}`);
     gtVal.textContent = parts.join(' · ').toLowerCase();
   }
-  function reposition(){
-    if(pop.hidden) return;
-    const rect = trigger.getBoundingClientRect();
-    const top = Math.max(14, rect.bottom + 8);
-    pop.style.top = top + 'px';
-    pop.style.left = Math.max(14, Math.min(window.innerWidth - 340 - 14, rect.left)) + 'px';
-  }
+  let gpScrollYWhenOpened = null;
   function openPop(){
     pop.hidden = false;
     trigger.classList.add('active');
-    reposition();
+    const rect = trigger.getBoundingClientRect();
+    pop.style.top = (rect.bottom + 8) + 'px';
+    pop.style.left = Math.max(14, Math.min(window.innerWidth - 340 - 14, rect.left)) + 'px';
     update();
+    gpScrollYWhenOpened = window.scrollY;
   }
   function closePop(){
     pop.hidden = true;
@@ -1164,8 +1128,9 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
-  window.addEventListener('scroll', reposition, {passive:true});
-  window.addEventListener('resize', reposition);
+  window.addEventListener('scroll', ()=>{
+    if(!pop.hidden && gpScrollYWhenOpened !== null && Math.abs(window.scrollY - gpScrollYWhenOpened) > 30) closePop();
+  }, {passive:true});
   window.__getBookingGuests = ()=>state;
   update();
   syncLabel();
