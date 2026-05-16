@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>orbi sea towers — 21st floor · bre [v22]</title>
+<title>orbi sea towers — 21st floor · bre [v21]</title>
 <meta name="description" content="A high-floor 1-bed with full sea view, marble bath and a balcony for the sunset. 45m², walking distance to the beach. Book direct or via Airbnb / Booking.">
 <link rel="alternate" hreflang="en" href="https://bre.ge/stays/orbi-21">
 <link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays/orbi-21">
@@ -827,8 +827,8 @@ const PHOTOS = [
   {src:'https://images.unsplash.com/photo-1551776235-dde6d4829808?w=1600&q=80', alt:'living detail'},
   {src:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80', alt:'sofa'},
   {src:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&q=80', alt:'workspace'},
-  {src:'https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1600&q=80', alt:'living space'},
-  {src:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1600&q=80', alt:'kitchen wide'}
+  {src:'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1600&q=80', alt:'kitchen detail'},
+  {src:'https://images.unsplash.com/photo-1565182999561-18d7dc61c393?w=1600&q=80', alt:'cosy corner'}
 ];
 
 // =====================================================================
@@ -937,7 +937,7 @@ const PHOTOS = [
   // Generate mock data: some random booked + peak dates
   for(let i=0; i<60; i++){
     const d = new Date(today); d.setDate(d.getDate()+i);
-    const key = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+    const key = d.toISOString().slice(0,10);
     const r = Math.sin(i*1.7)*100;
     if(r > 50) BOOKED.add(key);
     else if(r > 0 || (d.getDay() === 5 || d.getDay() === 6)) PEAK.add(key);
@@ -952,7 +952,7 @@ const PHOTOS = [
   const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   const weekDays = ['Mo','Tu','We','Th','Fr','Sa','Su'];
 
-  function fmtKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+  function fmtKey(d){return d.toISOString().slice(0,10)}
   function fmtPretty(d){
     if(!d)return null;
     return `${d.getDate().toString().padStart(2,'0')} ${monthNames[d.getMonth()].slice(0,3).toLowerCase()}`;
@@ -1031,7 +1031,6 @@ const PHOTOS = [
     }
   }
 
-  let scrollYWhenOpened = null;
   function openPop(){
     pop.hidden = false;
     trigger.classList.add('active');
@@ -1064,6 +1063,7 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
+  let scrollYWhenOpened = null;
   window.addEventListener('scroll', ()=>{
     if(!pop.hidden && scrollYWhenOpened !== null && Math.abs(window.scrollY - scrollYWhenOpened) > 30) closePop();
   }, {passive:true});
@@ -1103,7 +1103,6 @@ const PHOTOS = [
     if(state.infants) parts.push(`${state.infants} infant${state.infants===1?'':'s'}`);
     gtVal.textContent = parts.join(' · ').toLowerCase();
   }
-  let gpScrollYWhenOpened = null;
   function openPop(){
     pop.hidden = false;
     trigger.classList.add('active');
@@ -1136,6 +1135,7 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
+  let gpScrollYWhenOpened = null;
   window.addEventListener('scroll', ()=>{
     if(!pop.hidden && gpScrollYWhenOpened !== null && Math.abs(window.scrollY - gpScrollYWhenOpened) > 30) closePop();
   }, {passive:true});
@@ -1155,7 +1155,7 @@ const PHOTOS = [
     const g = window.__getBookingGuests ? window.__getBookingGuests() : {adults:2};
     let msg = 'hi bre! i\'d like to book orbi sea towers — 21st floor.';
     if(dates.start && dates.end){
-      const fmt = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
+      const fmt = d => d.toISOString().slice(0,10);
       msg += ` dates: ${fmt(dates.start)} → ${fmt(dates.end)}.`;
     }
     const total = (g.adults||2) + (g.children||0);
