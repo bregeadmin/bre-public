@@ -272,7 +272,7 @@
   .cal-day.peak{background:#FFF0B8}
   .cal-day.booked{background:#FFCFC2;text-decoration:line-through;cursor:default;color:var(--ink-soft)}
   .cal-day:not(.past):not(.booked):not(.empty):hover{background:var(--ink);color:#fff}
-  .cal-day.start,.cal-day.end{background:var(--ink);color:#fff}
+  .cal-day.start,.cal-day.end{background:var(--ink);color:#fff;box-shadow:0 0 0 2px var(--accent);position:relative;z-index:2}
   .cal-day.inside{background:rgba(10,9,8,0.08);border-radius:0}
   .cal-day.start{border-radius:50% 0 0 50%}
   .cal-day.end{border-radius:0 50% 50% 0}
@@ -329,7 +329,7 @@
   .lightbox-single .lb-close:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(90deg)}
   .lightbox-single .lb-counter{text-align:center;color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;font-weight:600;text-transform:uppercase}
   .lightbox-single .lb-single-body{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 80px 24px;position:relative}
-  .lightbox-single img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:8px;display:block;cursor:none}
+  .lightbox-single img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:8px;display:block}
   .lightbox-single .lb-prev,.lightbox-single .lb-next{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:20px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:system-ui,sans-serif}
   .lightbox-single .lb-prev{left:14px}
   .lightbox-single .lb-next{right:14px}
@@ -827,8 +827,8 @@ const PHOTOS = [
   {src:'https://images.unsplash.com/photo-1551776235-dde6d4829808?w=1600&q=80', alt:'living detail'},
   {src:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80', alt:'sofa'},
   {src:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&q=80', alt:'workspace'},
-  {src:'https://images.unsplash.com/photo-1513694203232-719a280e022f?w=1600&q=80', alt:'kitchen detail'},
-  {src:'https://images.unsplash.com/photo-1565182999561-18d7dc61c393?w=1600&q=80', alt:'cosy corner'}
+  {src:'https://images.unsplash.com/photo-1616594039964-ae9021a400a0?w=1600&q=80', alt:'open kitchen'},
+  {src:'https://images.unsplash.com/photo-1567767292278-a4f21aa2d36e?w=1600&q=80', alt:'cosy corner'}
 ];
 
 // =====================================================================
@@ -901,10 +901,6 @@ const PHOTOS = [
   lbBack && lbBack.addEventListener('click', ()=>{lbSingle.hidden=true});
   lbPrev && lbPrev.addEventListener('click', ()=>nav(-1));
   lbNext && lbNext.addEventListener('click', ()=>nav(1));
-  // Click on the photo advances to next; cursor shows next hint
-  lbImg && lbImg.addEventListener('click', ()=>nav(1));
-  lbImg && lbImg.addEventListener('mouseenter', ()=>{ clearCursorColors(); cursor.classList.add('text'); cursor.setAttribute('data-label','next →'); });
-  lbImg && lbImg.addEventListener('mouseleave', ()=>{ cursor.classList.remove('text'); cursor.removeAttribute('data-label'); });
   document.addEventListener('keydown', e=>{
     if(lb.hidden && lbSingle.hidden) return;
     if(e.key === 'Escape'){ closeLb(); }
@@ -999,16 +995,13 @@ const PHOTOS = [
     calMonths.querySelectorAll('.cal-day:not(.past):not(.booked):not(.empty)').forEach(btn=>{
       btn.addEventListener('click', ()=>{
         const [yy,mm,dd] = btn.dataset.date.split('-').map(Number); const d = new Date(yy, mm-1, dd);
-        console.log('[CAL] click', btn.dataset.date, '→ parsed:', d.toDateString(), 'mode:', mode, 'startDate:', startDate?.toDateString());
         if(mode === 'start' || (startDate && d <= startDate)){
           startDate = d;
           endDate = null;
           mode = 'end';
-          console.log('[CAL] set startDate:', d.toDateString(), 'mode now: end');
         } else {
           endDate = d;
           mode = 'start';
-          console.log('[CAL] set endDate:', d.toDateString(), 'mode now: start');
         }
         updateLabels();
         render();
@@ -1039,7 +1032,6 @@ const PHOTOS = [
     // position on the right side if booking panel is right-aligned
     pop.style.left = Math.max(14, Math.min(window.innerWidth - 680 - 14, rect.left)) + 'px';
     render();
-    scrollYWhenOpened = window.scrollY;
   }
   function closePop(){
     pop.hidden = true;
@@ -1063,9 +1055,10 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
-  let scrollYWhenOpened = null;
+  let lastScrollY_cal = window.scrollY;
   window.addEventListener('scroll', ()=>{
-    if(!pop.hidden && scrollYWhenOpened !== null && Math.abs(window.scrollY - scrollYWhenOpened) > 30) closePop();
+    if(!pop.hidden && Math.abs(window.scrollY - lastScrollY_cal) > 80) closePop();
+    lastScrollY_cal = window.scrollY;
   }, {passive:true});
   window.__getBookingDates = ()=>({start: startDate, end: endDate});
 })();
@@ -1110,7 +1103,6 @@ const PHOTOS = [
     pop.style.top = (rect.bottom + 8) + 'px';
     pop.style.left = Math.max(14, Math.min(window.innerWidth - 340 - 14, rect.left)) + 'px';
     update();
-    gpScrollYWhenOpened = window.scrollY;
   }
   function closePop(){
     pop.hidden = true;
@@ -1135,9 +1127,10 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
-  let gpScrollYWhenOpened = null;
+  let lastScrollY_gp = window.scrollY;
   window.addEventListener('scroll', ()=>{
-    if(!pop.hidden && gpScrollYWhenOpened !== null && Math.abs(window.scrollY - gpScrollYWhenOpened) > 30) closePop();
+    if(!pop.hidden && Math.abs(window.scrollY - lastScrollY_gp) > 80) closePop();
+    lastScrollY_gp = window.scrollY;
   }, {passive:true});
   window.__getBookingGuests = ()=>state;
   update();
