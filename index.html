@@ -68,9 +68,10 @@
   }
   .topbar .left{display:flex;gap:24px}
   .topbar .right{justify-self:end;display:flex;align-items:center;gap:18px}
-  .topbar .clock{display:flex;align-items:center;gap:8px}
-  .topbar .clock .pulse{width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 14px var(--accent);animation:dotpulse 2.4s ease-in-out infinite}
   .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.1em;transition:border-color .2s ease,background .2s ease}
+  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;transition:border-color .2s ease,background .2s ease}
+  .topbar .city:hover{border-color:#fff;background:#ffffff14}
+  .topbar .city .arr{opacity:.6;font-size:8px;margin-top:1px}
   .topbar .lang:hover{border-color:#fff;background:#ffffff14;color:var(--accent)}
 
   /* hamburger — hidden on desktop, visible on mobile */
@@ -91,7 +92,7 @@
   .menu-overlay .menu-item{
     display:block;padding:14px 0;
     font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
-    font-size:clamp(40px,11vw,72px);line-height:.9;
+    font-size:clamp(36px,8vw,60px);line-height:.9;
     letter-spacing:-.035em;text-transform:lowercase;color:#fff;
     transition:color .2s ease,transform .25s ease;
     transform:translateX(0);
@@ -415,7 +416,7 @@
       justify-self:start;font-size:22px;
     }
     .topbar .right{justify-self:end;font-size:10px;gap:10px}
-    .topbar .right .clock{display:none}
+    .topbar .right .city{display:none}
     .topbar .right .lang{display:none}
     .topbar .burger{display:inline-flex}
     .topbar .ctr .d{mix-blend-mode:normal}
@@ -441,7 +442,7 @@
     .pad{padding-top:64px;padding-bottom:64px}
     .section-head{flex-direction:column;align-items:flex-start;gap:16px;margin-bottom:32px}
     .section-head .right{text-align:left;font-size:10px}
-    .section-head h2{font-size:clamp(40px,11vw,72px)}
+    .section-head h2{font-size:clamp(36px,8vw,60px)}
 
     .apts{grid-template-columns:1fr;gap:36px}
     .apt .ph{aspect-ratio:4/3;border-radius:10px}
@@ -527,7 +528,7 @@
   </div>
   <a href="#top" class="ctr">bre<span class="d"></span></a>
   <div class="right">
-    <span class="clock"><span class="pulse"></span><span id="time">batumi · 00:00</span></span>
+    <a href="#" class="city">batumi <span class="arr">▾</span></a>
     <a href="/ru/" class="lang" title="русский">ru</a>
     <button class="burger" id="burger" aria-label="menu" type="button"><span></span><span></span></button>
   </div>
@@ -539,6 +540,7 @@
     <a href="/guide" class="menu-item">guide</a>
     <a href="/own" class="menu-item">own with us</a>
     <a href="/invest" class="menu-item">invest</a>
+    <a href="/about" class="menu-item">about</a>
     <a href="#contact" class="menu-item">contact</a>
     <div class="menu-foot">
       <div class="menu-row"><span class="menu-row-label">language</span><a href="/ru/" class="menu-row-val"><b>en</b> · ru</a></div>
@@ -811,7 +813,7 @@
   </div>
 
   <div class="doors">
-    <a class="door reveal" href="/manage">
+    <a class="door reveal" href="/own">
       <div>
         <div class="num">i. for owners</div>
         <h3>hand us<br/>the <em>keys</em>.</h3>
@@ -886,16 +888,7 @@
 </footer>
 
 <script>
-  function tickClock(){
-    const now = new Date();
-    const u = now.getTime() + now.getTimezoneOffset()*60000;
-    const b = new Date(u + 4*3600000);
-    const hh = String(b.getHours()).padStart(2,'0');
-    const mm = String(b.getMinutes()).padStart(2,'0');
-    const el = document.getElementById('time');
-    if(el) el.textContent = `batumi · ${hh}:${mm}`;
-  }
-  tickClock(); setInterval(tickClock, 15000);
+  
 
   const cursor = document.getElementById('cursor');
   const floatWm = document.getElementById('floatWm');

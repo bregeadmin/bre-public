@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>bre — страница не найдена</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;margin:0;padding:0}
+  :root{
+    --accent:#FF5E1A;--ink:#0a0908;--ink-soft:#4d544e;
+    --bg:#FBF8F1;--paper:#FDFBF6;--line:#0a09081a;
+  }
+  body{
+    background:var(--bg);color:var(--ink);
+    font-family:"Bricolage Grotesque",sans-serif;
+    min-height:100vh;display:flex;align-items:center;justify-content:center;
+    padding:32px;
+  }
+  .wrap{max-width:640px;text-align:left}
+  .stamp{
+    display:inline-flex;align-items:center;gap:10px;
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;
+    text-transform:uppercase;font-weight:600;color:var(--ink-soft);
+    margin-bottom:24px;
+  }
+  .stamp .dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+  h1{
+    font-family:"Bricolage Grotesque",sans-serif;font-weight:800;
+    font-size:clamp(64px,9vw,128px);line-height:.9;letter-spacing:-.045em;
+    
+  }
+  h1 em{font-style:italic;color:var(--accent)}
+  p{font-size:18px;line-height:1.5;color:var(--ink-soft);margin-top:24px;max-width:480px}
+  .links{margin-top:36px;display:flex;flex-wrap:wrap;gap:10px}
+  a.btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:14px 22px;border-radius:999px;
+    font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.2em;
+    text-transform:uppercase;font-weight:600;text-decoration:none;
+    background:var(--ink);color:#fff;transition:background .2s ease;
+  }
+  a.btn:hover{background:var(--accent)}
+  a.btn.alt{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  a.btn.alt:hover{background:var(--ink);color:#fff}
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="stamp"><span class="dot"></span>404 · страница не найдена</div>
+    <h1>this page <em>doesn't</em> exist.</h1>
+    <p>может быть, она переехала. Может быть, мы её ещё не построили. Может быть, ошибся в адресе. Ничего страшного — выбери одну из дверей ниже.</p>
+    <div class="links">
+      <a class="btn" href="/">← home</a>
+      <a class="btn alt" href="/guide">the guide</a>
+      <a class="btn alt" href="https://t.me/bre_ge">↗ telegram</a>
+    </div>
+  </div>
+</body>
+</html>

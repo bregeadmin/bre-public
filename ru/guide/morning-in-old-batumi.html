@@ -1,13 +1,13 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>a morning in old batumi — bre</title>
-<meta name="description" content="three coffees, a bookstore, two churches, the synagogue, and lunch at a place with no sign. an unhurried morning, slow on purpose.">
+<title>Утро в Старом Батуми — bre</title>
+<meta name="description" content="Три кофе, книжный, две церкви, синагога и обед в месте без вывески. Неспешное утро — медленное намеренно.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#fbf8f1;--bg-2:#f1ecdf;--paper:#fdfbf6;
@@ -58,7 +58,7 @@
   .menu-overlay.open{opacity:1;pointer-events:auto}
   .menu-overlay::before{content:"";position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=1600&q=80');background-size:cover;background-position:center;opacity:.18;z-index:0}
   .menu-overlay .menu-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;max-width:520px}
-  .menu-overlay .menu-item{display:block;padding:14px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,8vw,60px);line-height:.9;letter-spacing:-.035em;text-transform:lowercase;color:#fff;transition:color .2s ease,transform .25s ease}
+  .menu-overlay .menu-item{display:block;padding:14px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,8vw,60px);line-height:.9;letter-spacing:-.035em;color:#fff;transition:color .2s ease,transform .25s ease}
   .menu-overlay .menu-item:hover{color:var(--page);transform:translateX(12px)}
   .menu-overlay .menu-foot{margin-top:36px;padding-top:24px;border-top:1px solid #ffffff22;width:100%;display:grid;gap:14px}
   .menu-overlay .menu-row{display:flex;justify-content:space-between;align-items:baseline;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:#ffffff88}
@@ -84,7 +84,7 @@
   .hero .crumbs .sep{opacity:.4}
   .hero .crumbs .current{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px}
   .hero .crumbs .current .dot{width:8px;height:8px;border-radius:50%;background:var(--page)}
-  .hero .title{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(56px,8vw,128px);line-height:.88;letter-spacing:-.045em;text-transform:lowercase;max-width:18ch}
+  .hero .title{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(56px,8vw,128px);line-height:.88;letter-spacing:-.045em;max-width:18ch}
   .hero .title em{font-style:italic;color:var(--page)}
   .hero .by{margin-top:40px;display:flex;gap:22px;align-items:center;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
   .hero .by .av{width:34px;height:34px;border-radius:50%;background:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&q=80') center/cover;border:1px solid var(--line-strong)}
@@ -98,7 +98,7 @@
 
   /* LEDE */
   .lede{padding:88px 28px 32px}
-  .lede .inner{max-width:680px;margin:0 auto;font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:clamp(22px,2.3vw,30px);line-height:1.45;color:var(--ink);font-weight:400}
+  .lede .inner{max-width:680px;margin:0 auto;font-family:"PT Serif",Georgia,serif;font-style:italic;font-size:clamp(22px,2.3vw,30px);line-height:1.45;color:var(--ink);font-weight:400}
   .lede .inner p + p{margin-top:18px}
   .lede .inner em{color:var(--page);font-style:italic}
 
@@ -107,9 +107,9 @@
   .section .inner{max-width:680px;margin:0 auto}
   .section .time{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--page);font-weight:700;margin-bottom:18px;display:flex;align-items:center;gap:12px}
   .section .time::before{content:"";flex:none;width:24px;height:2px;background:var(--page)}
-  .section h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.035em;text-transform:lowercase;margin-bottom:24px;max-width:18ch}
+  .section h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.035em;margin-bottom:24px;max-width:18ch}
   .section h2 em{font-style:italic;color:var(--page)}
-  .section p{font-family:"Newsreader",Georgia,serif;font-size:19px;line-height:1.65;color:var(--ink);font-weight:400;margin-bottom:18px}
+  .section p{font-family:"PT Serif",Georgia,serif;font-size:19px;line-height:1.65;color:var(--ink);font-weight:400;margin-bottom:18px}
   .section p:last-child{margin-bottom:0}
   .section p b{font-weight:600;color:var(--ink)}
   .section p i,.section p em{font-style:italic;color:var(--ink)}
@@ -135,7 +135,7 @@
   .place-card .card .body{display:flex;flex-direction:column;gap:6px;justify-content:center}
   .place-card .card .kicker{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:8px}
   .place-card .card .kicker .sw{width:6px;height:6px;border-radius:50%;background:var(--page)}
-  .place-card .card h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:22px;letter-spacing:-.025em;text-transform:lowercase}
+  .place-card .card h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:22px;letter-spacing:-.025em;}
   .place-card .card .desc{font-size:13.5px;line-height:1.5;color:var(--ink-soft)}
   .place-card .card .meta{display:flex;gap:10px;font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-top:4px}
 
@@ -143,11 +143,11 @@
   .map-wrap{padding:80px 28px;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:48px}
   .map-wrap .inner{max-width:1100px;margin:0 auto}
   .map-wrap .head-row{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
-  .map-wrap .head-row h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.035em;text-transform:lowercase}
+  .map-wrap .head-row h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.035em;}
   .map-wrap .head-row h3 em{font-style:italic;color:var(--page)}
   .map-wrap .head-row .right{font-size:13px;color:var(--ink-soft);max-width:320px;text-align:right;line-height:1.5}
   .map-fake{aspect-ratio:16/9;background:linear-gradient(135deg,#e8e1d1 0%,#d4cab3 100%);border:1px solid var(--line);border-radius:12px;position:relative;overflow:hidden}
-  .map-fake::after{content:"open on the map →";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--ink);background:#fff;padding:14px 22px;border-radius:999px;box-shadow:0 8px 28px #0a09081f}
+  .map-fake::after{content:"открыть карту →";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--ink);background:#fff;padding:14px 22px;border-radius:999px;box-shadow:0 8px 28px #0a09081f}
   .map-fake .pin{position:absolute;width:14px;height:14px;border-radius:50%;background:var(--page);border:2px solid #fff;box-shadow:0 0 0 4px var(--page)33}
   .map-fake .pin.p1{top:34%;left:24%}
   .map-fake .pin.p2{top:48%;left:38%}
@@ -159,7 +159,7 @@
   .all-places{padding:80px 28px}
   .all-places .inner{max-width:1100px;margin:0 auto}
   .all-places .top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
-  .all-places h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.035em;text-transform:lowercase}
+  .all-places h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:1;letter-spacing:-.035em;}
   .all-places h3 em{font-style:italic;color:var(--page)}
   .all-places .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
   .all-places .place{display:flex;flex-direction:column;gap:10px;padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:12px;transition:border-color .25s ease,transform .25s ease}
@@ -168,14 +168,14 @@
   .all-places .place .ph img{width:100%;height:100%;object-fit:cover}
   .all-places .place .kicker{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:8px;margin-top:6px}
   .all-places .place .kicker .sw{width:6px;height:6px;border-radius:50%;background:var(--page)}
-  .all-places .place h5{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:19px;letter-spacing:-.02em;text-transform:lowercase}
+  .all-places .place h5{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:19px;letter-spacing:-.02em;}
   .all-places .place .meta{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;gap:10px;flex-wrap:wrap}
 
   /* RELATED */
   .related{padding:80px 28px;background:var(--paper);border-top:1px solid var(--line)}
   .related .inner{max-width:1400px;margin:0 auto}
   .related .top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:32px}
-  .related h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,44px);line-height:1;letter-spacing:-.03em;text-transform:lowercase}
+  .related h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,44px);line-height:1;letter-spacing:-.03em;}
   .related h3 em{font-style:italic;color:var(--page)}
   .related .top .right{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
   .related .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
@@ -184,14 +184,14 @@
   .related .story .ph{aspect-ratio:16/10;border-radius:8px;overflow:hidden}
   .related .story .ph img{width:100%;height:100%;object-fit:cover}
   .related .story .nr{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:4px}
-  .related .story h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:22px;line-height:1.1;letter-spacing:-.025em;text-transform:lowercase}
+  .related .story h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:22px;line-height:1.1;letter-spacing:-.025em;}
   .related .story h4 em{font-style:italic;color:var(--page)}
   .related .story p{font-size:13.5px;line-height:1.5;color:var(--ink-soft)}
   .related .story .read{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--page);font-weight:700;margin-top:auto}
 
   /* CTA bottom — telegram */
   .tg-cta{padding:88px 28px;text-align:center;border-top:1px solid var(--line)}
-  .tg-cta h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,5vw,72px);line-height:1;letter-spacing:-.035em;text-transform:lowercase;max-width:18ch;margin:0 auto 24px}
+  .tg-cta h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,5vw,72px);line-height:1;letter-spacing:-.035em;max-width:18ch;margin:0 auto 24px}
   .tg-cta h3 em{font-style:italic;color:var(--page)}
   .tg-cta p{max-width:42ch;margin:0 auto 32px;font-size:15.5px;line-height:1.55;color:var(--ink-soft)}
   .tg-cta a.btn{display:inline-flex;align-items:center;gap:10px;padding:16px 26px;background:var(--ink);color:#fff;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;transition:background .25s ease}
@@ -259,33 +259,33 @@
 <body>
 
 <div class="cursor" id="cursor"></div>
-<a href="/" class="float-wm" id="floatWm">bre<span class="d"></span></a>
+<a href="/ru/" class="float-wm" id="floatWm">bre<span class="d"></span></a>
 
 <header class="topbar" id="top">
   <div class="left">
-    <a href="/">stays</a>
-    <a href="/guide" class="active">guide</a>
-    <a href="/own">own with us</a>
-    <a href="/invest">invest</a>
+    <a href="/ru/">Квартиры</a>
+    <a href="/ru/guide" class="active">Гайд</a>
+    <a href="/ru/own">Сдать с нами</a>
+    <a href="/ru/invest">Инвестиции</a>
   </div>
-  <a href="/" class="ctr">bre<span class="d"></span></a>
-    <div class="right">
-    <a href="#" class="city">batumi <span class="arr">▾</span></a>
-    <a href="/ru/guide/morning-in-old-batumi" class="lang">ru</a>
+  <a href="/ru/" class="ctr">bre<span class="d"></span></a>
+  <div class="right">
+    <a href="#" class="city">Батуми <span class="arr">▾</span></a>
+    <a href="/guide/morning-in-old-batumi" class="lang">en</a>
     <button class="burger" id="burger" aria-label="menu" type="button"><span></span><span></span></button>
   </div>
 </header>
 
 <div class="menu-overlay" id="menuOverlay" hidden>
   <div class="menu-inner">
-    <a href="/" class="menu-item">stays</a>
-    <a href="/guide" class="menu-item active">guide</a>
-    <a href="/own" class="menu-item">own with us</a>
-    <a href="/invest" class="menu-item">invest</a>
-    <a href="/about" class="menu-item">about</a>
+    <a href="/ru/" class="menu-item">Квартиры</a>
+    <a href="/ru/guide" class="menu-item active">Гайд</a>
+    <a href="/ru/own" class="menu-item">Сдать с нами</a>
+    <a href="/ru/invest" class="menu-item">Инвестиции</a>
+    <a href="/ru/about" class="menu-item">О нас</a>
     <div class="menu-foot">
-      <div class="menu-row"><span class="menu-row-label">city</span><a href="#" class="menu-row-val">batumi ▾</a></div>
-      <div class="menu-row"><span class="menu-row-label">language</span><a href="/ru/guide/morning-in-old-batumi" class="menu-row-val"><b>EN</b> · RU</a></div>
+      <div class="menu-row"><span class="menu-row-label">Город</span><a href="#" class="menu-row-val">Батуми ▾</a></div>
+      <div class="menu-row"><span class="menu-row-label">Язык</span><a href="/guide/morning-in-old-batumi" class="menu-row-val"><b>RU</b> · EN</a></div>
       <a href="https://t.me/bre_ge" class="menu-tg">↗ telegram @bre_ge</a>
     </div>
   </div>
@@ -296,12 +296,12 @@
   <!-- META TOP -->
   <div class="meta-top">
     <div class="left">
-      <span class="pill"><span class="dot"></span>routine · 02</span>
-      <span>· published 28 april 2026</span>
-      <span>· 8-min read</span>
+      <span class="pill"><span class="dot"></span>маршрут · 02</span>
+      <span>· опубликовано 28 апреля 2026</span>
+      <span>· 8 мин читать</span>
     </div>
     <div class="right">
-      <a href="#share">share ↗</a>
+      <a href="#share">поделиться ↗</a>
     </div>
   </div>
 
@@ -309,17 +309,17 @@
   <section class="hero">
     <div class="inner">
       <div class="crumbs">
-        <a href="/guide">guide</a>
+        <a href="/ru/guide">Гайд</a>
         <span class="sep">/</span>
-        <a href="/guide#stories">stories</a>
+        <a href="/ru/guide#stories">истории</a>
         <span class="sep">/</span>
-        <span class="current"><span class="dot"></span>routine · 02</span>
+        <span class="current"><span class="dot"></span>маршрут · 02</span>
       </div>
-      <h1 class="title">a morning in<br/><em>old</em> batumi.</h1>
+      <h1 class="title">Утро<br/>в <em>Старом</em> Батуми.</h1>
       <div class="by">
         <span class="av"></span>
-        <span>by <b>the bre team</b></span>
-        <span>· photos · the bre team</span>
+        <span>текст · <b>команда bre</b></span>
+        <span>· фото · команда bre</span>
       </div>
     </div>
   </section>
@@ -327,32 +327,32 @@
   <!-- HERO PHOTO -->
   <div class="hero-photo">
     <img src="https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=2400&q=80" alt="batumi old town courtyard, morning light">
-    <span class="cap">— old town, around 9 am</span>
+    <span class="cap">— Старый город, около 9 утра</span>
   </div>
 
   <!-- LEDE -->
   <section class="lede">
     <div class="inner">
-      <p>three <em>coffees</em>, a bookstore, two churches, the synagogue, and lunch at a place with no sign. it sounds like a list. it isn't.</p>
-      <p>it's the slowest part of our week. we don't bring a phone — well, only the camera. the morning has a shape that we follow loosely, the way you follow a recipe you've cooked twenty times.</p>
+      <p>Три <em>кофе</em>, книжный, две церкви, синагога и обед в месте без вывески. Звучит как список. Это не список.</p>
+      <p>Это самая медленная часть нашей недели. Телефон не берём — берём только камеру. У утра есть форма, которой следуем нестрого — так же, как следуют рецепту, который готовили двадцать раз.</p>
     </div>
   </section>
 
   <!-- 09:30 — FIRST COFFEE -->
   <section class="section">
     <div class="inner">
-      <div class="time">09:30 — first coffee</div>
-      <h2>start at <em>milevski</em>.</h2>
-      <p>old town has a dozen places to begin a morning, and we've tried them all. we always come back to milevski. it's a third-wave coffee bar with a bench out front, a copper grinder, and barista who'll let you sit for two hours if you want.</p>
-      <p>the morning is for <b>pour-over, not espresso</b> — they do an ethiopian washed that tastes like grapefruit when it cools. you can drink it standing, but the bench is the point. people walk past on the way to work, dogs sniff at your feet, and the cathedral bells ring at ten.</p>
-      <p>order the croissant only if it's a friday. they bake them the night before. by saturday they're trying.</p>
+      <div class="time">09:30 — первый кофе</div>
+      <h2>Начинаем в <em>Milevski</em>.</h2>
+      <p>В Старом городе с десяток мест, где можно начать утро, — мы перепробовали все. Всё равно возвращаемся в Milevski. Это бар кофе третьей волны со скамейкой у входа, медной кофемолкой и баристой, который даст тебе посидеть два часа, если захочешь.</p>
+      <p>Утро — это <b>пуровер, не эспрессо</b>. У них есть эфиопия мытой обработки, на остывании пахнет грейпфрутом. Можно пить стоя, но смысл — в скамейке. Люди идут на работу, собаки нюхают твои ноги, в десять звонят колокола кафедрального собора.</p>
+      <p>Круассан бери только если пятница. Их пекут с вечера. К субботе они стараются.</p>
     </div>
   </section>
 
   <div class="inline-photo">
     <div class="inner">
       <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=2000&q=80" alt="coffee on a wooden table">
-      <div class="cap">— pour-over at milevski, an ordinary tuesday</div>
+      <div class="cap">— пуровер в Milevski, обычный вторник</div>
     </div>
   </div>
 
@@ -361,10 +361,10 @@
       <a class="card" href="/guide/milevski">
         <div class="ph"><img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?w=600&q=80" alt=""></div>
         <div class="body">
-          <span class="kicker"><span class="sw"></span>café · pour-over</span>
-          <h4>milevski</h4>
-          <p class="desc">tiny third-wave coffee bar with a bench out front. ethiopian washed, weekend croissants.</p>
-          <div class="meta"><span>old town</span><span>· 8—21</span><span>· ≈10—22 ₾</span></div>
+          <span class="kicker"><span class="sw"></span>кафе · пуровер</span>
+          <h4>Milevski</h4>
+          <p class="desc">крошечный кофе-бар третьей волны со скамейкой на улице. Эфиопия, круассаны по выходным.</p>
+          <div class="meta"><span>Старый город</span><span>· 8—21</span><span>· ≈10—22 ₾</span></div>
         </div>
       </a>
     </div>
@@ -373,21 +373,21 @@
   <!-- 10:30 — BOOKSTORE -->
   <section class="section">
     <div class="inner">
-      <div class="time">10:30 — bookstore</div>
-      <h2>poetry, posters, and <em>nobody else</em>.</h2>
-      <p>two streets over, behind the building with the blue balcony, there's a bookstore that doesn't have a sign. you'll find it by the postcards taped to the inside of the window — black-and-white shots of batumi from the seventies, when nobody was here.</p>
-      <p>the owner runs it three days a week. it has more poetry than fiction, more russian than english, and a small but serious georgian section in the back. he stocks <b>annie ernaux in two languages</b>, and the entire works of bulat okudzhava on cassette.</p>
-      <p>we never leave without something. last time it was a chapbook of new georgian poets translated by a man we'd never heard of, in print run of 400 copies. that's how it goes here.</p>
+      <div class="time">10:30 — книжный</div>
+      <h2>Поэзия, постеры, <em>и никого больше</em>.</h2>
+      <p>Через две улицы, за домом с синим балконом, есть книжный без вывески. Найти его можно по открыткам, прилепленным изнутри витрины — чёрно-белые фотографии Батуми семидесятых, когда здесь никого не было.</p>
+      <p>Хозяин открывает три дня в неделю. Поэзии больше, чем прозы, русского больше, чем английского, и небольшой, но серьёзный грузинский отдел сзади. У него есть <b>Анни Эрно на двух языках</b> и полное собрание Окуджавы на кассетах.</p>
+      <p>Без чего-то никогда не уходим. В прошлый раз — сборник новых грузинских поэтов в переводе человека, о котором мы никогда не слышали, тираж 400 экземпляров. Так тут всё устроено.</p>
     </div>
   </section>
 
   <!-- 11:30 — CHURCHES -->
   <section class="section">
     <div class="inner">
-      <div class="time">11:30 — two churches</div>
-      <h2>cool stone, no <em>tourists</em>.</h2>
-      <p>old batumi has a small miracle of religious tolerance — four faiths within a five-minute walk. the catholic cathedral on chavchavadze, the armenian church a block over, the orthodox basilica with the green dome, and the synagogue around the corner from the bazaar.</p>
-      <p>we usually visit two — the catholic one for the stained glass, and the armenian one for the courtyard. the courtyard is the real point. there's a fig tree, a low stone bench, and a cat who lives there. <b>nobody bothers you.</b> it's the coolest place in batumi in august, both in temperature and in feeling.</p>
+      <div class="time">11:30 — две церкви</div>
+      <h2>Прохладный камень,<br/>без <em>туристов</em>.</h2>
+      <p>В Старом Батуми — маленькое чудо религиозной терпимости. Четыре конфессии в пяти минутах ходьбы. Католический собор на Чавчавадзе, армянская церковь через квартал, православный храм с зелёным куполом и синагога за углом от базара.</p>
+      <p>Обычно заходим в две — католический ради витражей, армянский ради двора. Двор — это весь смысл. Инжирное дерево, низкая каменная скамья и кот, который тут живёт. <b>Тебя никто не трогает.</b> В августе это самое прохладное место в Батуми — и по температуре, и по ощущению.</p>
     </div>
   </section>
 
@@ -402,28 +402,28 @@
   <!-- 12:00 — SYNAGOGUE -->
   <section class="section">
     <div class="inner">
-      <div class="time">12:00 — synagogue</div>
-      <h2>the smallest one in <em>georgia</em>.</h2>
-      <p>five minutes from the orthodox basilica, on a street whose name we always forget, sits the smallest active synagogue in georgia. it's smaller than our living room. you have to ring the bell.</p>
-      <p>the rabbi will let you in if he's not at lunch. it has wooden benches, ceiling beams painted blue, and a tiny but serious library. <b>he speaks four languages</b> and remembers everyone who's ever visited. if you came with a friend last time, he'll ask about them.</p>
+      <div class="time">12:00 — синагога</div>
+      <h2>Самая маленькая в <em>Грузии</em>.</h2>
+      <p>В пяти минутах от православной базилики, на улице, чьё название мы каждый раз забываем, стоит самая маленькая действующая синагога в Грузии. Она меньше, чем наша гостиная. Нужно позвонить в звонок.</p>
+      <p>Раввин пустит, если не на обеде. Деревянные скамьи, потолочные балки, выкрашенные в синий, и крошечная, но серьёзная библиотека. <b>Говорит на четырёх языках</b> и помнит всех, кто когда-либо заходил. Если в прошлый раз ты был с другом — спросит о нём.</p>
     </div>
   </section>
 
   <!-- 13:00 — LUNCH -->
   <section class="section">
     <div class="inner">
-      <div class="time">13:00 — lunch</div>
-      <h2>a place with <em>no sign</em>.</h2>
-      <p>around the corner from the synagogue, in a courtyard you have to walk through someone's wash hanging on a line, is the restaurant. it doesn't have a name. it doesn't have a sign. it has a green door and a hand-painted notice that says <i>"open"</i> when it's open.</p>
-      <p>three tables inside, four outside under a grape arbor. the menu is verbal. <b>the cook is also the owner, the waiter, and the cashier</b> — her name is dali, she's seventy-something, and she cooks one thing extremely well: chakapuli, when it's spring; chashushuli, when it's autumn; and adjarian khachapuri all year round.</p>
-      <p>cash only. don't ask for the wifi password. there isn't one. that's the point.</p>
+      <div class="time">13:00 — обед</div>
+      <h2>Место <em>без вывески</em>.</h2>
+      <p>За углом от синагоги, во дворе, через который надо пройти под чьим-то бельём на верёвке — ресторан. У него нет названия. Нет вывески. Есть зелёная дверь и нарисованная от руки табличка <i>«открыто»</i>, когда открыто.</p>
+      <p>Три стола внутри, четыре снаружи под виноградной беседкой. Меню — устное. <b>Повар — она же хозяйка, официантка и кассир.</b> Её зовут Дали, ей около семидесяти, и она готовит одну вещь идеально: чакапули весной, чашушули осенью и аджарский хачапури круглый год.</p>
+      <p>Только наличные. Не спрашивай вайфай. Его нет. В этом и смысл.</p>
     </div>
   </section>
 
   <div class="inline-photo">
     <div class="inner">
       <img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=2000&q=80" alt="adjarian khachapuri">
-      <div class="cap">— khachapuri at dali's, almost too much yolk</div>
+      <div class="cap">— хачапури у Дали, желтка почти что слишком</div>
     </div>
   </div>
 
@@ -432,10 +432,10 @@
       <a class="card" href="/guide/dalis-place">
         <div class="ph"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=600&q=80" alt=""></div>
         <div class="body">
-          <span class="kicker"><span class="sw"></span>restaurant · georgian</span>
-          <h4>dali's place (no sign)</h4>
-          <p class="desc">three tables, one cook, a verbal menu. khachapuri, chakapuli, chashushuli. cash only.</p>
-          <div class="meta"><span>old town</span><span>· 13—16, 19—22</span><span>· ≈25—40 ₾</span></div>
+          <span class="kicker"><span class="sw"></span>ресторан · грузинская</span>
+          <h4>У Дали (без вывески)</h4>
+          <p class="desc">три стола, один повар, устное меню. Хачапури, чакапули, чашушули. Только наличные.</p>
+          <div class="meta"><span>Старый город</span><span>· 13—16, 19—22</span><span>· ≈25—40 ₾</span></div>
         </div>
       </a>
     </div>
@@ -445,8 +445,8 @@
   <section class="map-wrap">
     <div class="inner">
       <div class="head-row">
-        <h3>the route,<br/><em>on a map</em>.</h3>
-        <div class="right">about <b>1.6 km on foot</b>, very slowly. budget 4 hours including all stops.</div>
+        <h3>Маршрут,<br/><em>на карте</em>.</h3>
+        <div class="right">примерно <b>1.6 км пешком</b>, очень медленно. Заложи 4 часа со всеми остановками.</div>
       </div>
       <div class="map-fake">
         <span class="pin p1" title="milevski"></span>
@@ -462,39 +462,39 @@
   <section class="all-places">
     <div class="inner">
       <div class="top">
-        <h3>everything <em>mentioned</em>.</h3>
-        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600">— 5 places</div>
+        <h3>Все <em>места</em>.</h3>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600">— 5 мест</div>
       </div>
       <div class="grid">
         <a class="place" href="/guide/milevski">
           <div class="ph"><img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?w=900&q=80" alt=""></div>
-          <span class="kicker"><span class="sw"></span>café · pour-over</span>
+          <span class="kicker"><span class="sw"></span>кафе · пуровер</span>
           <h5>milevski</h5>
-          <div class="meta"><span>old town</span><span>· 8—21</span><span>· ≈10—22 ₾</span></div>
+          <div class="meta"><span>Старый город</span><span>· 8—21</span><span>· ≈10—22 ₾</span></div>
         </a>
         <a class="place" href="/guide/the-bookstore-with-no-sign">
           <div class="ph"><img src="https://images.unsplash.com/photo-1507842217343-583bb7270b66?w=900&q=80" alt=""></div>
-          <span class="kicker"><span class="sw"></span>bookstore · poetry</span>
-          <h5>the bookstore with no sign</h5>
-          <div class="meta"><span>old town</span><span>· tue · thu · sat</span><span>· cash only</span></div>
+          <span class="kicker"><span class="sw"></span>книжный · поэзия</span>
+          <h5>Книжный без вывески</h5>
+          <div class="meta"><span>Старый город</span><span>· вт · чт · сб</span><span>· только наличные</span></div>
         </a>
         <a class="place" href="/guide/armenian-church-courtyard">
           <div class="ph"><img src="https://images.unsplash.com/photo-1602077429129-feb7f17e9712?w=900&q=80" alt=""></div>
-          <span class="kicker"><span class="sw"></span>spot · courtyard</span>
-          <h5>armenian church courtyard</h5>
-          <div class="meta"><span>old town</span><span>· daylight</span><span>· free</span></div>
+          <span class="kicker"><span class="sw"></span>место · двор</span>
+          <h5>Двор армянской церкви</h5>
+          <div class="meta"><span>Старый город</span><span>· светлое время</span><span>· бесплатно</span></div>
         </a>
         <a class="place" href="/guide/old-batumi-synagogue">
           <div class="ph"><img src="https://images.unsplash.com/photo-1591291621164-2c6367723315?w=900&q=80" alt=""></div>
-          <span class="kicker"><span class="sw"></span>synagogue</span>
-          <h5>old batumi synagogue</h5>
-          <div class="meta"><span>old town</span><span>· ring the bell</span><span>· free</span></div>
+          <span class="kicker"><span class="sw"></span>синагога</span>
+          <h5>Синагога Старого Батуми</h5>
+          <div class="meta"><span>Старый город</span><span>· позвони в звонок</span><span>· бесплатно</span></div>
         </a>
         <a class="place" href="/guide/dalis-place">
           <div class="ph"><img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=900&q=80" alt=""></div>
-          <span class="kicker"><span class="sw"></span>restaurant · georgian</span>
-          <h5>dali's place (no sign)</h5>
-          <div class="meta"><span>old town</span><span>· 13—16, 19—22</span><span>· ≈25—40 ₾</span></div>
+          <span class="kicker"><span class="sw"></span>ресторан · грузинская</span>
+          <h5>У Дали (без вывески)</h5>
+          <div class="meta"><span>Старый город</span><span>· 13—16, 19—22</span><span>· ≈25—40 ₾</span></div>
         </a>
       </div>
     </div>
@@ -504,30 +504,30 @@
   <section class="related">
     <div class="inner">
       <div class="top">
-        <h3>more <em>stories</em>.</h3>
-        <div class="right">— hand-picked from the guide</div>
+        <h3>Ещё <em>истории</em>.</h3>
+        <div class="right">— выбрано из гайда</div>
       </div>
       <div class="grid">
         <a class="story" href="#">
           <div class="ph"><img src="https://images.unsplash.com/photo-1561758033-d89a9ad46330?w=900&q=80" alt=""></div>
-          <span class="nr">deep dive · 04</span>
-          <h4>why <em>khachapuri</em><br/>is never just bread.</h4>
-          <p>five places, five recipes, why the yolk matters, what we got wrong.</p>
-          <span class="read">read essay →</span>
+          <span class="nr">погружение · 04</span>
+          <h4>Почему <em>хачапури</em><br/>никогда не просто хлеб.</h4>
+          <p>Пять мест, пять рецептов, почему важен желток, где мы ошибались.</p>
+          <span class="read">читать эссе →</span>
         </a>
         <a class="story" href="#">
           <div class="ph"><img src="https://images.unsplash.com/photo-1502920514313-52581002a659?w=900&q=80" alt=""></div>
-          <span class="nr">photo · 01</span>
-          <h4>one day in<br/><em>gonio</em>.</h4>
-          <p>cape, fortress, fish lunch, the only good beach south of batumi.</p>
-          <span class="read">open the essay →</span>
+          <span class="nr">фото · 01</span>
+          <h4>День<br/>в <em>Гонио</em>.</h4>
+          <p>Мыс, крепость, рыбный обед, единственный хороший пляж к югу от Батуми.</p>
+          <span class="read">открыть эссе →</span>
         </a>
         <a class="story" href="#">
           <div class="ph"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&q=80" alt=""></div>
-          <span class="nr">routine · 06</span>
-          <h4>a slow <em>sunday</em><br/>in batumi.</h4>
-          <p>flea market, sulphur bath, lunch with friends, naps. our protocol for a day off.</p>
-          <span class="read">read routine →</span>
+          <span class="nr">маршрут · 06</span>
+          <h4>Медленное <em>воскресенье</em><br/>в Батуми.</h4>
+          <p>Блошиный рынок, серные бани, обед с друзьями, дрёма. Наш протокол выходного.</p>
+          <span class="read">читать маршрут →</span>
         </a>
       </div>
     </div>
@@ -535,17 +535,17 @@
 
   <!-- TELEGRAM CTA -->
   <section class="tg-cta">
-    <h3>we publish <em>one</em><br/>of these every few weeks.</h3>
-    <p>follow our telegram channel for new stories, news from batumi, and small things worth knowing about the city.</p>
-    <a class="btn" href="https://t.me/batumirealflats">↗ follow on telegram</a>
+    <h3>Публикуем такие<br/>раз в <em>несколько недель</em>.</h3>
+    <p>Подпишись на телеграм-канал — новые истории, новости из Батуми и мелочи, которые стоит знать про город.</p>
+    <a class="btn" href="https://t.me/batumirealflats">↗ подписаться в телеграме</a>
   </section>
 
 </article>
 
 <footer>
   <div class="left">© 2026 · bre.ge</div>
-  <div class="center">apartments &amp; the batumi guide</div>
-  <div class="right"><a href="#top">↑ back to top</a></div>
+  <div class="center">Квартиры и гайд по Батуми</div>
+  <div class="right"><a href="#top">↑ Наверх</a></div>
 </footer>
 
 <script>

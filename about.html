@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>about — bre</title>
+<meta name="description" content="bre is a two-person operation in batumi, georgia. artem on strategy and ownership, olga on people and operations. apartments, a guide, a journal — all made by hand.">
+<meta property="og:title" content="about bre — artem & olga, batumi">
+<meta property="og:description" content="a two-person real estate and lifestyle brand in batumi. since 2022.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf8f1;--bg-2:#f1ecdf;--paper:#fdfbf6;
+    --ink:#0a0908;--ink-soft:#4d544e;
+    --line:#0a090815;--line-strong:#0a090833;
+    --accent:#ff5e1a;--accent-deep:#d94612;
+    --teal:#00b5b0;--yellow:#ffd60a;
+    --pink-soft:#e8797c;--purple:#7f77dd;
+    --green-cat:#5dcaa5;--amber:#ef9f27;
+    --coral:#f0997b;
+    --page:var(--accent);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;font-weight:400;line-height:1.4;cursor:none}
+  body{overflow-x:hidden}
+  ::selection{background:var(--page);color:#fff}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
+  .cursor.big{width:72px;height:72px;background:var(--page)}
+  @media (hover:none){html,body,a,button{cursor:auto}.cursor{display:none}}
+
+  .float-wm{position:fixed;bottom:18px;left:18px;z-index:80;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;letter-spacing:-.04em;color:#fff;mix-blend-mode:difference;display:flex;align-items:flex-end;gap:3px;line-height:1;pointer-events:auto}
+  .float-wm .d{width:14px;height:14px;border-radius:50%;background:var(--page);mix-blend-mode:normal;box-shadow:0 0 14px var(--page);animation:dotpulse 2.4s ease-in-out infinite;margin-bottom:3px;margin-left:7px}
+  @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
+
+  /* TOPBAR */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:24px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+  .topbar .left{display:flex;gap:28px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .left a{transition:color .2s ease}
+  .topbar .left a:hover{color:var(--page)}
+  .topbar .ctr{justify-self:center;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .topbar .ctr .d{width:10px;height:10px;border-radius:50%;background:var(--page);mix-blend-mode:normal;margin-bottom:2px;margin-left:5px}
+  .topbar .right{justify-self:end;display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px;transition:border-color .2s ease,background .2s ease}
+  .topbar .city:hover{border-color:#fff;background:#ffffff14}
+  .topbar .city .arr{opacity:.6;font-size:8px;margin-top:1px}
+  .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.1em;transition:border-color .2s ease,background .2s ease}
+  .topbar .lang:hover{border-color:#fff;background:#ffffff14}
+  .topbar .burger{display:none;width:34px;height:34px;border:1px solid #ffffff66;border-radius:50%;background:transparent;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;cursor:none;flex:none}
+  .topbar .burger span{display:block;width:14px;height:1.5px;background:#fff;transition:transform .25s ease}
+  .topbar .burger.open span:nth-child(1){transform:translateY(3.5px) rotate(45deg)}
+  .topbar .burger.open span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+
+  .menu-overlay{position:fixed;inset:0;z-index:90;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;padding:80px 28px 40px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .menu-overlay.open{opacity:1;pointer-events:auto}
+  .menu-overlay::before{content:"";position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=1600&q=80');background-size:cover;background-position:center;opacity:.18;z-index:0}
+  .menu-overlay .menu-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;max-width:520px}
+  .menu-overlay .menu-item{display:block;padding:14px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,8vw,60px);line-height:.9;letter-spacing:-.035em;text-transform:lowercase;color:#fff;transition:color .2s ease,transform .25s ease}
+  .menu-overlay .menu-item:hover{color:var(--page);transform:translateX(12px)}
+  .menu-overlay .menu-foot{margin-top:36px;padding-top:24px;border-top:1px solid #ffffff22;width:100%;display:grid;gap:14px}
+  .menu-overlay .menu-row{display:flex;justify-content:space-between;align-items:baseline;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:#ffffff88}
+  .menu-overlay .menu-row-val{color:#fff;font-weight:600}
+  .menu-overlay .menu-row-val:hover{color:var(--page)}
+  .menu-overlay .menu-tg{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--page)}
+
+  /* HERO */
+  .head{padding:140px 28px 72px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
+  .head::before{content:"";position:absolute;top:0;right:0;width:55%;height:100%;background:var(--page);opacity:.06;clip-path:polygon(20% 0,100% 0,100% 100%,0 100%)}
+  .head .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end}
+  .head .crumbs{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:32px;display:flex;align-items:center;gap:10px}
+  .head .crumbs a:hover{color:var(--ink)}
+  .head .crumbs .sep{opacity:.4}
+  .head .crumbs .current{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+  .head .crumbs .current .dot{width:8px;height:8px;border-radius:50%;background:var(--page);box-shadow:0 0 10px var(--page)}
+  .head h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(48px,7vw,120px);line-height:.9;letter-spacing:-.045em;text-transform:lowercase}
+  .head h1 em{font-style:italic;color:var(--page)}
+  .head .lede{font-size:20px;line-height:1.55;color:var(--ink);max-width:42ch;padding-bottom:20px}
+  .head .lede b{font-weight:700}
+
+  /* HERO PHOTO */
+  .hero-photo{position:relative;overflow:hidden;height:min(60vh,560px);min-height:380px}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.02)}
+  .hero-photo .cap{position:absolute;left:28px;bottom:18px;color:#fff;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;background:#0a09084d;backdrop-filter:blur(4px);padding:6px 12px;border-radius:999px}
+
+  /* STORY — readable column */
+  .story{padding:96px 28px 64px}
+  .story .inner{max-width:680px;margin:0 auto}
+  .story .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:10px}
+  .story .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--page);box-shadow:0 0 10px var(--page)}
+  .story h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:.95;letter-spacing:-.035em;text-transform:lowercase;margin-bottom:32px}
+  .story h2 em{font-style:italic;color:var(--page)}
+  .story p{font-size:18px;line-height:1.65;color:var(--ink);margin-bottom:18px}
+  .story p b{font-weight:700}
+  .story p em{font-style:italic;color:var(--page)}
+
+  /* STATS — numbers strip */
+  .stats-wrap{padding:64px 28px;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .stats{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
+  .stat{display:flex;flex-direction:column;gap:6px}
+  .stat .num{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(48px,6vw,80px);line-height:.9;letter-spacing:-.04em;color:var(--ink)}
+  .stat .num em{font-style:italic;color:var(--page)}
+  .stat .lbl{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:8px}
+  .stat .note{font-size:13px;color:var(--ink-soft);line-height:1.5}
+
+  /* PEOPLE — two-column profile */
+  .people{padding:96px 28px}
+  .people .container{max-width:1400px;margin:0 auto}
+  .people-head{margin-bottom:48px}
+  .people-head .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .people-head .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--page);box-shadow:0 0 10px var(--page)}
+  .people-head h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(40px,5.5vw,82px);line-height:.95;letter-spacing:-.04em;text-transform:lowercase}
+  .people-head h2 em{font-style:italic;color:var(--page)}
+
+  .profiles{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .profile{display:flex;flex-direction:column;gap:18px;padding:32px;background:var(--paper);border:1px solid var(--line);border-radius:14px;transition:border-color .25s ease}
+  .profile:hover{border-color:var(--page)}
+  .profile .ph{aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--bg-2);position:relative}
+  .profile .ph img{width:100%;height:100%;object-fit:cover}
+  .profile .role{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:8px}
+  .profile .role .sw{width:6px;height:6px;border-radius:50%;background:var(--page)}
+  .profile h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:36px;letter-spacing:-.03em;text-transform:lowercase;line-height:1}
+  .profile h3 em{font-style:italic;color:var(--page)}
+  .profile .bio{font-size:15px;line-height:1.6;color:var(--ink-soft)}
+  .profile .bio b{color:var(--ink);font-weight:600}
+  .profile .does{padding-top:14px;border-top:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink);font-weight:600;display:flex;flex-direction:column;gap:6px}
+  .profile .does .row{display:flex;align-items:center;gap:8px}
+  .profile .does .row::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--page);flex:none}
+  .profile .links{display:flex;gap:14px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--ink-soft)}
+  .profile .links a:hover{color:var(--page)}
+
+  /* MISSION — pull-quote style */
+  .mission{padding:120px 28px;background:var(--ink);color:#fff;text-align:center}
+  .mission blockquote{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(38px,5.5vw,72px);line-height:1.05;letter-spacing:-.04em;text-transform:lowercase;max-width:24ch;margin:0 auto}
+  .mission blockquote em{font-style:italic;color:var(--page)}
+  .mission .signoff{margin-top:32px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#ffffff77;font-weight:500}
+
+  /* TIMELINE */
+  .timeline-wrap{padding:96px 28px;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .timeline-head{max-width:1400px;margin:0 auto 48px}
+  .timeline-head .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .timeline-head .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--page);box-shadow:0 0 10px var(--page)}
+  .timeline-head h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,4.5vw,64px);line-height:.95;letter-spacing:-.035em;text-transform:lowercase}
+  .timeline-head h2 em{font-style:italic;color:var(--page)}
+  .timeline{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
+  .timeline::before{content:"";position:absolute;top:48px;left:0;right:0;height:1px;background:var(--line-strong);z-index:0}
+  .ti{position:relative;z-index:1;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:24px 22px;display:flex;flex-direction:column;gap:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .25s ease}
+  .ti:hover{transform:translateY(-3px);border-color:var(--page)}
+  .ti .year{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:36px;line-height:.9;letter-spacing:-.03em;color:var(--page)}
+  .ti h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;line-height:1.1;letter-spacing:-.02em;text-transform:lowercase}
+  .ti p{font-size:13.5px;line-height:1.55;color:var(--ink-soft)}
+
+  /* VALUES — bullet manifesto */
+  .values{padding:96px 28px}
+  .values .container{max-width:1100px;margin:0 auto}
+  .values .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px}
+  .values .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--page);box-shadow:0 0 10px var(--page)}
+  .values h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,4.5vw,64px);line-height:.95;letter-spacing:-.035em;text-transform:lowercase;margin-bottom:48px}
+  .values h2 em{font-style:italic;color:var(--page)}
+  .values .grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .v{display:flex;flex-direction:column;gap:8px;padding-top:24px;border-top:1px solid var(--line)}
+  .v .nr{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;color:var(--page);font-weight:700}
+  .v h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:24px;letter-spacing:-.025em;text-transform:lowercase;line-height:1.1}
+  .v p{font-size:15px;line-height:1.6;color:var(--ink-soft)}
+
+  /* CTA */
+  .cta-wrap{padding:120px 28px;text-align:center;border-top:1px solid var(--line)}
+  .cta-wrap h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(44px,6vw,96px);line-height:.95;letter-spacing:-.04em;text-transform:lowercase;max-width:18ch;margin:0 auto 24px}
+  .cta-wrap h2 em{font-style:italic;color:var(--page)}
+  .cta-wrap p{max-width:42ch;margin:0 auto 36px;font-size:17px;line-height:1.55;color:var(--ink-soft)}
+  .cta-wrap .row{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+  .btn{display:inline-flex;align-items:center;gap:10px;padding:18px 28px;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;transition:all .25s ease;border:1px solid transparent}
+  .btn.primary{background:var(--ink);color:#fff}
+  .btn.primary:hover{background:var(--page);color:#fff}
+  .btn.alt{background:transparent;color:var(--ink);border-color:var(--ink)}
+  .btn.alt:hover{background:var(--ink);color:#fff}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:32px 28px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  footer .center{text-align:center}
+  footer .right{text-align:right}
+  footer a:hover{color:var(--page)}
+
+  @media (max-width:880px){
+    html,body{cursor:auto}
+    .cursor,.float-wm{display:none}
+    .topbar{grid-template-columns:auto 1fr;padding:14px 14px}
+    .topbar .left{display:none}
+    .topbar .ctr{justify-self:start;font-size:20px}
+    .topbar .right{gap:8px}
+    .topbar .city,.topbar .lang{display:none}
+    .topbar .burger{display:inline-flex}
+    .head{padding:88px 14px 48px}
+    .head .inner{grid-template-columns:1fr;gap:20px}
+    .head h1{font-size:clamp(40px,11vw,64px)}
+    .head .lede{font-size:16px}
+    .hero-photo{height:auto;min-height:0;aspect-ratio:4/3}
+    .story{padding:48px 18px}
+    .story p{font-size:17px}
+    .stats-wrap{padding:40px 14px}
+    .stats{grid-template-columns:1fr 1fr;gap:18px}
+    .people{padding:48px 14px}
+    .profiles{grid-template-columns:1fr;gap:16px}
+    .profile{padding:22px}
+    .profile h3{font-size:28px}
+    .mission{padding:64px 14px}
+    .timeline-wrap{padding:48px 14px}
+    .timeline{grid-template-columns:1fr;gap:10px}
+    .timeline::before{display:none}
+    .values{padding:48px 14px}
+    .values .grid{grid-template-columns:1fr;gap:14px}
+    .cta-wrap{padding:56px 14px}
+    .btn{padding:14px 22px}
+    footer{grid-template-columns:1fr;gap:8px;font-size:9px}
+    footer .center,footer .right{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<a href="/" class="float-wm" id="floatWm">bre<span class="d"></span></a>
+
+<header class="topbar" id="top">
+  <div class="left">
+    <a href="/">stays</a>
+    <a href="/guide">guide</a>
+    <a href="/own">own with us</a>
+    <a href="/invest">invest</a>
+  </div>
+  <a href="/" class="ctr">bre<span class="d"></span></a>
+  <div class="right">
+    <a href="#" class="city">batumi <span class="arr">▾</span></a>
+    <a href="/ru/about" class="lang">ru</a>
+    <button class="burger" id="burger" aria-label="menu" type="button"><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay" hidden>
+  <div class="menu-inner">
+    <a href="/" class="menu-item">stays</a>
+    <a href="/guide" class="menu-item">guide</a>
+    <a href="/own" class="menu-item">own with us</a>
+    <a href="/invest" class="menu-item">invest</a>
+    <a href="/about" class="menu-item active">about</a>
+    <div class="menu-foot">
+      <div class="menu-row"><span class="menu-row-label">city</span><a href="#" class="menu-row-val">batumi ▾</a></div>
+      <div class="menu-row"><span class="menu-row-label">language</span><a href="/ru/about" class="menu-row-val"><b>EN</b> · RU</a></div>
+      <a href="https://t.me/bre_ge" class="menu-tg">↗ telegram @bre_ge</a>
+    </div>
+  </div>
+</div>
+
+<!-- HEAD -->
+<section class="head">
+  <div class="inner">
+    <div>
+      <div class="crumbs">
+        <a href="/">bre</a>
+        <span class="sep">/</span>
+        <span class="current"><span class="dot"></span>about</span>
+      </div>
+      <h1>two people,<br/>one <em>city</em>.</h1>
+    </div>
+    <p class="lede">bre is a <b>two-person operation</b> in batumi, georgia. we look after the apartments, write the guide, host the guests, and run the business <b>with our own hands</b>. since 2022.</p>
+  </div>
+</section>
+
+<!-- HERO PHOTO -->
+<div class="hero-photo">
+  <img src="https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=2400&q=80" alt="batumi seafront, evening light">
+  <span class="cap">— our home for the last four years</span>
+</div>
+
+<!-- STORY -->
+<section class="story">
+  <div class="inner">
+    <div class="kicker"><span class="dot"></span>— how it started</div>
+    <h2>we arrived for <em>a winter</em>.<br/>we stayed.</h2>
+    <p>we came to batumi in early <b>2022</b>, thinking we'd give it a season. we'd both spent the last decade working in moscow — one of us in property and brand operations, the other running a plant studio. the plan was to rent a flat for three months, see the sea, drink some wine, decide what's next.</p>
+    <p>three months turned into six. six turned into <em>a year</em>. by the end of that year we'd bought our first flat — half because we'd fallen for the city, half because the maths just worked. we renovated it ourselves, listed it, hosted our first guests over a long, slow winter.</p>
+    <p>then a friend asked us to manage hers. then her friend asked. then the owner of the flat below. by the end of <b>2023</b> we were running ten apartments, writing a city guide on the side, and quietly turning what was supposed to be a winter break into a real business.</p>
+    <p>we're still here. <em>still surprised.</em></p>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats-wrap">
+  <div class="stats">
+    <div class="stat">
+      <div class="num"><em>10+</em></div>
+      <div class="lbl">— apartments</div>
+      <div class="note">under management across six districts of batumi.</div>
+    </div>
+    <div class="stat">
+      <div class="num">$1.5<em>M</em></div>
+      <div class="lbl">— transaction volume</div>
+      <div class="note">closed in the last twelve months — sales, renovation, management.</div>
+    </div>
+    <div class="stat">
+      <div class="num">127</div>
+      <div class="lbl">— places in the guide</div>
+      <div class="note">all visited by us. no rumours, no tripadvisor scraping.</div>
+    </div>
+    <div class="stat">
+      <div class="num">5</div>
+      <div class="lbl">— languages</div>
+      <div class="note">russian, english, turkish, hebrew, georgian. for our guests.</div>
+    </div>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section class="people">
+  <div class="container">
+    <div class="people-head">
+      <div class="kicker"><span class="dot"></span>— who's behind this</div>
+      <h2>two <em>halves</em>,<br/>one operation.</h2>
+    </div>
+
+    <div class="profiles">
+      <!-- OLGA -->
+      <div class="profile">
+        <div class="ph">
+          <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80" alt="Olga Merkusheva, co-founder of bre">
+        </div>
+        <div class="role"><span class="sw"></span>co-founder · people &amp; operations</div>
+        <h3><em>olga</em> merkusheva</h3>
+        <p class="bio">before bre, olga founded <b>plant me</b> — a moscow plant studio at zatsepa 21 that became a quiet phenomenon: a place where plants chose their owners (her words), where lectures and shoots happened, where people met. she ran it from 2018 until she moved.</p>
+        <p class="bio">at bre she's the <b>warmth and the rigour at once</b>: hosts guests, manages the cleaning rotation, sources the textiles, knows which lamp needs replacing in which flat, and keeps the operation feeling human.</p>
+        <div class="does">
+          <div class="row">guest hosting · 5 languages</div>
+          <div class="row">staging &amp; interiors</div>
+          <div class="row">cleaning &amp; quality</div>
+          <div class="row">supplier relations</div>
+        </div>
+        <div class="links">
+          <a href="https://t.me/bre_ge">↗ telegram</a>
+          <a href="https://www.instagram.com/plantmemoscow">↗ plant me</a>
+        </div>
+      </div>
+
+      <!-- ARTEM -->
+      <div class="profile">
+        <div class="ph">
+          <img src="https://www.grinbergart.com/assets/artem-hero-clean.png" alt="Artem Grinberg, co-founder of bre">
+        </div>
+        <div class="role"><span class="sw"></span>co-founder · strategy &amp; infrastructure</div>
+        <h3><em>artem</em> grinberg</h3>
+        <p class="bio">founder, real-estate operator and GTM strategist. background spans <b>brand launches (Cadillac, FIFA, SPIEF), commercial development</b> (1,550 m² of property delivered), and a research-product at IEEE level on consumer behaviour in retail.</p>
+        <p class="bio">at bre he runs <b>strategy, owner relations, sales, and the infrastructure underneath</b>: the financial admin, the booking systems, the new product ideas. between two cities, mobile by default.</p>
+        <div class="does">
+          <div class="row">strategy &amp; positioning</div>
+          <div class="row">owner &amp; investor relations</div>
+          <div class="row">infrastructure &amp; tooling</div>
+          <div class="row">deal sourcing &amp; sales</div>
+        </div>
+        <div class="links">
+          <a href="https://grinbergart.com">↗ grinbergart.com</a>
+          <a href="https://t.me/grinbergart">↗ telegram</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION -->
+<section class="mission">
+  <blockquote>made by <em>two people</em>.<br/>for those who <em>notice</em>.</blockquote>
+  <div class="signoff">— our north star, since 2022</div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-wrap">
+  <div class="timeline-head">
+    <div class="kicker"><span class="dot"></span>— our four years here</div>
+    <h2>year by <em>year</em>.</h2>
+  </div>
+  <div class="timeline">
+    <div class="ti">
+      <span class="year">2022</span>
+      <h4>arrived in batumi</h4>
+      <p>came for three months. rented a flat in the old town. realised by month two we weren't leaving.</p>
+    </div>
+    <div class="ti">
+      <span class="year">2023</span>
+      <h4>first flat &amp; first guests</h4>
+      <p>bought, renovated and listed our first apartment. friends asked us to manage theirs. ten by year-end.</p>
+    </div>
+    <div class="ti">
+      <span class="year">2024</span>
+      <h4>the guide started</h4>
+      <p>began publishing a real local guide — places we'd visited ourselves, with no star ratings.</p>
+    </div>
+    <div class="ti">
+      <span class="year">2025</span>
+      <h4>a real brand</h4>
+      <p>launched the new bre.ge, brought design and code in-house, built our own admin from scratch.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="values">
+  <div class="container">
+    <div class="kicker"><span class="dot"></span>— how we work</div>
+    <h2>five <em>things</em><br/>we hold to.</h2>
+
+    <div class="grid">
+      <div class="v">
+        <div class="nr">01</div>
+        <h4>we use what we recommend.</h4>
+        <p>every flat we manage, we'd stay in. every café we list, we drink at. every renovation contractor we suggest, we've worked with on our own walls.</p>
+      </div>
+      <div class="v">
+        <div class="nr">02</div>
+        <h4>small on purpose.</h4>
+        <p>ten apartments, not a hundred. one city, not five. we know every door, every neighbour, every quirk. we'd rather grow slowly than badly.</p>
+      </div>
+      <div class="v">
+        <div class="nr">03</div>
+        <h4>transparent about numbers.</h4>
+        <p>30/70 split, no hidden fees, no "extras". monthly report with every line, every receipt. you see what we see.</p>
+      </div>
+      <div class="v">
+        <div class="nr">04</div>
+        <h4>we write what we mean.</h4>
+        <p>no marketing fluff. no "unique experience". no "best in town". if a place is good, we say why. if it's not, we don't list it.</p>
+      </div>
+      <div class="v">
+        <div class="nr">05</div>
+        <h4>we answer ourselves.</h4>
+        <p>no chatbots, no support tickets, no "the team will get back to you". the message lands with one of us, day or night.</p>
+      </div>
+      <div class="v">
+        <div class="nr">06</div>
+        <h4>we stay.</h4>
+        <p>batumi is home, not a project. we built our lives here, and we'll be here when you arrive.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-wrap">
+  <h2>now you <em>know us</em>.<br/>say hi.</h2>
+  <p>book a stay, list your flat, ask a question, or come for coffee — we work from a small office in the old town and we like meeting people who'd like to meet us.</p>
+  <div class="row">
+    <a class="btn primary" href="https://t.me/bre_ge">↗ message on telegram</a>
+    <a class="btn alt" href="tel:+995585889601">+995 585 889 601</a>
+  </div>
+</section>
+
+<footer>
+  <div class="left">© 2026 · bre.ge</div>
+  <div class="center">apartments &amp; the batumi guide</div>
+  <div class="right"><a href="#top">↑ back to top</a></div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const floatWm = document.getElementById('floatWm');
+  let mx=window.innerWidth/2,my=window.innerHeight/2,cx=mx,cy=my,wmx=0,wmy=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  function loop(){
+    cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;
+    if(cursor) cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;
+    const tx=(mx-window.innerWidth/2)*0.012,ty=(my-window.innerHeight/2)*0.012;
+    wmx+=(tx-wmx)*0.08;wmy+=(ty-wmy)*0.08;
+    if(floatWm) floatWm.style.transform=`translate(${wmx}px, ${wmy}px)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+  });
+
+  (function(){
+    const burger=document.getElementById('burger');
+    const overlay=document.getElementById('menuOverlay');
+    if(!burger||!overlay)return;
+    function open(){overlay.hidden=false;requestAnimationFrame(()=>overlay.classList.add('open'));burger.classList.add('open');document.body.style.overflow='hidden'}
+    function close(){overlay.classList.remove('open');burger.classList.remove('open');document.body.style.overflow='';setTimeout(()=>overlay.hidden=true,320)}
+    burger.addEventListener('click',()=>overlay.classList.contains('open')?close():open());
+    overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+    overlay.querySelectorAll('.menu-item,.menu-tg,.menu-row-val').forEach(a=>a.addEventListener('click',close));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))close()});
+  })();
+</script>
+
+</body>
+</html>

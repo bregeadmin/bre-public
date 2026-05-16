@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="ru">
+<!--
+  ============================================================
+  PLACE CARD TEMPLATE — bre.ge guide
+  ============================================================
+  This template is designed for admin-panel population.
+  Each editable field is marked with [[FIELD:name]] comments.
+  
+  CMS fields (auto-mapped from admin form):
+  - [[FIELD:slug]]            → URL: /guide/{slug}
+  - [[FIELD:title]]           → place name
+  - [[FIELD:category]]        → eat-drink | wellness | nightlife | ...
+  - [[FIELD:cat_color]]       → CSS color variable for category
+  - [[FIELD:subcategory]]     → coffee | restaurant | bar | ...
+  - [[FIELD:summary]]         → 1-line tagline (used in meta + hero)
+  - [[FIELD:address]]         → full address
+  - [[FIELD:district]]        → district slug
+  - [[FIELD:hours]]           → object { monday, tuesday, ..., today }
+  - [[FIELD:price_range]]     → "10—22 ₾"
+  - [[FIELD:phone]]           → optional
+  - [[FIELD:instagram]]       → optional handle
+  - [[FIELD:website]]         → optional URL
+  - [[FIELD:lat]] [[FIELD:lng]] → coordinates for map
+  - [[FIELD:our_text]]        → our recommendation (3-5 paragraphs, markdown)
+  - [[FIELD:photos[]]]        → array of photo objects { url, alt, caption }
+  - [[FIELD:related_places[]]] → array of related slugs
+  - [[FIELD:nearby_apartments[]]] → array of apartment slugs (haversine query)
+  - [[FIELD:tags[]]]          → ["pour-over","ethiopian","quiet","wifi"]
+  
+  SEO auto-generated from:
+  - title + city + category → <title>
+  - summary + price + district → <meta description>
+  - photos[0] + title → og:image + og:title
+  - lat/lng + address → JSON-LD LocalBusiness schema
+  ============================================================
+-->
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- [[SEO:auto]] -->
+<title>Nova Coffee — спешелти кофе в Батуми — bre</title>
+<meta name="description" content="Настоящий спешелти кофе в Батуми. Светлый зал, настоящая эспрессо-машина, зёрна свежей обжарки. Флэт уайт ≈12 ₾, фильтр ≈14 ₾. Чавчавадзе 35.">
+<meta property="og:title" content="Nova Coffee — спешелти кофе в Батуми">
+<meta property="og:description" content="Светлый зал, настоящая эспрессо-машина, зёрна свежей обжарки. Флэт уайт ≈12 ₾, фильтр ≈14 ₾.">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=80">
+<meta property="og:locale" content="en_GE">
+<meta property="og:locale:alternate" content="ru_GE">
+<link rel="alternate" hreflang="en" href="https://bre.ge/guide/nova-coffee">
+<link rel="alternate" hreflang="ru" href="https://bre.ge/ru/guide/nova-coffee">
+
+<!-- JSON-LD LocalBusiness schema, auto-generated from fields -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CafeOrCoffeeShop",
+  "name": "Nova Coffee",
+  "image": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1600&q=80",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Chavchavadze 35",
+    "addressLocality": "Batumi",
+    "addressCountry": "GE"
+  },
+  "geo": { "@type": "GeoCoordinates", "latitude": 41.6505, "longitude": 41.6373 },
+  "openingHours": "Mo-Su 09:00-22:00",
+  "priceRange": "10—22 ₾",
+  "url": "https://bre.ge/guide/nova-coffee"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf8f1;--bg-2:#f1ecdf;--paper:#fdfbf6;
+    --ink:#0a0908;--ink-soft:#4d544e;
+    --line:#0a090815;--line-strong:#0a090833;
+    --accent:#ff5e1a;--accent-deep:#d94612;
+    --teal:#00b5b0;--yellow:#ffd60a;
+    --pink-soft:#e8797c;--purple:#7f77dd;
+    --green-cat:#5dcaa5;--amber:#ef9f27;
+    --coral:#f0997b;
+    /* PER-CATEGORY — [[FIELD:cat_color]] */
+    --cat-color:var(--accent);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;font-weight:400;line-height:1.4;cursor:none}
+  body{overflow-x:hidden}
+  ::selection{background:var(--cat-color);color:#fff}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
+  .cursor.big{width:72px;height:72px;background:var(--cat-color)}
+  @media (hover:none){html,body,a,button{cursor:auto}.cursor{display:none}}
+
+  .float-wm{position:fixed;bottom:18px;left:18px;z-index:80;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;letter-spacing:-.04em;color:#fff;mix-blend-mode:difference;display:flex;align-items:flex-end;gap:3px;line-height:1;pointer-events:auto}
+  .float-wm .d{width:14px;height:14px;border-radius:50%;background:var(--cat-color);mix-blend-mode:normal;box-shadow:0 0 14px var(--cat-color);animation:dotpulse 2.4s ease-in-out infinite;margin-bottom:3px;margin-left:7px}
+  @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--cat-color)}}
+
+  /* TOPBAR */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:24px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+  .topbar .left{display:flex;gap:28px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .left a:hover,.topbar .left a.active{color:var(--cat-color)}
+  .topbar .ctr{justify-self:center;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .topbar .ctr .d{width:10px;height:10px;border-radius:50%;background:var(--cat-color);mix-blend-mode:normal;margin-bottom:2px;margin-left:5px}
+  .topbar .right{justify-self:end;display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px;transition:all .2s ease}
+  .topbar .city:hover{border-color:#fff;background:#ffffff14}
+  .topbar .city .arr{opacity:.6;font-size:8px;margin-top:1px}
+  .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.1em;transition:all .2s ease}
+  .topbar .lang:hover{border-color:#fff;background:#ffffff14}
+  .topbar .burger{display:none;width:34px;height:34px;border:1px solid #ffffff66;border-radius:50%;background:transparent;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;cursor:none;flex:none}
+  .topbar .burger span{display:block;width:14px;height:1.5px;background:#fff;transition:transform .25s ease}
+  .topbar .burger.open span:nth-child(1){transform:translateY(3.5px) rotate(45deg)}
+  .topbar .burger.open span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+
+  .menu-overlay{position:fixed;inset:0;z-index:90;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;padding:80px 28px 40px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .menu-overlay.open{opacity:1;pointer-events:auto}
+  .menu-overlay::before{content:"";position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=1600&q=80');background-size:cover;background-position:center;opacity:.18;z-index:0}
+  .menu-overlay .menu-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;max-width:520px}
+  .menu-overlay .menu-item{display:block;padding:14px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,8vw,60px);line-height:.9;letter-spacing:-.035em;color:#fff;transition:all .25s ease}
+  .menu-overlay .menu-item:hover{color:var(--cat-color);transform:translateX(12px)}
+  .menu-overlay .menu-foot{margin-top:36px;padding-top:24px;border-top:1px solid #ffffff22;width:100%;display:grid;gap:14px}
+  .menu-overlay .menu-row{display:flex;justify-content:space-between;align-items:baseline;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:#ffffff88}
+  .menu-overlay .menu-row-val{color:#fff;font-weight:600}
+  .menu-overlay .menu-row-val:hover{color:var(--cat-color)}
+  .menu-overlay .menu-tg{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--cat-color)}
+
+  /* META TOP — breadcrumbs */
+  .meta-top{padding:96px 28px 16px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;border-bottom:1px solid var(--line)}
+  .meta-top .crumbs{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .meta-top .crumbs a:hover{color:var(--ink)}
+  .meta-top .crumbs .sep{opacity:.4}
+  .meta-top .crumbs .cur{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+  .meta-top .crumbs .cur .dot{width:6px;height:6px;border-radius:50%;background:var(--cat-color)}
+  .meta-top .actions{display:flex;gap:14px}
+  .meta-top .actions a:hover{color:var(--cat-color)}
+
+  /* HERO */
+  .hero{padding:48px 28px 0}
+  .hero .inner{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:48px;align-items:end}
+  .hero .pill{display:inline-flex;align-items:center;gap:8px;padding:6px 12px;border:1px solid var(--line-strong);border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--ink-soft);margin-bottom:20px}
+  .hero .pill .sw{width:8px;height:8px;border-radius:50%;background:var(--cat-color)}
+  .hero h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(56px,8vw,128px);line-height:.88;letter-spacing:-.045em;}
+  .hero h1 em{font-style:italic;color:var(--cat-color)}
+  .hero .summary{margin-top:24px;font-size:18px;line-height:1.55;color:var(--ink-soft);max-width:36ch}
+  .hero .summary b{color:var(--ink);font-weight:700}
+
+  .hero-photo{margin-top:48px;border-radius:14px;overflow:hidden;aspect-ratio:21/9;background:var(--bg-2);position:relative;max-width:1400px;margin-left:auto;margin-right:auto}
+  .hero-photo img{width:100%;height:100%;object-fit:cover}
+  .hero-photo .cap{position:absolute;left:18px;bottom:18px;color:#fff;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;background:#0a09084d;backdrop-filter:blur(4px);padding:6px 12px;border-radius:999px}
+
+  /* ACTION BAR */
+  .action-bar{margin:48px auto 0;max-width:1400px;display:flex;gap:14px;align-items:center;padding:18px 24px;background:var(--ink);color:#fff;border-radius:14px;flex-wrap:wrap}
+  .action-bar .open-now{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:999px;background:var(--cat-color);color:#fff;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:700}
+  .action-bar .open-now .pulse{width:6px;height:6px;border-radius:50%;background:#fff;animation:dotpulse 2s ease-in-out infinite}
+  .action-bar .spacer{flex:1}
+  .action-bar a.act{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border:1px solid #ffffff33;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;transition:all .2s ease}
+  .action-bar a.act:hover{border-color:#fff;background:#ffffff10}
+  .action-bar a.act.primary{background:#fff;color:var(--ink)}
+  .action-bar a.act.primary:hover{background:var(--cat-color);color:#fff}
+
+  /* BODY — text + aside */
+  .body{padding:80px 28px 64px}
+  .body .container{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:80px;align-items:start}
+  .body .text{display:flex;flex-direction:column;gap:24px}
+  .body .text .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:10px}
+  .body .text .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--cat-color);box-shadow:0 0 10px var(--cat-color)}
+  .body .text h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4vw,52px);line-height:.95;letter-spacing:-.035em;margin-bottom:6px}
+  .body .text h2 em{font-style:italic;color:var(--cat-color)}
+  .body .text p{font-size:18px;line-height:1.65;color:var(--ink)}
+  .body .text p b{font-weight:700}
+  .body .text p em{font-style:italic;color:var(--cat-color)}
+  .body .text .tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:24px;border-top:1px solid var(--line)}
+  .body .text .tag{padding:5px 12px;background:var(--paper);border:1px solid var(--line);border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--ink-soft)}
+
+  /* aside — practical panels */
+  .aside{position:sticky;top:120px;display:flex;flex-direction:column;gap:14px}
+  .panel{padding:24px;background:var(--paper);border:1px solid var(--line);border-radius:14px}
+  .panel h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;margin-bottom:14px;display:flex;align-items:center;gap:8px}
+  .panel h4 svg{flex:none;color:var(--cat-color)}
+  .panel ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+  .panel li{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;line-height:1.4;color:var(--ink)}
+  .panel li .day{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .panel li b{font-weight:600}
+  .panel li.today b,.panel li.today .day{color:var(--cat-color)}
+  .panel .quick{display:flex;flex-direction:column;gap:12px}
+  .panel .quick .item{display:flex;gap:12px;align-items:flex-start}
+  .panel .quick .item svg{flex:none;color:var(--cat-color);margin-top:1px}
+  .panel .quick .item .t{display:flex;flex-direction:column;gap:2px;font-size:13.5px;line-height:1.4}
+  .panel .quick .item .t b{font-weight:600;color:var(--ink)}
+  .panel .quick .item .t .n{font-size:12px;color:var(--ink-soft)}
+
+  /* GALLERY */
+  .gallery-wrap{padding:24px 28px 64px}
+  .gallery{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+  .gallery .g{aspect-ratio:1;border-radius:8px;overflow:hidden;background:var(--bg-2);transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .gallery .g:hover{transform:translateY(-3px)}
+  .gallery .g img{width:100%;height:100%;object-fit:cover}
+
+  /* STAY NEARBY */
+  .nearby-wrap{padding:96px 28px;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .nearby-head{max-width:1400px;margin:0 auto 40px;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .nearby-head .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .nearby-head .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--cat-color);box-shadow:0 0 10px var(--cat-color)}
+  .nearby-head h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(32px,4.5vw,56px);line-height:.95;letter-spacing:-.035em;}
+  .nearby-head h3 em{font-style:italic;color:var(--cat-color)}
+  .nearby-head .right{max-width:280px;font-size:13.5px;color:var(--ink-soft);text-align:right;line-height:1.5}
+  .nearby{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .apt{display:flex;flex-direction:column;gap:12px;padding:18px;background:var(--bg);border:1px solid var(--line);border-radius:12px;transition:all .25s ease}
+  .apt:hover{border-color:var(--cat-color);transform:translateY(-3px)}
+  .apt .ph{aspect-ratio:5/4;border-radius:8px;overflow:hidden;background:var(--bg-2)}
+  .apt .ph img{width:100%;height:100%;object-fit:cover}
+  .apt .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .apt h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;}
+  .apt .price{font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:700;color:var(--ink);white-space:nowrap}
+  .apt .price .u{font-size:9px;color:var(--ink-soft);font-weight:500}
+  .apt .sub{font-size:12.5px;color:var(--ink-soft)}
+  .apt .dist{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--cat-color);font-weight:700;display:flex;align-items:center;gap:6px;margin-top:4px}
+  .apt .dist::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--cat-color)}
+
+  /* RELATED PLACES */
+  .related{padding:80px 28px 96px}
+  .related .container{max-width:1400px;margin:0 auto}
+  .related .top{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap;margin-bottom:40px}
+  .related h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(28px,3.5vw,44px);line-height:.95;letter-spacing:-.03em;}
+  .related h3 em{font-style:italic;color:var(--cat-color)}
+  .related .top .right{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .related .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .related .pl{display:flex;flex-direction:column;gap:10px;padding:18px;background:var(--paper);border:1px solid var(--line);border-radius:12px;transition:all .25s ease}
+  .related .pl:hover{border-color:var(--cat-color);transform:translateY(-3px)}
+  .related .pl .ph{aspect-ratio:5/4;border-radius:8px;overflow:hidden}
+  .related .pl .ph img{width:100%;height:100%;object-fit:cover}
+  .related .pl .kicker{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;display:flex;align-items:center;gap:8px;margin-top:4px}
+  .related .pl .kicker .sw{width:6px;height:6px;border-radius:50%;background:var(--cat-color)}
+  .related .pl h5{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;letter-spacing:-.02em;}
+  .related .pl .summary{font-size:12.5px;line-height:1.5;color:var(--ink-soft)}
+  .related .pl .meta{font-family:"JetBrains Mono",monospace;font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);display:flex;gap:8px}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:32px 28px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  footer .center{text-align:center}
+  footer .right{text-align:right}
+  footer a:hover{color:var(--cat-color)}
+
+  @media (max-width:880px){
+    html,body{cursor:auto}
+    .cursor,.float-wm{display:none}
+    .topbar{grid-template-columns:auto 1fr;padding:14px 14px}
+    .topbar .left{display:none}
+    .topbar .ctr{justify-self:start;font-size:20px}
+    .topbar .right{gap:8px}
+    .topbar .city,.topbar .lang{display:none}
+    .topbar .burger{display:inline-flex}
+    .meta-top{padding:72px 14px 14px}
+    .hero{padding:32px 14px 0}
+    .hero .inner{grid-template-columns:1fr;gap:20px;align-items:start}
+    .hero h1{font-size:clamp(44px,12vw,72px)}
+    .hero-photo{margin-top:24px;aspect-ratio:4/3;border-radius:10px}
+    .action-bar{margin:24px 14px 0;padding:14px 18px}
+    .body{padding:48px 14px}
+    .body .container{grid-template-columns:1fr;gap:32px}
+    .aside{position:static}
+    .gallery-wrap{padding:14px 14px 48px}
+    .gallery{grid-template-columns:1fr 1fr;gap:6px}
+    .nearby-wrap{padding:48px 14px}
+    .nearby-head{flex-direction:column;align-items:flex-start;margin-bottom:24px}
+    .nearby-head .right{text-align:left}
+    .nearby{grid-template-columns:1fr;gap:12px}
+    .related{padding:48px 14px}
+    .related .top{flex-direction:column;align-items:flex-start}
+    .related .grid{grid-template-columns:1fr;gap:12px}
+    footer{grid-template-columns:1fr;gap:8px;font-size:9px}
+    footer .center,footer .right{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<a href="/ru/" class="float-wm" id="floatWm">bre<span class="d"></span></a>
+
+<header class="topbar" id="top">
+  <div class="left">
+    <a href="/ru/">Квартиры</a>
+    <a href="/ru/guide" class="active">Гайд</a>
+    <a href="/ru/own">Сдать с нами</a>
+    <a href="/ru/invest">Инвестиции</a>
+  </div>
+  <a href="/ru/" class="ctr">bre<span class="d"></span></a>
+  <div class="right">
+    <a href="#" class="city">Батуми <span class="arr">▾</span></a>
+    <a href="/guide/nova-coffee" class="lang">en</a>
+    <button class="burger" id="burger" aria-label="menu" type="button"><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay" hidden>
+  <div class="menu-inner">
+    <a href="/ru/" class="menu-item">Квартиры</a>
+    <a href="/ru/guide" class="menu-item active">Гайд</a>
+    <a href="/ru/own" class="menu-item">Сдать с нами</a>
+    <a href="/ru/invest" class="menu-item">Инвестиции</a>
+    <a href="/ru/about" class="menu-item">О нас</a>
+    <div class="menu-foot">
+      <div class="menu-row"><span class="menu-row-label">Город</span><a href="#" class="menu-row-val">Батуми ▾</a></div>
+      <div class="menu-row"><span class="menu-row-label">Язык</span><a href="/guide/nova-coffee" class="menu-row-val"><b>RU</b> · EN</a></div>
+      <a href="https://t.me/bre_ge" class="menu-tg">↗ telegram @bre_ge</a>
+    </div>
+  </div>
+</div>
+
+<!-- META TOP — breadcrumbs + actions -->
+<div class="meta-top">
+  <div class="crumbs">
+    <a href="/ru/">bre</a>
+    <span class="sep">/</span>
+    <a href="/ru/guide">Гайд</a>
+    <span class="sep">/</span>
+    <a href="/ru/guide/eat-drink">Есть и пить</a>
+    <span class="sep">/</span>
+    <span class="cur"><span class="dot"></span>Nova Coffee</span>
+  </div>
+  <div class="actions">
+    <a href="#share">поделиться ↗</a>
+    <a href="#save">сохранить ♡</a>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="inner">
+    <div>
+      <!-- [[FIELD:subcategory + cat_color]] -->
+      <span class="pill"><span class="sw"></span>кофе · есть и пить</span>
+      <!-- [[FIELD:title]] -->
+      <h1>Nova <em>Coffee</em>.</h1>
+      <!-- [[FIELD:summary]] — short tagline, used here + in meta description + og description -->
+      <p class="summary"><b>Настоящий спешелти кофе в Батуми.</b> Светлый зал, настоящая эспрессо-машина, зёрна свежей обжарки. Можно правда сидеть и читать часами.</p>
+    </div>
+    <div></div>
+  </div>
+</section>
+
+<!-- HERO PHOTO — [[FIELD:photos[0]]] -->
+<div class="hero-photo">
+  <img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=2400&q=80" alt="Nova Coffee — светлый зал, медная кофемолка, пуровер-бар">
+  <span class="cap">— главный зал до утреннего часа пик</span>
+</div>
+
+<!-- ACTION BAR -->
+<div class="action-bar">
+  <!-- [[FIELD:hours.today_status]] — auto-computed from hours field -->
+  <span class="open-now"><span class="pulse"></span>открыто · до 22:00</span>
+  <span class="spacer"></span>
+  <!-- [[FIELD:lat,lng → google maps URL]] -->
+  <a class="act" href="https://maps.google.com/?q=41.6505,41.6373">↗ открыть на карте</a>
+  <!-- [[FIELD:instagram]] -->
+  <a class="act" href="https://instagram.com/novacoffeebatumi">↗ instagram</a>
+  <a class="act primary" href="#nearby">stay nearby →</a>
+</div>
+
+<!-- BODY -->
+<section class="body">
+  <div class="container">
+    <div class="text">
+      <div class="kicker"><span class="dot"></span>— наш взгляд</div>
+      <h2>Куда идём за <em>фильтр-кофе</em>,<br/>когда устали от Бульвара.</h2>
+      
+      <!-- [[FIELD:our_text]] — markdown, 3-5 paragraphs -->
+      <p>Большая часть кофе в Батуми — нормальная. Какая-то — плохая. <b>Nova в другой категории</b> — третья волна, моносорта, правильная обжарка, подаётся с терпением человека, который знает что делает.</p>
+      <p>Утро — это <b>пуровер, не эспрессо</b>. Регулярно меняют эфиопию и колумбию; спроси что сегодня на ручной заварке. Можно сладко (фильтр выводит фрукты) или мягко (V60 если нужна чистота вкуса). Флэт уайт <b>≈12 ₾</b>, фильтр <b>≈14 ₾</b>.</p>
+      <p>Сам зал чистый и без излишеств: <em>плитка, дерево, два небольших стола, окно на улицу.</em> Не место для долгого ужина — но идеально для двух часов чтения, интервью или тихого первого кофе пока город просыпается.</p>
+      <p>По пятницам пекут свои круассаны. К субботе они стараются. К воскресенью — кончились. <b>Если видишь круассан после 11 утра — бери.</b></p>
+      
+      <!-- [[FIELD:tags[]]] -->
+      <div class="tags">
+        <span class="tag">пуровер</span>
+        <span class="tag">спешелти</span>
+        <span class="tag">эфиопия</span>
+        <span class="tag">тихо</span>
+        <span class="tag">вайфай</span>
+        <span class="tag">нал и карта</span>
+        <span class="tag">для одного</span>
+      </div>
+    </div>
+
+    <aside class="aside">
+      <!-- HOURS panel — [[FIELD:hours]] -->
+      <div class="panel">
+        <h4>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="8" r="6.5" stroke="currentColor" stroke-width="1.4"/><path d="M8 4v4l2.5 1.5" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+          часы
+        </h4>
+        <ul>
+          <li class="today"><span class="day">сегодня · пт</span><b>09:00 — 22:00</b></li>
+          <li><span class="day">сб</span><b>09:00 — 22:00</b></li>
+          <li><span class="day">вс</span><b>10:00 — 21:00</b></li>
+          <li><span class="day">пн — чт</span><b>08:00 — 22:00</b></li>
+        </ul>
+      </div>
+
+      <!-- QUICK INFO panel — [[FIELD:address, price_range, phone, etc]] -->
+      <div class="panel">
+        <h4>
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14s-5-4.5-5-9a5 5 0 0 1 10 0c0 4.5-5 9-5 9z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/><circle cx="8" cy="5" r="2" stroke="currentColor" stroke-width="1.4"/></svg>
+          как найти
+        </h4>
+        <div class="quick">
+          <div class="item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 12s-4-3.5-4-7a4 4 0 0 1 8 0c0 3.5-4 7-4 7z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            <div class="t"><b>Чавчавадзе 35, Батуми</b><span class="n">центральный район · первый этаж</span></div>
+          </div>
+          <div class="item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="2.5" stroke="currentColor" stroke-width="1.4"/><path d="M7 1v1.5M7 11.5V13M1 7h1.5M11.5 7H13" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <div class="t"><b>≈ 10 — 22 ₾</b><span class="n">за напиток</span></div>
+          </div>
+          <div class="item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="2" y="3" width="10" height="8" rx="1" stroke="currentColor" stroke-width="1.4"/><circle cx="5" cy="7" r="1" fill="currentColor"/><path d="M8 9h2" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <div class="t"><b>нал и карта</b><span class="n">Apple Pay, грузинский QR</span></div>
+          </div>
+          <div class="item">
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 7a5 5 0 0 1 10 0M4.5 7a2.5 2.5 0 0 1 5 0M7 7v0" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+            <div class="t"><b>быстрый вайфай</b><span class="n">пароль — на стойке</span></div>
+          </div>
+        </div>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<!-- GALLERY — [[FIELD:photos[1..N]]] -->
+<div class="gallery-wrap">
+  <div class="gallery">
+    <div class="g"><img src="https://images.unsplash.com/photo-1559561853-08451507cbe7?w=900&q=80" alt="пуровер-бар в Nova Coffee"></div>
+    <div class="g"><img src="https://images.unsplash.com/photo-1572286258217-215cf8e9d99f?w=900&q=80" alt="медная кофемолка и зёрна"></div>
+    <div class="g"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=80" alt="латте-арт на флэт уайте"></div>
+    <div class="g"><img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=900&q=80" alt="круассан на тарелке, утро пятницы"></div>
+  </div>
+</div>
+
+<!-- STAY NEARBY — [[FIELD:nearby_apartments[]]] auto-populated by haversine query -->
+<section class="nearby-wrap" id="nearby">
+  <div class="nearby-head">
+    <div>
+      <div class="kicker"><span class="dot"></span>— наши квартиры в 10 минутах ходьбы</div>
+      <h3>Остановись <em>рядом</em>.</h3>
+    </div>
+    <div class="right">Кофе здесь, квартира за углом. Все <b>в пешей доступности</b> от Чавчавадзе 35.</div>
+  </div>
+  <div class="nearby">
+    <a class="apt" href="/ru/stays/chavchavadze-4th">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=900&q=80" alt="apartment on Chavchavadze, 4th line"></div>
+      <div class="top"><h4>Чавчавадзе, 4-я линия</h4><span class="price">$78<span class="u">/NT</span></span></div>
+      <div class="sub">1 спальня · 42м² · центр</div>
+      <div class="dist">120 м · 2 мин пешком</div>
+    </a>
+    <a class="apt" href="/ru/stays/boulevard-loft">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=900&q=80" alt="loft near boulevard"></div>
+      <div class="top"><h4>Лофт на старом бульваре</h4><span class="price">$95<span class="u">/NT</span></span></div>
+      <div class="sub">студия · 36м² · Старый город</div>
+      <div class="dist">450 м · 6 мин пешком</div>
+    </a>
+    <a class="apt" href="/ru/stays/orbi-21">
+      <div class="ph"><img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=900&q=80" alt="apartment Orbi Sea Towers"></div>
+      <div class="top"><h4>Orbi Sea Towers — 21 этаж</h4><span class="price">$185<span class="u">/NT</span></span></div>
+      <div class="sub">1 спальня · 48м² · вид на море</div>
+      <div class="dist">700 м · 9 мин пешком</div>
+    </a>
+  </div>
+</section>
+
+<!-- RELATED PLACES — [[FIELD:related_places[]]] -->
+<section class="related">
+  <div class="container">
+    <div class="top">
+      <h3>Ещё <em>места</em>, которые любим.</h3>
+      <div class="right">— выбрано из «есть и пить»</div>
+    </div>
+    <div class="grid">
+      <a class="pl" href="/ru/guide/milevski-coffee">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=900&q=80" alt=""></div>
+        <span class="kicker"><span class="sw"></span>кофе · пуровер</span>
+        <h5>Milevski Coffee</h5>
+        <p class="summary">кофе третьей волны со скамейкой на улице. Никто никуда не спешит.</p>
+        <div class="meta"><span>Старый город</span><span>· 8—21</span><span>· ≈10—22 ₾</span></div>
+      </a>
+      <a class="pl" href="/ru/guide/third-floor-coffee">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=900&q=80" alt=""></div>
+        <span class="kicker"><span class="sw"></span>кофе · крыша</span>
+        <h5>Third Floor Coffee</h5>
+        <p class="summary">кофе на крыше с видом на море. Самое тихое место для работы до 12.</p>
+        <div class="meta"><span>Бульвар</span><span>· 8—22</span><span>· ≈8—18 ₾</span></div>
+      </a>
+      <a class="pl" href="/ru/guide/fresh-bakery">
+        <div class="ph"><img src="https://images.unsplash.com/photo-1509440159596-0249088772ff?w=900&q=80" alt=""></div>
+        <span class="kicker"><span class="sw"></span>пекарня</span>
+        <h5>Fresh Bakery</h5>
+        <p class="summary">хлеб на закваске, хачапури и лучшие круассаны в городе. Заходи до 11.</p>
+        <div class="meta"><span>Старый город</span><span>· 7—20</span><span>· ≈5—15 ₾</span></div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="left">© 2026 · bre.ge</div>
+  <div class="center">Квартиры и гайд по Батуми</div>
+  <div class="right"><a href="#top">↑ Наверх</a></div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const floatWm = document.getElementById('floatWm');
+  let mx=window.innerWidth/2,my=window.innerHeight/2,cx=mx,cy=my,wmx=0,wmy=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  function loop(){
+    cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;
+    if(cursor) cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;
+    const tx=(mx-window.innerWidth/2)*0.012,ty=(my-window.innerHeight/2)*0.012;
+    wmx+=(tx-wmx)*0.08;wmy+=(ty-wmy)*0.08;
+    if(floatWm) floatWm.style.transform=`translate(${wmx}px, ${wmy}px)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+  });
+
+  (function(){
+    const burger=document.getElementById('burger');
+    const overlay=document.getElementById('menuOverlay');
+    if(!burger||!overlay)return;
+    function open(){overlay.hidden=false;requestAnimationFrame(()=>overlay.classList.add('open'));burger.classList.add('open');document.body.style.overflow='hidden'}
+    function close(){overlay.classList.remove('open');burger.classList.remove('open');document.body.style.overflow='';setTimeout(()=>overlay.hidden=true,320)}
+    burger.addEventListener('click',()=>overlay.classList.contains('open')?close():open());
+    overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+    overlay.querySelectorAll('.menu-item,.menu-tg,.menu-row-val').forEach(a=>a.addEventListener('click',close));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))close()});
+  })();
+</script>
+
+</body>
+</html>
