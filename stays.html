@@ -802,6 +802,7 @@
   loop();
   document.querySelectorAll('a,button').forEach(el=>{
     if(el.classList.contains('chip')||el.classList.contains('more')||el.classList.contains('strip-clear')||el.classList.contains('opt')) return;
+    if(el.classList.contains('cal-day')||el.classList.contains('cal-nav')||el.classList.contains('cal-apply')||el.classList.contains('gp-btn')||el.classList.contains('gp-apply')) return;
     el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
     el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
   });
