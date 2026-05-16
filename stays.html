@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>all apartments — bre</title>
+<title>all apartments — bre [v26]</title>
 <meta name="description" content="all apartments managed by bre in batumi. honestly photographed, fairly priced, hand-picked.">
 <link rel="alternate" hreflang="en" href="https://bre.ge/stays">
 <link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays">
@@ -77,7 +77,7 @@
   .subhead .crumbs .sep{opacity:.4}
   .subhead .crumbs .cur{color:var(--ink);font-weight:600}
 
-  .searchbar{display:grid;grid-template-columns:1.1fr 1fr 1fr 1fr auto;align-items:stretch;gap:0;background:var(--paper);border:1px solid var(--line-strong);border-radius:999px;overflow:hidden;max-width:880px;margin:0 auto;width:100%;height:62px}
+  .searchbar{display:grid;grid-template-columns:1fr 1.6fr 1fr auto;align-items:stretch;gap:0;background:var(--paper);border:1px solid var(--line-strong);border-radius:999px;overflow:hidden;max-width:880px;margin:0 auto;width:100%;height:62px}
   .searchbar .field{padding:10px 20px;display:flex;flex-direction:column;gap:2px;justify-content:center;border-right:1px solid var(--line);transition:background .2s ease;cursor:pointer;min-width:0}
   .searchbar .field:hover{background:#fff}
   .searchbar .field .lbl{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
@@ -423,13 +423,9 @@
         <span class="lbl">— location</span>
         <span class="field-val">Batumi</span>
       </div>
-      <div class="field date-field" id="searchArrival">
-        <span class="lbl">— arrival</span>
-        <span class="field-val empty" id="searchArrivalVal">pick date</span>
-      </div>
-      <div class="field date-field" id="searchDeparture">
-        <span class="lbl">— departure</span>
-        <span class="field-val empty" id="searchDepartureVal">pick date</span>
+      <div class="field date-field" id="searchDates">
+        <span class="lbl">— check in | check out</span>
+        <span class="field-val empty" id="searchDatesVal">add dates</span>
       </div>
       <div class="field" id="searchGuests">
         <span class="lbl">— guests</span>
@@ -806,6 +802,7 @@
   loop();
   document.querySelectorAll('a,button').forEach(el=>{
     if(el.classList.contains('chip')||el.classList.contains('more')||el.classList.contains('strip-clear')||el.classList.contains('opt')) return;
+    if(el.classList.contains('cal-day')||el.classList.contains('cal-nav')||el.classList.contains('cal-apply')||el.classList.contains('gp-btn')||el.classList.contains('gp-apply')) return;
     el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
     el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
   });
@@ -1049,10 +1046,8 @@
 // SEARCHBAR CUSTOM CALENDAR + GUESTS
 // =====================================================================
 document.addEventListener('DOMContentLoaded', function(){
-  const arrField = document.getElementById('searchArrival');
-  const depField = document.getElementById('searchDeparture');
-  const arrVal = document.getElementById('searchArrivalVal');
-  const depVal = document.getElementById('searchDepartureVal');
+  const dateField = document.getElementById('searchDates');
+  const dateVal = document.getElementById('searchDatesVal');
   const guestField = document.getElementById('searchGuests');
   const guestVal = document.getElementById('searchGuestsVal');
   const calPop = document.getElementById('calPop');
@@ -1062,7 +1057,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const calNight = document.getElementById('calNight');
   const guestPop = document.getElementById('guestPop');
   const gpApply = document.getElementById('gpApply');
-  if(!arrField||!calPop||!guestPop)return;
+  if(!dateField||!calPop||!guestPop)return;
 
   // ===== CALENDAR =====
   const today = new Date(); today.setHours(0,0,0,0);
@@ -1070,7 +1065,7 @@ document.addEventListener('DOMContentLoaded', function(){
   const PEAK = new Set();
   for(let i=0; i<90; i++){
     const d = new Date(today); d.setDate(d.getDate()+i);
-    const key = d.toISOString().slice(0,10);
+    const key = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
     const r = Math.sin(i*1.7)*100;
     if(r > 50) BOOKED.add(key);
     else if(r > 0 || (d.getDay() === 5 || d.getDay() === 6)) PEAK.add(key);
@@ -1080,7 +1075,7 @@ document.addEventListener('DOMContentLoaded', function(){
   let startDate = null, endDate = null, mode = 'start';
   const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const weekDays = ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'];
-  function fmtKey(d){return d.toISOString().slice(0,10)}
+  function fmtKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
   function fmtPretty(d){
     if(!d)return null;
     return `${d.getDate().toString().padStart(2,'0')} ${monthNames[d.getMonth()].slice(0,3).toLowerCase()}`;
@@ -1121,7 +1116,8 @@ document.addEventListener('DOMContentLoaded', function(){
     const ny = viewMonth + 1 > 11 ? viewYear + 1 : viewYear;
     calMonths.innerHTML = renderMonth(viewYear, viewMonth) + renderMonth(ny, nm);
     calMonths.querySelectorAll('.cal-day:not(.past):not(.booked):not(.empty)').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
+      btn.addEventListener('click', (ev)=>{
+        ev.stopPropagation();
         const [yy,mm,dd] = btn.dataset.date.split('-').map(Number); const d = new Date(yy, mm-1, dd);
         if(mode === 'start' || (startDate && d <= startDate)){
           startDate = d; endDate = null; mode = 'end';
@@ -1133,10 +1129,16 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   }
   function updateLabels(){
-    arrVal.textContent = startDate ? fmtPretty(startDate) : (arrVal.dataset.empty || arrVal.textContent);
-    arrVal.classList.toggle('empty', !startDate);
-    depVal.textContent = endDate ? fmtPretty(endDate) : (depVal.dataset.empty || depVal.textContent);
-    depVal.classList.toggle('empty', !endDate);
+    if(startDate && endDate){
+      dateVal.textContent = `${fmtPretty(startDate)} → ${fmtPretty(endDate)}`;
+      dateVal.classList.remove('empty');
+    } else if(startDate){
+      dateVal.textContent = `${fmtPretty(startDate)} → ...`;
+      dateVal.classList.remove('empty');
+    } else {
+      dateVal.textContent = 'add dates';
+      dateVal.classList.add('empty');
+    }
     if(startDate && endDate){
       const nights = Math.round((endDate - startDate) / 86400000);
       calNight.textContent = `✓ ${nights} ${nights===1?'night':'nights'}`;
@@ -1146,38 +1148,30 @@ document.addEventListener('DOMContentLoaded', function(){
       calNight.textContent = '→ pick arrival';
     }
   }
-  // Remember initial "empty" text so we can revert
-  arrVal.dataset.empty = arrVal.textContent;
-  depVal.dataset.empty = depVal.textContent;
-  
-  function openCal(focusField){
+  let scrollYOpen = null;
+  function openCal(){
     closeGuest();
     calPop.hidden = false;
-    arrField.classList.add('active');
-    depField.classList.add('active');
-    // Position below the searchbar
-    const targetField = focusField === 'departure' ? depField : arrField;
-    const rect = targetField.getBoundingClientRect();
+    dateField.classList.add('active');
+    const rect = dateField.getBoundingClientRect();
     calPop.style.top = (rect.bottom + 8) + 'px';
     calPop.style.left = Math.max(14, Math.min(window.innerWidth - calPop.offsetWidth - 14, rect.left)) + 'px';
-    if(focusField === 'departure' && !startDate) mode = 'start';
-    else if(focusField === 'departure') mode = 'end';
+    if(!startDate) mode = 'start';
+    else if(startDate && !endDate) mode = 'end';
     else mode = 'start';
     render();
-    // Reposition after render (width is now correct)
     setTimeout(()=>{
       calPop.style.left = Math.max(14, Math.min(window.innerWidth - calPop.offsetWidth - 14, rect.left)) + 'px';
     }, 10);
+    scrollYOpen = window.scrollY;
   }
   function closeCal(){
     calPop.hidden = true;
-    arrField.classList.remove('active');
-    depField.classList.remove('active');
+    dateField.classList.remove('active');
   }
-  arrField.addEventListener('click', e=>{ e.stopPropagation(); calPop.hidden ? openCal('arrival') : closeCal(); });
-  depField.addEventListener('click', e=>{ e.stopPropagation(); calPop.hidden ? openCal('departure') : closeCal(); });
-  calPrev.addEventListener('click', ()=>{ viewMonth--; if(viewMonth<0){viewMonth=11;viewYear--} render(); });
-  calNext.addEventListener('click', ()=>{ viewMonth++; if(viewMonth>11){viewMonth=0;viewYear++} render(); });
+  dateField.addEventListener('click', e=>{ e.stopPropagation(); calPop.hidden ? openCal() : closeCal(); });
+  calPrev.addEventListener('click', (ev)=>{ev.stopPropagation(); viewMonth--; if(viewMonth<0){viewMonth=11;viewYear--} render(); });
+  calNext.addEventListener('click', (ev)=>{ev.stopPropagation(); viewMonth++; if(viewMonth>11){viewMonth=0;viewYear++} render(); });
   const calApply = document.getElementById('calApply');
   if(calApply) calApply.addEventListener('click', ()=>closeCal());
 
@@ -1234,16 +1228,16 @@ document.addEventListener('DOMContentLoaded', function(){
 
   // ===== OUTSIDE CLICK =====
   document.addEventListener('click', e=>{
-    if(!calPop.hidden && !calPop.contains(e.target) && !arrField.contains(e.target) && !depField.contains(e.target)) closeCal();
+    if(!calPop.hidden && !calPop.contains(e.target) && !dateField.contains(e.target)) closeCal();
     if(!guestPop.hidden && !guestPop.contains(e.target) && !guestField.contains(e.target)) closeGuest();
   });
   gpSyncLabel();
   // close popups on scroll
-  let lastScrollY = window.scrollY;
   window.addEventListener('scroll', ()=>{
-    if(!calPop.hidden && Math.abs(window.scrollY - lastScrollY) > 80) closeCal();
-    if(!guestPop.hidden && Math.abs(window.scrollY - lastScrollY) > 80) closeGuest();
-    lastScrollY = window.scrollY;
+    if(scrollYOpen === null) return;
+    const delta = Math.abs(window.scrollY - scrollYOpen);
+    if(!calPop.hidden && delta > 30) closeCal();
+    if(!guestPop.hidden && delta > 30) closeGuest();
   }, {passive:true});
   // closeOnScroll: enabled
 });

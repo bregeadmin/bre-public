@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>orbi sea towers — 21st floor · bre</title>
+<title>orbi sea towers — 21st floor · bre [v40]</title>
 <meta name="description" content="A high-floor 1-bed with full sea view, marble bath and a balcony for the sunset. 45m², walking distance to the beach. Book direct or via Airbnb / Booking.">
 <link rel="alternate" hreflang="en" href="https://bre.ge/stays/orbi-21">
 <link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays/orbi-21">
@@ -241,42 +241,35 @@
   }
   /* BOOKING FORM (new compact) */
   .book-form{display:flex;flex-direction:column;gap:8px;margin-top:20px}
-  .date-trigger,.guest-trigger{display:flex;align-items:stretch;background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:0;cursor:none;font-family:"Bricolage Grotesque",sans-serif;text-align:left;width:100%;overflow:hidden;transition:border-color .2s ease}
+  .date-trigger,.guest-trigger{display:flex;flex-direction:column;gap:3px;align-items:flex-start;background:#fff;border:1px solid var(--line-strong);border-radius:12px;padding:12px 14px;cursor:none;font-family:"Bricolage Grotesque",sans-serif;text-align:left;width:100%;transition:border-color .2s ease}
   .date-trigger:hover,.guest-trigger:hover{border-color:var(--ink)}
   .date-trigger.active,.guest-trigger.active{border-color:var(--page)}
-  .date-trigger{justify-content:space-between;gap:0}
-  .date-trigger .dt-side{flex:1;display:flex;flex-direction:column;gap:3px;padding:12px 14px;min-width:0}
-  .date-trigger .dt-side:first-child{border-right:1px solid var(--line)}
-  .date-trigger .dt-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
-  .date-trigger .dt-val{font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .date-trigger .dt-label,.guest-trigger .gt-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .date-trigger .dt-val,.guest-trigger .gt-val{font-weight:600;font-size:14px;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
   .date-trigger .dt-val.empty{color:var(--ink-soft);font-weight:500}
-  .date-trigger .dt-arrow{display:flex;align-items:center;justify-content:center;padding:0 12px;color:var(--ink-soft);font-size:14px}
-  .guest-trigger{flex-direction:column;gap:3px;padding:12px 14px}
-  .guest-trigger .gt-label{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
-  .guest-trigger .gt-val{font-weight:600;font-size:14px;color:var(--ink);text-align:left}
 
   /* CALENDAR POPUP */
   .cal-pop{position:fixed;z-index:200;background:var(--paper);border:1px solid var(--line);border-radius:16px;box-shadow:0 24px 60px rgba(10,9,8,0.18);padding:24px;width:680px;max-width:calc(100vw - 28px);font-family:"Bricolage Grotesque",sans-serif}
   .cal-head{display:grid;grid-template-columns:auto 1fr auto;gap:14px;align-items:center;margin-bottom:18px}
   .cal-nav{width:36px;height:36px;border:1px solid var(--line-strong);border-radius:50%;background:transparent;cursor:none;font-size:16px;font-weight:600;color:var(--ink);transition:all .2s ease;display:flex;align-items:center;justify-content:center}
   .cal-nav:hover{border-color:var(--ink);background:var(--ink);color:#fff}
-  .cal-months{display:grid;grid-template-columns:1fr 1fr;gap:32px}
+  .cal-months{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px}
+  .cal-month{min-width:0}
   .cal-month .cal-title{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;text-align:center;margin-bottom:14px;color:var(--ink)}
-  .cal-month .cal-week{display:grid;grid-template-columns:repeat(7,1fr);gap:2px;margin-bottom:6px}
+  .cal-month .cal-week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px;margin-bottom:6px}
   .cal-month .cal-week-day{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;text-align:center;padding:4px 0}
-  .cal-month .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
-  .cal-day{aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--ink);cursor:none;border-radius:50%;transition:background .15s ease,color .15s ease;position:relative;background:transparent;border:0;font-family:"Bricolage Grotesque",sans-serif;padding:0}
+  .cal-month .cal-grid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:2px}
+  .cal-day{width:100%;max-width:42px;aspect-ratio:1;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:600;color:var(--ink);cursor:none;border-radius:50%;background:transparent;border:0;font-family:"Bricolage Grotesque",sans-serif;padding:0;position:relative;box-sizing:border-box;line-height:1;margin:0 auto}
   .cal-day.empty{cursor:default}
   .cal-day.past{color:var(--ink-soft);opacity:.35;cursor:default;text-decoration:line-through}
   .cal-day.av{background:#D6F5DC}
   .cal-day.peak{background:#FFF0B8}
   .cal-day.booked{background:#FFCFC2;text-decoration:line-through;cursor:default;color:var(--ink-soft)}
   .cal-day:not(.past):not(.booked):not(.empty):hover{background:var(--ink);color:#fff}
-  .cal-day.start,.cal-day.end{background:var(--ink);color:#fff}
-  .cal-day.inside{background:rgba(10,9,8,0.08);border-radius:0}
-  .cal-day.start{border-radius:50% 0 0 50%}
-  .cal-day.end{border-radius:0 50% 50% 0}
-  .cal-day.range-single{border-radius:50%}
+  /* All cells remain identical circles. Range is just a background tint, same shape. */
+  .cal-day.inside{background:#EEEAE0 !important;color:var(--ink) !important}
+  .cal-day.start{background:var(--ink) !important;color:#fff !important}
+  .cal-day.end{background:var(--ink) !important;color:#fff !important}
   .cal-legend{display:flex;align-items:center;gap:18px;flex-wrap:wrap;padding-top:18px;border-top:1px solid var(--line);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
   .cal-leg{display:inline-flex;align-items:center;gap:8px}
   .cal-leg .ll{width:14px;height:14px;border-radius:50%}
@@ -329,7 +322,7 @@
   .lightbox-single .lb-close:hover{background:var(--accent);border-color:var(--accent);color:#fff;transform:rotate(90deg)}
   .lightbox-single .lb-counter{text-align:center;color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;font-weight:600;text-transform:uppercase}
   .lightbox-single .lb-single-body{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:0 80px 24px;position:relative}
-  .lightbox-single img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:8px;display:block}
+  .lightbox-single img{max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain;border-radius:8px;display:block;cursor:none}
   .lightbox-single .lb-prev,.lightbox-single .lb-next{position:absolute;top:50%;transform:translateY(-50%);width:48px;height:48px;border-radius:50%;background:transparent;color:#fff;border:1px solid #ffffff44;font-size:20px;cursor:none;display:flex;align-items:center;justify-content:center;line-height:1;transition:all .2s ease;font-family:system-ui,sans-serif}
   .lightbox-single .lb-prev{left:14px}
   .lightbox-single .lb-next{right:14px}
@@ -350,6 +343,7 @@
 </head>
 <body>
 <span id="flyingDot"></span>
+
 <div class="cursor" id="cursor"></div>
 
 <header class="topbar" id="top">
@@ -592,15 +586,8 @@
     <span class="save">5% off direct</span>
     <div class="book-form">
       <button class="date-trigger" id="dateTrigger" type="button">
-        <span class="dt-side">
-          <span class="dt-label">— arrival</span>
-          <span class="dt-val" id="dtArrival">pick date</span>
-        </span>
-        <span class="dt-arrow">→</span>
-        <span class="dt-side">
-          <span class="dt-label">— departure</span>
-          <span class="dt-val" id="dtDeparture">pick date</span>
-        </span>
+        <span class="dt-label">— check in | check out</span>
+        <span class="dt-val empty" id="dateVal">add dates</span>
       </button>
       <button class="guest-trigger" id="guestTrigger" type="button">
         <span class="gt-label">— guests</span>
@@ -824,11 +811,11 @@ const PHOTOS = [
   {src:'https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?w=1600&q=80', alt:'bathroom'},
   {src:'https://images.unsplash.com/photo-1540518614846-7eded433c457?w=1600&q=80', alt:'sea view'},
   {src:'https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1600&q=80', alt:'interior detail'},
-  {src:'https://images.unsplash.com/photo-1551776235-dde6d4829808?w=1600&q=80', alt:'dining area'},
+  {src:'https://images.unsplash.com/photo-1551776235-dde6d4829808?w=1600&q=80', alt:'living detail'},
   {src:'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1600&q=80', alt:'sofa'},
   {src:'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=1600&q=80', alt:'workspace'},
-  {src:'https://images.unsplash.com/photo-1574643156929-51fa098b0394?w=1600&q=80', alt:'kitchen detail'},
-  {src:'https://images.unsplash.com/photo-1571055107559-3e67626fa8be?w=1600&q=80', alt:'bedroom corner'}
+  {src:'https://images.unsplash.com/photo-1554995207-c18c203602cb?w=1600&q=80', alt:'living space'},
+  {src:'https://images.unsplash.com/photo-1484154218962-a197022b5858?w=1600&q=80', alt:'kitchen wide'}
 ];
 
 // =====================================================================
@@ -901,6 +888,43 @@ const PHOTOS = [
   lbBack && lbBack.addEventListener('click', ()=>{lbSingle.hidden=true});
   lbPrev && lbPrev.addEventListener('click', ()=>nav(-1));
   lbNext && lbNext.addEventListener('click', ()=>nav(1));
+  // Click on image = next photo; hover on whole single-body shows "next →" cursor
+  function setLabel(label){ clearCursorColors(); cursor.classList.add('text'); cursor.setAttribute('data-label',label); }
+  function clearLabel(){ cursor.classList.remove('text'); cursor.removeAttribute('data-label'); }
+  function setBig(){ clearCursorColors(); cursor.classList.remove('text'); cursor.removeAttribute('data-label'); cursor.classList.add('big'); }
+  function clearBig(){ cursor.classList.remove('big'); }
+  // The whole single-lightbox (incl. top header where × and ‹ live) should never show invisible cursor
+  // Default to "next →" anywhere inside lbSingle, except actual buttons which take over
+  if(lbSingle){
+    lbSingle.addEventListener('mouseenter', ()=>setLabel('next →'));
+    lbSingle.addEventListener('mouseleave', clearLabel);
+  }
+  // Grid lightbox: default to "view →" everywhere; header (×) goes to big circle
+  if(lb){
+    lb.addEventListener('mouseenter', ()=>setLabel('view →'));
+    lb.addEventListener('mouseleave', clearLabel);
+  }
+  const lbHeadGrid = lb && lb.querySelector('.lb-head');
+  if(lbHeadGrid){
+    lbHeadGrid.addEventListener('mouseenter', setBig);
+    lbHeadGrid.addEventListener('mouseleave', ()=>{ clearBig(); if(!lb.hidden) setLabel('view →'); });
+  }
+  // Buttons: orange big circle (overrides the text cursor)
+  [lbClose, lbSingleClose, lbBack, lbPrev, lbNext].forEach(el=>{
+    if(!el) return;
+    el.addEventListener('mouseenter', setBig);
+    el.addEventListener('mouseleave', ()=>{
+      clearBig();
+      if(!lbSingle.hidden) setLabel('next →');
+    });
+  });
+  const singleBody = document.querySelector('.lb-single-body');
+  if(singleBody){
+    singleBody.addEventListener('click', (e)=>{
+      if(e.target.closest('.lb-prev')||e.target.closest('.lb-next')||e.target.closest('.lb-close')||e.target.closest('.lb-back')) return;
+      nav(1);
+    });
+  }
   document.addEventListener('keydown', e=>{
     if(lb.hidden && lbSingle.hidden) return;
     if(e.key === 'Escape'){ closeLb(); }
@@ -922,8 +946,7 @@ const PHOTOS = [
   const calPrev = document.getElementById('calPrev');
   const calNext = document.getElementById('calNext');
   const calNight = document.getElementById('calNight');
-  const dtArrival = document.getElementById('dtArrival');
-  const dtDeparture = document.getElementById('dtDeparture');
+  const dateVal = document.getElementById('dateVal');
   if(!trigger||!pop)return;
 
   // MOCK booked/peak dates — in production, these come from iCal sync
@@ -933,7 +956,7 @@ const PHOTOS = [
   // Generate mock data: some random booked + peak dates
   for(let i=0; i<60; i++){
     const d = new Date(today); d.setDate(d.getDate()+i);
-    const key = d.toISOString().slice(0,10);
+    const key = d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
     const r = Math.sin(i*1.7)*100;
     if(r > 50) BOOKED.add(key);
     else if(r > 0 || (d.getDay() === 5 || d.getDay() === 6)) PEAK.add(key);
@@ -948,7 +971,7 @@ const PHOTOS = [
   const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December'];
   const weekDays = ['Mo','Tu','We','Th','Fr','Sa','Su'];
 
-  function fmtKey(d){return d.toISOString().slice(0,10)}
+  function fmtKey(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
   function fmtPretty(d){
     if(!d)return null;
     return `${d.getDate().toString().padStart(2,'0')} ${monthNames[d.getMonth()].slice(0,3).toLowerCase()}`;
@@ -973,12 +996,12 @@ const PHOTOS = [
       else if(PEAK.has(key)) cls += ' peak';
       else cls += ' av';
       if(startDate && fmtKey(startDate) === key){
-        cls = cls.replace(/av|peak/, '') + ' start';
+        cls += ' start';
         if(endDate && fmtKey(endDate) === key) cls += ' range-single';
       }
-      if(endDate && fmtKey(endDate) === key) cls = cls.replace(/av|peak/, '') + ' end';
+      if(endDate && fmtKey(endDate) === key) cls += ' end';
       if(startDate && endDate && date > startDate && date < endDate){
-        cls = cls.replace(/av|peak/, '') + ' inside';
+        cls += ' inside';
       }
       html += `<button class="${cls}" data-date="${key}">${d}</button>`;
     }
@@ -993,7 +1016,8 @@ const PHOTOS = [
     calMonths.innerHTML = renderMonth(viewYear, viewMonth) + renderMonth(nextYear, nm);
     // attach click
     calMonths.querySelectorAll('.cal-day:not(.past):not(.booked):not(.empty)').forEach(btn=>{
-      btn.addEventListener('click', ()=>{
+      btn.addEventListener('click', (ev)=>{
+        ev.stopPropagation();
         const [yy,mm,dd] = btn.dataset.date.split('-').map(Number); const d = new Date(yy, mm-1, dd);
         if(mode === 'start' || (startDate && d <= startDate)){
           startDate = d;
@@ -1010,10 +1034,16 @@ const PHOTOS = [
   }
 
   function updateLabels(){
-    dtArrival.textContent = startDate ? fmtPretty(startDate) : 'pick date';
-    dtArrival.classList.toggle('empty', !startDate);
-    dtDeparture.textContent = endDate ? fmtPretty(endDate) : 'pick date';
-    dtDeparture.classList.toggle('empty', !endDate);
+    if(startDate && endDate){
+      dateVal.textContent = `${fmtPretty(startDate)} → ${fmtPretty(endDate)}`;
+      dateVal.classList.remove('empty');
+    } else if(startDate){
+      dateVal.textContent = `${fmtPretty(startDate)} → ...`;
+      dateVal.classList.remove('empty');
+    } else {
+      dateVal.textContent = 'add dates';
+      dateVal.classList.add('empty');
+    }
     if(startDate && endDate){
       const nights = Math.round((endDate - startDate) / 86400000);
       calNight.textContent = `✓ ${nights} night${nights===1?'':'s'} · $${nights*185}`;
@@ -1024,30 +1054,38 @@ const PHOTOS = [
     }
   }
 
+  function reposition(){
+    if(pop.hidden) return;
+    const rect = trigger.getBoundingClientRect();
+    // Below trigger; but if trigger scrolls off-screen, pin to top of viewport
+    const desired = rect.bottom + 8;
+    const top = Math.max(14, desired);
+    pop.style.top = top + 'px';
+    pop.style.left = Math.max(14, Math.min(window.innerWidth - 680 - 14, rect.left)) + 'px';
+  }
   function openPop(){
     pop.hidden = false;
     trigger.classList.add('active');
-    const rect = trigger.getBoundingClientRect();
-    pop.style.top = (rect.bottom + 8) + 'px';
-    // position on the right side if booking panel is right-aligned
-    pop.style.left = Math.max(14, Math.min(window.innerWidth - 680 - 14, rect.left)) + 'px';
+    reposition();
     render();
   }
   function closePop(){
     pop.hidden = true;
     trigger.classList.remove('active');
   }
+  window.addEventListener('scroll', reposition, {passive:true});
+  window.addEventListener('resize', reposition);
 
   trigger.addEventListener('click', e=>{
     e.stopPropagation();
     if(pop.hidden) openPop(); else closePop();
   });
-  calPrev.addEventListener('click', ()=>{
+  calPrev.addEventListener('click', (ev)=>{ev.stopPropagation();
     viewMonth--;
     if(viewMonth < 0){viewMonth=11; viewYear--}
     render();
   });
-  calNext.addEventListener('click', ()=>{
+  calNext.addEventListener('click', (ev)=>{ev.stopPropagation();
     viewMonth++;
     if(viewMonth > 11){viewMonth=0; viewYear++}
     render();
@@ -1055,11 +1093,6 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
-  let lastScrollY_cal = window.scrollY;
-  window.addEventListener('scroll', ()=>{
-    if(!pop.hidden && Math.abs(window.scrollY - lastScrollY_cal) > 80) closePop();
-    lastScrollY_cal = window.scrollY;
-  }, {passive:true});
   window.__getBookingDates = ()=>({start: startDate, end: endDate});
 })();
 
@@ -1096,12 +1129,17 @@ const PHOTOS = [
     if(state.infants) parts.push(`${state.infants} infant${state.infants===1?'':'s'}`);
     gtVal.textContent = parts.join(' · ').toLowerCase();
   }
+  function reposition(){
+    if(pop.hidden) return;
+    const rect = trigger.getBoundingClientRect();
+    const top = Math.max(14, rect.bottom + 8);
+    pop.style.top = top + 'px';
+    pop.style.left = Math.max(14, Math.min(window.innerWidth - 340 - 14, rect.left)) + 'px';
+  }
   function openPop(){
     pop.hidden = false;
     trigger.classList.add('active');
-    const rect = trigger.getBoundingClientRect();
-    pop.style.top = (rect.bottom + 8) + 'px';
-    pop.style.left = Math.max(14, Math.min(window.innerWidth - 340 - 14, rect.left)) + 'px';
+    reposition();
     update();
   }
   function closePop(){
@@ -1127,11 +1165,8 @@ const PHOTOS = [
   document.addEventListener('click', e=>{
     if(!pop.hidden && !pop.contains(e.target) && !trigger.contains(e.target)) closePop();
   });
-  let lastScrollY_gp = window.scrollY;
-  window.addEventListener('scroll', ()=>{
-    if(!pop.hidden && Math.abs(window.scrollY - lastScrollY_gp) > 80) closePop();
-    lastScrollY_gp = window.scrollY;
-  }, {passive:true});
+  window.addEventListener('scroll', reposition, {passive:true});
+  window.addEventListener('resize', reposition);
   window.__getBookingGuests = ()=>state;
   update();
   syncLabel();
@@ -1148,7 +1183,7 @@ const PHOTOS = [
     const g = window.__getBookingGuests ? window.__getBookingGuests() : {adults:2};
     let msg = 'hi bre! i\'d like to book orbi sea towers — 21st floor.';
     if(dates.start && dates.end){
-      const fmt = d => d.toISOString().slice(0,10);
+      const fmt = d => d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');
       msg += ` dates: ${fmt(dates.start)} → ${fmt(dates.end)}.`;
     }
     const total = (g.adults||2) + (g.children||0);
