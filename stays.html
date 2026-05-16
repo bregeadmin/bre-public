@@ -34,8 +34,13 @@
   a{color:inherit;text-decoration:none}
   img{max-width:100%;display:block}
 
-  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
+  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
   .cursor.big{width:72px;height:72px;background:var(--accent)}
+  .cursor.text{width:104px;height:104px;background:var(--accent)}
+  .cursor.teal{background:var(--teal)}
+  .cursor.yellow{background:var(--yellow)}
+  .cursor.pink{background:var(--pink-soft)}
+  .cursor.text::after{content:attr(data-label);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"JetBrains Mono",monospace;font-size:9px;color:#fff;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;font-weight:600}
   @media (hover:none){html,body,a,button{cursor:auto}.cursor{display:none}}
 
   @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
@@ -790,21 +795,27 @@
 
 <script>
   const cursor = document.getElementById('cursor');
-  let mx=window.innerWidth/2,my=window.innerHeight/2,cx=mx,cy=my;
-  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  let mx=window.innerWidth/2, my=window.innerHeight/2, cx=mx, cy=my;
+  window.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
   function loop(){
-    cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;
-    if(cursor) cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-    const tx=(mx-window.innerWidth/2)*0.012,ty=(my-window.innerHeight/2)*0.012;
-    
+    cx += (mx-cx)*0.7; cy += (my-cy)*0.7;
+    if(cursor) cursor.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
     requestAnimationFrame(loop);
   }
   loop();
-  document.querySelectorAll('a,button').forEach(el=>{
+
+  function clearCursorColors(){ cursor && cursor.classList.remove('teal','yellow','pink'); }
+
+  document.querySelectorAll('a:not(.apt), button').forEach(el => {
     if(el.classList.contains('chip')||el.classList.contains('more')||el.classList.contains('strip-clear')||el.classList.contains('opt')) return;
     if(el.classList.contains('cal-day')||el.classList.contains('cal-nav')||el.classList.contains('cal-apply')||el.classList.contains('gp-btn')||el.classList.contains('gp-apply')) return;
-    el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
-    el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+    el.addEventListener('mouseenter', () => { clearCursorColors(); cursor.classList.add('big'); });
+    el.addEventListener('mouseleave', () => cursor.classList.remove('big'));
+  });
+
+  document.querySelectorAll('.apt').forEach(el => {
+    el.addEventListener('mouseenter', () => { clearCursorColors(); cursor.classList.add('text','teal'); cursor.setAttribute('data-label','view →'); });
+    el.addEventListener('mouseleave', () => { cursor.classList.remove('text','teal'); cursor.removeAttribute('data-label'); });
   });
 
   // Burger
