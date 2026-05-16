@@ -216,8 +216,8 @@
   .apt .info .price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em;white-space:nowrap;color:var(--accent-deep)}
   .apt .info .price .u{font-size:11px;font-weight:500;font-family:"JetBrains Mono",monospace;letter-spacing:.15em;color:var(--ink-soft);margin-left:2px}
   .apt .info .sub{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
-  .apt .info .rating{color:var(--ink);font-weight:600}
-  .apt .info .rating em{font-style:normal;color:var(--accent)}
+  .apt .info .dist{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:5px}
+  .apt .info .dist::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
   .apt .info .guide-link{
     margin-top:8px;display:flex;align-items:center;gap:8px;
     font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-deep);font-weight:600;
@@ -521,7 +521,7 @@
 
 <header class="topbar" id="top">
   <div class="left">
-    <a href="#stays">stays</a>
+    <a href="/stays">stays</a>
     <a href="/guide">guide</a>
     <a href="/own">own with us</a>
     <a href="/invest">invest</a>
@@ -536,7 +536,7 @@
 
 <div class="menu-overlay" id="menuOverlay" hidden>
   <div class="menu-inner">
-    <a href="#stays" class="menu-item">stays</a>
+    <a href="/stays" class="menu-item">stays</a>
     <a href="/guide" class="menu-item">guide</a>
     <a href="/own" class="menu-item">own with us</a>
     <a href="/invest" class="menu-item">invest</a>
@@ -596,8 +596,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>orbi sea towers — 21st</h4><div class="price">$185<span class="u">/NT</span></div></div>
-        <div class="sub"><span>1 bed · 48m² · sea view</span><span class="rating"><em>★</em> 4.94 (87)</span></div>
-        <div class="guide-link">5 spots nearby in the guide</div>
+        <div class="sub"><span>1 bed · 48m² · sea view</span><span class="dist">hot beach</span></div>
       </div>
     </a>
 
@@ -608,8 +607,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>old boulevard loft</h4><div class="price">$95<span class="u">/NT</span></div></div>
-        <div class="sub"><span>studio · 36m² · oldtown</span><span class="rating"><em>★</em> 4.88 (142)</span></div>
-        <div class="guide-link">12 spots nearby in the guide</div>
+        <div class="sub"><span>studio · 36m²</span><span class="dist">old town</span></div>
       </div>
     </a>
 
@@ -621,8 +619,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>botanical garden house</h4><div class="price">$140<span class="u">/NT</span></div></div>
-        <div class="sub"><span>2 bed · 72m² · garden</span><span class="rating"><em>★</em> 4.96 (54)</span></div>
-        <div class="guide-link">3 spots nearby in the guide</div>
+        <div class="sub"><span>2 bed · 72m² · garden</span><span class="dist">botanical</span></div>
       </div>
     </a>
 
@@ -633,8 +630,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>chavchavadze, 4th line</h4><div class="price">$78<span class="u">/NT</span></div></div>
-        <div class="sub"><span>1 bed · 42m² · city</span><span class="rating"><em>★</em> 4.82 (203)</span></div>
-        <div class="guide-link">9 spots nearby in the guide</div>
+        <div class="sub"><span>1 bed · 42m² · city</span><span class="dist">chavchavadze</span></div>
       </div>
     </a>
 
@@ -646,8 +642,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>black sea arena view</h4><div class="price">$160<span class="u">/NT</span></div></div>
-        <div class="sub"><span>2 bed · 65m² · sea</span><span class="rating"><em>★</em> 4.91 (61)</span></div>
-        <div class="guide-link">6 spots nearby in the guide</div>
+        <div class="sub"><span>2 bed · 65m² · sea</span><span class="dist">arena</span></div>
       </div>
     </a>
 
@@ -659,8 +654,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>gonio cape</h4><div class="price">$240<span class="u">/NT</span></div></div>
-        <div class="sub"><span>4 bed · 180m² · beach</span><span class="rating"><em>★</em> 4.99 (38)</span></div>
-        <div class="guide-link">4 spots nearby in the guide</div>
+        <div class="sub"><span>4 bed · 180m² · beach</span><span class="dist">gonio</span></div>
       </div>
     </a>
   </div>

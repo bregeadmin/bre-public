@@ -217,8 +217,8 @@
   .apt .info .price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em;white-space:nowrap;color:var(--accent-deep)}
   .apt .info .price .u{font-size:11px;font-weight:500;font-family:"JetBrains Mono",monospace;letter-spacing:.15em;color:var(--ink-soft);margin-left:2px}
   .apt .info .sub{display:flex;justify-content:space-between;align-items:center;gap:12px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
-  .apt .info .rating{color:var(--ink);font-weight:600}
-  .apt .info .rating em{font-style:normal;color:var(--accent)}
+  .apt .info .dist{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:5px}
+  .apt .info .dist::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--accent)}
   .apt .info .guide-link{
     margin-top:8px;display:flex;align-items:center;gap:8px;
     font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--accent-deep);font-weight:600;
@@ -522,7 +522,7 @@
 
 <header class="topbar" id="top">
   <div class="left">
-    <a href="#stays">Квартиры</a>
+    <a href="/ru/stays">Квартиры</a>
     <a href="/ru/guide">Гайд</a>
     <a href="/ru/own">Сдать с нами</a>
     <a href="/ru/invest">Инвесторам</a>
@@ -537,7 +537,7 @@
 
 <div class="menu-overlay" id="menuOverlay" hidden>
   <div class="menu-inner">
-    <a href="#stays" class="menu-item">Квартиры</a>
+    <a href="/ru/stays" class="menu-item">Квартиры</a>
     <a href="/ru/guide" class="menu-item">Гайд</a>
     <a href="/ru/own" class="menu-item">Сдать с нами</a>
     <a href="/ru/invest" class="menu-item">Инвесторам</a>
@@ -597,8 +597,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>Orbi Sea Towers — 21 этаж</h4><div class="price">$185<span class="u">/NT</span></div></div>
-        <div class="sub"><span>1 спальня · 48м² · вид на море</span><span class="rating"><em>★</em> 4.94 (87)</span></div>
-        <div class="guide-link">5 мест рядом — в гайде</div>
+        <div class="sub"><span>1 спальня · 48м² · вид на море</span></div>
       </div>
     </a>
 
@@ -609,8 +608,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>Лофт на старом бульваре</h4><div class="price">$95<span class="u">/NT</span></div></div>
-        <div class="sub"><span>Студия · 36м² · Старый город</span><span class="rating"><em>★</em> 4.88 (142)</span></div>
-        <div class="guide-link">12 мест рядом — в гайде</div>
+        <div class="sub"><span>Студия · 36м² · Старый город</span></div>
       </div>
     </a>
 
@@ -622,8 +620,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>Дом у Ботанического сада</h4><div class="price">$140<span class="u">/NT</span></div></div>
-        <div class="sub"><span>2 спальни · 72м² · сад</span><span class="rating"><em>★</em> 4.96 (54)</span></div>
-        <div class="guide-link">3 места рядом — в гайде</div>
+        <div class="sub"><span>2 спальни · 72м² · сад</span></div>
       </div>
     </a>
 
@@ -634,8 +631,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>Чавчавадзе, 4-я линия</h4><div class="price">$78<span class="u">/NT</span></div></div>
-        <div class="sub"><span>1 спальня · 42м² · центр</span><span class="rating"><em>★</em> 4.82 (203)</span></div>
-        <div class="guide-link">9 мест рядом — в гайде</div>
+        <div class="sub"><span>1 спальня · 42м² · центр</span></div>
       </div>
     </a>
 
@@ -647,8 +643,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>Вид на Black Sea Arena</h4><div class="price">$160<span class="u">/NT</span></div></div>
-        <div class="sub"><span>2 спальни · 65м² · море</span><span class="rating"><em>★</em> 4.91 (61)</span></div>
-        <div class="guide-link">6 мест рядом — в гайде</div>
+        <div class="sub"><span>2 спальни · 65м² · море</span><span class="dist">арена</span></div>
       </div>
     </a>
 
@@ -660,8 +655,7 @@
       </div>
       <div class="info">
         <div class="top"><h4>Гонийский мыс</h4><div class="price">$240<span class="u">/NT</span></div></div>
-        <div class="sub"><span>4 спальни · 180м² · пляж</span><span class="rating"><em>★</em> 4.99 (38)</span></div>
-        <div class="guide-link">4 места рядом — в гайде</div>
+        <div class="sub"><span>4 спальни · 180м² · пляж</span><span class="dist">гонио</span></div>
       </div>
     </a>
   </div>

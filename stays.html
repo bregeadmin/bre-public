@@ -1,0 +1,688 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>all apartments — bre</title>
+<meta name="description" content="all apartments managed by bre in batumi. honestly photographed, fairly priced, hand-picked. studios, lofts, family homes, sea-view towers — all across the city.">
+<link rel="alternate" hreflang="en" href="https://bre.ge/stays">
+<link rel="alternate" hreflang="ru" href="https://bre.ge/ru/stays">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf8f1;--bg-2:#f1ecdf;--paper:#fdfbf6;
+    --ink:#0a0908;--ink-soft:#4d544e;
+    --line:#0a090815;--line-strong:#0a090833;
+    --accent:#ff5e1a;--accent-deep:#d94612;
+    --teal:#00b5b0;--yellow:#ffd60a;
+    --pink-soft:#e8797c;--purple:#7f77dd;
+    --green-cat:#5dcaa5;--amber:#ef9f27;
+    --coral:#f0997b;
+    --page:var(--accent);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;font-weight:400;line-height:1.4;cursor:none}
+  body{overflow-x:hidden}
+  ::selection{background:var(--page);color:#fff}
+  a{color:inherit;text-decoration:none}
+  img{max-width:100%;display:block}
+
+  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--ink);pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
+  .cursor.big{width:72px;height:72px;background:var(--page)}
+  @media (hover:none){html,body,a,button{cursor:auto}.cursor{display:none}}
+
+  .float-wm{position:fixed;bottom:18px;left:18px;z-index:80;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;letter-spacing:-.04em;color:#fff;mix-blend-mode:difference;display:flex;align-items:flex-end;gap:3px;line-height:1;pointer-events:auto}
+  .float-wm .d{width:14px;height:14px;border-radius:50%;background:var(--page);mix-blend-mode:normal;box-shadow:0 0 14px var(--page);animation:dotpulse 2.4s ease-in-out infinite;margin-bottom:3px;margin-left:7px}
+  @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
+
+  /* TOPBAR */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:24px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
+  .topbar .left{display:flex;gap:28px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .left a:hover,.topbar .left a.active{color:var(--page)}
+  .topbar .ctr{justify-self:center;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .topbar .ctr .d{width:10px;height:10px;border-radius:50%;background:var(--page);mix-blend-mode:normal;margin-bottom:2px;margin-left:5px}
+  .topbar .right{justify-self:end;display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px;transition:all .2s ease}
+  .topbar .city:hover{border-color:#fff;background:#ffffff14}
+  .topbar .city .arr{opacity:.6;font-size:8px;margin-top:1px}
+  .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.1em;transition:all .2s ease}
+  .topbar .lang:hover{border-color:#fff;background:#ffffff14}
+  .topbar .burger{display:none;width:34px;height:34px;border:1px solid #ffffff66;border-radius:50%;background:transparent;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;cursor:none;flex:none}
+  .topbar .burger span{display:block;width:14px;height:1.5px;background:#fff;transition:transform .25s ease}
+  .topbar .burger.open span:nth-child(1){transform:translateY(3.5px) rotate(45deg)}
+  .topbar .burger.open span:nth-child(2){transform:translateY(-3px) rotate(-45deg)}
+
+  .menu-overlay{position:fixed;inset:0;z-index:90;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;padding:80px 28px 40px;opacity:0;pointer-events:none;transition:opacity .3s ease}
+  .menu-overlay.open{opacity:1;pointer-events:auto}
+  .menu-overlay::before{content:"";position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=1600&q=80');background-size:cover;background-position:center;opacity:.18;z-index:0}
+  .menu-overlay .menu-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;max-width:520px}
+  .menu-overlay .menu-item{display:block;padding:14px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,8vw,60px);line-height:.9;letter-spacing:-.035em;text-transform:lowercase;color:#fff;transition:all .25s ease}
+  .menu-overlay .menu-item:hover{color:var(--page);transform:translateX(12px)}
+  .menu-overlay .menu-foot{margin-top:36px;padding-top:24px;border-top:1px solid #ffffff22;width:100%;display:grid;gap:14px}
+  .menu-overlay .menu-row{display:flex;justify-content:space-between;align-items:baseline;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:#ffffff88}
+  .menu-overlay .menu-row-val{color:#fff;font-weight:600}
+  .menu-overlay .menu-row-val:hover{color:var(--page)}
+  .menu-overlay .menu-tg{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--page)}
+
+  /* META TOP */
+  .meta-top{padding:96px 28px 16px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;border-bottom:1px solid var(--line)}
+  .meta-top .crumbs{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .meta-top .crumbs a:hover{color:var(--ink)}
+  .meta-top .crumbs .sep{opacity:.4}
+  .meta-top .crumbs .cur{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+  .meta-top .crumbs .cur .dot{width:6px;height:6px;border-radius:50%;background:var(--page)}
+  .meta-top .actions{display:flex;gap:14px}
+  .meta-top .actions a:hover{color:var(--page)}
+
+  /* HEAD */
+  .head{padding:48px 28px 32px}
+  .head .inner{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;gap:24px;flex-wrap:wrap}
+  .head h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(48px,7vw,108px);line-height:.9;letter-spacing:-.04em;text-transform:lowercase}
+  .head h1 em{font-style:italic;color:var(--page)}
+  .head .count{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;padding-bottom:14px}
+  .head .count b{color:var(--ink)}
+
+  /* SEARCH BAR */
+  .searchbar-wrap{padding:0 28px 24px}
+  .searchbar{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr 1fr 1fr auto;align-items:stretch;gap:0;background:var(--paper);border:1px solid var(--line-strong);border-radius:14px;overflow:hidden}
+  .searchbar .field{padding:14px 18px;display:flex;flex-direction:column;gap:4px;border-right:1px solid var(--line);transition:background .2s ease;cursor:pointer}
+  .searchbar .field:hover{background:#fff}
+  .searchbar .field .lbl{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .searchbar .field input,.searchbar .field select{font-family:"Bricolage Grotesque",sans-serif;font-weight:600;font-size:15px;border:0;background:transparent;outline:0;padding:0;color:var(--ink);width:100%;cursor:pointer}
+  .searchbar .submit{display:flex;align-items:center;justify-content:center;padding:0 28px;background:var(--ink);color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;transition:background .2s ease;border:0;cursor:pointer}
+  .searchbar .submit:hover{background:var(--page)}
+
+  /* TOOLBAR — view toggle + sort */
+  .toolbar-wrap{padding:0 28px 16px;border-bottom:1px solid var(--line)}
+  .toolbar{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+  .toolbar .left,.toolbar .right{display:flex;align-items:center;gap:10px}
+  .toolbar .chips{display:flex;gap:8px;flex-wrap:wrap}
+  .toolbar .chip{display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid var(--line-strong);border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;background:transparent;color:var(--ink);transition:all .2s ease;cursor:pointer}
+  .toolbar .chip:hover,.toolbar .chip.active{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .toolbar .chip .x{opacity:.5;margin-left:2px}
+  .toolbar .sort{display:inline-flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .toolbar .sort select{font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--ink);font-weight:700;border:0;background:transparent;outline:0;cursor:pointer}
+  .toolbar .view-toggle{display:inline-flex;border:1px solid var(--line-strong);border-radius:999px;padding:3px;background:var(--paper)}
+  .toolbar .view-toggle button{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;border:0;background:transparent;color:var(--ink-soft);padding:7px 14px;border-radius:999px;cursor:pointer;transition:all .2s ease;display:inline-flex;align-items:center;gap:6px}
+  .toolbar .view-toggle button.active{background:var(--ink);color:#fff}
+  .toolbar .view-toggle button:hover:not(.active){color:var(--ink)}
+
+  /* LAYOUT — sidebar + content */
+  .layout{padding:32px 28px 64px}
+  .layout .container{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:240px 1fr;gap:32px;align-items:start}
+
+  /* SIDEBAR — filters */
+  .filters{position:sticky;top:96px;display:flex;flex-direction:column;gap:24px;padding:24px;background:var(--paper);border:1px solid var(--line);border-radius:14px}
+  .filters .group{display:flex;flex-direction:column;gap:10px}
+  .filters .group h5{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:700}
+  .filters .opts{display:flex;flex-wrap:wrap;gap:6px}
+  .filters .opts .opt{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;font-weight:600;padding:5px 10px;border:1px solid var(--line-strong);border-radius:6px;color:var(--ink);background:transparent;cursor:pointer;transition:all .2s ease}
+  .filters .opts .opt:hover,.filters .opts .opt.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .filters .price-range{display:flex;align-items:center;gap:8px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--ink);font-weight:600}
+  .filters .price-range input{flex:1;padding:6px 8px;border:1px solid var(--line-strong);border-radius:6px;font:inherit;outline:0;background:#fff}
+  .filters .price-range input:focus{border-color:var(--page)}
+  .filters .checks{display:flex;flex-direction:column;gap:7px}
+  .filters .checks label{display:flex;align-items:center;gap:9px;font-size:13px;color:var(--ink);cursor:pointer}
+  .filters .checks label input{accent-color:var(--page);width:14px;height:14px;cursor:pointer}
+  .filters .clear{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--page);font-weight:700;background:transparent;border:0;padding:0;text-align:left;cursor:pointer}
+  .filters .clear:hover{text-decoration:underline}
+
+  /* CARDS GRID */
+  .grid-view .apts{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .apt{display:flex;flex-direction:column;text-decoration:none;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .apt:hover{transform:translateY(-3px)}
+  .apt .ph{position:relative;aspect-ratio:5/4;border-radius:10px;overflow:hidden;background:var(--bg-2)}
+  .apt .ph img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.7,.2,1)}
+  .apt:hover .ph img{transform:scale(1.05)}
+  .apt .ph .badge{position:absolute;top:12px;left:12px;padding:5px 10px;background:#fff;color:var(--ink);font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;border-radius:999px}
+  .apt .ph .badge.hot{background:var(--page);color:#fff}
+  .apt .ph .fav{position:absolute;top:12px;right:12px;width:32px;height:32px;border:0;background:#ffffff80;backdrop-filter:blur(6px);border-radius:50%;font-size:14px;color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s ease}
+  .apt .ph .fav:hover{background:#fff;color:var(--page)}
+  .apt .info{padding:14px 4px 0;display:grid;gap:6px}
+  .apt .info .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+  .apt .info h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;letter-spacing:-.025em;line-height:1.15;text-transform:lowercase}
+  .apt .info .price{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:18px;letter-spacing:-.02em;white-space:nowrap;color:var(--accent-deep)}
+  .apt .info .price .u{font-size:10px;font-weight:500;font-family:"JetBrains Mono",monospace;letter-spacing:.15em;color:var(--ink-soft);margin-left:2px}
+  .apt .info .sub{display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  .apt .info .dist{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:5px}
+  .apt .info .dist::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--page)}
+
+  /* MAP VIEW — split: map left, scroll cards right */
+  .map-view{display:none;grid-template-columns:1.2fr 1fr;gap:18px;height:calc(100vh - 230px);min-height:600px}
+  .map-view.active{display:grid}
+  .map-pane{position:relative;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--bg-2)}
+  .map-pane .map-stage{position:absolute;inset:0;background:linear-gradient(135deg,#e8efe7 0%,#dde7e0 40%,#c9d9cc 100%)}
+  .map-pane svg{position:absolute;inset:0;width:100%;height:100%}
+  .map-pane .map-label{position:absolute;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:#5a6e5a;pointer-events:none}
+  .map-pane .sea-label{position:absolute;font-family:"Bricolage Grotesque",sans-serif;font-style:italic;font-size:18px;color:#5a9bc5;pointer-events:none;font-weight:400}
+  .map-pane .pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;z-index:5}
+  .map-pane .pin .marker{display:flex;align-items:center;justify-content:center;width:34px;height:34px;background:var(--ink);color:#fff;border-radius:50%;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:700;letter-spacing:.05em;box-shadow:0 4px 10px rgba(0,0,0,.18);transition:all .25s ease}
+  .map-pane .pin:hover .marker,.map-pane .pin.active .marker{background:var(--page);transform:scale(1.15);box-shadow:0 6px 16px rgba(255,94,26,.35)}
+  .map-pane .pin .price-tip{position:absolute;top:-32px;left:50%;transform:translateX(-50%);background:#fff;color:var(--ink);padding:4px 9px;border-radius:999px;font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:12px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s ease;border:1px solid var(--line-strong)}
+  .map-pane .pin:hover .price-tip,.map-pane .pin.active .price-tip{opacity:1}
+  .map-pane .legend{position:absolute;left:14px;bottom:14px;display:flex;flex-direction:column;gap:6px;padding:12px 14px;background:#ffffffcc;backdrop-filter:blur(8px);border-radius:10px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink);font-weight:500}
+  .map-pane .legend .lg{display:flex;align-items:center;gap:8px}
+  .map-pane .legend .lg .dot{width:10px;height:10px;border-radius:50%;background:var(--ink)}
+  .map-pane .upgrade-note{position:absolute;right:14px;top:14px;padding:6px 11px;background:#ffffffcc;backdrop-filter:blur(8px);border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+
+  .map-cards{overflow-y:auto;display:flex;flex-direction:column;gap:14px;padding-right:6px}
+  .map-cards .apt{flex-direction:row;align-items:stretch;gap:14px;padding:0;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--paper);transition:border-color .2s ease}
+  .map-cards .apt:hover,.map-cards .apt.active{border-color:var(--page);transform:none}
+  .map-cards .apt .ph{flex:none;width:170px;aspect-ratio:auto;border-radius:0}
+  .map-cards .apt .info{padding:14px 14px 14px 0;flex:1;align-self:center}
+
+  /* NEAR FUTURE NOTE */
+  .future-note{margin:64px auto 0;max-width:680px;padding:28px;background:var(--paper);border:1px dashed var(--line-strong);border-radius:14px;text-align:center;display:flex;flex-direction:column;gap:10px}
+  .future-note h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:20px;letter-spacing:-.02em;text-transform:lowercase}
+  .future-note h4 em{font-style:italic;color:var(--page)}
+  .future-note p{font-size:14px;line-height:1.6;color:var(--ink-soft)}
+
+  /* FOOTER */
+  footer{border-top:1px solid var(--line);padding:32px 28px;display:grid;grid-template-columns:1fr auto 1fr;gap:24px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500}
+  footer .center{text-align:center}
+  footer .right{text-align:right}
+  footer a:hover{color:var(--page)}
+
+  @media (max-width:1100px){
+    .grid-view .apts{grid-template-columns:repeat(2,1fr)}
+    .map-view{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width:880px){
+    html,body{cursor:auto}
+    .cursor,.float-wm{display:none}
+    .topbar{grid-template-columns:auto 1fr;padding:14px 14px}
+    .topbar .left{display:none}
+    .topbar .ctr{justify-self:start;font-size:20px}
+    .topbar .right{gap:8px}
+    .topbar .city,.topbar .lang{display:none}
+    .topbar .burger{display:inline-flex}
+    .meta-top{padding:72px 14px 14px}
+    .head{padding:24px 14px 16px}
+    .head h1{font-size:clamp(40px,11vw,64px)}
+    .searchbar-wrap{padding:0 14px 16px}
+    .searchbar{grid-template-columns:1fr 1fr;border-radius:12px}
+    .searchbar .field{border-right:0;border-bottom:1px solid var(--line)}
+    .searchbar .field:nth-child(2n){border-left:1px solid var(--line)}
+    .searchbar .submit{grid-column:1/-1;padding:14px;border-top:1px solid var(--line)}
+    .toolbar-wrap{padding:0 14px 14px}
+    .toolbar{gap:10px}
+    .layout{padding:18px 14px 48px}
+    .layout .container{grid-template-columns:1fr;gap:18px}
+    .filters{position:static;padding:18px;flex-direction:row;flex-wrap:wrap;gap:18px}
+    .filters .group{flex:1;min-width:140px}
+    .filters .clear{align-self:center}
+    .grid-view .apts{grid-template-columns:1fr;gap:14px}
+    .map-view{height:auto;grid-template-columns:1fr;min-height:0}
+    .map-pane{aspect-ratio:4/3;height:auto}
+    .map-cards .apt{flex-direction:column}
+    .map-cards .apt .ph{width:100%;aspect-ratio:5/4}
+    .map-cards .apt .info{padding:14px}
+    footer{grid-template-columns:1fr;gap:8px;font-size:9px}
+    footer .center,footer .right{text-align:left}
+  }
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<a href="/" class="float-wm" id="floatWm">bre<span class="d"></span></a>
+
+<header class="topbar" id="top">
+  <div class="left">
+    <a href="/stays" class="active">stays</a>
+    <a href="/guide">guide</a>
+    <a href="/own">own with us</a>
+    <a href="/invest">invest</a>
+  </div>
+  <a href="/" class="ctr">bre<span class="d"></span></a>
+  <div class="right">
+    <a href="#" class="city">batumi <span class="arr">▾</span></a>
+    <a href="/ru/stays" class="lang">ru</a>
+    <button class="burger" id="burger" aria-label="menu" type="button"><span></span><span></span></button>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay" hidden>
+  <div class="menu-inner">
+    <a href="/stays" class="menu-item active">stays</a>
+    <a href="/guide" class="menu-item">guide</a>
+    <a href="/own" class="menu-item">own with us</a>
+    <a href="/invest" class="menu-item">invest</a>
+    <div class="menu-foot">
+      <div class="menu-row"><span class="menu-row-label">city</span><a href="#" class="menu-row-val">batumi ▾</a></div>
+      <div class="menu-row"><span class="menu-row-label">language</span><a href="/ru/stays" class="menu-row-val"><b>EN</b> · RU</a></div>
+      <a href="https://t.me/bre_ge" class="menu-tg">↗ telegram @bre_ge</a>
+    </div>
+  </div>
+</div>
+
+<!-- META TOP -->
+<div class="meta-top">
+  <div class="crumbs">
+    <a href="/">bre</a>
+    <span class="sep">/</span>
+    <span class="cur"><span class="dot"></span>stays</span>
+  </div>
+  <div class="actions">
+    <a href="/guide">↗ the batumi guide</a>
+  </div>
+</div>
+
+<!-- HEAD -->
+<section class="head">
+  <div class="inner">
+    <h1>all our <em>apartments</em>.</h1>
+    <div class="count"><b>6 places</b> · across batumi</div>
+  </div>
+</section>
+
+<!-- SEARCH BAR -->
+<div class="searchbar-wrap">
+  <div class="searchbar">
+    <div class="field">
+      <span class="lbl">— city</span>
+      <select>
+        <option>Batumi</option>
+        <option disabled>Tbilisi (soon)</option>
+      </select>
+    </div>
+    <div class="field">
+      <span class="lbl">— arrival</span>
+      <input type="date" id="arrival">
+    </div>
+    <div class="field">
+      <span class="lbl">— departure</span>
+      <input type="date" id="departure">
+    </div>
+    <div class="field">
+      <span class="lbl">— guests</span>
+      <select>
+        <option>1 guest</option>
+        <option selected>2 guests</option>
+        <option>3 guests</option>
+        <option>4 guests</option>
+        <option>5+ guests</option>
+      </select>
+    </div>
+    <button class="submit">Search →</button>
+  </div>
+</div>
+
+<!-- TOOLBAR -->
+<div class="toolbar-wrap">
+  <div class="toolbar">
+    <div class="left">
+      <div class="chips" id="activeChips">
+        <button class="chip active">all <span class="x">×</span></button>
+      </div>
+    </div>
+    <div class="right">
+      <div class="sort">
+        sort by:
+        <select id="sort">
+          <option>recommended</option>
+          <option>price · low to high</option>
+          <option>price · high to low</option>
+          <option>newest</option>
+        </select>
+      </div>
+      <div class="view-toggle">
+        <button class="active" data-view="grid" id="viewGrid">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><rect x="0" y="0" width="4.5" height="4.5" fill="currentColor"/><rect x="6.5" y="0" width="4.5" height="4.5" fill="currentColor"/><rect x="0" y="6.5" width="4.5" height="4.5" fill="currentColor"/><rect x="6.5" y="6.5" width="4.5" height="4.5" fill="currentColor"/></svg>
+          List
+        </button>
+        <button data-view="map" id="viewMap">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none"><path d="M5.5 1 a3 3 0 0 1 3 3 c0 2-3 5-3 5 s-3-3-3-5 a3 3 0 0 1 3-3 z M5.5 4.2 a1 1 0 0 0 0 -.4 a1 1 0 0 0 0 .4 z" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+          Map
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- LAYOUT -->
+<section class="layout">
+  <div class="container">
+    <!-- SIDEBAR FILTERS -->
+    <aside class="filters">
+      <div class="group">
+        <h5>— district</h5>
+        <div class="opts">
+          <button class="opt">old town</button>
+          <button class="opt">boulevard</button>
+          <button class="opt">chavchavadze</button>
+          <button class="opt">hot beach</button>
+          <button class="opt">botanical</button>
+          <button class="opt">gonio</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <h5>— beds</h5>
+        <div class="opts">
+          <button class="opt">studio</button>
+          <button class="opt">1</button>
+          <button class="opt">2</button>
+          <button class="opt">3+</button>
+        </div>
+      </div>
+
+      <div class="group">
+        <h5>— price / night</h5>
+        <div class="price-range">
+          <input type="number" placeholder="$50" min="0">
+          <span>—</span>
+          <input type="number" placeholder="$300" min="0">
+        </div>
+      </div>
+
+      <div class="group">
+        <h5>— amenities</h5>
+        <div class="checks">
+          <label><input type="checkbox"> Sea view</label>
+          <label><input type="checkbox"> Balcony</label>
+          <label><input type="checkbox"> Pool</label>
+          <label><input type="checkbox"> Parking</label>
+          <label><input type="checkbox"> Workspace</label>
+          <label><input type="checkbox"> Pet-friendly</label>
+        </div>
+      </div>
+
+      <button class="clear">clear all filters →</button>
+    </aside>
+
+    <!-- CONTENT — GRID VIEW -->
+    <div class="grid-view" id="gridView">
+      <div class="apts">
+        <a class="apt" href="/stays/orbi-21">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=1200&q=80" alt="orbi sea towers — 21st floor"/>
+            <span class="badge hot">just listed</span>
+            <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
+          </div>
+          <div class="info">
+            <div class="top"><h4>orbi sea towers — 21st</h4><div class="price">$185<span class="u">/NT</span></div></div>
+            <div class="sub"><span>1 bed · 48m² · sea view</span><span class="dist">hot beach</span></div>
+          </div>
+        </a>
+
+        <a class="apt" href="/stays/boulevard-loft">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=1200&q=80" alt="loft on the old boulevard"/>
+            <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
+          </div>
+          <div class="info">
+            <div class="top"><h4>old boulevard loft</h4><div class="price">$95<span class="u">/NT</span></div></div>
+            <div class="sub"><span>studio · 36m²</span><span class="dist">old town</span></div>
+          </div>
+        </a>
+
+        <a class="apt" href="/stays/botanical">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=1200&q=80" alt="house near the botanical garden"/>
+            <span class="badge">long stay</span>
+            <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
+          </div>
+          <div class="info">
+            <div class="top"><h4>botanical garden house</h4><div class="price">$140<span class="u">/NT</span></div></div>
+            <div class="sub"><span>2 bed · 72m² · garden</span><span class="dist">botanical</span></div>
+          </div>
+        </a>
+
+        <a class="apt" href="/stays/chavchavadze">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=1200&q=80" alt="chavchavadze, 4th line"/>
+            <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
+          </div>
+          <div class="info">
+            <div class="top"><h4>chavchavadze, 4th line</h4><div class="price">$78<span class="u">/NT</span></div></div>
+            <div class="sub"><span>1 bed · 42m² · city</span><span class="dist">chavchavadze</span></div>
+          </div>
+        </a>
+
+        <a class="apt" href="/stays/arena">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=1200&q=80" alt="apartment with view on black sea arena"/>
+            <span class="badge hot">2 nights left</span>
+            <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
+          </div>
+          <div class="info">
+            <div class="top"><h4>black sea arena view</h4><div class="price">$160<span class="u">/NT</span></div></div>
+            <div class="sub"><span>2 bed · 65m² · sea</span><span class="dist">arena</span></div>
+          </div>
+        </a>
+
+        <a class="apt" href="/stays/gonio">
+          <div class="ph">
+            <img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=1200&q=80" alt="gonio cape house"/>
+            <span class="badge">house</span>
+            <button class="fav" type="button" onclick="event.preventDefault();this.textContent=this.textContent==='♡'?'♥':'♡'">♡</button>
+          </div>
+          <div class="info">
+            <div class="top"><h4>gonio cape</h4><div class="price">$240<span class="u">/NT</span></div></div>
+            <div class="sub"><span>4 bed · 180m² · beach</span><span class="dist">gonio</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+
+    <!-- CONTENT — MAP VIEW -->
+    <div class="map-view" id="mapView">
+      <div class="map-pane">
+        <div class="map-stage"></div>
+        <!-- Stylized Batumi map illustration -->
+        <svg viewBox="0 0 800 600" preserveAspectRatio="none">
+          <!-- sea -->
+          <path d="M0,420 Q150,400 280,440 T560,460 T800,420 L800,600 L0,600 Z" fill="#a8c8de" opacity=".55"/>
+          <!-- coastline curve -->
+          <path d="M0,420 Q150,400 280,440 T560,460 T800,420" stroke="#5a9bc5" stroke-width="1.5" fill="none" opacity=".5"/>
+          <!-- streets / blocks -->
+          <g stroke="#b5c8b5" stroke-width="1" opacity=".5" fill="none">
+            <line x1="0" y1="180" x2="800" y2="220"/>
+            <line x1="0" y1="280" x2="800" y2="320"/>
+            <line x1="0" y1="360" x2="800" y2="400"/>
+            <line x1="120" y1="0" x2="160" y2="600"/>
+            <line x1="280" y1="0" x2="320" y2="600"/>
+            <line x1="450" y1="0" x2="490" y2="600"/>
+            <line x1="620" y1="0" x2="660" y2="600"/>
+          </g>
+          <!-- parks -->
+          <circle cx="200" cy="320" r="32" fill="#c6dabc" opacity=".7"/>
+          <circle cx="540" cy="280" r="42" fill="#c6dabc" opacity=".7"/>
+          <circle cx="120" cy="120" r="28" fill="#c6dabc" opacity=".7"/>
+        </svg>
+
+        <!-- district labels -->
+        <span class="map-label" style="left:18%;top:18%">old town</span>
+        <span class="map-label" style="left:36%;top:42%">boulevard</span>
+        <span class="map-label" style="left:14%;top:60%">chavchavadze</span>
+        <span class="map-label" style="left:62%;top:35%">hot beach</span>
+        <span class="map-label" style="left:8%;top:32%">botanical</span>
+        <span class="map-label" style="left:80%;top:62%">gonio</span>
+        <span class="sea-label" style="left:78%;top:82%">black sea</span>
+
+        <!-- apartment pins -->
+        <a class="pin" data-slug="orbi-21" href="/stays/orbi-21" style="left:64%;top:42%">
+          <div class="marker">21</div>
+          <span class="price-tip">$185 · orbi 21</span>
+        </a>
+        <a class="pin" data-slug="boulevard-loft" href="/stays/boulevard-loft" style="left:22%;top:24%">
+          <div class="marker">L</div>
+          <span class="price-tip">$95 · loft</span>
+        </a>
+        <a class="pin" data-slug="botanical" href="/stays/botanical" style="left:13%;top:38%">
+          <div class="marker">B</div>
+          <span class="price-tip">$140 · botanical</span>
+        </a>
+        <a class="pin" data-slug="chavchavadze" href="/stays/chavchavadze" style="left:20%;top:65%">
+          <div class="marker">4</div>
+          <span class="price-tip">$78 · chavchavadze</span>
+        </a>
+        <a class="pin" data-slug="arena" href="/stays/arena" style="left:55%;top:55%">
+          <div class="marker">A</div>
+          <span class="price-tip">$160 · arena</span>
+        </a>
+        <a class="pin" data-slug="gonio" href="/stays/gonio" style="left:82%;top:55%">
+          <div class="marker">G</div>
+          <span class="price-tip">$240 · gonio</span>
+        </a>
+
+        <div class="legend">
+          <div class="lg"><span class="dot"></span>our apartments</div>
+        </div>
+        <div class="upgrade-note">interactive map · soon</div>
+      </div>
+
+      <div class="map-cards" id="mapCards">
+        <a class="apt" data-slug="orbi-21" href="/stays/orbi-21">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=600&q=80" alt=""/></div>
+          <div class="info">
+            <div class="top"><h4>orbi sea towers — 21st</h4><div class="price">$185<span class="u">/NT</span></div></div>
+            <div class="sub"><span>1 bed · 48m²</span><span class="dist">hot beach</span></div>
+          </div>
+        </a>
+        <a class="apt" data-slug="boulevard-loft" href="/stays/boulevard-loft">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?w=600&q=80" alt=""/></div>
+          <div class="info">
+            <div class="top"><h4>old boulevard loft</h4><div class="price">$95<span class="u">/NT</span></div></div>
+            <div class="sub"><span>studio · 36m²</span><span class="dist">old town</span></div>
+          </div>
+        </a>
+        <a class="apt" data-slug="botanical" href="/stays/botanical">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&q=80" alt=""/></div>
+          <div class="info">
+            <div class="top"><h4>botanical garden house</h4><div class="price">$140<span class="u">/NT</span></div></div>
+            <div class="sub"><span>2 bed · 72m²</span><span class="dist">botanical</span></div>
+          </div>
+        </a>
+        <a class="apt" data-slug="chavchavadze" href="/stays/chavchavadze">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1493809842364-78817add7ffb?w=600&q=80" alt=""/></div>
+          <div class="info">
+            <div class="top"><h4>chavchavadze, 4th line</h4><div class="price">$78<span class="u">/NT</span></div></div>
+            <div class="sub"><span>1 bed · 42m²</span><span class="dist">chavchavadze</span></div>
+          </div>
+        </a>
+        <a class="apt" data-slug="arena" href="/stays/arena">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?w=600&q=80" alt=""/></div>
+          <div class="info">
+            <div class="top"><h4>black sea arena view</h4><div class="price">$160<span class="u">/NT</span></div></div>
+            <div class="sub"><span>2 bed · 65m²</span><span class="dist">arena</span></div>
+          </div>
+        </a>
+        <a class="apt" data-slug="gonio" href="/stays/gonio">
+          <div class="ph"><img src="https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?w=600&q=80" alt=""/></div>
+          <div class="info">
+            <div class="top"><h4>gonio cape</h4><div class="price">$240<span class="u">/NT</span></div></div>
+            <div class="sub"><span>4 bed · 180m²</span><span class="dist">gonio</span></div>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FUTURE NOTE -->
+<div class="future-note" style="margin-bottom:64px">
+  <h4>more apartments <em>coming soon</em>.</h4>
+  <p>we're adding 4–6 new flats over the next two months. message us on telegram if you have specific dates or districts in mind — we'll send you a heads-up when something matches.</p>
+</div>
+
+<footer>
+  <div class="left">© 2026 · bre.ge</div>
+  <div class="center"><a href="/about">about</a> · apartments &amp; the batumi guide</div>
+  <div class="right"><a href="#top">↑ back to top</a></div>
+</footer>
+
+<script>
+  const cursor = document.getElementById('cursor');
+  const floatWm = document.getElementById('floatWm');
+  let mx=window.innerWidth/2,my=window.innerHeight/2,cx=mx,cy=my,wmx=0,wmy=0;
+  window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+  function loop(){
+    cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;
+    if(cursor) cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;
+    const tx=(mx-window.innerWidth/2)*0.012,ty=(my-window.innerHeight/2)*0.012;
+    wmx+=(tx-wmx)*0.08;wmy+=(ty-wmy)*0.08;
+    if(floatWm) floatWm.style.transform=`translate(${wmx}px, ${wmy}px)`;
+    requestAnimationFrame(loop);
+  }
+  loop();
+  document.querySelectorAll('a,button').forEach(el=>{
+    el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
+    el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+  });
+
+  // Burger
+  (function(){
+    const burger=document.getElementById('burger');
+    const overlay=document.getElementById('menuOverlay');
+    if(!burger||!overlay)return;
+    function open(){overlay.hidden=false;requestAnimationFrame(()=>overlay.classList.add('open'));burger.classList.add('open');document.body.style.overflow='hidden'}
+    function close(){overlay.classList.remove('open');burger.classList.remove('open');document.body.style.overflow='';setTimeout(()=>overlay.hidden=true,320)}
+    burger.addEventListener('click',()=>overlay.classList.contains('open')?close():open());
+    overlay.addEventListener('click',e=>{if(e.target===overlay)close()});
+    overlay.querySelectorAll('.menu-item,.menu-tg,.menu-row-val').forEach(a=>a.addEventListener('click',close));
+    document.addEventListener('keydown',e=>{if(e.key==='Escape'&&overlay.classList.contains('open'))close()});
+  })();
+
+  // View toggle — Grid / Map
+  (function(){
+    const gridBtn = document.getElementById('viewGrid');
+    const mapBtn = document.getElementById('viewMap');
+    const gridView = document.getElementById('gridView');
+    const mapView = document.getElementById('mapView');
+    function show(view){
+      if(view==='map'){
+        gridView.style.display='none';
+        mapView.classList.add('active');
+        gridBtn.classList.remove('active');
+        mapBtn.classList.add('active');
+      } else {
+        gridView.style.display='block';
+        mapView.classList.remove('active');
+        gridBtn.classList.add('active');
+        mapBtn.classList.remove('active');
+      }
+    }
+    gridBtn.addEventListener('click',()=>show('grid'));
+    mapBtn.addEventListener('click',()=>show('map'));
+  })();
+
+  // Pin <-> card hover sync
+  (function(){
+    const pins = document.querySelectorAll('.map-pane .pin');
+    const cards = document.querySelectorAll('.map-cards .apt');
+    pins.forEach(pin=>{
+      const slug = pin.dataset.slug;
+      pin.addEventListener('mouseenter',()=>{
+        const card = document.querySelector(`.map-cards .apt[data-slug="${slug}"]`);
+        if(card){ card.classList.add('active'); card.scrollIntoView({block:'nearest',behavior:'smooth'}); }
+      });
+      pin.addEventListener('mouseleave',()=>{
+        const card = document.querySelector(`.map-cards .apt[data-slug="${slug}"]`);
+        if(card) card.classList.remove('active');
+      });
+    });
+    cards.forEach(card=>{
+      const slug = card.dataset.slug;
+      card.addEventListener('mouseenter',()=>{
+        const pin = document.querySelector(`.map-pane .pin[data-slug="${slug}"]`);
+        if(pin) pin.classList.add('active');
+      });
+      card.addEventListener('mouseleave',()=>{
+        const pin = document.querySelector(`.map-pane .pin[data-slug="${slug}"]`);
+        if(pin) pin.classList.remove('active');
+      });
+    });
+  })();
+
+  // Filter chips toggle (visual only — wire up to filtering later when CMS arrives)
+  document.querySelectorAll('.filters .opt').forEach(b=>{
+    b.addEventListener('click',()=>b.classList.toggle('on'));
+  });
+</script>
+
+</body>
+</html>
