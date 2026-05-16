@@ -1,0 +1,253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>privacy — bre</title>
+<meta name="description" content="How bre handles your data — straight talk, no legalese.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0a0908">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#fbf8f1;--bg-2:#f1ecdf;--paper:#fdfbf6;--ink:#0a0908;--ink-soft:#4d544e;--line:#0a090815;--line-strong:#0a090833;--accent:#ff5e1a;--accent-deep:#d94612;--page:var(--accent)}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;font-weight:400;line-height:1.5;cursor:none}
+  body{overflow-x:hidden}
+  ::selection{background:var(--page);color:#fff}
+  a{color:inherit;text-decoration:none}
+  @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
+
+  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:#fff;pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
+  .cursor.big{width:72px;height:72px;background:#fff}
+  @media (hover:none){html,body,a,button{cursor:auto}.cursor{display:none}}
+
+  .home-dot{isolation:isolate;mix-blend-mode:normal;display:inline-flex;align-items:center;justify-content:center;width:0;height:14px;position:relative;flex:none;transition:width .35s cubic-bezier(.34,1.56,.64,1),margin-right .35s ease;text-decoration:none;pointer-events:none;overflow:visible}
+  .home-dot::before{content:'';display:block;width:14px;height:14px;border-radius:50%;background:var(--page);opacity:0;transition:opacity .25s ease}
+  .home-dot.expanded{width:14px;margin-right:14px}
+  .home-dot.visible{pointer-events:auto}
+  .home-dot.visible::before{opacity:1}
+  .home-dot.pulsing::before{animation:dotpulse 2.4s ease-in-out infinite}
+  .topbar .ctr .d{transition:opacity .2s ease}
+  .topbar .ctr .d.hidden{opacity:0}
+  #flyingDot{isolation:isolate;mix-blend-mode:normal;position:fixed;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--page);opacity:0;pointer-events:none;z-index:80}
+  @media (max-width:880px){.home-dot,#flyingDot{display:none}}
+
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:22px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;font-family:"Bricolage Grotesque",sans-serif;font-size:15px;letter-spacing:-.01em;text-transform:lowercase;font-weight:600}
+  .topbar .left{display:flex;align-items:center;gap:24px}
+  .topbar .ctr{justify-self:center;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .topbar .ctr .d{width:10px;height:10px;border-radius:50%;background:var(--page);mix-blend-mode:normal;margin-bottom:2px;margin-left:5px}
+  .topbar .right{justify-self:end;display:flex;align-items:center;gap:18px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px}
+  .topbar .city:hover{border-color:#fff;background:#ffffff14}
+  .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-size:10px;font-weight:600;letter-spacing:.1em}
+  .topbar .lang:hover{border-color:#fff;background:#ffffff14}
+  .topbar a:hover{opacity:.7}
+  .topbar .burger{display:none;width:34px;height:34px;border:1px solid #ffffff66;border-radius:50%;background:transparent;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;cursor:none;flex:none}
+  .topbar .burger span{display:block;width:14px;height:1.5px;background:#fff}
+
+  /* DOC LAYOUT */
+  .doc-wrap{padding:140px 28px 80px;max-width:760px;margin:0 auto}
+  .meta-line{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;align-items:center;gap:14px;margin-bottom:24px}
+  .meta-line .dot{width:6px;height:6px;border-radius:50%;background:var(--page)}
+  h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(40px,6vw,72px);line-height:.95;letter-spacing:-.035em;text-transform:lowercase}
+  h1 em{font-style:italic;color:var(--page)}
+  .doc-wrap .updated{margin-top:18px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft)}
+  .doc-wrap .lede{margin-top:32px;font-size:17px;line-height:1.55;color:var(--ink-soft)}
+  .doc-wrap .lede b{color:var(--ink);font-weight:600}
+  .doc-wrap h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:24px;letter-spacing:-.02em;margin-top:48px;text-transform:lowercase}
+  .doc-wrap p{margin-top:14px;font-size:15px;line-height:1.65;color:var(--ink-soft)}
+  .doc-wrap p b{color:var(--ink);font-weight:600}
+  .doc-wrap ul{margin-top:14px;padding-left:0;list-style:none}
+  .doc-wrap ul li{padding-left:18px;position:relative;font-size:15px;line-height:1.65;color:var(--ink-soft);margin-top:8px}
+  .doc-wrap ul li::before{content:'—';position:absolute;left:0;color:var(--page)}
+  .doc-wrap .end{margin-top:64px;padding:24px;background:var(--paper);border:1px solid var(--line);border-radius:14px;font-size:14px;line-height:1.6}
+  .doc-wrap .end a{color:var(--page);font-weight:600}
+
+  /* FOOTER */
+  footer{padding:32px 28px;background:var(--ink);color:#a99e8e;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;line-height:1.5}
+  footer a{color:#a99e8e;text-decoration:none;transition:color .2s ease}
+  footer a:hover{color:#fff}
+  .foot-line{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .foot-left .sep{opacity:.4}
+  .foot-right{display:flex;align-items:center;gap:18px;flex-shrink:0}
+  .foot-lang b{color:#fff}
+
+  @media (max-width:880px){
+    html,body{cursor:auto}.cursor{display:none}
+    .topbar{grid-template-columns:auto 1fr;padding:18px 14px;font-size:13px}
+    .topbar .left{display:none}
+    .topbar .ctr{justify-self:start;font-size:20px}
+    .topbar .right{gap:8px}
+    .topbar .city{display:none}
+    .topbar .burger{display:inline-flex}
+    .doc-wrap{padding:100px 14px 48px}
+    footer{padding:24px 14px}
+    .foot-line{flex-direction:column;align-items:flex-start;gap:18px}
+    .foot-left{gap:10px;font-size:9px}
+    .foot-right{font-size:9px}
+  }
+</style>
+</head>
+<body>
+<span id="flyingDot"></span>
+<div class="cursor" id="cursor"></div>
+
+<header class="topbar" id="top">
+  <div class="left">
+    <a class="home-dot" href="/" aria-label="home"></a>
+    <a href="/stays">stays</a>
+    <a href="/guide">guide</a>
+    <a href="/own">own with us</a>
+    <a href="/invest">invest</a>
+  </div>
+  <a href="/" class="ctr" title="home">bre<span class="d"></span></a>
+  <div class="right">
+    <a href="#" class="city">batumi <span class="arr">▾</span></a>
+    <a href="/ru/privacy" class="lang">ru</a>
+    <button class="burger" aria-label="menu" type="button"><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="doc-wrap">
+  <div class="meta-line"><span class="dot"></span>— privacy policy</div>
+  <h1><em>privacy</em>, in plain words.</h1>
+  <div class="updated">— updated may 2026 · jurisdiction georgia</div>
+
+  <p class="lede">We're a small operator. We collect only what we need to host you and answer your questions. We don't sell your data to anyone. <b>If you write us — we'll write back; if you stop writing — we forget about you.</b></p>
+
+  <h2>what we collect</h2>
+  <p>When you contact us through the website, Telegram, WhatsApp, email or phone, we keep the basics needed to reply:</p>
+  <ul>
+    <li>your name (or whatever you call yourself)</li>
+    <li>your contact method (email, phone, telegram handle)</li>
+    <li>the message itself</li>
+    <li>any details you share about your stay or property</li>
+  </ul>
+
+  <h2>what we do with it</h2>
+  <p>We use this to reply to you, manage your booking or contract, send updates about your stay or property, and improve our service. <b>That's it.</b> No marketing automation, no resale, no ad targeting.</p>
+
+  <h2>who else sees it</h2>
+  <p>For bookings, we may share your name and arrival dates with the building concierge or cleaning team. Some data may pass through Airbnb, Booking.com or Suточно if you booked via their platforms — their privacy rules apply on top of ours.</p>
+  <p>We don't share data with advertisers, data brokers or analytics resellers.</p>
+
+  <h2>how long we keep it</h2>
+  <p>Active correspondence and bookings: as long as needed plus 1 year for accounting. Old conversations: we may delete them or you can ask us to.</p>
+
+  <h2>your rights</h2>
+  <p>You can ask us at any time to:</p>
+  <ul>
+    <li>show what data we have about you</li>
+    <li>correct it</li>
+    <li>delete it (within what Georgian tax law lets us delete)</li>
+    <li>stop using it for anything beyond the basics</li>
+  </ul>
+  <p>Just <a href="/contact" style="color:var(--page);font-weight:600">write us</a>. We'll handle it within a few days.</p>
+
+  <h2>cookies &amp; analytics</h2>
+  <p>The website uses minimal cookies for language preference and to remember if you've seen the dot fly. No third-party tracking, no Facebook Pixel, no Google Analytics user-ID tracking. We may add basic anonymous analytics later to understand which pages people read — but never to identify individuals.</p>
+
+  <h2>changes</h2>
+  <p>If this policy changes meaningfully, we'll update the date above and mention it to anyone who's in active conversation with us.</p>
+
+  <div class="end">Questions about privacy? Write us at <a href="mailto:hello@bre.ge">hello@bre.ge</a> or in <a href="https://t.me/bre_ge">Telegram</a>. We answer ourselves.</div>
+</section>
+
+<footer>
+  <div class="foot-line">
+    <div class="foot-left">
+      <span class="foot-copy">© 2026 bre.ge</span>
+      <span class="sep">·</span>
+      <a href="/stays">stays</a>
+      <a href="/guide">guide</a>
+      <a href="/own">own</a>
+      <a href="/invest">invest</a>
+      <a href="/about">about</a>
+      <a href="/contact">contact</a>
+      <span class="sep">·</span>
+      <a href="/privacy">privacy</a>
+      <a href="/terms">terms</a>
+      <a href="/agents">agents</a>
+    </div>
+    <div class="foot-right">
+      <a href="/ru/" class="foot-lang">RU · <b>EN</b></a>
+      <a href="#" class="foot-top" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,cx=mx,cy=my;
+window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+function loop(){cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;if(cursor)cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(loop)}
+loop();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
+  el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+});
+(function(){
+  if(window.innerWidth < 880) return;
+  const centerLogo = document.querySelector('.topbar .ctr');
+  const centerDotEl = centerLogo && centerLogo.querySelector('.d');
+  const leftDot = document.querySelector('.home-dot');
+  const flyingDot = document.getElementById('flyingDot');
+  if(!centerLogo||!centerDotEl||!leftDot||!flyingDot)return;
+  const KEY='bre_dot_flight_seen';
+  let hasSeenFlight=false;
+  try{hasSeenFlight=sessionStorage.getItem(KEY)==='yes'}catch(e){}
+  let state='top',flying=false;
+  function doFlight(){
+    const centerRect=centerDotEl.getBoundingClientRect();
+    const startX=centerRect.left+centerRect.width/2,startY=centerRect.top+centerRect.height/2;
+    leftDot.classList.add('expanded');
+    setTimeout(()=>{
+      const leftRect=leftDot.getBoundingClientRect();
+      const endX=leftRect.left+leftRect.width/2,endY=leftRect.top+leftRect.height/2;
+      flyingDot.style.transition='none';
+      flyingDot.style.transform='translate('+(startX-7)+'px,'+(startY-7)+'px) scale(0.71)';
+      flyingDot.style.opacity='1';
+      centerDotEl.classList.add('hidden');
+      flyingDot.getBoundingClientRect();
+      flyingDot.style.transition='transform .85s cubic-bezier(.5,0,.2,1)';
+      flyingDot.style.transform='translate('+(endX-7)+'px,'+(endY-7)+'px) scale(1)';
+      setTimeout(()=>{
+        leftDot.classList.add('visible','pulsing');
+        flyingDot.style.transition='none';
+        flyingDot.style.opacity='0';
+        flying=false;state='scrolled';
+        try{sessionStorage.setItem(KEY,'yes')}catch(e){}
+        hasSeenFlight=true;
+      },860);
+    },360);
+  }
+  function doFade(direction){
+    if(direction==='out'){
+      centerDotEl.classList.add('hidden');
+      leftDot.classList.add('expanded');
+      setTimeout(()=>leftDot.classList.add('visible','pulsing'),180);
+      state='scrolled';
+    } else {
+      leftDot.classList.remove('visible','pulsing');
+      setTimeout(()=>{leftDot.classList.remove('expanded');centerDotEl.classList.remove('hidden')},200);
+      state='top';
+    }
+  }
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY||document.documentElement.scrollTop;
+    if(flying)return;
+    if(y>60&&state==='top'){
+      if(!hasSeenFlight){flying=true;state='flying';doFlight()}
+      else{doFade('out')}
+    } else if(y<=60&&state==='scrolled'){doFade('in')}
+  },{passive:true});
+})();
+</script>
+</body>
+</html>

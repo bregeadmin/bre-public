@@ -1,0 +1,350 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>contact — bre</title>
+<meta name="description" content="Get in touch with bre. Telegram, WhatsApp, email or write us directly. Apartment owners, guests, journalists — all welcome.">
+<link rel="alternate" hreflang="en" href="https://bre.ge/contact">
+<link rel="alternate" hreflang="ru" href="https://bre.ge/ru/contact">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png">
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#0a0908">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fbf8f1;--bg-2:#f1ecdf;--paper:#fdfbf6;
+    --ink:#0a0908;--ink-soft:#4d544e;
+    --line:#0a090815;--line-strong:#0a090833;
+    --accent:#ff5e1a;--accent-deep:#d94612;
+    --page:var(--accent);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Bricolage Grotesque","Helvetica Neue",sans-serif;font-weight:400;line-height:1.4;cursor:none}
+  body{overflow-x:hidden}
+  ::selection{background:var(--page);color:#fff}
+  a{color:inherit;text-decoration:none}
+  @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
+
+  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:#fff;pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
+  .cursor.big{width:72px;height:72px;background:#fff}
+  @media (hover:none){html,body,a,button{cursor:auto}.cursor{display:none}}
+
+  /* HOME DOT */
+  .home-dot{isolation:isolate;mix-blend-mode:normal;display:inline-flex;align-items:center;justify-content:center;width:0;height:14px;position:relative;flex:none;transition:width .35s cubic-bezier(.34,1.56,.64,1),margin-right .35s ease;text-decoration:none;pointer-events:none;overflow:visible}
+  .home-dot::before{content:'';display:block;width:14px;height:14px;border-radius:50%;background:var(--page);opacity:0;transition:opacity .25s ease}
+  .home-dot.expanded{width:14px;margin-right:14px}
+  .home-dot.visible{pointer-events:auto}
+  .home-dot.visible::before{opacity:1}
+  .home-dot.pulsing::before{animation:dotpulse 2.4s ease-in-out infinite}
+  .topbar .ctr .d{transition:opacity .2s ease}
+  .topbar .ctr .d.hidden{opacity:0}
+  #flyingDot{isolation:isolate;mix-blend-mode:normal;position:fixed;top:0;left:0;width:14px;height:14px;border-radius:50%;background:var(--page);opacity:0;pointer-events:none;z-index:80}
+  @media (max-width:880px){.home-dot,#flyingDot{display:none}}
+
+  /* TOPBAR */
+  .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:22px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px;font-family:"Bricolage Grotesque",sans-serif;font-size:15px;letter-spacing:-.01em;text-transform:lowercase;font-weight:600}
+  .topbar .left{display:flex;align-items:center;gap:24px}
+  .topbar .ctr{justify-self:center;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .topbar .ctr .d{width:10px;height:10px;border-radius:50%;background:var(--page);mix-blend-mode:normal;margin-bottom:2px;margin-left:5px}
+  .topbar .right{justify-self:end;display:flex;align-items:center;gap:18px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
+  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px;transition:all .2s ease}
+  .topbar .city:hover{border-color:#fff;background:#ffffff14}
+  .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-size:10px;font-weight:600;letter-spacing:.1em}
+  .topbar .lang:hover{border-color:#fff;background:#ffffff14}
+  .topbar a:hover{opacity:.7}
+  .topbar .burger{display:none;width:34px;height:34px;border:1px solid #ffffff66;border-radius:50%;background:transparent;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;cursor:none;flex:none}
+  .topbar .burger span{display:block;width:14px;height:1.5px;background:#fff}
+
+  /* HERO */
+  .hero{padding:160px 28px 80px;text-align:left;max-width:1400px;margin:0 auto}
+  .meta-line{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;align-items:center;gap:14px;margin-bottom:24px}
+  .meta-line .dot{width:6px;height:6px;border-radius:50%;background:var(--page)}
+  h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(48px,8vw,108px);line-height:.9;letter-spacing:-.04em;text-transform:lowercase;max-width:14ch}
+  h1 em{font-style:italic;color:var(--page)}
+  .hero p{font-size:17px;line-height:1.55;color:var(--ink-soft);max-width:48ch;margin-top:24px}
+  .hero p b{color:var(--ink);font-weight:600}
+
+  /* CHANNELS GRID */
+  .channels{padding:0 28px 80px;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:18px}
+  .channel-card{display:flex;flex-direction:column;justify-content:space-between;gap:18px;padding:28px 32px;background:var(--paper);border:1px solid var(--line);border-radius:14px;min-height:200px;transition:border-color .25s ease,transform .25s ease}
+  .channel-card:hover{border-color:var(--page);transform:translateY(-2px)}
+  .channel-card .ch-top{display:flex;justify-content:space-between;align-items:flex-start;gap:14px}
+  .channel-card h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:28px;letter-spacing:-.025em;line-height:1.05;text-transform:lowercase}
+  .channel-card .ch-icon{font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--ink-soft);padding:5px 10px;border:1px solid var(--line-strong);border-radius:999px}
+  .channel-card .ch-icon.primary{background:var(--page);color:#fff;border-color:var(--page)}
+  .channel-card p{font-size:14.5px;line-height:1.55;color:var(--ink-soft)}
+  .channel-card p b{color:var(--ink);font-weight:600}
+  .channel-card .ch-action{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--page);display:inline-flex;align-items:center;gap:6px}
+
+  /* FORM */
+  .form-wrap{padding:0 28px 100px;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:60px;align-items:start}
+  .form-intro h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,5vw,56px);line-height:.95;letter-spacing:-.035em;text-transform:lowercase}
+  .form-intro h2 em{font-style:italic;color:var(--page)}
+  .form-intro p{margin-top:20px;font-size:15px;line-height:1.6;color:var(--ink-soft);max-width:36ch}
+  .form-intro .meta-line{margin-bottom:18px}
+  .form{display:flex;flex-direction:column;gap:14px;padding:32px;background:var(--paper);border:1px solid var(--line);border-radius:14px}
+  .form .field{display:flex;flex-direction:column;gap:5px}
+  .form label{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600}
+  .form input,.form select,.form textarea{font-family:"Bricolage Grotesque",sans-serif;font-weight:500;font-size:15px;padding:12px 14px;border:1px solid var(--line-strong);border-radius:8px;background:#fff;color:var(--ink);outline:0;transition:border-color .2s ease}
+  .form input:focus,.form select:focus,.form textarea:focus{border-color:var(--page)}
+  .form textarea{min-height:120px;resize:vertical;line-height:1.5}
+  .form .row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .form .submit{padding:16px 24px;background:var(--ink);color:#fff;border:0;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;cursor:pointer;transition:background .2s ease;margin-top:4px}
+  .form .submit:hover{background:var(--page)}
+  .form .note{font-size:12px;color:var(--ink-soft);line-height:1.5}
+  .form .note b{color:var(--ink)}
+
+  /* FAQ pointer */
+  .faq-pointer{padding:60px 28px;background:var(--bg-2);text-align:center}
+  .faq-pointer .inner{max-width:680px;margin:0 auto}
+  .faq-pointer h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:28px;letter-spacing:-.025em;text-transform:lowercase;margin-bottom:14px}
+  .faq-pointer p{font-size:15px;line-height:1.6;color:var(--ink-soft);margin-bottom:24px}
+  .faq-pointer .tg-btn{display:inline-flex;align-items:center;gap:8px;padding:14px 24px;background:var(--ink);color:#fff;border-radius:999px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:700;transition:background .2s ease}
+  .faq-pointer .tg-btn:hover{background:var(--page)}
+
+
+  @media (max-width:880px){
+    html,body{cursor:auto}.cursor{display:none}
+    .topbar{grid-template-columns:auto 1fr;padding:18px 14px;font-size:13px}
+    .topbar .left{display:none}
+    .topbar .ctr{justify-self:start;font-size:20px}
+    .topbar .right{gap:8px}
+    .topbar .city{display:none}
+    .topbar .burger{display:inline-flex}
+    .hero{padding:100px 14px 40px}
+    .channels{padding:0 14px 48px;grid-template-columns:1fr;gap:12px}
+    .channel-card{padding:22px 24px;min-height:auto}
+    .form-wrap{padding:0 14px 64px;grid-template-columns:1fr;gap:32px}
+    .form{padding:22px}
+    .form .row{grid-template-columns:1fr;gap:14px}
+    .faq-pointer{padding:48px 14px}
+    footer{padding:40px 18px 20px}
+    .foot-grid{grid-template-columns:1fr;gap:32px}
+    .foot-line{grid-template-columns:1fr;gap:14px;text-align:left}
+    .foot-line .foot-meta,.foot-line .foot-right{justify-self:start}
+  }
+
+  /* FOOTER — compact single line */
+  footer{padding:32px 28px;background:var(--ink);color:#a99e8e;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;font-weight:500;line-height:1.5}
+  footer a{color:#a99e8e;text-decoration:none;transition:color .2s ease}
+  footer a:hover{color:#fff}
+  .foot-line{max-width:1400px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;flex-wrap:wrap}
+  .foot-left{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .foot-left .sep{opacity:.4}
+  .foot-right{display:flex;align-items:center;gap:18px;flex-shrink:0}
+  .foot-lang b{color:#fff}
+  @media (max-width:880px){
+    footer{padding:24px 14px}
+    .foot-line{flex-direction:column;align-items:flex-start;gap:18px}
+    .foot-left{gap:10px;font-size:9px}
+    .foot-right{font-size:9px}
+  }
+</style>
+</head>
+<body>
+<span id="flyingDot"></span>
+<div class="cursor" id="cursor"></div>
+
+<header class="topbar" id="top">
+  <div class="left">
+    <a class="home-dot" href="/" aria-label="home"></a>
+    <a href="/stays">stays</a>
+    <a href="/guide">guide</a>
+    <a href="/own">own with us</a>
+    <a href="/invest">invest</a>
+  </div>
+  <a href="/" class="ctr" title="home">bre<span class="d"></span></a>
+  <div class="right">
+    <a href="#" class="city">batumi <span class="arr">▾</span></a>
+    <a href="/ru/contact" class="lang">ru</a>
+    <button class="burger" aria-label="menu" type="button"><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="meta-line"><span class="dot"></span>— contact &amp; help</div>
+  <h1>talk to <em>us</em>.</h1>
+  <p>The fastest way to reach us is <b>Telegram</b> — we read it within minutes during waking hours. Email and WhatsApp work too. We answer in English, Russian and Georgian.</p>
+</section>
+
+<section class="channels">
+  <a class="channel-card" href="https://t.me/bre_ge">
+    <div class="ch-top">
+      <h3>Telegram</h3>
+      <span class="ch-icon primary">primary</span>
+    </div>
+    <p><b>@bre_ge</b> — apartments, bookings, owner questions. Usually replied within 30 minutes.</p>
+    <span class="ch-action">↗ open in telegram</span>
+  </a>
+
+  <a class="channel-card" href="https://wa.me/995585889601">
+    <div class="ch-top">
+      <h3>WhatsApp</h3>
+      <span class="ch-icon">also good</span>
+    </div>
+    <p><b>+995 585 889 601</b> — voice notes and photos easier to share here. Same number as our phone.</p>
+    <span class="ch-action">↗ open in whatsapp</span>
+  </a>
+
+  <a class="channel-card" href="mailto:hello@bre.ge">
+    <div class="ch-top">
+      <h3>Email</h3>
+      <span class="ch-icon">for long stuff</span>
+    </div>
+    <p><b>hello@bre.ge</b> — contracts, attachments, anything that needs a paper trail. Usually replied within a day.</p>
+    <span class="ch-action">↗ write us</span>
+  </a>
+
+  <a class="channel-card" href="tel:+995585889601">
+    <div class="ch-top">
+      <h3>Phone</h3>
+      <span class="ch-icon">when needed</span>
+    </div>
+    <p><b>+995 585 889 601</b> — call us if it's urgent. We don't always pick up, but we'll call back.</p>
+    <span class="ch-action">↗ call</span>
+  </a>
+</section>
+
+<section class="form-wrap">
+  <div class="form-intro">
+    <div class="meta-line"><span class="dot"></span>— or write directly</div>
+    <h2>or <em>write</em> us right here.</h2>
+    <p>If you don't have Telegram or just prefer a form — this works too. Goes straight to our inbox.</p>
+  </div>
+  <form class="form" onsubmit="event.preventDefault();this.querySelector('.submit').textContent='thanks — we\'ll reply soon';this.querySelector('.submit').disabled=true;">
+    <div class="row">
+      <div class="field">
+        <label>— your name</label>
+        <input type="text" placeholder="Mike Johnson" required>
+      </div>
+      <div class="field">
+        <label>— how to reach you</label>
+        <input type="text" placeholder="email or @telegram" required>
+      </div>
+    </div>
+    <div class="field">
+      <label>— what's this about</label>
+      <select>
+        <option>I want to book an apartment</option>
+        <option>I'm an owner — manage my flat</option>
+        <option>I want to invest in Batumi</option>
+        <option>Press / partnership</option>
+        <option>Something else</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>— your message</label>
+      <textarea placeholder="Tell us what you need. Even rough drafts are fine — we'll figure it out together." required></textarea>
+    </div>
+    <button type="submit" class="submit">Send →</button>
+    <p class="note">We read every message ourselves. <b>No bots, no autoresponders.</b> Replies come from a real human within a day, usually faster.</p>
+  </form>
+</section>
+
+<section class="faq-pointer">
+  <div class="inner">
+    <h3>Have a quick question?</h3>
+    <p>For anything time-sensitive — when you're already on the way, in the apartment, or need a number changed — Telegram is the fastest. We're real people with real notifications.</p>
+    <a href="https://t.me/bre_ge" class="tg-btn">↗ open telegram now</a>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-line">
+    <div class="foot-left">
+      <span class="foot-copy">© 2026 bre.ge</span>
+      <span class="sep">·</span>
+      <a href="/stays">stays</a>
+      <a href="/guide">guide</a>
+      <a href="/own">own</a>
+      <a href="/invest">invest</a>
+      <a href="/about">about</a>
+      <a href="/contact">contact</a>
+      <span class="sep">·</span>
+      <a href="/privacy">privacy</a>
+      <a href="/terms">terms</a>
+      <a href="/agents">agents</a>
+    </div>
+    <div class="foot-right">
+      <a href="/ru/" class="foot-lang">RU · <b>EN</b></a>
+      <a href="#" class="foot-top" onclick="event.preventDefault();window.scrollTo({top:0,behavior:'smooth'})">↑ back to top</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+const cursor = document.getElementById('cursor');
+let mx=window.innerWidth/2,my=window.innerHeight/2,cx=mx,cy=my;
+window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
+function loop(){cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;if(cursor)cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(loop)}
+loop();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
+  el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
+});
+
+// HOME DOT
+(function(){
+  if(window.innerWidth < 880) return;
+  const centerLogo = document.querySelector('.topbar .ctr');
+  const centerDotEl = centerLogo && centerLogo.querySelector('.d');
+  const leftDot = document.querySelector('.home-dot');
+  const flyingDot = document.getElementById('flyingDot');
+  if(!centerLogo||!centerDotEl||!leftDot||!flyingDot)return;
+  const KEY='bre_dot_flight_seen';
+  let hasSeenFlight=false;
+  try{hasSeenFlight=sessionStorage.getItem(KEY)==='yes'}catch(e){}
+  let state='top',flying=false;
+  function doFlight(){
+    const centerRect=centerDotEl.getBoundingClientRect();
+    const startX=centerRect.left+centerRect.width/2,startY=centerRect.top+centerRect.height/2;
+    leftDot.classList.add('expanded');
+    setTimeout(()=>{
+      const leftRect=leftDot.getBoundingClientRect();
+      const endX=leftRect.left+leftRect.width/2,endY=leftRect.top+leftRect.height/2;
+      flyingDot.style.transition='none';
+      flyingDot.style.transform='translate('+(startX-7)+'px,'+(startY-7)+'px) scale(0.71)';
+      flyingDot.style.opacity='1';
+      centerDotEl.classList.add('hidden');
+      flyingDot.getBoundingClientRect();
+      flyingDot.style.transition='transform .85s cubic-bezier(.5,0,.2,1)';
+      flyingDot.style.transform='translate('+(endX-7)+'px,'+(endY-7)+'px) scale(1)';
+      setTimeout(()=>{
+        leftDot.classList.add('visible','pulsing');
+        flyingDot.style.transition='none';
+        flyingDot.style.opacity='0';
+        flying=false;state='scrolled';
+        try{sessionStorage.setItem(KEY,'yes')}catch(e){}
+        hasSeenFlight=true;
+      },860);
+    },360);
+  }
+  function doFade(direction){
+    if(direction==='out'){
+      centerDotEl.classList.add('hidden');
+      leftDot.classList.add('expanded');
+      setTimeout(()=>leftDot.classList.add('visible','pulsing'),180);
+      state='scrolled';
+    } else {
+      leftDot.classList.remove('visible','pulsing');
+      setTimeout(()=>{leftDot.classList.remove('expanded');centerDotEl.classList.remove('hidden')},200);
+      state='top';
+    }
+  }
+  window.addEventListener('scroll',()=>{
+    const y=window.scrollY||document.documentElement.scrollTop;
+    if(flying)return;
+    if(y>60&&state==='top'){
+      if(!hasSeenFlight){flying=true;state='flying';doFlight()}
+      else{doFade('out')}
+    } else if(y<=60&&state==='scrolled'){doFade('in')}
+  },{passive:true});
+})();
+</script>
+</body>
+</html>
