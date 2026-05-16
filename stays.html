@@ -1168,6 +1168,7 @@ document.addEventListener('DOMContentLoaded', function(){
     setTimeout(()=>{
       calPop.style.left = Math.max(14, Math.min(window.innerWidth - calPop.offsetWidth - 14, rect.left)) + 'px';
     }, 10);
+    scrollYOpen = window.scrollY;
   }
   function closeCal(){
     calPop.hidden = true;
@@ -1239,11 +1240,12 @@ document.addEventListener('DOMContentLoaded', function(){
   });
   gpSyncLabel();
   // close popups on scroll
-  let lastScrollY = window.scrollY;
+  let scrollYOpen = null;
   window.addEventListener('scroll', ()=>{
-    if(!calPop.hidden && Math.abs(window.scrollY - lastScrollY) > 80) closeCal();
-    if(!guestPop.hidden && Math.abs(window.scrollY - lastScrollY) > 80) closeGuest();
-    lastScrollY = window.scrollY;
+    if(scrollYOpen === null) return;
+    const delta = Math.abs(window.scrollY - scrollYOpen);
+    if(!calPop.hidden && delta > 30) closeCal();
+    if(!guestPop.hidden && delta > 30) closeGuest();
   }, {passive:true});
   // closeOnScroll: enabled
 });
