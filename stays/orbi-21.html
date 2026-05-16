@@ -24,7 +24,7 @@
   a{color:inherit;text-decoration:none}
   @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
 
-  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--page);pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease}
+  .cursor{position:fixed;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--page);pointer-events:none;z-index:3000;transform:translate(-50%,-50%);transition:width .15s ease,height .15s ease,background .15s ease;mix-blend-mode:difference}
   .cursor.big{width:72px;height:72px;background:var(--accent)}
   .cursor.text{width:104px;height:104px;background:var(--accent)}
   .cursor.text::after{content:attr(data-label);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"JetBrains Mono",monospace;font-size:9px;color:#fff;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;font-weight:600}
@@ -764,7 +764,8 @@ window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
 function loop(){cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;if(cursor)cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;requestAnimationFrame(loop)}
 loop();
 function clearCursorColors(){cursor.classList.remove('teal','yellow','pink')}
-document.querySelectorAll('a,button').forEach(el=>{
+// Big orange cursor only on topbar (everywhere else stays as small dot or special tile cursor)
+document.querySelectorAll('.topbar a, .topbar button').forEach(el=>{
   el.addEventListener('mouseenter',()=>{clearCursorColors();cursor.classList.add('big')});
   el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
 });
@@ -899,23 +900,24 @@ const PHOTOS = [
     lbSingle.addEventListener('mouseenter', ()=>setLabel('next →'));
     lbSingle.addEventListener('mouseleave', clearLabel);
   }
-  // Grid lightbox: default to "view →" everywhere; header (×) goes to big circle
+  // Grid lightbox: default to "view →" everywhere
   if(lb){
     lb.addEventListener('mouseenter', ()=>setLabel('view →'));
     lb.addEventListener('mouseleave', clearLabel);
   }
+  // Header (×) area in grid view: small dot
   const lbHeadGrid = lb && lb.querySelector('.lb-head');
   if(lbHeadGrid){
-    lbHeadGrid.addEventListener('mouseenter', setBig);
-    lbHeadGrid.addEventListener('mouseleave', ()=>{ clearBig(); if(!lb.hidden) setLabel('view →'); });
+    lbHeadGrid.addEventListener('mouseenter', clearLabel);
+    lbHeadGrid.addEventListener('mouseleave', ()=>{ if(!lb.hidden) setLabel('view →'); });
   }
-  // Buttons: orange big circle (overrides the text cursor)
+  // Buttons (×, ‹, ›, back): small dot — override the text cursor
   [lbClose, lbSingleClose, lbBack, lbPrev, lbNext].forEach(el=>{
     if(!el) return;
-    el.addEventListener('mouseenter', setBig);
+    el.addEventListener('mouseenter', clearLabel);
     el.addEventListener('mouseleave', ()=>{
-      clearBig();
       if(!lbSingle.hidden) setLabel('next →');
+      else if(!lb.hidden) setLabel('view →');
     });
   });
   const singleBody = document.querySelector('.lb-single-body');
