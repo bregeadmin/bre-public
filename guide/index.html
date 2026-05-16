@@ -363,9 +363,22 @@
     footer{grid-template-columns:1fr;text-align:left;gap:10px;font-size:9px;padding:28px 14px}
     footer .center,footer .right{text-align:left}
   }
+
+  /* HOME DOT — fixed pos, appears on scroll, takes page accent color */
+  .home-dot{position:fixed;top:26px;left:28px;z-index:60;display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--page);box-shadow:0 0 14px var(--page);opacity:0;pointer-events:none;transform:scale(.3);transition:opacity .35s ease,transform .45s cubic-bezier(.34,1.56,.64,1)}
+  .home-dot.visible{opacity:1;pointer-events:auto;transform:scale(1)}
+  .home-dot.pulsing{animation:dotpulse 2.4s ease-in-out infinite}
+  .topbar .ctr{transition:opacity .35s ease,transform .55s cubic-bezier(.65,.05,.36,1)}
+  .topbar .ctr.fade-out{opacity:0;transform:translateY(-16px) scale(.6);pointer-events:none}
+  @media (max-width:880px){
+    .home-dot{top:18px;left:18px;width:12px;height:12px}
+  }
+
+
 </style>
 </head>
 <body>
+<a class="home-dot" href="/" aria-label="home"></a>
 
 <div class="cursor" id="cursor"></div>
 <a href="#top" class="float-wm" id="floatWm">bre<span class="d"></span></a>
@@ -417,7 +430,7 @@
   <div class="masthead-side">
     <div class="masthead-intro">
       <div class="kicker">about the guide</div>
-      <p class="lede"><b>cafés, restaurants, beaches, wellness, nightlife, remote work</b> — places we send our guests to, <em>written from our own kitchen table</em>. not scraped from tripadvisor, not optimised for clicks.</p>
+      <p class="lede"><b>cafés, restaurants, beaches, wellness, nightlife, and everything for work</b> — a list of places we send our guests to, and would <em>hand to a friend without thinking</em>. not from tripadvisor, not optimised for clicks.</p>
       <div class="stats">
         <div><span class="num">127</span>places</div>
         <div><span class="num">+12</span>this month</div>
@@ -843,6 +856,34 @@
       if (e.key === 'Escape' && overlay.classList.contains('open')) close();
     });
   })();
+
+  // HOME DOT — scroll-triggered transition from center logo to left dot
+  (function(){
+    const centerLogo = document.querySelector('.topbar .ctr');
+    const homeDot = document.querySelector('.home-dot');
+    if(!centerLogo || !homeDot) return;
+    let state = 'top';
+    let pulseTimer = null;
+    function onScroll(){
+      const y = window.scrollY || document.documentElement.scrollTop;
+      if(y > 60 && state === 'top'){
+        centerLogo.classList.add('fade-out');
+        setTimeout(()=>{
+          homeDot.classList.add('visible');
+          clearTimeout(pulseTimer);
+          pulseTimer = setTimeout(()=> homeDot.classList.add('pulsing'), 450);
+        }, 250);
+        state = 'scrolled';
+      } else if(y <= 60 && state === 'scrolled'){
+        homeDot.classList.remove('pulsing','visible');
+        setTimeout(()=> centerLogo.classList.remove('fade-out'), 150);
+        state = 'top';
+      }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll(); // initial
+  })();
+
 </script>
 
 </body>

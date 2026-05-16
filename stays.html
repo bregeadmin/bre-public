@@ -261,9 +261,22 @@
     footer{grid-template-columns:1fr;gap:8px;font-size:9px}
     footer .center,footer .right{text-align:left}
   }
+
+  /* HOME DOT — fixed pos, appears on scroll, takes page accent color */
+  .home-dot{position:fixed;top:26px;left:28px;z-index:60;display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--page);box-shadow:0 0 14px var(--page);opacity:0;pointer-events:none;transform:scale(.3);transition:opacity .35s ease,transform .45s cubic-bezier(.34,1.56,.64,1)}
+  .home-dot.visible{opacity:1;pointer-events:auto;transform:scale(1)}
+  .home-dot.pulsing{animation:dotpulse 2.4s ease-in-out infinite}
+  .topbar .ctr{transition:opacity .35s ease,transform .55s cubic-bezier(.65,.05,.36,1)}
+  .topbar .ctr.fade-out{opacity:0;transform:translateY(-16px) scale(.6);pointer-events:none}
+  @media (max-width:880px){
+    .home-dot{top:18px;left:18px;width:12px;height:12px}
+  }
+
+
 </style>
 </head>
 <body>
+<a class="home-dot" href="/" aria-label="home"></a>
 
 <div class="cursor" id="cursor"></div>
 <a href="/" class="float-wm" id="floatWm">bre<span class="d"></span></a>
@@ -863,6 +876,34 @@
       btnM.classList.add('active');
     });
   })();
+
+  // HOME DOT — scroll-triggered transition from center logo to left dot
+  (function(){
+    const centerLogo = document.querySelector('.topbar .ctr');
+    const homeDot = document.querySelector('.home-dot');
+    if(!centerLogo || !homeDot) return;
+    let state = 'top';
+    let pulseTimer = null;
+    function onScroll(){
+      const y = window.scrollY || document.documentElement.scrollTop;
+      if(y > 60 && state === 'top'){
+        centerLogo.classList.add('fade-out');
+        setTimeout(()=>{
+          homeDot.classList.add('visible');
+          clearTimeout(pulseTimer);
+          pulseTimer = setTimeout(()=> homeDot.classList.add('pulsing'), 450);
+        }, 250);
+        state = 'scrolled';
+      } else if(y <= 60 && state === 'scrolled'){
+        homeDot.classList.remove('pulsing','visible');
+        setTimeout(()=> centerLogo.classList.remove('fade-out'), 150);
+        state = 'top';
+      }
+    }
+    window.addEventListener('scroll', onScroll, {passive:true});
+    onScroll(); // initial
+  })();
+
 </script>
 
 </body>
