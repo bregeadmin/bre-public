@@ -525,7 +525,7 @@
     <a href="#stays">Квартиры</a>
     <a href="/ru/guide">Гайд</a>
     <a href="/ru/own">Сдать с нами</a>
-    <a href="/ru/invest">Инвестиции</a>
+    <a href="/ru/invest">Инвесторам</a>
   </div>
   <a href="#top" class="ctr">bre<span class="d"></span></a>
   <div class="right">
@@ -540,8 +540,7 @@
     <a href="#stays" class="menu-item">Квартиры</a>
     <a href="/ru/guide" class="menu-item">Гайд</a>
     <a href="/ru/own" class="menu-item">Сдать с нами</a>
-    <a href="/ru/invest" class="menu-item">Инвестиции</a>
-    <a href="/ru/about" class="menu-item">О нас</a>
+    <a href="/ru/invest" class="menu-item">Инвесторам</a>
     <a href="#contact" class="menu-item">Контакты</a>
     <div class="menu-foot">
       <div class="menu-row"><span class="menu-row-label">Язык</span><a href="/" class="menu-row-val">en · <b>ru</b></a></div>
@@ -674,7 +673,7 @@
   <img src="https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=2400&q=80" alt="старый город батуми"/>
   <div class="inner">
     <h2>Тот Батуми,<br/>что мы <em>правда</em><br/>советуем.</h2>
-    <p class="lede">Наш гид по городу — пишем сами, не таскаем с TripAdvisor. Кафе, рестораны, пляжи, велнес, ночная жизнь, удалёнка — собрано по тому, где правда хочется провести вечер.</p>
+    <p class="lede">Наш гид по городу — пишем сами, не таскаем с TripAdvisor. Кафе, рестораны, пляжи, велнес, ночная жизнь, работа — собрано по тому, где правда хочется провести вечер.</p>
     <div class="spread-cta">
       <a class="btn" href="/ru/guide">Открыть гайд →</a>
     </div>
@@ -780,15 +779,15 @@
   <div class="now-grid">
     <div>
       <div class="now-label"><span class="pulse"></span>Прямо сейчас в Батуми</div>
-      <div class="now-val">Пятница, 15 мая<span class="small">ясный день</span></div>
+      <div class="now-val"><span id="nowDate">сегодня</span><span class="small" id="nowDesc">смотрим в небо…</span></div>
     </div>
     <div>
       <div class="now-label">Температура</div>
-      <div class="now-val">23<em>°</em>C<span class="small">лёгкий бриз с моря</span></div>
+      <div class="now-val"><span id="nowTemp">—</span><em>°</em>C<span class="small" id="nowWind">лёгкий бриз с моря</span></div>
     </div>
     <div>
       <div class="now-label">Закат</div>
-      <div class="now-val">19:42<span class="small">над Чёрным морем</span></div>
+      <div class="now-val" id="nowSunset">—:—<span class="small">над Чёрным морем</span></div>
     </div>
     <div>
       <div class="now-label">Из гайда</div>
@@ -808,7 +807,7 @@
   <div class="section-head reveal">
     <div>
       <div class="meta"><span class="dot"></span>— не за бронированием?</div>
-      <h2 style="margin-top:18px">Мы ещё <em>покупаем</em><br/>и <em>управляем</em>.</h2>
+      <h2 style="margin-top:18px">Помогаем <em>купить</em><br/>и <em>управляем</em> потом.</h2>
     </div>
     <div class="right">Если у тебя есть квартира в Батуми — или ты только думаешь её купить — расскажи. Мы уже <b>120+ раз</b> через это прошли.</div>
   </div>
@@ -817,7 +816,7 @@
     <a class="door reveal" href="/ru/own">
       <div>
         <div class="num">i. Собственникам</div>
-        <h3>Отдай нам<br/><em>ключи</em>.</h3>
+        <h3>Просто передай нам<br/><em>ключи</em>.</h3>
         <p>Полный сервис посуточной и среднесрочной аренды. 30% комиссия — всё включено. Гости на 5 языках, фото, гибкие цены, уборка, всё остальное.</p>
       </div>
       <div>
@@ -830,7 +829,7 @@
       <div>
         <div class="num">ii. Инвесторам</div>
         <h3>Купи квартиру,<br/>которая <em>работает</em>.</h3>
-        <p>Находим недооценённые квартиры, делаем ремонт, выставляем, управляем. Ты видишь цифры — не стресс. Средняя чистая доходность по нашему портфелю.</p>
+        <p>Находим лучшие квартиры, делаем ремонт, выставляем, управляем. Ты видишь цифры — не стресс. Средняя чистая доходность по нашему портфелю.</p>
       </div>
       <div>
         <div class="stat"><b>11%</b><span>годовая доходность · в среднем</span></div>
@@ -884,7 +883,7 @@
 
 <footer>
   <div>© 2026 · bre.ge</div>
-  <div class="center">Квартиры и гайд по Батуми</div>
+  <div class="center"><a href="/ru/about">О нас</a> · Квартиры и гайд по Батуми</div>
   <div class="right"><a href="#top">↑ наверх</a></div>
 </footer>
 
@@ -979,6 +978,69 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && overlay.classList.contains('open')) close();
     });
+  })();
+
+  // ===== ЖИВЫЕ ДАННЫЕ — «ПРЯМО СЕЙЧАС В БАТУМИ» =====
+  (function(){
+    const BATUMI = { lat: 41.6508, lng: 41.6357, tz: 'Asia/Tbilisi' };
+
+    function setDate(){
+      const now = new Date();
+      const local = new Date(now.toLocaleString('en-US', {timeZone: BATUMI.tz}));
+      const days = ['воскресенье','понедельник','вторник','среда','четверг','пятница','суббота'];
+      const months = ['января','февраля','марта','апреля','мая','июня','июля','августа','сентября','октября','ноября','декабря'];
+      const dateStr = `${capitalize(days[local.getDay()])}, ${local.getDate()} ${months[local.getMonth()]}`;
+      const el = document.getElementById('nowDate');
+      if (el) el.textContent = dateStr;
+    }
+    function capitalize(s){ return s.charAt(0).toUpperCase() + s.slice(1); }
+    setDate();
+    setInterval(setDate, 60000);
+
+    function fetchWeather(){
+      const url = `https://api.open-meteo.com/v1/forecast?latitude=${BATUMI.lat}&longitude=${BATUMI.lng}&current=temperature_2m,wind_speed_10m,weather_code&daily=sunset&timezone=${BATUMI.tz}`;
+      fetch(url).then(r => r.json()).then(d => {
+        if (!d || !d.current) return;
+        const t = Math.round(d.current.temperature_2m);
+        const wind = Math.round(d.current.wind_speed_10m);
+        const code = d.current.weather_code;
+        const sunset = d.daily && d.daily.sunset && d.daily.sunset[0];
+
+        const tempEl = document.getElementById('nowTemp');
+        if (tempEl) tempEl.textContent = t;
+
+        const windEl = document.getElementById('nowWind');
+        if (windEl) windEl.textContent = describeWind(wind);
+
+        const descEl = document.getElementById('nowDesc');
+        if (descEl) descEl.textContent = describeSky(code);
+
+        if (sunset) {
+          const time = sunset.split('T')[1].slice(0,5);
+          const sunsetEl = document.getElementById('nowSunset');
+          if (sunsetEl) sunsetEl.innerHTML = `${time}<span class="small">над Чёрным морем</span>`;
+        }
+      }).catch(()=>{});
+    }
+    function describeSky(code){
+      if (code === 0) return 'ясное небо';
+      if (code <= 3) return 'местами облака';
+      if (code <= 48) return 'туманное утро';
+      if (code <= 67) return 'дождь над городом';
+      if (code <= 77) return 'снег на холмах';
+      if (code <= 82) return 'кратковременный дождь';
+      if (code <= 99) return 'гроза';
+      return 'переменная погода';
+    }
+    function describeWind(kmh){
+      if (kmh < 5) return 'безветренно';
+      if (kmh < 15) return 'лёгкий бриз с моря';
+      if (kmh < 25) return 'свежий бриз';
+      if (kmh < 40) return 'ветрено';
+      return 'сильный ветер';
+    }
+    fetchWeather();
+    setInterval(fetchWeather, 10 * 60000);
   })();
 </script>
 

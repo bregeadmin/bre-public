@@ -4,13 +4,15 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>about — bre</title>
-<meta name="description" content="bre is a two-person operation in batumi, georgia. artem on strategy and ownership, olga on people and operations. apartments, a guide, a journal — all made by hand.">
-<meta property="og:title" content="about bre — artem & olga, batumi">
-<meta property="og:description" content="a two-person real estate and lifestyle brand in batumi. since 2022.">
+<meta name="description" content="bre is a two-person operation in batumi, georgia. olya runs operations and standards, artem runs strategy and infrastructure. we're building the best property operator in the region.">
+<meta property="og:title" content="about bre — olya & artem, batumi">
+<meta property="og:description" content="how two very different people met in batumi and decided to build the best property operator.">
 <meta property="og:type" content="website">
+<link rel="alternate" hreflang="en" href="https://bre.ge/about">
+<link rel="alternate" hreflang="ru" href="https://bre.ge/ru/about">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@10..48,200..900&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
     --bg:#fbf8f1;--bg-2:#f1ecdf;--paper:#fdfbf6;
@@ -38,18 +40,16 @@
   .float-wm .d{width:14px;height:14px;border-radius:50%;background:var(--page);mix-blend-mode:normal;box-shadow:0 0 14px var(--page);animation:dotpulse 2.4s ease-in-out infinite;margin-bottom:3px;margin-left:7px}
   @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
 
-  /* TOPBAR */
   .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:24px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
   .topbar .left{display:flex;gap:28px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
-  .topbar .left a{transition:color .2s ease}
   .topbar .left a:hover{color:var(--page)}
   .topbar .ctr{justify-self:center;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:24px;font-weight:800;letter-spacing:-.04em;line-height:1}
   .topbar .ctr .d{width:10px;height:10px;border-radius:50%;background:var(--page);mix-blend-mode:normal;margin-bottom:2px;margin-left:5px}
   .topbar .right{justify-self:end;display:flex;align-items:center;gap:10px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500}
-  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px;transition:border-color .2s ease,background .2s ease}
+  .topbar .city{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border:1px solid #ffffff44;border-radius:999px;transition:all .2s ease}
   .topbar .city:hover{border-color:#fff;background:#ffffff14}
   .topbar .city .arr{opacity:.6;font-size:8px;margin-top:1px}
-  .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.1em;transition:border-color .2s ease,background .2s ease}
+  .topbar .lang{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;border:1px solid #ffffff44;font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.1em;transition:all .2s ease}
   .topbar .lang:hover{border-color:#fff;background:#ffffff14}
   .topbar .burger{display:none;width:34px;height:34px;border:1px solid #ffffff66;border-radius:50%;background:transparent;flex-direction:column;align-items:center;justify-content:center;gap:5px;padding:0;cursor:none;flex:none}
   .topbar .burger span{display:block;width:14px;height:1.5px;background:#fff;transition:transform .25s ease}
@@ -60,7 +60,7 @@
   .menu-overlay.open{opacity:1;pointer-events:auto}
   .menu-overlay::before{content:"";position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=1600&q=80');background-size:cover;background-position:center;opacity:.18;z-index:0}
   .menu-overlay .menu-inner{position:relative;z-index:1;display:flex;flex-direction:column;align-items:flex-start;gap:6px;width:100%;max-width:520px}
-  .menu-overlay .menu-item{display:block;padding:14px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,8vw,60px);line-height:.9;letter-spacing:-.035em;text-transform:lowercase;color:#fff;transition:color .2s ease,transform .25s ease}
+  .menu-overlay .menu-item{display:block;padding:14px 0;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,8vw,60px);line-height:.9;letter-spacing:-.035em;text-transform:lowercase;color:#fff;transition:all .25s ease}
   .menu-overlay .menu-item:hover{color:var(--page);transform:translateX(12px)}
   .menu-overlay .menu-foot{margin-top:36px;padding-top:24px;border-top:1px solid #ffffff22;width:100%;display:grid;gap:14px}
   .menu-overlay .menu-row{display:flex;justify-content:space-between;align-items:baseline;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;color:#ffffff88}
@@ -68,56 +68,43 @@
   .menu-overlay .menu-row-val:hover{color:var(--page)}
   .menu-overlay .menu-tg{margin-top:8px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--page)}
 
-  /* HERO */
-  .head{padding:140px 28px 72px;border-bottom:1px solid var(--line);position:relative;overflow:hidden}
-  .head::before{content:"";position:absolute;top:0;right:0;width:55%;height:100%;background:var(--page);opacity:.06;clip-path:polygon(20% 0,100% 0,100% 100%,0 100%)}
-  .head .inner{position:relative;z-index:2;max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:end}
-  .head .crumbs{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;margin-bottom:32px;display:flex;align-items:center;gap:10px}
-  .head .crumbs a:hover{color:var(--ink)}
-  .head .crumbs .sep{opacity:.4}
-  .head .crumbs .current{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px}
-  .head .crumbs .current .dot{width:8px;height:8px;border-radius:50%;background:var(--page);box-shadow:0 0 10px var(--page)}
-  .head h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(48px,7vw,120px);line-height:.9;letter-spacing:-.045em;text-transform:lowercase}
+  /* META TOP */
+  .meta-top{padding:96px 28px 16px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:14px;border-bottom:1px solid var(--line)}
+  .meta-top .crumbs{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+  .meta-top .crumbs a:hover{color:var(--ink)}
+  .meta-top .crumbs .sep{opacity:.4}
+  .meta-top .crumbs .cur{color:var(--ink);font-weight:600;display:inline-flex;align-items:center;gap:6px}
+  .meta-top .crumbs .cur .dot{width:6px;height:6px;border-radius:50%;background:var(--page)}
+
+  /* HEAD — magazine title */
+  .head{padding:64px 28px 80px;border-bottom:1px solid var(--line)}
+  .head .inner{max-width:1100px;margin:0 auto}
+  .head h1{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(56px,8vw,140px);line-height:.88;letter-spacing:-.045em;text-transform:lowercase;max-width:18ch}
   .head h1 em{font-style:italic;color:var(--page)}
-  .head .lede{font-size:20px;line-height:1.55;color:var(--ink);max-width:42ch;padding-bottom:20px}
-  .head .lede b{font-weight:700}
+  .head .lede{font-family:"Newsreader",Georgia,serif;font-style:italic;font-size:clamp(20px,2.2vw,28px);line-height:1.5;color:var(--ink-soft);margin-top:36px;max-width:36ch;font-weight:400}
+  .head .lede b{color:var(--ink);font-weight:500;font-style:normal}
 
-  /* HERO PHOTO */
-  .hero-photo{position:relative;overflow:hidden;height:min(60vh,560px);min-height:380px}
-  .hero-photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.02)}
-  .hero-photo .cap{position:absolute;left:28px;bottom:18px;color:#fff;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:500;background:#0a09084d;backdrop-filter:blur(4px);padding:6px 12px;border-radius:999px}
-
-  /* STORY — readable column */
-  .story{padding:96px 28px 64px}
+  /* STORY — long-form */
+  .story{padding:80px 28px}
   .story .inner{max-width:680px;margin:0 auto}
-  .story .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:20px;display:flex;align-items:center;gap:10px}
-  .story .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--page);box-shadow:0 0 10px var(--page)}
-  .story h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,5vw,64px);line-height:.95;letter-spacing:-.035em;text-transform:lowercase;margin-bottom:32px}
-  .story h2 em{font-style:italic;color:var(--page)}
-  .story p{font-size:18px;line-height:1.65;color:var(--ink);margin-bottom:18px}
-  .story p b{font-weight:700}
+  .story p{font-family:"Newsreader",Georgia,serif;font-size:19px;line-height:1.7;color:var(--ink);margin-bottom:20px;font-weight:400}
+  .story p b{font-weight:600}
   .story p em{font-style:italic;color:var(--page)}
+  .story .drop{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:64px;line-height:.85;letter-spacing:-.04em;color:var(--page);float:left;margin-right:14px;margin-top:8px}
+  .story h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:32px;letter-spacing:-.03em;text-transform:lowercase;margin:48px 0 20px;line-height:1}
+  .story h3 em{font-style:italic;color:var(--page)}
 
-  /* STATS — numbers strip */
-  .stats-wrap{padding:64px 28px;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .stats{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:32px}
-  .stat{display:flex;flex-direction:column;gap:6px}
-  .stat .num{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(48px,6vw,80px);line-height:.9;letter-spacing:-.04em;color:var(--ink)}
-  .stat .num em{font-style:italic;color:var(--page)}
-  .stat .lbl{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-top:8px}
-  .stat .note{font-size:13px;color:var(--ink-soft);line-height:1.5}
-
-  /* PEOPLE — two-column profile */
-  .people{padding:96px 28px}
+  /* PEOPLE */
+  .people{padding:96px 28px;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
   .people .container{max-width:1400px;margin:0 auto}
-  .people-head{margin-bottom:48px}
+  .people-head{margin-bottom:48px;max-width:600px}
   .people-head .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px}
   .people-head .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--page);box-shadow:0 0 10px var(--page)}
   .people-head h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(40px,5.5vw,82px);line-height:.95;letter-spacing:-.04em;text-transform:lowercase}
   .people-head h2 em{font-style:italic;color:var(--page)}
 
   .profiles{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-  .profile{display:flex;flex-direction:column;gap:18px;padding:32px;background:var(--paper);border:1px solid var(--line);border-radius:14px;transition:border-color .25s ease}
+  .profile{display:flex;flex-direction:column;gap:18px;padding:32px;background:var(--bg);border:1px solid var(--line);border-radius:14px;transition:border-color .25s ease}
   .profile:hover{border-color:var(--page)}
   .profile .ph{aspect-ratio:1;border-radius:10px;overflow:hidden;background:var(--bg-2);position:relative}
   .profile .ph img{width:100%;height:100%;object-fit:cover}
@@ -133,39 +120,11 @@
   .profile .links{display:flex;gap:14px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;text-transform:uppercase;font-weight:600;color:var(--ink-soft)}
   .profile .links a:hover{color:var(--page)}
 
-  /* MISSION — pull-quote style */
+  /* MISSION */
   .mission{padding:120px 28px;background:var(--ink);color:#fff;text-align:center}
   .mission blockquote{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(38px,5.5vw,72px);line-height:1.05;letter-spacing:-.04em;text-transform:lowercase;max-width:24ch;margin:0 auto}
   .mission blockquote em{font-style:italic;color:var(--page)}
   .mission .signoff{margin-top:32px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#ffffff77;font-weight:500}
-
-  /* TIMELINE */
-  .timeline-wrap{padding:96px 28px;background:var(--paper);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-  .timeline-head{max-width:1400px;margin:0 auto 48px}
-  .timeline-head .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px}
-  .timeline-head .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--page);box-shadow:0 0 10px var(--page)}
-  .timeline-head h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,4.5vw,64px);line-height:.95;letter-spacing:-.035em;text-transform:lowercase}
-  .timeline-head h2 em{font-style:italic;color:var(--page)}
-  .timeline{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:18px;position:relative}
-  .timeline::before{content:"";position:absolute;top:48px;left:0;right:0;height:1px;background:var(--line-strong);z-index:0}
-  .ti{position:relative;z-index:1;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:24px 22px;display:flex;flex-direction:column;gap:10px;transition:transform .3s cubic-bezier(.2,.7,.2,1),border-color .25s ease}
-  .ti:hover{transform:translateY(-3px);border-color:var(--page)}
-  .ti .year{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:36px;line-height:.9;letter-spacing:-.03em;color:var(--page)}
-  .ti h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;line-height:1.1;letter-spacing:-.02em;text-transform:lowercase}
-  .ti p{font-size:13.5px;line-height:1.55;color:var(--ink-soft)}
-
-  /* VALUES — bullet manifesto */
-  .values{padding:96px 28px}
-  .values .container{max-width:1100px;margin:0 auto}
-  .values .kicker{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink-soft);font-weight:600;margin-bottom:18px;display:flex;align-items:center;gap:10px}
-  .values .kicker .dot{width:7px;height:7px;border-radius:50%;background:var(--page);box-shadow:0 0 10px var(--page)}
-  .values h2{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:clamp(36px,4.5vw,64px);line-height:.95;letter-spacing:-.035em;text-transform:lowercase;margin-bottom:48px}
-  .values h2 em{font-style:italic;color:var(--page)}
-  .values .grid{display:grid;grid-template-columns:1fr 1fr;gap:32px}
-  .v{display:flex;flex-direction:column;gap:8px;padding-top:24px;border-top:1px solid var(--line)}
-  .v .nr{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.22em;color:var(--page);font-weight:700}
-  .v h4{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:24px;letter-spacing:-.025em;text-transform:lowercase;line-height:1.1}
-  .v p{font-size:15px;line-height:1.6;color:var(--ink-soft)}
 
   /* CTA */
   .cta-wrap{padding:120px 28px;text-align:center;border-top:1px solid var(--line)}
@@ -194,27 +153,16 @@
     .topbar .right{gap:8px}
     .topbar .city,.topbar .lang{display:none}
     .topbar .burger{display:inline-flex}
-    .head{padding:88px 14px 48px}
-    .head .inner{grid-template-columns:1fr;gap:20px}
+    .head{padding:64px 14px 48px}
     .head h1{font-size:clamp(40px,11vw,64px)}
-    .head .lede{font-size:16px}
-    .hero-photo{height:auto;min-height:0;aspect-ratio:4/3}
+    .head .lede{font-size:18px}
     .story{padding:48px 18px}
-    .story p{font-size:17px}
-    .stats-wrap{padding:40px 14px}
-    .stats{grid-template-columns:1fr 1fr;gap:18px}
+    .story p{font-size:17.5px}
     .people{padding:48px 14px}
     .profiles{grid-template-columns:1fr;gap:16px}
     .profile{padding:22px}
-    .profile h3{font-size:28px}
     .mission{padding:64px 14px}
-    .timeline-wrap{padding:48px 14px}
-    .timeline{grid-template-columns:1fr;gap:10px}
-    .timeline::before{display:none}
-    .values{padding:48px 14px}
-    .values .grid{grid-template-columns:1fr;gap:14px}
     .cta-wrap{padding:56px 14px}
-    .btn{padding:14px 22px}
     footer{grid-template-columns:1fr;gap:8px;font-size:9px}
     footer .center,footer .right{text-align:left}
   }
@@ -246,7 +194,6 @@
     <a href="/guide" class="menu-item">guide</a>
     <a href="/own" class="menu-item">own with us</a>
     <a href="/invest" class="menu-item">invest</a>
-    <a href="/about" class="menu-item active">about</a>
     <div class="menu-foot">
       <div class="menu-row"><span class="menu-row-label">city</span><a href="#" class="menu-row-val">batumi ▾</a></div>
       <div class="menu-row"><span class="menu-row-label">language</span><a href="/ru/about" class="menu-row-val"><b>EN</b> · RU</a></div>
@@ -255,66 +202,38 @@
   </div>
 </div>
 
-<!-- HEAD -->
-<section class="head">
-  <div class="inner">
-    <div>
-      <div class="crumbs">
-        <a href="/">bre</a>
-        <span class="sep">/</span>
-        <span class="current"><span class="dot"></span>about</span>
-      </div>
-      <h1>two people,<br/>one <em>city</em>.</h1>
-    </div>
-    <p class="lede">bre is a <b>two-person operation</b> in batumi, georgia. we look after the apartments, write the guide, host the guests, and run the business <b>with our own hands</b>. since 2022.</p>
+<div class="meta-top">
+  <div class="crumbs">
+    <a href="/">bre</a>
+    <span class="sep">/</span>
+    <span class="cur"><span class="dot"></span>about</span>
   </div>
-</section>
-
-<!-- HERO PHOTO -->
-<div class="hero-photo">
-  <img src="https://images.unsplash.com/photo-1604542031658-5799ca5d7936?w=2400&q=80" alt="batumi seafront, evening light">
-  <span class="cap">— our home for the last four years</span>
 </div>
 
-<!-- STORY -->
+<section class="head">
+  <div class="inner">
+    <h1>two paths<br/>that <em>met</em>.</h1>
+    <p class="lede"><b>Two paths that met in Batumi.</b> One started managing apartments by accident. The other was looking for a market like this to build something properly.</p>
+  </div>
+</section>
+
 <section class="story">
   <div class="inner">
-    <div class="kicker"><span class="dot"></span>— how it started</div>
-    <h2>we arrived for <em>a winter</em>.<br/>we stayed.</h2>
-    <p>we came to batumi in early <b>2022</b>, thinking we'd give it a season. we'd both spent the last decade working in moscow — one of us in property and brand operations, the other running a plant studio. the plan was to rent a flat for three months, see the sea, drink some wine, decide what's next.</p>
-    <p>three months turned into six. six turned into <em>a year</em>. by the end of that year we'd bought our first flat — half because we'd fallen for the city, half because the maths just worked. we renovated it ourselves, listed it, hosted our first guests over a long, slow winter.</p>
-    <p>then a friend asked us to manage hers. then her friend asked. then the owner of the flat below. by the end of <b>2023</b> we were running ten apartments, writing a city guide on the side, and quietly turning what was supposed to be a winter break into a real business.</p>
-    <p>we're still here. <em>still surprised.</em></p>
+    <p><span class="drop">O</span>lga arrived in Batumi at the very start of 2022. Before that, she'd been a project manager at <b>«Сделано»</b>, a Moscow startup — and along the way she'd accumulated something rare: real, hands-on experience setting up apartments across half a dozen cities she'd lived in. She knew the smell of new sheets, the weight of a properly hemmed curtain, the difference between a kitchen that photographs well and one that lives well.</p>
+    <p>In Batumi she came to help with flowers — the natural continuation of <b>Plant Me</b>, her plant studio in Moscow. But within months an owner asked her to manage his flat. Then his friend asked. Then a neighbour. The thing she'd been doing as a hobby across her own homes turned out to be exactly what people in Batumi needed and nobody was doing properly.</p>
+
+    <h3>then <em>artem</em>.</h3>
+
+    <p><span class="drop">A</span>rtem joined later. He'd spent years between cities — <b>real estate, brand launches, investment work</b>, the kind of life that puts you in a different hotel almost every week. After enough of those nights you stop being a guest and start being a critic: the towel weight, the lighting temperature, the receipt waiting at checkout, the small things that separate a good operator from a bad one. He knew this language fluently — from the customer side.</p>
+    <p>He was looking for someone to build it with. A market where the demand was real, the standards were low, and the team was the bottleneck. When he found Olya already running ten apartments on her own, the conversation was short.</p>
+
+    <h3>two halves, <em>one product</em>.</h3>
+
+    <p>The interesting part isn't that we're partners. It's that we come from <em>opposite sides of the room</em> — Olya from operations and the inside of a home, Artem from strategy and the outside view of how systems behave. One built things by hand for a decade. The other watched things being built and saw what was missing.</p>
+    <p>Together we're building what we think the region has been missing: <b>the best property operator in Batumi</b>. Honest about money, ruthless about quality, small on purpose. Built one apartment at a time, one owner at a time. Slow on purpose. Right by default.</p>
   </div>
 </section>
 
-<!-- STATS -->
-<section class="stats-wrap">
-  <div class="stats">
-    <div class="stat">
-      <div class="num"><em>10+</em></div>
-      <div class="lbl">— apartments</div>
-      <div class="note">under management across six districts of batumi.</div>
-    </div>
-    <div class="stat">
-      <div class="num">$1.5<em>M</em></div>
-      <div class="lbl">— transaction volume</div>
-      <div class="note">closed in the last twelve months — sales, renovation, management.</div>
-    </div>
-    <div class="stat">
-      <div class="num">127</div>
-      <div class="lbl">— places in the guide</div>
-      <div class="note">all visited by us. no rumours, no tripadvisor scraping.</div>
-    </div>
-    <div class="stat">
-      <div class="num">5</div>
-      <div class="lbl">— languages</div>
-      <div class="note">russian, english, turkish, hebrew, georgian. for our guests.</div>
-    </div>
-  </div>
-</section>
-
-<!-- PEOPLE -->
 <section class="people">
   <div class="container">
     <div class="people-head">
@@ -323,41 +242,38 @@
     </div>
 
     <div class="profiles">
-      <!-- OLGA -->
       <div class="profile">
         <div class="ph">
-          <img src="https://images.unsplash.com/photo-1582719471384-894fbb16e074?w=900&q=80" alt="Olga Merkusheva, co-founder of bre">
+          <img src="https://static.tildacdn.one/tild3861-3030-4661-a262-316335653632/photo_2024-06-13_121.jpeg" alt="Olya, co-founder of bre" onerror="this.src='https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=900&q=80'">
         </div>
         <div class="role"><span class="sw"></span>co-founder · people &amp; operations</div>
-        <h3><em>olga</em> merkusheva</h3>
-        <p class="bio">before bre, olga founded <b>plant me</b> — a moscow plant studio at zatsepa 21 that became a quiet phenomenon: a place where plants chose their owners (her words), where lectures and shoots happened, where people met. she ran it from 2018 until she moved.</p>
-        <p class="bio">at bre she's the <b>warmth and the rigour at once</b>: hosts guests, manages the cleaning rotation, sources the textiles, knows which lamp needs replacing in which flat, and keeps the operation feeling human.</p>
+        <h3><em>olya</em></h3>
+        <p class="bio">Founder of <b>Plant Me</b>, a Moscow plant studio. Years of hands-on apartment setup across cities — knows textiles, lighting, the rhythm of a home.</p>
+        <p class="bio">At bre she runs <b>guests, standards, and the quality bar</b>. Every apartment we take on passes through her hands.</p>
         <div class="does">
-          <div class="row">guest hosting · 5 languages</div>
-          <div class="row">staging &amp; interiors</div>
-          <div class="row">cleaning &amp; quality</div>
+          <div class="row">guest hosting</div>
+          <div class="row">the bre standard</div>
+          <div class="row">cleaning &amp; quality control</div>
           <div class="row">supplier relations</div>
         </div>
         <div class="links">
           <a href="https://t.me/bre_ge">↗ telegram</a>
-          <a href="https://www.instagram.com/plantmemoscow">↗ plant me</a>
         </div>
       </div>
 
-      <!-- ARTEM -->
       <div class="profile">
         <div class="ph">
-          <img src="https://www.grinbergart.com/assets/artem-hero-clean.png" alt="Artem Grinberg, co-founder of bre">
+          <img src="https://www.grinbergart.com/assets/artem-hero-clean.png" alt="Artem, co-founder of bre">
         </div>
         <div class="role"><span class="sw"></span>co-founder · strategy &amp; infrastructure</div>
-        <h3><em>artem</em> grinberg</h3>
-        <p class="bio">founder, real-estate operator and GTM strategist. background spans <b>brand launches (Cadillac, FIFA, SPIEF), commercial development</b> (1,550 m² of property delivered), and a research-product at IEEE level on consumer behaviour in retail.</p>
-        <p class="bio">at bre he runs <b>strategy, owner relations, sales, and the infrastructure underneath</b>: the financial admin, the booking systems, the new product ideas. between two cities, mobile by default.</p>
+        <h3><em>artem</em></h3>
+        <p class="bio">Spent years <b>launching tech-driven businesses and developing real estate</b>. Lives between cities — knows hospitality from the customer side, after enough hotel nights to be hard to impress.</p>
+        <p class="bio">At bre he runs <b>strategy, owner relations, sales, and the platform underneath</b>: the bookkeeping system, the new product ideas.</p>
         <div class="does">
           <div class="row">strategy &amp; positioning</div>
           <div class="row">owner &amp; investor relations</div>
           <div class="row">infrastructure &amp; tooling</div>
-          <div class="row">deal sourcing &amp; sales</div>
+          <div class="row">sales &amp; deal sourcing</div>
         </div>
         <div class="links">
           <a href="https://grinbergart.com">↗ grinbergart.com</a>
@@ -368,87 +284,14 @@
   </div>
 </section>
 
-<!-- MISSION -->
 <section class="mission">
-  <blockquote>made by <em>two people</em>.<br/>for those who <em>notice</em>.</blockquote>
+  <blockquote>we want to build<br/>the <em>best property operator</em><br/>in the region.</blockquote>
   <div class="signoff">— our north star, since 2022</div>
 </section>
 
-<!-- TIMELINE -->
-<section class="timeline-wrap">
-  <div class="timeline-head">
-    <div class="kicker"><span class="dot"></span>— our four years here</div>
-    <h2>year by <em>year</em>.</h2>
-  </div>
-  <div class="timeline">
-    <div class="ti">
-      <span class="year">2022</span>
-      <h4>arrived in batumi</h4>
-      <p>came for three months. rented a flat in the old town. realised by month two we weren't leaving.</p>
-    </div>
-    <div class="ti">
-      <span class="year">2023</span>
-      <h4>first flat &amp; first guests</h4>
-      <p>bought, renovated and listed our first apartment. friends asked us to manage theirs. ten by year-end.</p>
-    </div>
-    <div class="ti">
-      <span class="year">2024</span>
-      <h4>the guide started</h4>
-      <p>began publishing a real local guide — places we'd visited ourselves, with no star ratings.</p>
-    </div>
-    <div class="ti">
-      <span class="year">2025</span>
-      <h4>a real brand</h4>
-      <p>launched the new bre.ge, brought design and code in-house, built our own admin from scratch.</p>
-    </div>
-  </div>
-</section>
-
-<!-- VALUES -->
-<section class="values">
-  <div class="container">
-    <div class="kicker"><span class="dot"></span>— how we work</div>
-    <h2>five <em>things</em><br/>we hold to.</h2>
-
-    <div class="grid">
-      <div class="v">
-        <div class="nr">01</div>
-        <h4>we use what we recommend.</h4>
-        <p>every flat we manage, we'd stay in. every café we list, we drink at. every renovation contractor we suggest, we've worked with on our own walls.</p>
-      </div>
-      <div class="v">
-        <div class="nr">02</div>
-        <h4>small on purpose.</h4>
-        <p>ten apartments, not a hundred. one city, not five. we know every door, every neighbour, every quirk. we'd rather grow slowly than badly.</p>
-      </div>
-      <div class="v">
-        <div class="nr">03</div>
-        <h4>transparent about numbers.</h4>
-        <p>30/70 split, no hidden fees, no "extras". monthly report with every line, every receipt. you see what we see.</p>
-      </div>
-      <div class="v">
-        <div class="nr">04</div>
-        <h4>we write what we mean.</h4>
-        <p>no marketing fluff. no "unique experience". no "best in town". if a place is good, we say why. if it's not, we don't list it.</p>
-      </div>
-      <div class="v">
-        <div class="nr">05</div>
-        <h4>we answer ourselves.</h4>
-        <p>no chatbots, no support tickets, no "the team will get back to you". the message lands with one of us, day or night.</p>
-      </div>
-      <div class="v">
-        <div class="nr">06</div>
-        <h4>we stay.</h4>
-        <p>batumi is home, not a project. we built our lives here, and we'll be here when you arrive.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CTA -->
 <section class="cta-wrap">
   <h2>now you <em>know us</em>.<br/>say hi.</h2>
-  <p>book a stay, list your flat, ask a question, or come for coffee — we work from a small office in the old town and we like meeting people who'd like to meet us.</p>
+  <p>Book a stay, list your flat, ask a question. We work from a small office in the old town and we like meeting people in person.</p>
   <div class="row">
     <a class="btn primary" href="https://t.me/bre_ge">↗ message on telegram</a>
     <a class="btn alt" href="tel:+995585889601">+995 585 889 601</a>
@@ -479,7 +322,6 @@
     el.addEventListener('mouseenter',()=>cursor.classList.add('big'));
     el.addEventListener('mouseleave',()=>cursor.classList.remove('big'));
   });
-
   (function(){
     const burger=document.getElementById('burger');
     const overlay=document.getElementById('menuOverlay');
