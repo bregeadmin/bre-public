@@ -305,6 +305,7 @@
   .gp-apply:hover{background:var(--accent)}
 
   /* LIGHTBOX */
+  .lightbox[hidden],.lightbox-single[hidden],.cal-pop[hidden],.guest-pop[hidden]{display:none !important}
   .lightbox{position:fixed;inset:0;z-index:300;background:rgba(10,9,8,0.92);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow-y:auto;animation:lbFadeIn .25s ease}
   @keyframes lbFadeIn{from{opacity:0}to{opacity:1}}
   .lightbox .lb-head{position:sticky;top:0;z-index:10;display:flex;justify-content:space-between;align-items:center;padding:20px 32px;background:rgba(10,9,8,0.6);backdrop-filter:blur(20px)}
