@@ -41,8 +41,6 @@
   .cursor.big{width:72px;height:72px;background:var(--page)}
   @media (hover:none){html,body,a,button{cursor:auto}.cursor{display:none}}
 
-  .float-wm{position:fixed;bottom:18px;left:18px;z-index:80;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;letter-spacing:-.04em;color:#fff;mix-blend-mode:difference;display:flex;align-items:flex-end;gap:3px;line-height:1;pointer-events:auto}
-  .float-wm .d{width:14px;height:14px;border-radius:50%;background:var(--page);mix-blend-mode:normal;box-shadow:0 0 14px var(--page);animation:dotpulse 2.4s ease-in-out infinite;margin-bottom:3px;margin-left:7px}
   @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--page)}}
 
   .topbar{position:fixed;top:0;left:0;right:0;z-index:50;mix-blend-mode:difference;color:#fff;padding:24px 28px;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:24px}
@@ -151,7 +149,7 @@
 
   @media (max-width:880px){
     html,body{cursor:auto}
-    .cursor,.float-wm{display:none}
+    .cursor{display:none}
     .topbar{grid-template-columns:auto 1fr;padding:14px 14px}
     .topbar .left{display:none}
     .topbar .ctr{justify-self:start;font-size:20px}
@@ -190,13 +188,14 @@
     .home-dot,#flyingDot{display:none}
   }
 
+
+
 </style>
 </head>
 <body>
 <span id="flyingDot"></span>
 
 <div class="cursor" id="cursor"></div>
-<a href="/ru/" class="float-wm" id="floatWm">bre<span class="d"></span></a>
 
 <header class="topbar" id="top">
   <div class="left">
@@ -332,15 +331,12 @@
 
 <script>
   const cursor = document.getElementById('cursor');
-  const floatWm = document.getElementById('floatWm');
-  let mx=window.innerWidth/2,my=window.innerHeight/2,cx=mx,cy=my,wmx=0,wmy=0;
   window.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY});
   function loop(){
     cx+=(mx-cx)*0.7;cy+=(my-cy)*0.7;
     if(cursor) cursor.style.transform=`translate(${cx}px,${cy}px) translate(-50%,-50%)`;
     const tx=(mx-window.innerWidth/2)*0.012,ty=(my-window.innerHeight/2)*0.012;
-    wmx+=(tx-wmx)*0.08;wmy+=(ty-wmy)*0.08;
-    if(floatWm) floatWm.style.transform=`translate(${wmx}px, ${wmy}px)`;
+    
     requestAnimationFrame(loop);
   }
   loop();
@@ -441,6 +437,8 @@
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
   })();
+
+
 
 </script>
 

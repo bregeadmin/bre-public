@@ -50,9 +50,6 @@
   .cursor.yellow{background:var(--yellow)}
   .cursor.text::after{content:attr(data-label);position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);font-family:"JetBrains Mono",monospace;font-size:9px;color:#fff;letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;font-weight:600}
 
-  .float-wm{position:fixed;left:24px;bottom:24px;z-index:60;display:flex;align-items:flex-end;gap:3px;font-family:"Bricolage Grotesque",sans-serif;font-size:34px;font-weight:800;letter-spacing:-.045em;color:#fff;mix-blend-mode:difference;text-decoration:none;line-height:1;transition:transform .4s cubic-bezier(.2,.7,.2,1);will-change:transform}
-  .float-wm:hover{transform:scale(1.06)}
-  .float-wm .d{width:14px;height:14px;border-radius:50%;background:var(--cat-color);mix-blend-mode:normal;box-shadow:0 0 14px var(--cat-color);animation:dotpulse 2.4s ease-in-out infinite;margin-bottom:3px;margin-left:7px}
   @keyframes dotpulse{50%{transform:scale(1.35);box-shadow:0 0 22px var(--cat-color)}}
 
   .topbar{position:fixed;inset:0 0 auto 0;z-index:50;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:22px 28px;mix-blend-mode:difference;color:#fff;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:500}
@@ -225,7 +222,7 @@
   @media (max-width:880px){
     html,body{cursor:auto}
     a,button,input,select{cursor:auto}
-    .cursor,.float-wm{display:none}
+    .cursor{display:none}
     .topbar{grid-template-columns:auto 1fr;padding:14px 14px}
     .topbar .left{display:none}
     .topbar .ctr{justify-self:start;font-size:20px}
@@ -293,13 +290,14 @@
     .home-dot,#flyingDot{display:none}
   }
 
+
+
 </style>
 </head>
 <body>
 <span id="flyingDot"></span>
 
 <div class="cursor" id="cursor"></div>
-<a href="#top" class="float-wm" id="floatWm">bre<span class="d"></span></a>
 
 <header class="topbar" id="top">
   <div class="left">
@@ -620,18 +618,11 @@
   });
 
   const cursor = document.getElementById('cursor');
-  const floatWm = document.getElementById('floatWm');
-  let mx=window.innerWidth/2, my=window.innerHeight/2, cx=mx, cy=my;
-  let wmx=0, wmy=0;
+    let mx=window.innerWidth/2, my=window.innerHeight/2, cx=mx, cy=my;
   window.addEventListener('mousemove', e => { mx=e.clientX; my=e.clientY; });
   function loop(){
     cx += (mx-cx)*0.7; cy += (my-cy)*0.7;
     if(cursor) cursor.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-    const tx = (mx - window.innerWidth/2) * 0.012;
-    const ty = (my - window.innerHeight/2) * 0.012;
-    wmx += (tx - wmx) * 0.08;
-    wmy += (ty - wmy) * 0.08;
-    if(floatWm) floatWm.style.transform = `translate(${wmx}px, ${wmy}px)`;
     requestAnimationFrame(loop);
   }
   loop();
@@ -773,6 +764,8 @@
     window.addEventListener('scroll', onScroll, {passive:true});
     onScroll();
   })();
+
+
 
 </script>
 
