@@ -144,6 +144,14 @@
     .foot-left{gap:10px;font-size:9px}
     .foot-right{font-size:9px}
   }
+
+  /* TOPBAR scroll state — solid bg + blur, no blend, readable */
+  .topbar.scrolled{mix-blend-mode:normal;color:var(--ink);background:rgba(251,248,241,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(10,9,8,0.06)}
+  .topbar.scrolled .ctr{color:var(--ink)}
+  .topbar.scrolled .city,.topbar.scrolled .lang{border-color:rgba(10,9,8,0.2);color:var(--ink)}
+  .topbar.scrolled .city:hover,.topbar.scrolled .lang:hover{border-color:var(--ink);background:rgba(10,9,8,0.04)}
+  .topbar.scrolled .burger{border-color:rgba(10,9,8,0.4)}
+  .topbar.scrolled .burger span{background:var(--ink)}
 </style>
 </head>
 <body>
@@ -345,6 +353,19 @@ document.querySelectorAll('a,button').forEach(el=>{
     } else if(y<=60&&state==='scrolled'){doFade('in')}
   },{passive:true});
 })();
+
+  // Topbar scroll state — adds .scrolled class when scrolled past hero
+  (function(){
+    const tb = document.querySelector('.topbar');
+    if(!tb) return;
+    function update(){
+      const y = window.scrollY || document.documentElement.scrollTop;
+      if(y > 40) tb.classList.add('scrolled');
+      else tb.classList.remove('scrolled');
+    }
+    window.addEventListener('scroll', update, {passive:true});
+    update();
+  })();
 </script>
 </body>
 </html>
